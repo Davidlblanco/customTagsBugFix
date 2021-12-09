@@ -8,9 +8,7 @@
   "builders": {
     "messages": "1.x",
     "store": "0.x",
-    "react": "3.x",
-    "node": "6.x",
-    "graphql": "1.x"
+    "react": "3.x"
   },
   "dependencies": {
     "vtex.styleguide": "9.x",
@@ -20,6 +18,8 @@
     "vtex.search-graphql": "0.x",
     "vtex.formatted-price": "0.x",
     "vtex.store-image": "0.x",
+    "vtex.slider": "0.x",
+    "vtex.slider-layout": "0.x",
     "vtex.rewriter": "1.x",
     "vtex.catalog-api-proxy": "0.x",
     "vtex.file-manager": "0.x",
@@ -33,6 +33,5 @@
     "vtex.product-summary-context": "0.x",
     "vtex.product-price": "1.x"
   },
- 
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }

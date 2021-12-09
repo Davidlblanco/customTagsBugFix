@@ -1,3 +1,32 @@
 {
-    "definitions": {}
+    "definitions": {
+        "StickyShelf": {
+            "properties": {
+                "items": {
+                    "minItems": 0,
+                    "type": "array",
+                    "title": "itens",
+                    "description": "shelf itens",
+                    "items": {
+                        "$ref": "app:simanqa.m3-custom#/definitions/products"
+                    }
+                }
+            }
+        },
+
+        "products": {
+            "properties": {
+                "ProductProps": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "product id",
+                            "type": "string",
+                            "default": null
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

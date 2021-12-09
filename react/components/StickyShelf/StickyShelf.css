@@ -1,0 +1,14 @@
+.containerStickyShelf {
+    display: block;
+    opacity: 1;
+    /* transition: opacity 1s ease 0s; */
+    width: auto;
+    box-shadow: rgb(0 0 0 / 20%) 0px 0px 4px 1px;
+    border-top-right-radius: 50px;
+    position: fixed;
+    left: 0;
+    bottom: 30px;
+    background: white;
+    z-index: 10000000;
+    border-bottom-right-radius: 50px;
+}
