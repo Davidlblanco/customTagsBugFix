@@ -1,27 +1,54 @@
 import React, { useState } from "react";
 import { CloseIcon } from "./svg/CloseIcon";
+import { Logo } from "./svg/LogoSiman";
 import styles from "./StickyShelf.css";
 
 const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
     const [open, setOpen] = useState(false);
 
-    return open ? (
-        <div className={styles.containerSticky} onClick={() => setOpen(!open)}>
-            <CloseIcon />
-            <CloseIcon />
-        </div>
-    ) : (
-        <div className={styles.containerStickyShelf}>
-            <div className={styles.containerHeader}>
-                <CloseIcon />
+    return (
+        <>
+            <div
+                className={styles.containerStickyShelfClose}
+                onClick={() => setOpen(!open)}
+                style={
+                    open
+                        ? { opacity: 0, visibility: "hidden" }
+                        : {
+                              opacity: 1,
+                              visibility: "visible"
+                          }
+                }
+            >
+                <div className={styles.containerLogo}>
+                    <Logo />
+                </div>
             </div>
-            {children}
-        </div>
+
+            <div
+                className={styles.containerStickyShelfOpen}
+                style={
+                    open
+                        ? {
+                              opacity: 1,
+                              visibility: "visible"
+                          }
+                        : { opacity: 0, visibility: "hidden" }
+                }
+            >
+                <div className={styles.containerHeader}>
+                    <div className={styles.containerHeaderLogo}>
+                        <Logo />
+                    </div>
+                    <CloseIcon
+                        onClick={() => setOpen(!open)}
+                        style={{ cursor: "pointer" }}
+                    />
+                </div>
+                {children}
+            </div>
+        </>
     );
 };
 
 export { StickyShelf };
-
-StickyShelf.schema = {
-    title: "StickyShelf"
-};

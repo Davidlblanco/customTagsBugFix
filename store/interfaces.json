@@ -1,9 +1,6 @@
 {
     "sticky-shelf": {
         "component": "StickyShelf",
-        "composition": "children",
-        "content": {
-            "$ref": "app:simanqa.m3-custom#/definitions/StickyShelf"
-        }
+        "composition": "children"
     }
 }
