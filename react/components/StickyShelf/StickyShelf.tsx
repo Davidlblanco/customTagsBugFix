@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CloseIcon } from "./assets/CloseIcon";
+import { Logo } from "./assets/siman_com";
 import styles from "./StickyShelf.css";
 
 const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
@@ -20,10 +21,7 @@ const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
                 }
             >
                 <div className={styles.containerLogo}>
-                    <img
-                        src={require("./assets/siman_com.png")}
-                        alt="logo siman"
-                    />
+                    <Logo />
                 </div>
             </div>
 
@@ -40,11 +38,7 @@ const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
             >
                 <div className={styles.containerHeader}>
                     <div className={styles.containerHeaderLogo}>
-                        <img
-                            style={{ maxWidth: "130px" }}
-                            src={require("./assets/siman_com.png")}
-                            alt="logo siman"
-                        />
+                        <Logo />
                     </div>
                     <CloseIcon
                         onClick={() => setOpen(!open)}
