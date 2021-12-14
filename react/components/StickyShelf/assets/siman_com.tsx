@@ -450,6 +450,7 @@ export const Logo = () => {
   zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyshf4/UCqyfnOYbNgAAAAldEVYdGRhdGU6Y3JlYXRl
   ADIwMjEtMTItMTNUMjM6MjM6NTIrMDM6MDCGPFo2AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIxLTEy
   LTEzVDIzOjIzOjUyKzAzOjAw92HiigAAAABJRU5ErkJggg==" /> 
+  <desc>Siman logo</desc>
   </svg>
     );
 };
