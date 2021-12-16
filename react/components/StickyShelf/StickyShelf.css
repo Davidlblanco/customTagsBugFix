@@ -27,6 +27,26 @@
     padding-bottom: 10px;
 }
 
+.containerStickyShelfOpen
+    :global(.vtex-store-components-3-x-discountInsideContainer) {
+    top: 20px;
+}
+
+.containerStickyShelfOpen
+    :global(.vtex-flex-layout-0-x-flexRowContent--m3-shelf-price-selling-savings) {
+    display: block;
+}
+
+.containerStickyShelfOpen
+    :global(.vtex-product-price-1-x-sellingPrice--m3-shelf--hasListPrice) {
+    margin-top: 10px;
+}
+
+.containerStickyShelfOpen :global(.vtex-button) {
+    margin: 0 !important;
+    margin-bottom: 10px !important;
+}
+
 .containerHeader {
     display: flex;
     justify-content: end;

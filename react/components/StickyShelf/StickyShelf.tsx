@@ -4,7 +4,7 @@ import { Logo } from "./assets/siman_com";
 import styles from "./StickyShelf.css";
 
 const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
 
     return (
         <>
