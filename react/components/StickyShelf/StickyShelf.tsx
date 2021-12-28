@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { CloseIcon } from "./assets/CloseIcon";
-import { Logo } from "./assets/siman_com";
+import { ThunderBlack } from "./assets/ThunderIconBlack";
+import { ThunderWhite } from "./assets/ThunderIconWhite";
 import styles from "./StickyShelf.css";
 
 const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
@@ -21,7 +22,8 @@ const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
                 }
             >
                 <div className={styles.containerLogo}>
-                    <Logo />
+                    <ThunderBlack />
+                    <h3 className={styles.closeText}>ON SALE</h3>
                 </div>
             </div>
 
@@ -38,7 +40,8 @@ const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
             >
                 <div className={styles.containerHeader}>
                     <div className={styles.containerHeaderLogo}>
-                        <Logo />
+                        <ThunderWhite />
+                        <h3 className={styles.openText}>ON SALE</h3>
                     </div>
                     <CloseIcon
                         onClick={() => setOpen(!open)}

@@ -4,19 +4,20 @@
     transition: 0.4s ease-in-out;
     width: auto;
     box-shadow: rgb(0 0 0 / 20%) 0px 0px 4px 1px;
-    border-top-right-radius: 50px;
     position: fixed;
     left: 0;
     bottom: 70px;
-    background: #7e1f25;
-    z-index: 10000000;
-    border-bottom-right-radius: 50px;
+    background: #ffdc20;
+    z-index: 1000;
 }
 
 .containerLogo {
     max-width: 130px;
     padding: 10px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .containerStickyShelfOpen {
@@ -27,9 +28,24 @@
     padding-bottom: 10px;
 }
 
+.openText,
+.closeText {
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #000000;
+    text-align: center;
+    font-size: 15px;
+}
+
+.openText {
+    color: #ffffff;
+}
+
 .containerStickyShelfOpen
     :global(.vtex-store-components-3-x-discountInsideContainer) {
     top: 20px;
+    background: #ffdc20;
+    color: #000000;
 }
 
 .containerStickyShelfOpen
@@ -42,16 +58,27 @@
     margin-top: 10px;
 }
 
+.containerStickyShelfOpen :global(.vtex-add-to-cart-button-0-x-buttonText) {
+    color: #000000;
+}
+
 .containerStickyShelfOpen :global(.vtex-button) {
     margin: 0 !important;
     margin-bottom: 10px !important;
+    background: #ffdc20;
+    border: 0;
+}
+
+.containerStickyShelfOpen
+    :global(.vtex-slider-layout-0-x-paginationDot--m3-shelf-products-slide--isActive) {
+    background: #000000;
 }
 
 .containerHeader {
     display: flex;
     justify-content: end;
     align-items: center;
-    background: #7e1f25;
+    background: #000000;
     border-top-right-radius: 5px;
     padding-right: 10px;
     height: 50px;
@@ -60,5 +87,6 @@
 .containerHeaderLogo {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
 }
