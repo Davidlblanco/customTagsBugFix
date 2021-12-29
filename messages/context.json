@@ -1,4 +1,6 @@
 {
   "admin/editor.promotionflag.title": "Flag de promotion",
-  "admin/editor.promotionflag.description": "Componente de Flag de promotion"
+  "admin/editor.promotionflag.description": "Componente de Flag de promotion",
+  "store/grift-wrapper.title": "Gift wrapper",
+  "store/grift-wrapper.subTitle": "Gift wrapper"
 }

@@ -1,39 +1,37 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import useProduct from "vtex.product-context/useProduct";
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
 export default function useGiftWrapper(attachmentName = 'Regalo') {
-    const { assemblyOptions, selectedItem } = useProduct();
+    const { selectedItem } = useProduct();
     const dispatch = useProductDispatch()
     const [isActive, setIsActive] = useState(false);
-    const hasAttachment = !!assemblyOptions.inputValues[attachmentName];
 
-    const toggleActive = useCallback(() => {
-        setIsActive(!isActive)
-    }, [isActive, setIsActive]);
+    const hasAttachment = selectedItem?.attachments?.some(attachment => attachment.name == attachmentName);
 
-    useEffect(() => {
-        if (hasAttachment) {
-            dispatch({
-                type: 'SET_ASSEMBLY_OPTIONS',
-                args: {
-                    groupId: attachmentName,
-                    groupInputValues: {
-                        [attachmentName]: JSON.stringify({
-                            sku: selectedItem?.itemId,
-                            [attachmentName]: isActive
-                        })
-                    },
-                    isValid: true,
+    const setAttachment = (active: boolean) => {
+        dispatch({
+            type: 'SET_ASSEMBLY_OPTIONS',
+            args: {
+                groupId: attachmentName,
+                groupInputValues: {
+                    [attachmentName]: JSON.stringify({
+                        sku: selectedItem?.itemId,
+                        [attachmentName]: active
+                    })
                 },
-            });
-        }
-    }, [isActive, hasAttachment]);
+                isValid: true,
+            },
+        });
+        setIsActive(active);
+    }
+
+    const toggleAttachment = () => setAttachment(!isActive);
 
     return {
         hasAttachment,
         isActive,
-        toggleActive,
-        setIsActive
+        toggleAttachment,
+        setAttachment
     }
 }
