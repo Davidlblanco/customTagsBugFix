@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CloseIcon } from "./assets/CloseIcon";
 import { ThunderBlack } from "./assets/ThunderIconBlack";
 import { ThunderWhite } from "./assets/ThunderIconWhite";
+import { canUseDOM } from "vtex.render-runtime";
 import styles from "./StickyShelf.css";
 
 const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
+    const pathName = canUseDOM ? window.location.pathname : "";
+
+    console.log(pathName);
+
     const [open, setOpen] = useState(true);
+
+    useEffect(() => {
+        setOpen(pathName === "/" ? true : false);
+    }, [pathName]);
 
     return (
         <>
