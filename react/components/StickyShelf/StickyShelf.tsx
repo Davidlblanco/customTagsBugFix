@@ -7,9 +7,6 @@ import styles from "./StickyShelf.css";
 
 const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
     const pathName = canUseDOM ? window.location.pathname : "";
-
-    console.log(pathName);
-
     const [open, setOpen] = useState(true);
 
     useEffect(() => {
