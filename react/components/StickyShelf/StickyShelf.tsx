@@ -8,12 +8,14 @@ import styles from "./StickyShelf.css";
 const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
     const pathName = canUseDOM ? window.location.pathname : "";
     const [open, setOpen] = useState(true);
+    const [show, setShow] = useState(true);
 
     useEffect(() => {
         setOpen(pathName === "/" ? true : false);
+        setShow(pathName.includes("orderPlaced") ? false : true);
     }, [pathName]);
 
-    return (
+    return show ? (
         <>
             <div
                 className={styles.containerStickyShelfClose}
@@ -57,6 +59,8 @@ const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
                 {children}
             </div>
         </>
+    ) : (
+        <></>
     );
 };
 
