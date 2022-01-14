@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useSearchPage } from "vtex.search-page-context/SearchPageContext";
 import { canUseDOM } from "vtex.render-runtime";
+import { FiChevronDown } from "react-icons/fi"
+import { AiOutlineCaretLeft, AiOutlineCaretRight } from "react-icons/ai"
 import styles from "./CustomPagination.css";
 import isCollectionPage from "../../utils/isCollectionPage";
 
@@ -9,9 +11,7 @@ import isCollectionPage from "../../utils/isCollectionPage";
 const CustomPagination = () => {
   const { searchQuery, maxItemsPerPage, page } = useSearchPage();
   const [open, setOpen] = useState(false)
-  // const MAX_ITEMS = props.maxPagesVisible ? props.maxPagesVisible : 5;
   const MAX_PER_PAGE = maxItemsPerPage ? maxItemsPerPage : 24;
-  // const MAX_LEFT = (MAX_ITEMS - 1) / 2;
   const url = canUseDOM ? window.location.search : "";
   const pathName = canUseDOM ? window.location.pathname : "";
   const numberOfProdutsFound =
@@ -19,13 +19,6 @@ const CustomPagination = () => {
       ? searchQuery.data.productSearch?.recordsFiltered
       : searchQuery?.recordsFiltered;
   const pages = Math.ceil(numberOfProdutsFound / MAX_PER_PAGE);
-
-  // const firstPage = () => {
-  //     if (pages < MAX_ITEMS) return 1;
-  //     else if (Math.trunc(Math.max(page - MAX_LEFT, 1)) + MAX_ITEMS <= pages)
-  //         return Math.trunc(Math.max(page - MAX_LEFT, 1));
-  //     else return Number(pages - MAX_ITEMS + 1);
-  // };
 
   const finalUrl = (toPage: number) => {
     const urlCortada = url.split("&");
@@ -63,6 +56,23 @@ const CustomPagination = () => {
     return arr
   }
 
+
+  const modifyClass = (arrow: string) => {
+    let className
+
+    if(arrow === "left"){
+      className =  styles.arrowLeft 
+    } else{
+      className = styles.arrowRight
+    }
+
+    if(arrow === "left" && page === 1 || arrow === "right" && page === pages){
+      className = className + " " + styles.arrowDisable;
+    } 
+
+    return className;
+};
+
   return (
     <div className={styles.containerPagination}>
       <ul className={styles.pagination}>
@@ -74,25 +84,27 @@ const CustomPagination = () => {
             }
             className={styles.buttonPrev}
           >
-            <img src={require("./svg/arrowLeft.svg")}></img>
+            <AiOutlineCaretLeft size={20} className={modifyClass("left")} color="#000000"/>
           </a>
         </li>
-        <div className={styles.paginationMiddle} onClick={() => setOpen(!open)}>
-          <p className={styles.pagination__item}>
-            Página {page} de {pages}
-          </p>
-          <p className={styles.icon}>icon</p>
 
+        <li className={styles.paginationMiddle} onClick={() => setOpen(!open)}>
+          <p className={styles.pagination__item}>
+            Página {page} de {pages ? pages : "loading..."}
+          </p>
+          <FiChevronDown className={styles.paginationArrowDown}  size={20}/>
           {open && (
             <div className={styles.paginationPages}>
-              {getPages().map((item) =>{
-                return(
-                  <span onClick={() =>  item === page ? null : changePage(item)}>{item}</span>
-                )
-              })}
+              <div className={styles.paginationPagesWrapper}>
+                {getPages().map((item) =>{
+                  return(
+                    <span className={styles.paginationText} onClick={() =>  item === page ? null : changePage(item)}>página {item}</span>
+                  )
+                })}   
+              </div>                      
             </div>
           )}
-        </div>
+        </li>
         
         <li className={styles.buttonNextContainer}>
           <a
@@ -102,7 +114,7 @@ const CustomPagination = () => {
             }
             className={styles.buttonNext}
           >
-            <img src={require("./svg/arrowRight.svg")}></img>
+            <AiOutlineCaretRight size={20} className={modifyClass("right")} color="#000000"/>
           </a>
         </li>
       </ul>
