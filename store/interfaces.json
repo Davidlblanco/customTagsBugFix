@@ -17,7 +17,7 @@
         "content": {
             "properties": {
                 "links": {
-                    "$ref": "app:simanqa.freight-bar#/definitions/FreightBar"
+                    "$ref": "app:simanqa.m3-custom#/definitions/FreightBar"
                 }
             }
         }
