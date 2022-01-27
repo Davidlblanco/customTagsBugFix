@@ -103,9 +103,9 @@ const CustomPagination = () => {
         <li className={styles.buttonPrevContainer}>
           <a
             href="javascript:void(0)"
-            onClick={() =>
-              page === 1 ? null : changePage(page - 1)
-
+            onClick={() => { 
+              page === 1 ? null : changePage(page - 1), 
+              localStorage.removeItem("scroll")}
             }
             className={styles.buttonPrev}
           >
@@ -123,7 +123,13 @@ const CustomPagination = () => {
               <div className={styles.paginationPagesWrapper}>
                 {getPages().map((item) => {
                   return (
-                    <span className={styles.paginationText} onClick={() => item === page ? null : changePage(item)}>página {item}</span>
+                    <span className={styles.paginationText} onClick={() => {
+                    if(item === page){
+                      null
+                    } else{
+                      changePage(item)
+                      localStorage.removeItem("scroll")
+                    }}}>página {item}</span>
                   )
                 })}
               </div>
@@ -134,8 +140,9 @@ const CustomPagination = () => {
         <li className={styles.buttonNextContainer}>
           <a
             href="javascript:void(0)"
-            onClick={() =>
-              page === pages ? null : changePage(page + 1)
+            onClick={() => {
+              page === pages ? null : changePage(page + 1), 
+              localStorage.removeItem("scroll")} 
             }
             className={styles.buttonNext}
           >
