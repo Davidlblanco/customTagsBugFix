@@ -1,4 +1,4 @@
-html {
+:global(.render-container) {
     scroll-behavior: smooth;
 }
 
