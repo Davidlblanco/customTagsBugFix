@@ -6,12 +6,13 @@ const isCollectionPage = (COLLECTION_CLASS = "collection"): boolean => {
     if (canUseDOM) {
         const renderContainer = document.querySelector(".render-container");
 
-        if (renderContainer)
-            Array.from(renderContainer.classList).map((el) =>
+        if (renderContainer) {
+            Array.from(renderContainer.classList).map(el =>
                 el.includes(COLLECTION_CLASS)
                     ? (collectionPage = true)
                     : (collectionPage = false)
             );
+        }
     }
 
     return collectionPage;
