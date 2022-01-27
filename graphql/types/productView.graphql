@@ -1,0 +1,13 @@
+type Document {
+  """
+  id is used as cacheId
+  """
+  cacheId: ID
+  id: String
+  fields: [Field]
+}
+
+type Field {
+  key: String
+  value: String
+}

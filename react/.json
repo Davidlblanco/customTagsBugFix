@@ -1,0 +1,24 @@
+{
+   "selectedAddresses": [
+      {
+         "addressId": "1611260353248",
+         "addressType": "residential",
+         "city": null,
+         "complement": null,
+         "country": "BRA",
+         "geoCoordinates": [],
+         "neighborhood": null,
+         "number": null,
+         "postalCode": "69975-000",
+         "receiverName": "maycon douglas",
+         "reference": null,
+         "state": null,
+         "street": null,
+         "addressQuery": "",
+         "isDisposable": null
+      }    
+   ],
+   "expectedOrderFormSections": [
+      "shippingData"
+   ]
+}
