@@ -25,7 +25,7 @@ const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
                         ? { opacity: 0, visibility: "hidden" }
                         : {
                               opacity: 1,
-                              visibility: "visible"
+                              visibility: "visible",
                           }
                 }
             >
@@ -41,7 +41,7 @@ const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
                     open
                         ? {
                               opacity: 1,
-                              visibility: "visible"
+                              visibility: "visible",
                           }
                         : { opacity: 0, visibility: "hidden" }
                 }
