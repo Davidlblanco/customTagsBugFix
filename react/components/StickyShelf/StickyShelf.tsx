@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CloseIcon } from "./assets/CloseIcon";
 import { ThunderBlack } from "./assets/ThunderIconBlack";
 import { ThunderWhite } from "./assets/ThunderIconWhite";
+import { canUseDOM } from "vtex.render-runtime";
 import styles from "./StickyShelf.css";
 
-const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
+const StickyShelf: StorefrontFunctionComponent = ({ children }: any) => {
+    const pathName = canUseDOM ? window.location.pathname : "";
     const [open, setOpen] = useState(true);
+    const [show, setShow] = useState(true);
 
-    return (
+    useEffect(() => {
+        setOpen(pathName === "/" ? true : false);
+        setShow(pathName.includes("orderPlaced") ? false : true);
+    }, [pathName]);
+
+    return show ? (
         <>
             <div
                 className={styles.containerStickyShelfClose}
@@ -51,6 +59,8 @@ const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
                 {children}
             </div>
         </>
+    ) : (
+        <></>
     );
 };
 

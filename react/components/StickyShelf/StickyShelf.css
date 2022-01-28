@@ -41,6 +41,11 @@
     color: #ffffff;
 }
 
+.containerStickyShelfOpen :global(.vtex-product-price-1-x-sellingPrice),
+.containerStickyShelfOpen :global(.vtex-product-price-1-x-listPrice--m3-shelf) {
+    width: 100%;
+}
+
 .containerStickyShelfOpen
     :global(.vtex-store-components-3-x-discountInsideContainer) {
     top: 20px;
@@ -60,6 +65,7 @@
 
 .containerStickyShelfOpen :global(.vtex-add-to-cart-button-0-x-buttonText) {
     color: #000000;
+    font-size: 11px;
 }
 
 .containerStickyShelfOpen :global(.vtex-button) {
