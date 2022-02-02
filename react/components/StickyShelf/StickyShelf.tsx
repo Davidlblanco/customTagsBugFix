@@ -5,7 +5,7 @@ import { ThunderWhite } from "./assets/ThunderIconWhite";
 import { canUseDOM } from "vtex.render-runtime";
 import styles from "./StickyShelf.css";
 
-const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
+const StickyShelf: StorefrontFunctionComponent = ({ children }: any) => {
     const pathName = canUseDOM ? window.location.pathname : "";
     const [open, setOpen] = useState(true);
     const [show, setShow] = useState(true);
@@ -16,7 +16,7 @@ const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
     }, [pathName]);
 
     return show ? (
-        <>
+        <div className={styles.containerStickyShelf}>
             <div
                 className={styles.containerStickyShelfClose}
                 onClick={() => setOpen(!open)}
@@ -25,7 +25,7 @@ const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
                         ? { opacity: 0, visibility: "hidden" }
                         : {
                               opacity: 1,
-                              visibility: "visible",
+                              visibility: "visible"
                           }
                 }
             >
@@ -41,7 +41,7 @@ const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
                     open
                         ? {
                               opacity: 1,
-                              visibility: "visible",
+                              visibility: "visible"
                           }
                         : { opacity: 0, visibility: "hidden" }
                 }
@@ -58,7 +58,7 @@ const StickyShelf: StorefrontFunctionComponent = ({ children }) => {
                 </div>
                 {children}
             </div>
-        </>
+        </div>
     ) : (
         <></>
     );
