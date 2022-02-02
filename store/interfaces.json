@@ -5,5 +5,21 @@
     },
     "gift-wrapper": {
         "component": "GiftWrapper"
+    },
+
+    "custom-pagination": {
+        "component": "CustomPagination"
+    },
+
+    "freight-bar": {
+        "component": "FreightBar",
+        "allowed": "*",
+        "content": {
+            "properties": {
+                "links": {
+                    "$ref": "app:simanqa.m3-custom#/definitions/FreightBar"
+                }
+            }
+        }
     }
 }
