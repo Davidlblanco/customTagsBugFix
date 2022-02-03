@@ -1,0 +1,14 @@
+
+  query Product($values: [ID!]) {
+    productsByIdentifier(field: id, values: $values) @context(provider: "vtex.search-graphql") {
+      productClusters {
+        id
+      },
+      brandId,
+      productId
+    }
+  }
+
+  
+  
+
