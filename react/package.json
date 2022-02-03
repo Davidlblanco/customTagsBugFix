@@ -4,6 +4,7 @@
     "lint": "tsc --noEmit && eslint --ext ts,tsx ."
   },
   "dependencies": {
+    "@types/date-arithmetic": "^4.1.1",
     "@types/react-input-mask": "^3.0.0",
     "@types/react-scroll": "^1.8.2",
     "@vtex/css-handles": "^1.0.0",
@@ -11,13 +12,14 @@
     "axios": "^0.21.1",
     "cep-promise": "^4.1.0",
     "classnames": "^2.2.6",
+    "date-arithmetic": "^4.1.0",
     "express": "^4.17.1",
     "final-form": "^4.20.2",
     "formik": "^2.2.6",
     "icons": "^1.0.0",
     "ramda": "^0.26.1",
     "react": "^17.0.2",
-    "react-apollo": "^2.5.8",
+    "react-apollo": "^3.1.5",
     "react-dom": "^16.8.6",
     "react-fade-in": "^2.0.0",
     "react-hook-form": "^6.11.5",
