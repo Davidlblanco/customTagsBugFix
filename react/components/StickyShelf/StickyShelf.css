@@ -83,6 +83,16 @@
     background: #000000;
 }
 
+.containerStickyShelfOpen :global(.vtex-add-to-cart-button-0-x-buttonText) {
+    font-size: 0;
+}
+
+.containerStickyShelfOpen
+    :global(.vtex-add-to-cart-button-0-x-buttonText)::before {
+    content: "Agregar a tu carrito";
+    font-size: 12px;
+}
+
 .containerHeader {
     display: flex;
     justify-content: end;
