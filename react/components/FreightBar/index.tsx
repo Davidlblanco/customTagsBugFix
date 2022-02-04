@@ -95,7 +95,7 @@ function calculateValue(orderform: any, promotionData: IPromotionData, listProdu
         if(validSkus.length > 0) isValid = validSkus.includes(item.id);
 
         if(isValid) {
-          if(!promotionData.skusAreInclusive) finalProducts.push(item);
+          if(promotionData.skusAreInclusive) finalProducts.push(item);
           return;
         }
 
@@ -103,7 +103,7 @@ function calculateValue(orderform: any, promotionData: IPromotionData, listProdu
         if(validProducts.length > 0) isValid = validProducts.includes(item.productId);
 
         if(isValid) {
-          if(!promotionData.productsAreInclusive) finalProducts.push(item);
+          if(promotionData.productsAreInclusive) finalProducts.push(item);
           return;
         }
 
@@ -144,18 +144,23 @@ function calculateValue(orderform: any, promotionData: IPromotionData, listProdu
         }
 
         if(isValid ) {
-          if(!promotionData.collectionsIsInclusive)finalProducts.push(item);
+          if(promotionData.collectionsIsInclusive)finalProducts.push(item);
           return
         }
 
+        //
         if(!promotionData.collectionsIsInclusive || !promotionData.brandsAreInclusive || !promotionData.skusAreInclusive || !promotionData.categoriesAreInclusive || !promotionData.productsAreInclusive) finalProducts.push(item);
       });
 
     }
 
     let finalPrice = 0;
+
     finalProducts.forEach((product : any) => {
-      finalPrice += product.priceDefinition.total;
+      if(product.priceDefinition){
+        finalPrice += product.priceDefinition.total;
+      }else finalPrice += product.price;
+      
     });
 
     return finalPrice;
