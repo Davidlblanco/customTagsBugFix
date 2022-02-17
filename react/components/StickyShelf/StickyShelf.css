@@ -9,7 +9,7 @@
     box-shadow: rgb(0 0 0 / 20%) 0px 0px 4px 1px;
     position: fixed;
     left: 0;
-    bottom: 70px;
+    bottom: 15%;
     background: #ffdc20;
     z-index: 1000;
 }
