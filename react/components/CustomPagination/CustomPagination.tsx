@@ -56,7 +56,7 @@ const CustomPagination = () => {
       urlPageVerify = urlSemPage;
     }
 
-    if (search.includes("?") && search.length > 7) {
+    if (search.includes("?") && search.length > 8) {
       const urlNovoPage = urlPageVerify.concat(`&page=${toPage}`);
       const urlFinalProduto = urlNovoPage.join("");
       return pathName.concat(urlFinalProduto);
@@ -68,13 +68,12 @@ const CustomPagination = () => {
   };
 
   const changePage = (toPage: number) => {
-    if (canUseDOM) window.location.href = finalUrl(toPage);
+     window.location.href = finalUrl(toPage);
   }
 
   const getPages = () => {
     const arr = Array.from({ length: pages + 1 }, (_x, i) => i);
     arr.shift()
-
     return arr
   }
 
