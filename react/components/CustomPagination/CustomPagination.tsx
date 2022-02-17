@@ -39,7 +39,7 @@ const CustomPagination = () => {
 
   }, [href]);
 
-  const removeLocalStorage = () => {
+  const removeCookie = () => {
     deleteCookie("scroll")
   }
 
@@ -56,7 +56,7 @@ const CustomPagination = () => {
       urlPageVerify = urlSemPage;
     }
 
-    if (search.includes("?") && search.length > 7) {
+    if (search.includes("?") && search.length > 8) {
       const urlNovoPage = urlPageVerify.concat(`&page=${toPage}`);
       const urlFinalProduto = urlNovoPage.join("");
       return pathName.concat(urlFinalProduto);
@@ -68,13 +68,12 @@ const CustomPagination = () => {
   };
 
   const changePage = (toPage: number) => {
-    if (canUseDOM) window.location.href = finalUrl(toPage);
+     window.location.href = finalUrl(toPage);
   }
 
   const getPages = () => {
     const arr = Array.from({ length: pages + 1 }, (_x, i) => i);
     arr.shift()
-
     return arr
   }
 
@@ -102,7 +101,7 @@ const CustomPagination = () => {
             href="javascript:void(0)"
             onClick={() => { 
               page === 1 ? null : changePage(page - 1), 
-              removeLocalStorage()}
+              removeCookie()}
             }
             className={styles.buttonPrev}
           >
@@ -110,7 +109,7 @@ const CustomPagination = () => {
           </a>
         </li>
 
-        <li className={styles.paginationMiddle} onClick={() => { setOpen(!open), removeLocalStorage() }}>
+        <li className={styles.paginationMiddle} onClick={() => { setOpen(!open), removeCookie() }}>
           <p className={styles.pagination__item}>
             Página {page} de {pages ? pages : "loading..."}
           </p>
@@ -125,7 +124,7 @@ const CustomPagination = () => {
                     null
                   } else{
                     changePage(item)
-                    removeLocalStorage()
+                    removeCookie()
                   }}}>página {item}</span>
                 )
               })}
@@ -138,7 +137,7 @@ const CustomPagination = () => {
             href="javascript:void(0)"
             onClick={() => {
               page === pages ? null : changePage(page + 1), 
-              removeLocalStorage()} 
+              removeCookie()} 
             }
             className={styles.buttonNext}
           >
