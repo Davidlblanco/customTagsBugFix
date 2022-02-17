@@ -6,7 +6,9 @@ import { canUseDOM } from "vtex.render-runtime";
 import styles from "./StickyShelf.css";
 
 const StickyShelf: StorefrontFunctionComponent = ({ children }: any) => {
-    const pathName = canUseDOM ? window.location.pathname : "";
+    if (!canUseDOM) return <></>;
+
+    const pathName = window.location.pathname;
     const [open, setOpen] = useState(true);
     const [show, setShow] = useState(true);
 
