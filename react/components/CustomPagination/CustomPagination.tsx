@@ -39,7 +39,7 @@ const CustomPagination = () => {
 
   }, [href]);
 
-  const removeLocalStorage = () => {
+  const removeCookie = () => {
     deleteCookie("scroll")
   }
 
@@ -101,7 +101,7 @@ const CustomPagination = () => {
             href="javascript:void(0)"
             onClick={() => { 
               page === 1 ? null : changePage(page - 1), 
-              removeLocalStorage()}
+              removeCookie()}
             }
             className={styles.buttonPrev}
           >
@@ -109,7 +109,7 @@ const CustomPagination = () => {
           </a>
         </li>
 
-        <li className={styles.paginationMiddle} onClick={() => { setOpen(!open), removeLocalStorage() }}>
+        <li className={styles.paginationMiddle} onClick={() => { setOpen(!open), removeCookie() }}>
           <p className={styles.pagination__item}>
             Página {page} de {pages ? pages : "loading..."}
           </p>
@@ -124,7 +124,7 @@ const CustomPagination = () => {
                     null
                   } else{
                     changePage(item)
-                    removeLocalStorage()
+                    removeCookie()
                   }}}>página {item}</span>
                 )
               })}
@@ -137,7 +137,7 @@ const CustomPagination = () => {
             href="javascript:void(0)"
             onClick={() => {
               page === pages ? null : changePage(page + 1), 
-              removeLocalStorage()} 
+              removeCookie()} 
             }
             className={styles.buttonNext}
           >
