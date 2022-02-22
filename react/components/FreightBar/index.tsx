@@ -91,26 +91,13 @@ function calculateValue(orderform: any, promotionData: IPromotionData, listProdu
       items.map((item : any) => {
         let isValid = false;
 
-        //SKU Validation
-        if(validSkus.length > 0) isValid = validSkus.includes(item.id);
+        const productData : productData | undefined = findProductData(listProductData, item.productId);
+        if(!productData) return;
 
-        if(isValid) {
-          if(promotionData.skusAreInclusive) finalProducts.push(item);
-          return;
-        }
-
-        // Product validation 
-        if(validProducts.length > 0) isValid = validProducts.includes(item.productId);
-
-        if(isValid) {
-          if(promotionData.productsAreInclusive) finalProducts.push(item);
-          return;
-        }
-
-
+        
         //Categories validation
         if(validCategories.length > 0) {
-            const productCategories = Object.keys(item.productCategories ? item.productCategories : {});
+          const productCategories = Object.keys(item.productCategories ? item.productCategories : {});
           productCategories.every(category => {
             isValid = validCategories.includes(category);
             if(isValid) return;
@@ -122,15 +109,10 @@ function calculateValue(orderform: any, promotionData: IPromotionData, listProdu
           return;
         }
 
-
-        const productData : productData | undefined = findProductData(listProductData, item.productId);
-        if(!productData) return;
-
-
         //Brands validation
         if(validBrands.length > 0) isValid = validBrands.includes(productData.brandId.toString());
 
-        if(isValid) {
+        if(isValid) {         
           if(promotionData.brandsAreInclusive) finalProducts.push(item);
           return;
         }
@@ -148,8 +130,28 @@ function calculateValue(orderform: any, promotionData: IPromotionData, listProdu
           return
         }
 
+
+        // Product validation 
+        if(validProducts.length > 0) isValid = validProducts.includes(item.productId);
+
+        if(isValid) {
+          if(promotionData.productsAreInclusive) finalProducts.push(item);
+          return;
+        }
+
+        //SKU Validation
+        if(validSkus.length > 0) isValid = validSkus.includes(item.id);
+
+        if(isValid) {
+          if(promotionData.skusAreInclusive) finalProducts.push(item);
+          return;
+        }
+
         //
-        if(!promotionData.collectionsIsInclusive || !promotionData.brandsAreInclusive || !promotionData.skusAreInclusive || !promotionData.categoriesAreInclusive || !promotionData.productsAreInclusive) finalProducts.push(item);
+        const isExclusivePromotion = ((!promotionData.collectionsIsInclusive && validCollections.length > 0) || (!promotionData.brandsAreInclusive && validBrands.length > 0) || (!promotionData.skusAreInclusive && validSkus.length > 0) || (!promotionData.categoriesAreInclusive && validCategories.length > 0) || (!promotionData.productsAreInclusive && validProducts.length > 0));
+
+
+        if(isExclusivePromotion) finalProducts.push(item);
       });
 
     }
