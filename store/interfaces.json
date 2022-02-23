@@ -6,11 +6,9 @@
     "gift-wrapper": {
         "component": "GiftWrapper"
     },
-
     "custom-pagination": {
         "component": "CustomPagination"
     },
-
     "freight-bar": {
         "component": "FreightBar",
         "allowed": "*",

@@ -1,12 +1,15 @@
+.containerStickyShelf {
+}
+
 .containerStickyShelfOpen,
 .containerStickyShelfClose {
     display: block;
     transition: 0.4s ease-in-out;
     width: auto;
     box-shadow: rgb(0 0 0 / 20%) 0px 0px 4px 1px;
+    bottom: 3%;
     position: fixed;
     left: 0;
-    bottom: 70px;
     background: #ffdc20;
     z-index: 1000;
 }
@@ -21,7 +24,7 @@
 }
 
 .containerStickyShelfOpen {
-    width: 280px;
+    max-width: 280px;
     background: #ffffff;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -39,6 +42,11 @@
 
 .openText {
     color: #ffffff;
+}
+
+.containerStickyShelfOpen :global(.vtex-product-price-1-x-sellingPrice),
+.containerStickyShelfOpen :global(.vtex-product-price-1-x-listPrice--m3-shelf) {
+    width: 100%;
 }
 
 .containerStickyShelfOpen
@@ -60,6 +68,7 @@
 
 .containerStickyShelfOpen :global(.vtex-add-to-cart-button-0-x-buttonText) {
     color: #000000;
+    font-size: 11px;
 }
 
 .containerStickyShelfOpen :global(.vtex-button) {
@@ -72,6 +81,16 @@
 .containerStickyShelfOpen
     :global(.vtex-slider-layout-0-x-paginationDot--m3-shelf-products-slide--isActive) {
     background: #000000;
+}
+
+.containerStickyShelfOpen :global(.vtex-add-to-cart-button-0-x-buttonText) {
+    font-size: 0;
+}
+
+.containerStickyShelfOpen
+    :global(.vtex-add-to-cart-button-0-x-buttonText)::before {
+    content: "Agregar a tu carrito";
+    font-size: 12px;
 }
 
 .containerHeader {
