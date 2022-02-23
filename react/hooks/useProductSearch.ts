@@ -10,9 +10,6 @@ function useProductSearch({ IDs }: props) {
     },
   })
 
-
-  console.log("Retornando data ", data);
-
   return data ? data.productsByIdentifier : [];
 }
 
