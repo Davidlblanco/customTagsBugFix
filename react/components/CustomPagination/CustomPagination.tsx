@@ -19,7 +19,10 @@ const CustomPagination = () => {
   const numberOfProdutsFound = isCollectionPage("collection")
     ? searchQuery.data.productSearch?.recordsFiltered
     : searchQuery?.recordsFiltered;
-  const pages = Math.ceil(numberOfProdutsFound / MAX_PER_PAGE);
+  let pages = Math.ceil(numberOfProdutsFound / MAX_PER_PAGE);
+  if (pages > 10) {
+    pages = 10;
+  }
 
   useEffect(() => {
     if (search === "") {
@@ -96,6 +99,7 @@ const CustomPagination = () => {
   if (numberOfProdutsFound < 1)
     return <></>
 
+  console.log(pages)
 
   return (
     <div className={styles.containerPagination}>
@@ -123,10 +127,6 @@ const CustomPagination = () => {
           <div className={styles.paginationPages} style={open ? { display: "flex" } : { display: "none" }}>
             <div className={styles.paginationPagesWrapper}>
               {getPages().map((item) => {
-                if (item < (page - 4))
-                  return (
-                    <></>
-                  )
                 return (
                   <span className={styles.paginationText} onClick={() => {
                     if (item === page) {
