@@ -109,3 +109,34 @@
     align-items: center;
     width: 100%;
 }
+
+
+@media (max-height: 440px) {
+  .containerStickyShelfOpen :global(.vtex-product-summary-2-x-element--m3-shelf-product){
+    max-height: 75vh;
+  }
+
+  .containerStickyShelfOpen :global(.vtex-product-summary-2-x-imageWrapper--m3-shelf-product-image){
+    max-height: 38vh;
+  }
+  .containerStickyShelfOpen :global(.vtex-product-summary-2-x-image--m3-shelf-product-image){
+    height: 38vh !important;
+  }
+  .containerStickyShelfOpen:last-child{
+    margin: 0;
+  }
+  .containerStickyShelfOpen :global(.vtex-slider-layout-0-x-sliderLayoutContainer--m3-shelf-products-slide){
+    margin: 0;
+  }
+  .containerStickyShelfOpen :global(.vtex-product-summary-2-x-nameContainer){
+    min-height: 28px !important;
+  }
+  .containerStickyShelfOpen :global(.vtex-product-price-1-x-sellingPrice--m3-shelf--hasListPrice){
+    margin: 0;
+  }
+
+  .containerStickyShelfOpen :global(.vtex-slider-layout-0-x-paginationDotsContainer--m3-shelf-products-slide){
+    bottom: -18px;
+  }
+
+}
