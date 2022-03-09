@@ -17,18 +17,21 @@ const CustomPagination = () => {
   const pathName = window.location.pathname;
   const href = window.location.href
   const numberOfProdutsFound = isCollectionPage("collection")
-      ? searchQuery.data.productSearch?.recordsFiltered
-      : searchQuery?.recordsFiltered;
-  const pages = Math.ceil(numberOfProdutsFound / MAX_PER_PAGE);
+    ? searchQuery.data.productSearch?.recordsFiltered
+    : searchQuery?.recordsFiltered;
+  let pages = Math.ceil(numberOfProdutsFound / MAX_PER_PAGE);
+  if (pages > 10) {
+    pages = 10;
+  }
 
   useEffect(() => {
-    if(search === ""){
+    if (search === "") {
       const scroll = document.documentElement.scrollTop || document.body.scrollTop
-      const data ={
+      const data = {
         scroll,
         map
       }
-       setCookie("scroll", JSON.stringify(data), 5);
+      setCookie("scroll", JSON.stringify(data), 5);
     }
 
     setTimeout(() => {
@@ -68,7 +71,7 @@ const CustomPagination = () => {
   };
 
   const changePage = (toPage: number) => {
-     window.location.href = finalUrl(toPage);
+    window.location.href = finalUrl(toPage);
   }
 
   const getPages = () => {
@@ -93,15 +96,21 @@ const CustomPagination = () => {
     return className;
   };
 
+  if (numberOfProdutsFound < 1)
+    return <></>
+
+  console.log(pages)
+
   return (
     <div className={styles.containerPagination}>
       <ul className={styles.pagination}>
         <li className={styles.buttonPrevContainer}>
           <a
             href="javascript:void(0)"
-            onClick={() => { 
-              page === 1 ? null : changePage(page - 1), 
-              removeCookie()}
+            onClick={() => {
+              page === 1 ? null : changePage(page - 1),
+                removeCookie()
+            }
             }
             className={styles.buttonPrev}
           >
@@ -114,18 +123,19 @@ const CustomPagination = () => {
             Página {page} de {pages ? pages : "loading..."}
           </p>
           <FiChevronDown className={styles.paginationArrowDown} size={20} />
-         
-          <div className={styles.paginationPages} style={open ? { display: "flex"} : { display: "none"}}>
+
+          <div className={styles.paginationPages} style={open ? { display: "flex" } : { display: "none" }}>
             <div className={styles.paginationPagesWrapper}>
               {getPages().map((item) => {
                 return (
                   <span className={styles.paginationText} onClick={() => {
-                  if(item === page){
-                    null
-                  } else{
-                    changePage(item)
-                    removeCookie()
-                  }}}>página {item}</span>
+                    if (item === page) {
+                      null
+                    } else {
+                      changePage(item)
+                      removeCookie()
+                    }
+                  }}>página {item}</span>
                 )
               })}
             </div>
@@ -136,8 +146,9 @@ const CustomPagination = () => {
           <a
             href="javascript:void(0)"
             onClick={() => {
-              page === pages ? null : changePage(page + 1), 
-              removeCookie()} 
+              page === pages ? null : changePage(page + 1),
+                removeCookie()
+            }
             }
             className={styles.buttonNext}
           >
