@@ -1,23 +1,29 @@
 {
-    "sticky-shelf": {
-        "component": "StickyShelf",
-        "composition": "children"
-    },
-    "gift-wrapper": {
-        "component": "GiftWrapper"
-    },
-    "custom-pagination": {
-        "component": "CustomPagination"
-    },
-    "freight-bar": {
-        "component": "FreightBar",
-        "allowed": "*",
-        "content": {
-            "properties": {
-                "links": {
-                    "$ref": "app:simanqa.m3-custom#/definitions/FreightBar"
-                }
-            }
+  "sticky-shelf": {
+    "component": "StickyShelf",
+    "composition": "children"
+  },
+  "gift-wrapper": {
+    "component": "GiftWrapper"
+  },
+  "custom-pagination": {
+    "component": "CustomPagination"
+  },
+  "freight-bar": {
+    "component": "FreightBar",
+    "allowed": "*",
+    "content": {
+      "properties": {
+        "links": {
+          "$ref": "app:simanqa.m3-custom#/definitions/FreightBar"
         }
+      }
     }
+  },
+  "seller-name-pdp": {
+    "component": "SellerNamePDP"
+  },
+  "seller-name-shelf": {
+    "component": "SellerNameShelf"
+  }
 }
