@@ -11,6 +11,7 @@ const CustomPagination = () => {
   if (!canUseDOM) return <></>
 
   const { searchQuery, maxItemsPerPage, page, map } = useSearchPage();
+
   const [open, setOpen] = useState(false)
   const MAX_PER_PAGE = maxItemsPerPage ? maxItemsPerPage : 24;
   const search = window.location.search;
@@ -59,7 +60,7 @@ const CustomPagination = () => {
       urlPageVerify = urlSemPage;
     }
 
-    if (search.includes("?") && search.length > 8) {
+    if (search.includes("?")) {
       const urlNovoPage = urlPageVerify.concat(`&page=${toPage}`);
       const urlFinalProduto = urlNovoPage.join("");
       return pathName.concat(urlFinalProduto);
@@ -98,8 +99,6 @@ const CustomPagination = () => {
 
   if (numberOfProdutsFound < 1)
     return <></>
-
-  console.log(pages)
 
   return (
     <div className={styles.containerPagination}>
