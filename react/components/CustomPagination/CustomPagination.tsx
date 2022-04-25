@@ -59,8 +59,8 @@ const CustomPagination = () => {
     } else {
       urlPageVerify = urlSemPage;
     }
-
-    if (search.includes("?") && search.length > 1) {
+    
+    if (search.includes("?") && urlSemPage.length > 1) {
       const urlNovoPage = urlPageVerify.concat(`&page=${toPage}`);
       const urlFinalProduto = urlNovoPage.join("");
       return pathName.concat(urlFinalProduto);
