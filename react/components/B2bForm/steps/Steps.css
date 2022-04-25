@@ -1,0 +1,80 @@
+.heading {
+}
+
+.form {
+  margin-top: 140px;
+}
+
+.title {
+  margin: 24px 0;
+  font-family: 'NeoSansPro';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: 0.1em;
+  color: #049;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.subtitle {
+  font-family: 'NeoSansPro';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #666;
+  margin: 0;
+}
+
+.submitBtnWrapper {
+  margin-top: 32px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submitBtn {
+  display: block;
+  background: #79bc43;
+  border-radius: 5px;
+  font-family: 'NeoSansPro';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 50px;
+  color: #fff;
+  outline: none;
+  border: none;
+  max-width: 234px;
+  width: 100%;
+  margin: 20px auto auto;
+  transition: all 0.3s linear;
+}
+
+.submitBtn:hover {
+  cursor: pointer;
+  background: #79bc1b;
+  transition: all 0.3s linear;
+}
+
+.formFields {
+}
+
+.formFieldsWrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .formFieldsWrapper {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0;
+  }
+
+  .submitBtnWrapper {
+    margin-top: 0;
+  }
+}

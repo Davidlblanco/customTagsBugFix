@@ -1,0 +1,44 @@
+.containerSellerName{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.containerSellerName img{
+  width: 22px;
+  margin-right: 4px;
+}
+
+.containerSellerName p{
+  margin-right: 4px;
+  font-family: ClanOT,Arial;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #3f3f40;
+}
+
+.containerSellerName a{
+  margin-right: 4px;
+  font-family: ClanOT,Arial;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: capitalize;
+  letter-spacing: 0;
+  text-decoration: none;
+  color: #3f3f40;
+}
+
+@media (max-width: 360px) {
+  .containerSellerName p{
+    
+    font-size: 12px;
+    
+  }
+  .containerSellerName a{
+    
+    font-size: 12px;
+    
+  }
+}
