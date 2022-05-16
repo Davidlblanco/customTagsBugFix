@@ -6,6 +6,7 @@ import { FiChevronDown } from "react-icons/fi"
 import { AiOutlineCaretLeft, AiOutlineCaretRight } from "react-icons/ai"
 import styles from "./CustomPagination.css";
 import isCollectionPage from "../../utils/isCollectionPage";
+import {LIMIT_PAGE} from "./config/constants"
 
 const CustomPagination = () => {
   if (!canUseDOM) return <></>
@@ -21,9 +22,21 @@ const CustomPagination = () => {
     ? searchQuery.data.productSearch?.recordsFiltered
     : searchQuery?.recordsFiltered;
   let pages = Math.ceil(numberOfProdutsFound / MAX_PER_PAGE);
-  if (pages > 10) {
-    pages = 10;
+  if (pages > LIMIT_PAGE) {
+    pages = LIMIT_PAGE;
   }
+
+  useEffect(() => {
+    if(page > LIMIT_PAGE) {
+      if ('URLSearchParams' in window) {
+        var searchParams = new URLSearchParams(window.location.search)
+        searchParams.set("page", `${LIMIT_PAGE}`);
+        var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
+        history.pushState(null, '', newRelativePathQuery);
+        window.location.reload();
+    }
+    }
+  }, [page])
 
   useEffect(() => {
     if (search === "") {
@@ -102,7 +115,7 @@ const CustomPagination = () => {
 
   return (
     <div className={styles.containerPagination}>
-      <ul className={styles.pagination}>
+      {page > pages ? <></> : <ul className={styles.pagination}>
         <li className={styles.buttonPrevContainer}>
           <a
             href="javascript:void(0)"
@@ -154,7 +167,8 @@ const CustomPagination = () => {
             <AiOutlineCaretRight size={20} className={modifyClass("right")} color="#000000" />
           </a>
         </li>
-      </ul>
+      </ul>}
+      
     </div>
   );
 };
