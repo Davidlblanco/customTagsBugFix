@@ -1,0 +1,10 @@
+.precio-live {
+    background-color: black;
+    color: white;
+    display: block;
+    font-size: 14px;
+    padding: 4px;
+    border-radius: 5px;
+    margin-left: 10px;
+    font-weight: bold;
+}
