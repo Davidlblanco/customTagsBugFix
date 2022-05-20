@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import waitForEl from "../../utils/waitForEl";
 import styles from "./index.css";
 import { useOrderForm } from "vtex.order-manager/OrderForm";
-import { inlineFragmentOnNonCompositeErrorMessage } from "graphql/validation/rules/FragmentsOnCompositeTypes";
 
 /**
  * @example
