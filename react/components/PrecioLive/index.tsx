@@ -158,7 +158,7 @@ const PrecioLive = () => {
     function addItemOnCustomData(productId: string) {
         console.log("productIdAdded: ", productId);
         console.log("customData: ", customData);
-        let items,
+        let items: any[] = [],
             alreadyContainItem = false;
 
         if (customData) {
