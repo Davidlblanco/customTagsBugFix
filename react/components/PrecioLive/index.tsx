@@ -74,10 +74,10 @@ function indexOfItemQuantityChanged(
  * @example
  * setPrecioLiveCustomData('xxxxxxxxxxxx11111', [{productId: '10'}]);
  *
- * @param orderFormId  {string} required - id of orderform
+ * @param orderformId  {string} required - id of orderform
  * @param  items {any[]} required - items to set on custom data Precio Live
  */
-function setPrecioLiveCustomData(orderFormId: string, items: any[]) {
+function setPrecioLiveCustomData(orderformId: string, items: any[]) {
     /* WARNING: arrays must not contain {objects} or behavior may be undefined */
     const options = {
         method: "PUT",
@@ -91,7 +91,7 @@ function setPrecioLiveCustomData(orderFormId: string, items: any[]) {
     console.log("Setando items : ", items);
 
     fetch(
-        `/api/checkout/pub/orderForm/${orderFormId}/customData/preciolive`,
+        `/api/checkout/pub/orderForm/${orderformId}/customData/preciolive`,
         options
     )
         .then(response => response.json())
@@ -103,7 +103,7 @@ const PrecioLive = () => {
     const [inserted, setInserted] = useState(false);
     const [previousItems, setPreviousItems] = useState<null | any[]>(null);
     const {
-        orderForm: { orderFormId, items, customData }
+        orderForm: { id: orderformId, items, customData }
     } = useOrderForm();
 
     useEffect(() => {
@@ -125,6 +125,9 @@ const PrecioLive = () => {
                     items,
                     previousItems
                 );
+
+                if (indexOfItemChanged < 0) return;
+
                 const item = items[indexOfItemChanged],
                     previous_item = previousItems[indexOfItemChanged];
 
@@ -178,7 +181,7 @@ const PrecioLive = () => {
 
         items.push(productId);
 
-        setPrecioLiveCustomData(orderFormId, items);
+        setPrecioLiveCustomData(orderformId, items);
     }
 
     function removeItemOnCustomData(productId: string) {
@@ -203,7 +206,7 @@ const PrecioLive = () => {
                     });
                 }
             }
-            setPrecioLiveCustomData(orderFormId, items);
+            setPrecioLiveCustomData(orderformId, items);
         }
     }
 
@@ -216,7 +219,7 @@ const PrecioLive = () => {
         });
     };
 
-    return <> tests </>;
+    return <> tests2 </>;
 };
 
 export default PrecioLive;
