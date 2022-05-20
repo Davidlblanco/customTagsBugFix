@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import waitForEl from "../../utils/waitForEl";
 import styles from "./index.css";
 import { useOrderForm } from "vtex.order-manager/OrderForm";
+import { inlineFragmentOnNonCompositeErrorMessage } from "graphql/validation/rules/FragmentsOnCompositeTypes";
 
 /**
  * @example
  * arraysEqual([{productId: '10'}], [{productId: '10'}]); // Return true;
  *
- * @param array1  {any[]} obrigatorio - Array 1, a ordem dos parametos independe
- * @param  array2 {any[]} obrigatorio - Array 2, a ordem dos parametos independe
+ * @param array1  {any[]} required - Array 1, a ordem dos parametos independe
+ * @param  array2 {any[]} required - Array 2, a ordem dos parametos independe
  * @returns arrayIsEqual {boolean}
  */
 function arraysEqual(array1: any[], array2: any[]): boolean {
@@ -20,11 +21,11 @@ function arraysEqual(array1: any[], array2: any[]): boolean {
  * @example
  * whoItemIsDifferent([{productId: '10'}, {productId: '20'}], [{productId: '10'}]); // Return '20';
  *
- * @param items_main  {any[]} obrigatorio - Array de items que vai ser percorrido (deve ser o de maior tamanho)
- * @param  items_secondary {any[]} obrigatorio - Array de items que vai ser comparado (deve ser o de menor tamanho)
- * @returns item_id {String}
+ * @param items_main  {any[]} required - Array de items que vai ser percorrido (deve ser o de maior tamanho)
+ * @param  items_secondary {any[]} required - Array de items que vai ser comparado (deve ser o de menor tamanho)
+ * @returns item_id {string}
  */
-function whoItemIsDifferent(items_main: any[], items_secondary: any[]): String {
+function whoItemIsDifferent(items_main: any[], items_secondary: any[]): string {
     let itemDifferent = "";
 
     items_main.forEach(item_main => {
@@ -38,7 +39,7 @@ function whoItemIsDifferent(items_main: any[], items_secondary: any[]): String {
         });
 
         if (isDiff == true) {
-            itemDifferent = item_main.productId;
+            itemDifferent = item_main.id;
             return;
         }
     });
@@ -46,48 +47,67 @@ function whoItemIsDifferent(items_main: any[], items_secondary: any[]): String {
     return itemDifferent;
 }
 
-// /**
-//  * @example
-//  * whoItemQuantityChanged([{productId: '10'}, {productId: '20'}], [{productId: '10'}]); // Return '20';
-//  *
-//  * @param items  {any[]} obrigatorio - Array de items atual (deve ser o de maior tamanho)
-//  * @param  previous_items {any[]} obrigatorio - Array de items que vai ser comparado (deve ser o de menor tamanho)
-//  * @returns item_id {String}
-//  */
-// function whoItemQuantityChanged(
-//     items: any[],
-//     previous_items: any[]
-// ): String {
-//     let itemDifferent = "";
+/**
+ * @example
+ * whoItemQuantityChanged([{productId: '10', quantity: 2}, {productId: '20', quantity: 1}], [{productId: '10', quantity: 1}, {productId: '20', quantity: 1}]); // Return 0;
+ *
+ * @param items  {any[]} required - Array de items após a mudança de quantidade
+ * @param  previous_items {any[]} required - Array de items antes da mudança de quantidade
+ * @returns index on array of item that changed quantity {Number}
+ */
+function indexOfItemQuantityChanged(
+    items: any[],
+    previous_items: any[]
+): number {
+    let indexOfItem = -1;
 
-//     items.forEach(item_main => {
-//         let isDiff = true;
+    items.forEach((item_main, index) => {
+        if (item_main.quantity != previous_items[index].quantity) {
+            indexOfItem = index;
+            return;
+        }
+    });
 
-//         items_secondary.forEach(item_secondary => {
-//             if (item_main.productId == item_secondary.productId) {
-//                 isDiff = false;
-//                 return;
-//             }
-//         });
+    return indexOfItem;
+}
 
-//         if (isDiff == true) {
-//             itemDifferent = item_main.productId;
-//             return;
-//         }
-//     });
+/**
+ * @example
+ * setPrecioLiveCustomData('xxxxxxxxxxxx11111', [{productId: '10'}]);
+ *
+ * @param orderFormId  {string} required - id of orderform
+ * @param  items {any[]} required - items to set on custom data Precio Live
+ */
+function setPrecioLiveCustomData(orderFormId: string, items: any[]) {
+    /* WARNING: arrays must not contain {objects} or behavior may be undefined */
+    const options = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify({ items: items })
+    };
 
-//     return itemDifferent;
-// }
+    console.log("Setando items : ", items);
+
+    fetch(
+        `/api/checkout/pub/orderForm/${orderFormId}/customData/preciolive`,
+        options
+    )
+        .then(response => response.json())
+        .then(response => console.log("Done!", response))
+        .catch(err => console.error("Precio Live Custom Data error: ", err));
+}
 
 const PrecioLive = () => {
     const [inserted, setInserted] = useState(false);
     const [previousItems, setPreviousItems] = useState<null | any[]>(null);
     const {
-        orderForm: { items, customData }
+        orderForm: { orderFormId, items, customData }
     } = useOrderForm();
 
     useEffect(() => {
-        console.log("items: ", items, customData);
         if (previousItems == null) setPreviousItems(items);
         else {
             if (arraysEqual(previousItems, items)) return;
@@ -95,13 +115,24 @@ const PrecioLive = () => {
             if (previousItems.length > items.length) {
                 //First case: item removed to order
                 const itemIdRemoved = whoItemIsDifferent(previousItems, items);
-                console.log("productIdRemoved: ", itemIdRemoved);
+                removeItemOnCustomData(itemIdRemoved);
             } else if (previousItems.length < items.length) {
                 //Second case: item added to order
                 const itemIdAdded = whoItemIsDifferent(items, previousItems);
-                console.log("productIdAdded: ", itemIdAdded);
+                addItemOnCustomData(itemIdAdded);
             } else {
                 //Third case: Some item change the quantity
+                const indexOfItemChanged = indexOfItemQuantityChanged(
+                    items,
+                    previousItems
+                );
+
+                if (
+                    items[indexOfItemChanged].quantity >
+                    previousItems[indexOfItemChanged].quantity
+                ) {
+                    addItemOnCustomData(items[indexOfItemChanged].id);
+                }
             }
 
             setPreviousItems(items);
@@ -114,6 +145,50 @@ const PrecioLive = () => {
             waitForEl(".vtex-product-price-1-x-sellingPrice", insertPrecioLive);
         }
     }, []);
+
+    function addItemOnCustomData(productId: string) {
+        console.log("productIdAdded: ", productId);
+        console.log("customData: ", customData);
+        const [precioLiveApp] = customData.customApps.filter(
+            (app: any) => app.id == "preciolive"
+        );
+        let items,
+            alreadyContainItem = false;
+
+        if (precioLiveApp) {
+            alreadyContainItem = precioLiveApp.fields.items.includes(productId);
+
+            if (alreadyContainItem) return;
+            else items = precioLiveApp.fields.items;
+        }
+
+        items.push(productId);
+
+        setPrecioLiveCustomData(orderFormId, items);
+    }
+
+    function removeItemOnCustomData(productId: string) {
+        console.log("productIdRemoved: ", productId);
+        console.log("customData: ", customData);
+        const [precioLiveApp] = customData.customApps.filter(
+            (app: any) => app.id == "preciolive"
+        );
+
+        let items: any[] = [],
+            alreadyContainItem = false;
+
+        if (precioLiveApp) {
+            alreadyContainItem = precioLiveApp.fields.items.includes(productId);
+
+            if (alreadyContainItem) {
+                precioLiveApp.fields.items.forEach((item: any) => {
+                    if (item.id != productId) items.push(item);
+                });
+            }
+        }
+
+        setPrecioLiveCustomData(orderFormId, items);
+    }
 
     const insertPrecioLive = (elements: any) => {
         Array.from(elements).map((el: any) => {
