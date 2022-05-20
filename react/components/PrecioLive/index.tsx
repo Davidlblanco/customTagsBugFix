@@ -31,12 +31,11 @@ function whoItemIsDifferent(items_main: any[], items_secondary: any[]): string {
         let isDiff = true;
 
         items_secondary.forEach(item_secondary => {
-            if (item_main.productId == item_secondary.productId) {
+            if (item_main.id == item_secondary.id) {
                 isDiff = false;
                 return;
             }
         });
-
         if (isDiff == true) {
             itemDifferent = item_main.id;
             return;
@@ -70,41 +69,14 @@ function indexOfItemQuantityChanged(
     return indexOfItem;
 }
 
-/**
- * @example
- * setPrecioLiveCustomData('xxxxxxxxxxxx11111', [{productId: '10'}]);
- *
- * @param orderformId  {string} required - id of orderform
- * @param  items {any[]} required - items to set on custom data Precio Live
- */
-function setPrecioLiveCustomData(orderformId: string, items: any[]) {
-    /* WARNING: arrays must not contain {objects} or behavior may be undefined */
-    const options = {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json"
-        },
-        body: JSON.stringify({ items: `${items}` })
-    };
-
-    console.log("Setando items : ", items);
-
-    fetch(
-        `/api/checkout/pub/orderForm/${orderformId}/customData/preciolive`,
-        options
-    )
-        .then(response => response.json())
-        .then(response => console.log("Done!", response))
-        .catch(err => console.error("Precio Live Custom Data error: ", err));
-}
-
 const PrecioLive = () => {
+    const {
+      orderForm: { id: orderformId, items, customData: defaultCustomData }
+  } = useOrderForm();
+
     const [inserted, setInserted] = useState(false);
     const [previousItems, setPreviousItems] = useState<null | any[]>(null);
-    const {
-        orderForm: { id: orderformId, items, customData }
-    } = useOrderForm();
+    const [customData, setCustomData] = useState<any>(defaultCustomData);
 
     useEffect(() => {
         if (previousItems == null) setPreviousItems(items);
@@ -141,7 +113,7 @@ const PrecioLive = () => {
                         ).map(el => el.textContent);
 
                         const [productname] = productsName.filter(name => name?.includes(item.skuName));
-                        
+
                         if (productname) addItemOnCustomData(item.id);
                             
                     }
@@ -160,10 +132,8 @@ const PrecioLive = () => {
     }, []);
 
     function addItemOnCustomData(productId: string) {
-        console.log("productIdAdded: ", productId);
-        console.log("customData: ", customData);
-        let items: any[] = [],
-            alreadyContainItem = false;
+        let newCustomDataItems: string[] = []; 
+        let alreadyContainItem = false;
 
         if (customData) {
             const [precioLiveApp] = customData.customApps.filter(
@@ -171,24 +141,23 @@ const PrecioLive = () => {
             );
 
             if (precioLiveApp) {
-                alreadyContainItem = precioLiveApp.fields.items.includes(
+              console.log("precioLiveApp: ", precioLiveApp, customData);
+              const customDataItems = JSON.parse(precioLiveApp.fields.items);
+                alreadyContainItem = customDataItems.includes(
                     productId
                 );
 
                 if (alreadyContainItem) return;
-                else items = precioLiveApp.fields.items;
-            }
+                newCustomDataItems = customDataItems;
+              }
         }
+        newCustomDataItems.push(productId);
 
-        items.push(productId);
-
-        setPrecioLiveCustomData(orderformId, items);
+        setPrecioLiveCustomData(newCustomDataItems);
     }
 
     function removeItemOnCustomData(productId: string) {
-        console.log("productIdRemoved: ", productId);
-        console.log("customData: ", customData);
-        let items: any[] = [],
+        let newCustomDataItems: any[] = [],
             alreadyContainItem = false;
 
         if (customData) {
@@ -197,19 +166,39 @@ const PrecioLive = () => {
             );
 
             if (precioLiveApp) {
-                alreadyContainItem = precioLiveApp.fields.items.includes(
+              const customDataItems = JSON.parse(precioLiveApp.fields.items);
+                alreadyContainItem = customDataItems.includes(
                     productId
                 );
 
                 if (alreadyContainItem) {
-                    precioLiveApp.fields.items.forEach((item: any) => {
-                        if (item.id != productId) items.push(item);
-                    });
+                    for(let i = 0; i < customDataItems.length; i++) {
+                      if (customDataItems[i] != productId) newCustomDataItems.push(customDataItems[i]);
+                    }
                 }
             }
-            setPrecioLiveCustomData(orderformId, items);
+            setPrecioLiveCustomData(newCustomDataItems);
         }
     }
+
+  function setPrecioLiveCustomData(items: any[]) {
+      const options = {
+          method: "PUT",
+          headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json"
+          },
+          body: JSON.stringify({ items: JSON.stringify(items) })
+      };
+
+      fetch(
+          `/api/checkout/pub/orderForm/${orderformId}/customData/preciolive`,
+          options
+      )
+          .then(response => response.json())
+          .then(response => {setCustomData(response.customData ? response.customData : {})})
+          .catch(err => console.error("Precio Live Custom Data error: ", err));
+  }
 
     const insertPrecioLive = (elements: any) => {
         Array.from(elements).map((el: any) => {
