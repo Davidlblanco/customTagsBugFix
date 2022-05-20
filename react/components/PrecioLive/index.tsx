@@ -125,12 +125,22 @@ const PrecioLive = () => {
                     items,
                     previousItems
                 );
+                const item = items[indexOfItemChanged],
+                    previous_item = previousItems[indexOfItemChanged];
 
-                if (
-                    items[indexOfItemChanged].quantity >
-                    previousItems[indexOfItemChanged].quantity
-                ) {
-                    addItemOnCustomData(items[indexOfItemChanged].id);
+                if (item.quantity > previous_item.quantity) {
+                    const productsNameElements = document.querySelectorAll(
+                        ".vtex-product-summary-2-x-productBrand"
+                    );
+                    if (productsNameElements) {
+                        const productsName = Array.from(
+                            productsNameElements
+                        ).map(el => el.textContent);
+                        console.log("productsName : ", productsName);
+                        console.log("item.skuName : ", item.skuName);
+                        if (productsName.includes(item.skuName))
+                            addItemOnCustomData(item.id);
+                    }
                 }
             }
 
@@ -148,17 +158,22 @@ const PrecioLive = () => {
     function addItemOnCustomData(productId: string) {
         console.log("productIdAdded: ", productId);
         console.log("customData: ", customData);
-        const [precioLiveApp] = customData.customApps.filter(
-            (app: any) => app.id == "preciolive"
-        );
         let items,
             alreadyContainItem = false;
 
-        if (precioLiveApp) {
-            alreadyContainItem = precioLiveApp.fields.items.includes(productId);
+        if (customData) {
+            const [precioLiveApp] = customData.customApps.filter(
+                (app: any) => app.id == "preciolive"
+            );
 
-            if (alreadyContainItem) return;
-            else items = precioLiveApp.fields.items;
+            if (precioLiveApp) {
+                alreadyContainItem = precioLiveApp.fields.items.includes(
+                    productId
+                );
+
+                if (alreadyContainItem) return;
+                else items = precioLiveApp.fields.items;
+            }
         }
 
         items.push(productId);
@@ -169,24 +184,27 @@ const PrecioLive = () => {
     function removeItemOnCustomData(productId: string) {
         console.log("productIdRemoved: ", productId);
         console.log("customData: ", customData);
-        const [precioLiveApp] = customData.customApps.filter(
-            (app: any) => app.id == "preciolive"
-        );
-
         let items: any[] = [],
             alreadyContainItem = false;
 
-        if (precioLiveApp) {
-            alreadyContainItem = precioLiveApp.fields.items.includes(productId);
+        if (customData) {
+            const [precioLiveApp] = customData.customApps.filter(
+                (app: any) => app.id == "preciolive"
+            );
 
-            if (alreadyContainItem) {
-                precioLiveApp.fields.items.forEach((item: any) => {
-                    if (item.id != productId) items.push(item);
-                });
+            if (precioLiveApp) {
+                alreadyContainItem = precioLiveApp.fields.items.includes(
+                    productId
+                );
+
+                if (alreadyContainItem) {
+                    precioLiveApp.fields.items.forEach((item: any) => {
+                        if (item.id != productId) items.push(item);
+                    });
+                }
             }
+            setPrecioLiveCustomData(orderFormId, items);
         }
-
-        setPrecioLiveCustomData(orderFormId, items);
     }
 
     const insertPrecioLive = (elements: any) => {
