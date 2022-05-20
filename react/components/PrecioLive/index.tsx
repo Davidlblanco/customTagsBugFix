@@ -85,7 +85,7 @@ function setPrecioLiveCustomData(orderformId: string, items: any[]) {
             "Content-Type": "application/json",
             Accept: "application/json"
         },
-        body: JSON.stringify({ items: items })
+        body: JSON.stringify({ items: `${items}` })
     };
 
     console.log("Setando items : ", items);
@@ -139,10 +139,11 @@ const PrecioLive = () => {
                         const productsName = Array.from(
                             productsNameElements
                         ).map(el => el.textContent);
-                        console.log("productsName : ", productsName);
-                        console.log("item.skuName : ", item.skuName);
-                        if (productsName.includes(item.skuName))
-                            addItemOnCustomData(item.id);
+
+                        const [productname] = productsName.filter(name => name?.includes(item.skuName));
+                        
+                        if (productname) addItemOnCustomData(item.id);
+                            
                     }
                 }
             }
@@ -219,7 +220,7 @@ const PrecioLive = () => {
         });
     };
 
-    return <> tests2 </>;
+    return <></>;
 };
 
 export default PrecioLive;
