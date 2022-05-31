@@ -10,3 +10,10 @@
     padding: 5px;
     max-width: max-content;
 }
+
+@media screen and (max-width: 768px) {
+    .precio-live {
+        font-size: 10px;
+        margin: 0;
+    }
+}
