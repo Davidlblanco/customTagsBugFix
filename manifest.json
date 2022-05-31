@@ -1,7 +1,7 @@
 {
   "vendor": "siman",
   "name": "m3-custom",
-  "version": "0.0.6",
+  "version": "0.0.15",
   "title": "Custom blocks",
   "description": "Custom blocks",
   "defaultLocale": "pt-BR",
@@ -32,7 +32,8 @@
     "vtex.format-currency": "0.x",
     "vtex.css-handles": "1.x",
     "vtex.product-summary-context": "0.x",
-    "vtex.product-price": "1.x"
+    "vtex.product-price": "1.x",
+    "vtex.device-detector": "0.x"
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
