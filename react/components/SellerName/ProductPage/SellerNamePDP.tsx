@@ -19,7 +19,12 @@ const SellerNamePDP = () => {
         <div className={styles.containerSellerName}>
           <img src={icon} alt="" />
           <p>Vendido y entregado por: </p>
-          <a href={`/${sellerIdValue}?map=seller`}> {sellerNameValue}</a>
+          {
+            sellerIdValue  != "1" 
+            ? <a href={`/${sellerIdValue}?map=seller`}> {sellerNameValue}</a>
+            : <span> {sellerNameValue}</span>
+          }
+          
         </div>
       </>
     }
