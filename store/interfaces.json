@@ -11,5 +11,8 @@
   },
   "seller-name-shelf": {
     "component": "SellerNameShelf"
+  },
+  "wrapper-add-to-cart": {
+    "component": "WrapperAddToCart"
   }
 }
