@@ -14,5 +14,8 @@
   },
   "precio-live": {
     "component": "PrecioLive"
+  },
+  "wrapper-add-to-cart": {
+    "component": "WrapperAddToCart"
   }
 }
