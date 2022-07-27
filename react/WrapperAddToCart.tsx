@@ -1,2 +1,2 @@
-\import WrapperAddToCart from "./components/WrapperAddToCart"
-export default WrapperAddToCart
+import WrapperAddToCart from "./components/WrapperAddToCart";
+export default WrapperAddToCart;
