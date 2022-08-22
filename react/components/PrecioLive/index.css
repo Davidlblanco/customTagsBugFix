@@ -1,19 +1,17 @@
 .precio-live {
-    background-color: black;
-    color: white;
-    display: block;
-    font-size: 14px;
-    padding: 4px;
-    border-radius: 5px;
-    margin-left: 10px;
-    font-weight: bold;
-    padding: 5px;
-    max-width: max-content;
+  width: 90% !important;
+  background: linear-gradient(91.59deg, #DE5EA9 0%, #9C74E6 100%);
+  color: white !important;
+  font-size: 11px !important;
+  border-radius: 5px !important;
+  font-weight: bold !important;
+  padding: 5px !important;
+  max-width: 90%;
 }
 
 @media screen and (max-width: 768px) {
-    .precio-live {
-        font-size: 10px;
-        margin: 0;
-    }
+  .precio-live {
+    font-size: 10px;
+    margin: 0;
+  }
 }
