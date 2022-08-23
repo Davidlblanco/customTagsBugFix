@@ -9,6 +9,15 @@
   max-width: 90%;
 }
 
+@media (min-width: 768px) {
+  .precio-live {
+    position: absolute;
+    top: 5px;
+    left: -63%;
+    width: 25% !important;
+    max-width: 25%;
+  }
+}
 @media screen and (max-width: 768px) {
   .precio-live {
     font-size: 10px;
