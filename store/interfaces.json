@@ -17,5 +17,8 @@
   },
   "wrapper-add-to-cart": {
     "component": "WrapperAddToCart"
+  },
+  "cookiesagreement": {
+    "component": "CookiesAgreement"
   }
 }
