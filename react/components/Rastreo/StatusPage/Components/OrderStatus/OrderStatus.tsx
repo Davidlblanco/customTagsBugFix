@@ -10,7 +10,6 @@ export type ArrowState = "Active" | "Disabled";
 
 const OrderStatus = ({ OrderInformation }: any) => {
     const orderState = OrderInformation?.estados[OrderInformation?.estados?.length - 1]?.posicion;
-    console.log(orderState);
     const orderDetails = OrderInformation?.estados
     const { isMobile } = useDevice();
     
