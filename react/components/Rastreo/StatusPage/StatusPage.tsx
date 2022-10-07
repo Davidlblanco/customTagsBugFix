@@ -7,9 +7,6 @@ import styles from "./StatusPage.css";
 const StatusPage = () => {
     const { mockOrderData, order, vtexOrderData, loading } = usePageContext();
 
-    console.log(mockOrderData, "siman")
-    console.log(vtexOrderData, "vtex") 
-
     if(loading){
       return(
         <div className={styles.ContainerLoading}>
@@ -18,7 +15,7 @@ const StatusPage = () => {
       )
     }
 
-    if(vtexOrderData?.hasOwnProperty("error") || !mockOrderData?.body?.canal_digital || mockOrderData?.code === 500){
+    if(vtexOrderData?.hasOwnProperty("error") || !mockOrderData?.body?.canal_digital || mockOrderData?.body === null){
       return(
         <div className={styles.ContainerError}>
           <h1>Pedido no encontrado</h1>

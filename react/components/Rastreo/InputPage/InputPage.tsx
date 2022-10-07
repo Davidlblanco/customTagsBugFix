@@ -16,7 +16,7 @@ const InputPage = () => {
 
   const getVtexOrderInformation = async () => {
     const response = await fetch(
-        `/api/oms/pvt/orders/${order}`,
+        `/_v/getUserOrder/${order}`,
         {
             method: "GET",
             headers: {
@@ -34,7 +34,7 @@ const InputPage = () => {
     // setMockOrderData(getOrderData())
     const siman = await getSimanOrderInformation();
     setMockOrderData(siman);
-    if(siman.body.canal_digital){
+    if(siman?.body?.canal_digital){
       setIsVtexOrder(true);
       setVtexOrderData(await getVtexOrderInformation());
     }
