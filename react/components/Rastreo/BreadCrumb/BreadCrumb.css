@@ -1,0 +1,23 @@
+.containerBreadCrumb {
+    display: flex;
+    align-items: center;
+    margin: 30px 0 40px 5%;
+}
+
+.containerBreadCrumb span {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: -0.015em;
+    color: #000000;
+}
+
+.arrowDivision {
+    margin: 0 5px;
+}
+
+.linkHome {
+    text-decoration: none;
+    cursor: pointer;
+}
