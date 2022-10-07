@@ -8,11 +8,13 @@ const InputPage = () => {
   const {setPage, setOrder, order, setVtexOrderData, setLoading, setMockOrderData, setIsVtexOrder} = usePageContext();
 
   const getSimanOrderInformation = async () =>{
-    const response = await fetch(`https://logistica-tst.siman.com/tracking/orders/find?numero_orden=${order}`,{
+    const response = await fetch(`https://logistica.siman.com/tracking/orders/find?numero_orden=${order}`,{
       method: "GET"
     })
     return response.json();
   }
+
+  
 
   const getVtexOrderInformation = async () => {
     const response = await fetch(
