@@ -1,0 +1,26 @@
+.precio-live {
+  width: 90% !important;
+  background: linear-gradient(91.59deg, #DE5EA9 0%, #9C74E6 100%);
+  color: white !important;
+  font-size: 11px !important;
+  border-radius: 5px !important;
+  font-weight: bold !important;
+  padding: 5px !important;
+  max-width: 90%;
+}
+
+@media (min-width: 768px) {
+  .precio-live {
+    position: absolute;
+    top: 5px;
+    left: -63%;
+    width: 25% !important;
+    max-width: 25%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .precio-live {
+    font-size: 10px;
+    margin: 0;
+  }
+}

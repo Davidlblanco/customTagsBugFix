@@ -19,7 +19,7 @@
   color: #3f3f40;
 }
 
-.containerSellerName a{
+.containerSellerName a, .containerSellerName span{
   margin-right: 4px;
   font-family: ClanOT,Arial;
   font-size: 14px;
@@ -31,12 +31,12 @@
 }
 
 @media (max-width: 360px) {
-  .containerSellerName p{
+  .containerSellerName p {
     
     font-size: 12px;
     
   }
-  .containerSellerName a{
+  .containerSellerName a, .containerSellerName span{
     
     font-size: 12px;
     
