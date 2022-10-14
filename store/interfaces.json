@@ -20,5 +20,8 @@
   },
   "cookiesagreement": {
     "component": "CookiesAgreement"
+  },
+  "rastreo": {
+    "component": "Rastreo"
   }
 }
