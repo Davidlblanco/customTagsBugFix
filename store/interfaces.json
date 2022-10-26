@@ -20,5 +20,11 @@
   },
   "cookiesagreement": {
     "component": "CookiesAgreement"
+  },
+  "menumobile": {
+    "component": "MenuMobile"
+  },
+  "plpsattributes": {
+    "component": "PlpsAttributes"
   }
 }

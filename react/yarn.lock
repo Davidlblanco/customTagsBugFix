@@ -6253,9 +6253,9 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
   integrity sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
 
-"siman.m3-custom@http://siman.vtexassets.com/_v/public/typings/v1/siman.m3-custom@0.0.19/public/@types/siman.m3-custom":
-  version "0.0.19"
-  resolved "http://siman.vtexassets.com/_v/public/typings/v1/siman.m3-custom@0.0.19/public/@types/siman.m3-custom#f5c16a12b414056900cd10edc3a89406534d1a53"
+"siman.m3-custom@http://siman.vtexassets.com/_v/public/typings/v1/siman.m3-custom@0.0.26/public/@types/siman.m3-custom":
+  version "0.0.26"
+  resolved "http://siman.vtexassets.com/_v/public/typings/v1/siman.m3-custom@0.0.26/public/@types/siman.m3-custom#4166b4e68ad22d3f5fd449dc8672a5851128aa01"
 
 sisteransi@^1.0.3:
   version "1.0.3"
@@ -6989,13 +6989,13 @@ vscode-uri@^2.1.2:
   version "0.0.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.catalog-api-proxy@0.10.4/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
 
-"vtex.catalog-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.catalog-graphql@1.101.1/public/@types/vtex.catalog-graphql":
-  version "1.101.1"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.catalog-graphql@1.101.1/public/@types/vtex.catalog-graphql#8f4d8981c04429e94b30188acb9c6f1a6b912197"
+"vtex.catalog-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.catalog-graphql@1.101.2/public/@types/vtex.catalog-graphql":
+  version "1.101.2"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.catalog-graphql@1.101.2/public/@types/vtex.catalog-graphql#c74cb74fdab174413811f81f38f8ab0238b22483"
 
-"vtex.checkout-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout-graphql@0.65.5/public/@types/vtex.checkout-graphql":
-  version "0.65.5"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout-graphql@0.65.5/public/@types/vtex.checkout-graphql#bc0dbbdefbebca56d059293acb98dc6adfa4d0d2"
+"vtex.checkout-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout-graphql@0.65.6/public/@types/vtex.checkout-graphql":
+  version "0.65.6"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout-graphql@0.65.6/public/@types/vtex.checkout-graphql#dca26c892e5f44d55ba0ec0bf1b1b7c3bcf6b342"
 
 "vtex.css-handles@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@1.0.0/public/@types/vtex.css-handles":
   version "1.0.0"
@@ -7061,17 +7061,17 @@ vscode-uri@^2.1.2:
   version "0.2.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.search-page-context@0.2.0/public/@types/vtex.search-page-context#1b37f20648d8e4ff062ae9fffb0aa2718f172af7"
 
-"vtex.slider-layout@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.slider-layout@0.22.2/public/@types/vtex.slider-layout":
-  version "0.22.2"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.slider-layout@0.22.2/public/@types/vtex.slider-layout#0367df6d1205fad5e414684732cc5e13b60533c7"
+"vtex.slider-layout@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.slider-layout@0.23.0/public/@types/vtex.slider-layout":
+  version "0.23.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.slider-layout@0.23.0/public/@types/vtex.slider-layout#cfb7246c982a5133f75a78bba92e3c1b64cae4c4"
 
 "vtex.slider@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.slider@0.8.3/public/@types/vtex.slider":
   version "0.8.3"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.slider@0.8.3/public/@types/vtex.slider#9b7be08012a5d3ec41fdc651235a964cb5f7db85"
 
-"vtex.store-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.156.1/public/@types/vtex.store-graphql":
-  version "2.156.1"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.156.1/public/@types/vtex.store-graphql#cb7e2a29f651f16d0c9efdf96ac16cff9fee359a"
+"vtex.store-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.157.1/public/@types/vtex.store-graphql":
+  version "2.157.1"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.157.1/public/@types/vtex.store-graphql#43d0eb0f732d38fa0885237fecf46a12dd974541"
 
 "vtex.store-image@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-image@0.15.0/public/@types/vtex.store-image":
   version "0.15.0"
