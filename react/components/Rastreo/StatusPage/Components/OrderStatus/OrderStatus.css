@@ -1,0 +1,145 @@
+.containerStatus {
+    margin: 40px 20px 0 20px;
+}
+
+.containerCurrentStatus {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.containerArrow {
+    display: flex;
+    align-items: center;
+}
+
+.arrowTrailDisabled,
+.arrowTrail {
+    width: 80px;
+    border-bottom: 3px solid #00a0dd;
+}
+
+.arrowRightDisabled,
+.arrowRight {
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid #00a0dd;
+}
+
+.arrowTrailDisabled {
+    border-bottom: 3px solid #d8d8d8;
+}
+
+.arrowRightDisabled {
+    border-left: 8px solid #d8d8d8;
+}
+
+.containerInformation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.informationIcon {
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+.informationIconRotate {
+    animation: rotate 1s linear infinite;
+}
+
+.informationUpperTextDoing,
+.informationUpperTextToDo,
+.informationUpperText {
+    margin-bottom: 5px;
+    margin-top: 30px;
+    color: #03499a;
+}
+
+.informationLowerText {
+    color: #03499a;
+}
+
+.informationLowerTextToDo,
+.informationUpperTextToDo {
+    color: #d8d8d8;
+}
+
+.informationLowerTextDoing,
+.informationUpperTextDoing {
+    color: #00a0dd;
+}
+
+.middleStatus {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 60px;
+    gap: 20px;
+}
+
+.containerStatusTextMobile {
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 1025px) {
+    .containerCurrentStatus,
+    .containerArrow {
+        flex-direction: column;
+    }
+
+    .containerCurrentStatus {
+        gap: 10px;
+        max-width: 50%;
+        margin: 0 auto;
+    }
+
+    .arrowTrailDisabled,
+    .arrowTrail {
+        width: 0;
+        height: 80px;
+        border-left: 3px solid #00a0dd;
+    }
+
+    .arrowRightDisabled,
+    .arrowRight {
+        border-top: 8px solid #00a0dd;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: none;
+    }
+
+    .containerInformation {
+        flex-direction: row;
+        gap: 2%;
+        width: 100%;
+    }
+
+    .informationUpperTextDoing,
+    .informationUpperTextToDo,
+    .informationUpperText {
+        margin: 0;
+    }
+
+    .middleStatus {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .containerStatus {
+        margin: 40px 5px 0 5px;
+    }
+}

@@ -1,0 +1,74 @@
+.containerOrderTotal,
+.productTextTotal,
+.productNumberTotal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerOrderTotal {
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 500px;
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+    margin: 25px auto 0 auto;
+}
+
+.productTextTotal {
+    align-items: flex-start;
+}
+
+.productTextTotal,
+.productNumberTotal {
+    gap: 5px;
+}
+
+.productNumberDiscount {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: -0.015em;
+    color: #00a0dd;
+}
+
+.productNumberPrice {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    letter-spacing: -0.015em;
+    color: #a83338;
+}
+
+.productCant {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: -0.015em;
+    color: #051c2c;
+}
+
+.productTextTotalTotal {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: -0.015em;
+    color: #051c2c;
+}
+
+.productTextTotalID {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: -0.015em;
+    color: #6d6e71;
+}
+
+@media only screen and (max-width: 1025px) {
+    .containerOrderTotal {
+        margin-top: 20px;
+    }
+}

@@ -21,6 +21,9 @@
   "cookiesagreement": {
     "component": "CookiesAgreement"
   },
+  "rastreo": {
+    "component": "Rastreo"
+  },
   "menumobile": {
     "component": "MenuMobile"
   },
