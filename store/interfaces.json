@@ -24,9 +24,6 @@
   "rastreo": {
     "component": "Rastreo"
   },
-  "menumobile": {
-    "component": "MenuMobile"
-  },
   "plpsattributes": {
     "component": "PlpsAttributes"
   }

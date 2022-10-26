@@ -6300,9 +6300,9 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
   integrity sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
 
-"siman.m3-custom@http://siman.vtexassets.com/_v/public/typings/v1/siman.m3-custom@0.0.26/public/@types/siman.m3-custom":
-  version "0.0.26"
-  resolved "http://siman.vtexassets.com/_v/public/typings/v1/siman.m3-custom@0.0.26/public/@types/siman.m3-custom#4166b4e68ad22d3f5fd449dc8672a5851128aa01"
+"siman.m3-custom@https://elian--siman.myvtex.com/_v/private/typings/linked/v1/siman.m3-custom@0.0.27+build1666812576/public/@types/siman.m3-custom":
+  version "0.0.27"
+  resolved "https://elian--siman.myvtex.com/_v/private/typings/linked/v1/siman.m3-custom@0.0.27+build1666812576/public/@types/siman.m3-custom#5664d71792038d3776b4db920e37447402a5ce83"
 
 sisteransi@^1.0.3:
   version "1.0.3"
@@ -7115,6 +7115,10 @@ vscode-uri@^2.1.2:
 "vtex.slider@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.slider@0.8.3/public/@types/vtex.slider":
   version "0.8.3"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.slider@0.8.3/public/@types/vtex.slider#9b7be08012a5d3ec41fdc651235a964cb5f7db85"
+
+"vtex.store-drawer@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-drawer@0.16.2/public/@types/vtex.store-drawer":
+  version "0.16.2"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-drawer@0.16.2/public/@types/vtex.store-drawer#3e3a0e07babcf623922f1eb0c85185bcd12b8002"
 
 "vtex.store-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.157.1/public/@types/vtex.store-graphql":
   version "2.157.1"

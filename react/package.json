@@ -56,7 +56,7 @@
     "graphql": "^14.5.4",
     "prettier": "^1.18.2",
     "react-intl": "^3.11.0",
-    "siman.m3-custom": "http://siman.vtexassets.com/_v/public/typings/v1/siman.m3-custom@0.0.26/public/@types/siman.m3-custom",
+    "siman.m3-custom": "https://elian--siman.myvtex.com/_v/private/typings/linked/v1/siman.m3-custom@0.0.27+build1666812576/public/@types/siman.m3-custom",
     "tslint-eslint-rules": "^5.4.0",
     "typescript": "3.9.7",
     "typescript-styled-plugin": "^0.15.0",
@@ -81,6 +81,7 @@
     "vtex.search-page-context": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.search-page-context@0.2.0/public/@types/vtex.search-page-context",
     "vtex.slider": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.slider@0.8.3/public/@types/vtex.slider",
     "vtex.slider-layout": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.slider-layout@0.23.0/public/@types/vtex.slider-layout",
+    "vtex.store-drawer": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-drawer@0.16.2/public/@types/vtex.store-drawer",
     "vtex.store-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.157.1/public/@types/vtex.store-graphql",
     "vtex.store-image": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-image@0.15.0/public/@types/vtex.store-image",
     "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.3/public/@types/vtex.styleguide"
