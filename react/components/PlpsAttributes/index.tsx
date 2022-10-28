@@ -20,7 +20,7 @@ const PlpsAttributes = () => {
                                 <h3>Especificaciones:</h3>
                                 <ul>
                                     {
-                                        property.values.toString().split(',').map((value) => {
+                                        property.values.toString().split('//').map((value) => {
                                             return (
                                                 <li>{value}</li>
                                             )
