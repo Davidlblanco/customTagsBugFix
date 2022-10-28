@@ -23,5 +23,8 @@
   },
   "rastreo": {
     "component": "Rastreo"
+  },
+  "product-page-script": {
+    "component": "ProductPageScript"
   }
 }

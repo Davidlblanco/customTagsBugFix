@@ -6,6 +6,10 @@ interface CheckoutSimulation {
   items: CheckoutSimulationItem[]
 }
 
+interface Window {
+  SYNDI: any;
+}
+
 interface CheckoutSimulationItem {
   quantity: string
   id: string
