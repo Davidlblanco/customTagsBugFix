@@ -26,5 +26,8 @@
   },
   "product-page-script": {
     "component": "ProductPageScript"
+  },
+  "plpsattributes": {
+    "component": "PlpsAttributes"
   }
 }
