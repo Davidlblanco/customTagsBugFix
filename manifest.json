@@ -1,13 +1,14 @@
 {
   "vendor": "siman",
   "name": "m3-custom",
-  "version": "0.0.32",
+  "version": "0.0.34",
   "title": "Custom blocks",
   "description": "Custom blocks",
   "defaultLocale": "pt-BR",
   "builders": {
     "messages": "1.x",
     "store": "0.x",
+    "pixel": "0.x",
     "react": "3.x"
   },
   "dependencies": {
