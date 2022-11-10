@@ -29,5 +29,8 @@
   },
   "plpsattributes": {
     "component": "PlpsAttributes"
+  },
+  "FiraSiman-Live": {
+    "component": "FiraSiman"
   }
 }
