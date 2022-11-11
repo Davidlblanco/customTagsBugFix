@@ -10,7 +10,7 @@ const FiraSiman = () => {
         
         <script src="https://firalivepro.blob.core.windows.net/fira-live-widget/index.min.js" id="fira-live-widget" fira-key="6362f88266e0136a7056f59e"></script>
 
-        <script>setupIframePlayerWithLatestLive('fira-siman');</script>
+        <script>setupIframePlayerWithLatestLive("fira-siman");</script>
 
       </div>
 /*       <div className={styles.firaContainer}>
