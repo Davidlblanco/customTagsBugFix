@@ -12,8 +12,19 @@ const PlpsAttributes = () => {
 
     return (
         <div className={styles.PlpsAttributes}>
-            <div>
-                <h3>Especificaciones:</h3>
+                {
+                     productContextValue?.product?.properties.map((property, index) => {
+                        if (property.name === 'Atributos PLP') {
+                            return (
+                                <div key={index}>
+                                    <h3>Especificaciones:</h3>
+                                </div>
+                            )
+                        } else {
+                            return null
+                        }
+                    })
+                }
                 <ul>
                     {
                         productContextValue?.product?.properties.map((property) => {                   
@@ -69,7 +80,6 @@ const PlpsAttributes = () => {
                         )
                     }
                  </ul>
-            </div>
         </div>
     )
 
