@@ -6300,7 +6300,6 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
   integrity sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
 
-
 sisteransi@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.3.tgz#98168d62b79e3a5e758e27ae63c4a053d748f4eb"
@@ -7037,9 +7036,9 @@ vscode-uri@^2.1.2:
   version "1.101.2"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.catalog-graphql@1.101.2/public/@types/vtex.catalog-graphql#c74cb74fdab174413811f81f38f8ab0238b22483"
 
-"vtex.checkout-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout-graphql@0.65.6/public/@types/vtex.checkout-graphql":
-  version "0.65.6"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout-graphql@0.65.6/public/@types/vtex.checkout-graphql#dca26c892e5f44d55ba0ec0bf1b1b7c3bcf6b342"
+"vtex.checkout-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout-graphql@0.66.0/public/@types/vtex.checkout-graphql":
+  version "0.66.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout-graphql@0.66.0/public/@types/vtex.checkout-graphql#62e6165824dcf5786dc3675b8bb8fdf276b22089"
 
 "vtex.css-handles@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@1.0.0/public/@types/vtex.css-handles":
   version "1.0.0"
@@ -7117,9 +7116,9 @@ vscode-uri@^2.1.2:
   version "0.16.2"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-drawer@0.16.2/public/@types/vtex.store-drawer#3e3a0e07babcf623922f1eb0c85185bcd12b8002"
 
-"vtex.store-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.157.1/public/@types/vtex.store-graphql":
-  version "2.157.1"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.157.1/public/@types/vtex.store-graphql#43d0eb0f732d38fa0885237fecf46a12dd974541"
+"vtex.store-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.158.0/public/@types/vtex.store-graphql":
+  version "2.158.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.158.0/public/@types/vtex.store-graphql#9ab987710ec36573b0669fb65b89e78eb6c28af8"
 
 "vtex.store-image@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-image@0.15.0/public/@types/vtex.store-image":
   version "0.15.0"

@@ -32,5 +32,8 @@
   },
   "FiraSiman-Live": {
     "component": "FiraSiman"
-  }
+  },
+  "full-logout": {
+    "component": "FullLogout"
+}
 }
