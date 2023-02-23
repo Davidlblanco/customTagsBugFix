@@ -35,5 +35,11 @@
   },
   "full-logout": {
     "component": "FullLogout"
-}
+  },
+  "register-form": {
+    "component": "RegisterForm"
+  },
+  "power-syndigo": {
+    "component": "PowerSyndigo"
+  }
 }
