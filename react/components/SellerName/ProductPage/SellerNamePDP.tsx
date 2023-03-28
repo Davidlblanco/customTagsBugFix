@@ -10,19 +10,19 @@ const SellerNamePDP = () => {
   if (sellerNameValue) {
     if (sellerNameValue == "Tienda Siman" || sellerNameValue == '1') {
       return <div className={styles.containerSellerName}>
-      <img src={icon} alt="" />
-      <p>Vendido y entregado por: </p>
-      <a href={`/${sellerIdValue}?map=seller`}>  Siman </a>
+      <img src={icon} alt="" className={styles.sellerLogo} />
+      <p className={styles.sellerText}>Vendido y entregado por: </p>
+      <a href={`/${sellerIdValue}?map=seller`} className={styles.sellerName}>  Siman </a>
     </div>
     } else {
       return <>
         <div className={styles.containerSellerName}>
-          <img src={icon} alt="" />
-          <p>Vendido y entregado por: </p>
+          <img src={icon} alt="" className={styles.sellerLogo} />
+          <p className={styles.sellerText}>Vendido y entregado por: </p>
           {
             sellerIdValue  != "1" 
-            ? <a href={`/${sellerIdValue}?map=seller`}> {sellerNameValue}</a>
-            : <span> {sellerNameValue}</span>
+            ? <a href={`/${sellerIdValue}?map=seller`} > {sellerNameValue}</a>
+            : <span className={styles.sellerName}> {sellerNameValue}</span>
           }
           
         </div>
