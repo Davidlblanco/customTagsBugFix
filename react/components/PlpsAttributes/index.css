@@ -69,3 +69,13 @@
   cursor: pointer;
 }
 html{scroll-behavior:smooth}
+
+.hide_this_product{
+
+}
+.show_this_product{
+
+}
+.vtex-search-result-3-x-galleryItem{
+  background-color: blueviolet !important;
+}

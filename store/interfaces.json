@@ -44,5 +44,8 @@
   },
   "power-syndigo": {
     "component": "PowerSyndigo"
+  },
+  "HideProducts":{
+    "component": "HideProducts"
   }
 }
