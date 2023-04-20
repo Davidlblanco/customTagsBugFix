@@ -1,7 +1,7 @@
 {
   "vendor": "siman",
   "name": "m3-custom",
-  "version": "0.0.54",
+  "version": "0.0.55",
   "title": "Custom blocks",
   "description": "Custom blocks",
   "defaultLocale": "pt-BR",
