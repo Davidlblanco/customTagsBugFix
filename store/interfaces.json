@@ -30,6 +30,9 @@
   "plpsattributes": {
     "component": "PlpsAttributes"
   },
+  "AttributesPDP": {
+    "component": "AttributesPDP"
+  },
   "FiraSiman-Live": {
     "component": "FiraSiman"
   },
@@ -41,5 +44,8 @@
   },
   "power-syndigo": {
     "component": "PowerSyndigo"
+  },
+  "HideProducts":{
+    "component": "HideProducts"
   }
 }
