@@ -23,9 +23,8 @@ const PrecioLive = () => {
     }, [isMobile]);
 
     function insertPrecioLive(elements: any) {
-        //console.log("Inserindo tag!");
         if (document.querySelector(".siman-m3-custom-0-x-precio-live")) return;
-        Array.from(elements).map((el: any) => {
+        Array.from(elements).forEach((el: any) => {
             const span = document.createElement("span");
             span.innerText = "Oferta";
             span.classList.add(styles["precio-live"]);

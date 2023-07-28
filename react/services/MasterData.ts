@@ -71,7 +71,7 @@ export default class MasterDataRest {
 
   public put<T>(data: T) {
     return axios(this.urlDoc, {
-      method: 'PATCH',
+      method: 'PUT',
       data,
       headers: this._mergedHeaders(),
     })
