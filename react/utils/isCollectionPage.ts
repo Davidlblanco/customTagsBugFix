@@ -7,7 +7,7 @@ const isCollectionPage = (COLLECTION_CLASS = "collection"): boolean => {
         const renderContainer = document.querySelector(".render-container");
 
         if (renderContainer) {
-            Array.from(renderContainer.classList).map(el =>
+            Array.from(renderContainer.classList).forEach(el =>
                 el.includes(COLLECTION_CLASS)
                     ? (collectionPage = true)
                     : (collectionPage = false)

@@ -1,6 +1,5 @@
 import React, { FormEvent } from "react";
 import { usePageContext } from "../Context/PageContext";
-// import getOrderData from "../api/getOrderData";
 import styles from "./InputPage.css";
 import Recaptcha from 'react-grecaptcha';
 
@@ -33,7 +32,6 @@ const InputPage = () => {
     event.preventDefault();
     setPage("StatusPage");
     setLoading(true);
-    // setMockOrderData(getOrderData())
     const siman = await getSimanOrderInformation();
     setMockOrderData(siman);
     if(siman?.body?.canal_digital){
@@ -55,7 +53,9 @@ const InputPage = () => {
     }
   };
 
-  const expiredCallback = () => { };
+  const expiredCallback = () => { 
+    console.warn('Recaptcha expired')
+  };
   
   return (
     <div>

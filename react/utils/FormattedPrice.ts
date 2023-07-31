@@ -24,11 +24,6 @@ const useFormattedPrice = (
             return intl.formatMessage(messages.free);
         }
 
-        // const formatter = new Intl.NumberFormat("es-SV", {
-        //     style: "currency",
-        //     currency: `${currency}`
-        // });
-
         return `${Symbol} ${(value / 100)
             .toFixed(2)
             .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}`;
