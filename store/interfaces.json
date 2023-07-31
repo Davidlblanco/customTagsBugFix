@@ -45,7 +45,10 @@
   "power-syndigo": {
     "component": "PowerSyndigo"
   },
-  "HideProducts":{
+  "HideProducts": {
     "component": "HideProducts"
+  },
+  "skuNoDisponible": {
+    "component": "skuNoDisponible"
   }
 }
