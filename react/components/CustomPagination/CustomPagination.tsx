@@ -9,15 +9,13 @@ import isCollectionPage from "../../utils/isCollectionPage";
 import {LIMIT_PAGE} from "./config/constants"
 
 const CustomPagination = () => {
-  if (!canUseDOM) return <></>
-
   const { searchQuery, maxItemsPerPage, page, map } = useSearchPage();
 
   const [open, setOpen] = useState(false)
   const MAX_PER_PAGE = maxItemsPerPage ? maxItemsPerPage : 24;
-  const search = window.location.search;
-  const pathName = window.location.pathname;
-  const href = window.location.href
+  const search = canUseDOM ? window.location.search : '';
+  const pathName = canUseDOM ? window.location.pathname: '';
+  const href = canUseDOM ? window.location.href : ''
   const numberOfProdutsFound = isCollectionPage("collection")
     ? searchQuery.data.productSearch?.recordsFiltered
     : searchQuery?.recordsFiltered;
@@ -27,18 +25,22 @@ const CustomPagination = () => {
   }
 
   useEffect(() => {
+    if(!canUseDOM) return
+
     if(page > LIMIT_PAGE) {
       if ('URLSearchParams' in window) {
-        var searchParams = new URLSearchParams(window.location.search)
+        const searchParams = new URLSearchParams(window.location.search)
         searchParams.set("page", `${LIMIT_PAGE}`);
-        var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
+        const newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
         history.pushState(null, '', newRelativePathQuery);
         window.location.reload();
-    }
+      }
     }
   }, [page])
 
   useEffect(() => {
+    if (!canUseDOM) return
+
     if (search === "") {
       const scroll = document.documentElement.scrollTop || document.body.scrollTop
       const data = {
@@ -110,6 +112,8 @@ const CustomPagination = () => {
     return className;
   };
 
+  if (!canUseDOM) return <></>
+
   if (numberOfProdutsFound < 1)
     return <></>
 
@@ -120,17 +124,18 @@ const CustomPagination = () => {
           <a
             href="javascript:void(0)"
             onClick={() => {
-              page === 1 ? null : changePage(page - 1),
-                removeCookie()
-            }
-            }
+              if(page !== 1) { 
+                changePage(page - 1)
+              }
+              removeCookie()
+            }}
             className={styles.buttonPrev}
           >
             <AiOutlineCaretLeft size={20} className={modifyClass("left")} color="#000000" />
           </a>
         </li>
 
-        <li className={styles.paginationMiddle} onClick={() => { setOpen(!open), removeCookie() }}>
+        <li className={styles.paginationMiddle} onClick={() => { setOpen(!open); removeCookie() }}>
           <p className={styles.pagination__item}>
             Página {page} de {pages ? pages : "loading..."}
           </p>
@@ -140,13 +145,12 @@ const CustomPagination = () => {
             <div className={styles.paginationPagesWrapper}>
               {getPages().map((item) => {
                 return (
-                  <span className={styles.paginationText} onClick={() => {
+                  <span className={styles.paginationText} key={item} onClick={() => {
                     if (item === page) {
-                      null
-                    } else {
-                      changePage(item)
-                      removeCookie()
+                      return
                     }
+                    changePage(item)
+                    removeCookie()
                   }}>página {item}</span>
                 )
               })}
@@ -158,10 +162,11 @@ const CustomPagination = () => {
           <a
             href="javascript:void(0)"
             onClick={() => {
-              page === pages ? null : changePage(page + 1),
-                removeCookie()
-            }
-            }
+              if(page !== pages) {
+                changePage(page + 1)
+              }
+              removeCookie()
+            }}
             className={styles.buttonNext}
           >
             <AiOutlineCaretRight size={20} className={modifyClass("right")} color="#000000" />

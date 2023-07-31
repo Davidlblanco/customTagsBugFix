@@ -3,8 +3,8 @@ import Product from '../graphql/product.gql';
 
 
 
-function useProductSearch({ IDs }: props) {
-  const { data } = useQuery<{ productsByIdentifier: queryData[] }, queryOpt>(Product, {
+function useProductSearch({ IDs }: Props) {
+  const { data } = useQuery<{ productsByIdentifier: QueryData[] }, QueryOpt>(Product, {
     variables: {
       values: IDs
     },
@@ -13,15 +13,15 @@ function useProductSearch({ IDs }: props) {
   return data ? data.productsByIdentifier : [];
 }
 
-interface queryOpt {
+interface QueryOpt {
   values: string[];
 }
 
-interface props {
+interface Props {
   IDs: string[];
 }
 
-interface queryData {
+interface QueryData {
   productClusters: {
     id: string;
   }[],

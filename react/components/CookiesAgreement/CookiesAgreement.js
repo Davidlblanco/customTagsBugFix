@@ -3,7 +3,7 @@ import "./Cookies.css";
 
 
 function CookiesAgreement() {
-  var myClass = 'vtex-flex-layout-0-x-flexRow--cookies_modal';
+  const myClass = 'vtex-flex-layout-0-x-flexRow--cookies_modal';
 
   function savePreference() {
     localStorage.setItem('cookies', 'true');
