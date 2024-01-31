@@ -50,5 +50,8 @@
   },
   "skuNoDisponible": {
     "component": "skuNoDisponible"
+  },
+  "360-photos": {
+     "component": "360Photos"
   }
 }

@@ -5742,6 +5742,11 @@ react-icons@^4.3.1:
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.3.1.tgz#2fa92aebbbc71f43d2db2ed1aed07361124e91ca"
   integrity sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ==
 
+react-image-turntable@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/react-image-turntable/-/react-image-turntable-3.1.1.tgz#8d145b41202a0ee5e96e2f2c22dd51ffdd4ebcab"
+  integrity sha512-blscvPYPikJXwj0hEGFyuN78p8rH7rTn2K5WEE7Whj3fZteOMkUT3EDSGgGR8/17ftX3ieTBGwiAPUDPVR+H3A==
+
 react-indiana-drag-scroll@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/react-indiana-drag-scroll/-/react-indiana-drag-scroll-2.2.0.tgz#657e14bbdf4888cc738e9fa8dc4384d76c348c0b"
