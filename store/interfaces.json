@@ -6,6 +6,9 @@
   "custom-pagination": {
     "component": "CustomPagination"
   },
+  "custom-credi-siman-price": {
+    "component": "CrediSimanPrice"
+ },
   "seller-name-pdp": {
     "component": "SellerNamePDP"
   },
