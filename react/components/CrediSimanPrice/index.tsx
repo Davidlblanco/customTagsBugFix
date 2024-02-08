@@ -31,15 +31,19 @@ const CrediSimanPrice: StorefrontFunctionComponent = () => {
 
    if (!productData) return <></>;
 
+   const shouldShowTag = productData?.discountValue > 0;
+
+   console.log("shouldShowTag: ", shouldShowTag)
+
    return (
       <div className={IsProductPage() ? styles.customCrediSimanContainer : styles.customCrediSimanContainerCategory}>
          <span className={IsProductPage() ? styles.customCrediSimanPriceProduct : styles.customCredisimanPriceCategory}>
             <FormattedCurrency value={productData?.totalWithDiscount} />
          </span>
-         <div className={styles.customCrediSimanTag}>
+         {shouldShowTag ? <div className={styles.customCrediSimanTag}>
             <span className={styles.customCrediSimanTagText}>-{productData?.discountValue}%</span>
-         </div>
-         {!IsProductPage() && <CrediSimanSVG />}
+         </div> : <> </>}
+         <CrediSimanSVG />
       </div>
    );
 };
