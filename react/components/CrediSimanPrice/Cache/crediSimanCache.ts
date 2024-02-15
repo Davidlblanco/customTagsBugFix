@@ -1,28 +1,32 @@
 import { canUseDOM } from "vtex.render-runtime";
+import { CredisimanStorage } from "../Types/credisimanTypes";
 
-export const setWithExpiry = (key: string, value: any, ttl: number): void => {
+export const setWithExpiry = (key: string, value: any, ttlInMilliseconds: number): void => {
    if (!canUseDOM) return;
 
    const now = new Date();
    const item = {
       value: value,
-      expiry: now.getTime() + ttl * 60 * 1000,
+      expiry: now.getTime() + ttlInMilliseconds,
    };
    localStorage.setItem(key, JSON.stringify(item));
 };
 
-export const getWithExpiry = (key: string): any => {
+export const getWithExpiry = (key: string): CredisimanStorage | undefined=> {
    if (!canUseDOM) return;
 
    const itemStr = localStorage.getItem(key);
    if (!itemStr) {
-      return null;
+      return;
    }
    const item = JSON.parse(itemStr);
-   const now = new Date();
-   if (now.getTime() > item.expiry) {
+   const nowTime = new Date().getTime();
+
+   if (nowTime > item.expiry) {
       localStorage.removeItem(key);
-      return null;
+      return;
    }
-   return item.value;
+
+   const remainingMillisecondsExpire = item.expiry - nowTime 
+   return {remainingMillisecondsExpire, value: item.value };
 };

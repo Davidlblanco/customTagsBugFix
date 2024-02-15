@@ -10,3 +10,8 @@ export type PromotionParams = {
    skuId: string | undefined;
    sellerId: string | undefined;
 };
+
+export type CredisimanStorage = {
+   remainingMillisecondsExpire: number;
+   value: Record<string, CredisimanType>
+}

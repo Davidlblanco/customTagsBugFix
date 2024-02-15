@@ -1,0 +1,1 @@
+export const minutesToExpiryCache = 15 // 15 minutes

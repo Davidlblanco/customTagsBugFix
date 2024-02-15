@@ -1,6 +1,7 @@
 import { getPromotions } from "../Api/promotions";
-import { CredisimanType } from "../Types/credisimanTypes";
+import { CredisimanType, CredisimanStorage} from "../Types/credisimanTypes";
 import { getWithExpiry, setWithExpiry } from "../Cache/crediSimanCache";
+import { minutesToExpiryCache  } from "../Config/constants";
 
 let mutex = false;
 
@@ -14,7 +15,8 @@ export const GetCrediSimanProductData = async (
    }
    mutex = true;
 
-   const allProductsData: Record<string, CredisimanType> = getWithExpiry("products") || {};
+   const credisimanStorage : CredisimanStorage | undefined = getWithExpiry("products");
+   const allProductsData = credisimanStorage?.value || {}
    const productDataInCache = allProductsData[skuId ?? ""];
 
    if (!productDataInCache) {
@@ -23,16 +25,15 @@ export const GetCrediSimanProductData = async (
       if (newProductData) {
          allProductsData[skuId ?? ""] = newProductData;
          CalculateNominalDiscount(newProductData);
-         setWithExpiry("products", allProductsData, 15); // 15 minutes
-
-         console.log("from api");
+         
+         const expiryTime = credisimanStorage?.remainingMillisecondsExpire ?? (minutesToExpiryCache * 60 * 1000);
+         setWithExpiry("products", allProductsData, expiryTime); 
 
          mutex = false;
          return newProductData; // Return the new product data from the API
       }
    } else {
       CalculateNominalDiscount(productDataInCache);
-      console.log("from cache");
 
       mutex = false;
       return productDataInCache; // Return the product data from the cache instead of fetching it from the API
