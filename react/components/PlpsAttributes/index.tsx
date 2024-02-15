@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useProduct } from 'vtex.product-context'
 
 import styles from "./index.css";
