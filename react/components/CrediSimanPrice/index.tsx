@@ -6,6 +6,7 @@ import { GetCrediSimanProductData } from "./Logic/logic";
 import CrediSimanSVG from "./Assets/credisiman-sv";
 import styles from "./CrediSimanPrice.css";
 import GetPageType from "../../utils/getPageType";
+import { useRenderSession } from 'vtex.session-client'
 
 const CrediSimanPrice: StorefrontFunctionComponent = () => {
    const productContext = useProduct();
@@ -16,13 +17,17 @@ const CrediSimanPrice: StorefrontFunctionComponent = () => {
 
    const [productData, setProductData] = useState<CredisimanType>();
 
+   const { session } =  useRenderSession();
+
+   let sallesChannelId = session?.namespaces?.store?.channel ?? 1
+
    const IsProductPage = (): boolean => {
       return pageType === "product";
    };
 
    useEffect(() => {
       const fetchData = async () => {
-         const result = await GetCrediSimanProductData(productId, skuId, sellerId);
+         const result = await GetCrediSimanProductData(productId, skuId, sallesChannelId);
          setProductData(result);
       };
 

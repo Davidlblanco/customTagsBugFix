@@ -8,7 +8,7 @@ export type CredisimanType = {
 export type PromotionParams = {
    productId: string | undefined;
    skuId: string | undefined;
-   sellerId: string | undefined;
+   channelId: string | undefined;
 };
 
 export type CredisimanStorage = {

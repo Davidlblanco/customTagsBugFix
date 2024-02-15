@@ -2,8 +2,8 @@ import axios from "axios";
 import { CredisimanType, PromotionParams } from "../Types/credisimanTypes";
 
 export const getPromotions = async (params: PromotionParams): Promise<CredisimanType | undefined> => {
-   const { productId, skuId, sellerId } = params;
-   const url = `/_v/credisiman-promotions/${productId}/${skuId}/${sellerId}`;
+   const { productId, skuId, channelId } = params;
+   const url = `/_v/credisiman-promotions/${productId}/${skuId}/${channelId}`;
 
    try {
       const response = await axios.get(url);

@@ -35,7 +35,8 @@
     "vtex.product-summary-context": "0.x",
     "vtex.product-price": "1.x",
     "vtex.device-detector": "0.x",
-    "vtex.store-drawer": "0.x"
+    "vtex.store-drawer": "0.x",
+    "vtex.session-client": "1.x"
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }

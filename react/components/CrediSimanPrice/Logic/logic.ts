@@ -8,7 +8,7 @@ let mutex = false;
 export const GetCrediSimanProductData = async (
    productId: string | undefined,
    skuId: string | undefined,
-   sellerId: string | undefined
+   channelId: string | undefined
 ): Promise<CredisimanType | undefined> => {
    while (mutex) {
       await new Promise((resolve) => setTimeout(resolve, 10));
@@ -20,7 +20,7 @@ export const GetCrediSimanProductData = async (
    const productDataInCache = allProductsData[skuId ?? ""];
 
    if (!productDataInCache) {
-      const newProductData = await fetchProductData({ productId, skuId, sellerId });
+      const newProductData = await fetchProductData({ productId, skuId, channelId });
 
       if (newProductData) {
          allProductsData[skuId ?? ""] = newProductData;
@@ -46,13 +46,13 @@ export const GetCrediSimanProductData = async (
 const fetchProductData = async ({
    productId,
    skuId,
-   sellerId,
+   channelId,
 }: {
    productId: string | undefined;
    skuId: string | undefined;
-   sellerId: string | undefined;
+   channelId: string | undefined;
 }) => {
-   return await getPromotions({ productId, skuId, sellerId });
+   return await getPromotions({ productId, skuId, channelId });
 };
 
 const CalculateNominalDiscount = (productData: CredisimanType) => {
