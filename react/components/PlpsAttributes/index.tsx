@@ -6,10 +6,6 @@ import styles from "./index.css";
 const PlpsAttributes = () => {
     const productContextValue = useProduct();
 
-    useEffect(() => {
-        console.log(productContextValue)
-    }, [productContextValue])
-
     return (
         <div className={styles.PlpsAttributes}>
                 {

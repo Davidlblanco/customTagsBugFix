@@ -48,9 +48,7 @@ export function Photos360() {
          const imgsApi = data as ImagesApiProps[];
 
          const filterOfSkuId = imgsApi.filter((img) => img.skuId === productCtx?.selectedItem?.itemId);
-         console.log("api 360:", filterOfSkuId);
          const skuChildrenId = filterOfSkuId?.map((img) => img?.childrenSkus)[0];
-         console.log("api 360:", skuChildrenId);
 
          setImageInfoApi({
             active: filterOfSkuId.map((img) => img.active)[0],
@@ -64,7 +62,7 @@ export function Photos360() {
             standardSku: productCtx?.selectedItem?.itemId,
          });
       } catch (error) {
-         console.log("api 360:", error);
+         console.error("api 360:", error);
          setLoading(false);
       }
 
@@ -100,8 +98,6 @@ export function Photos360() {
          });
       }
    }, [productCtx.selectedItem?.itemId]);
-
-   console.log(imageInfoApi)
 
    if (loading)
       return (

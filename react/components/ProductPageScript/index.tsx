@@ -11,7 +11,6 @@ function ProductPageScript() {
         window.SYNDI = window.SYNDI || [];
         window.SYNDI = window.SYNDI.filter((element: any) => element != "null");
         const containsProductRef = window.SYNDI.includes(productReference);
-        console.log(containsProductRef, window.SYNDI, productReference);
         if (!containsProductRef) window.SYNDI.push(productReference);
     }, [context]);
     return <></>;

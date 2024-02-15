@@ -4,7 +4,6 @@ import { useProduct } from "vtex.product-context";
 const PowerSyndigo = () => {
     const productContextValue = useProduct();
     const productReference = productContextValue?.product?.productReference as string;
-    console.log(productReference);
 
     useEffect(() => {
         const script = document.createElement("syndigo-powerpage");
