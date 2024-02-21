@@ -13,13 +13,12 @@ const CrediSimanPrice: StorefrontFunctionComponent = () => {
    const pageType = GetPageType();
    const skuId = productContext?.selectedItem?.itemId;
    const productId = productContext?.product?.productId;
-   const sellerId = productContext?.selectedItem?.sellers[0].sellerId;
 
    const [productData, setProductData] = useState<CredisimanType>();
 
    const { session } =  useRenderSession();
 
-   let sallesChannelId = session?.namespaces?.store?.channel ?? 1
+   let sallesChannelId = session?.namespaces?.store?.channel?.value
 
    const IsProductPage = (): boolean => {
       return pageType === "product";
@@ -27,12 +26,14 @@ const CrediSimanPrice: StorefrontFunctionComponent = () => {
 
    useEffect(() => {
       const fetchData = async () => {
-         const result = await GetCrediSimanProductData(productId, skuId, sallesChannelId);
-         setProductData(result);
+         if(sallesChannelId){
+            const result = await GetCrediSimanProductData(productId, skuId, sallesChannelId);
+            setProductData(result);
+         }
       };
 
       fetchData();
-   }, [productId, skuId, sellerId]);
+   }, [productId, skuId, sallesChannelId]);
 
    if (!productData) return <></>;
 
