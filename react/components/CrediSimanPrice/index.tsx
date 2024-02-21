@@ -3,7 +3,7 @@ import { FormattedCurrency } from "vtex.format-currency";
 import { useProduct } from "vtex.product-context";
 import { CredisimanType } from "./Types/credisimanTypes";
 import { GetCrediSimanProductData } from "./Logic/logic";
-import CrediSimanSVG from "./Assets/credisiman-sv";
+import CrediSimanSVG from "./Assets/CredisimanImage";
 import styles from "./CrediSimanPrice.css";
 import GetPageType from "../../utils/getPageType";
 import { useRenderSession } from 'vtex.session-client'
@@ -18,7 +18,8 @@ const CrediSimanPrice: StorefrontFunctionComponent = () => {
 
    const { session } =  useRenderSession();
 
-   let sallesChannelId = session?.namespaces?.store?.channel?.value
+   const sallesChannelId = session?.namespaces?.store?.channel?.value
+   const countryAccount : string = session?.namespaces?.account?.accountName?.value ?? "siman"
 
    const IsProductPage = (): boolean => {
       return pageType === "product";
@@ -47,7 +48,7 @@ const CrediSimanPrice: StorefrontFunctionComponent = () => {
          {shouldShowTag ? <div className={styles.customCrediSimanTag}>
             <span className={styles.customCrediSimanTagText}>-{productData?.discountValue}%</span>
          </div> : <> </>}
-         <CrediSimanSVG />
+         <CrediSimanSVG countryAccount={countryAccount}/>
       </div>
    );
 };
