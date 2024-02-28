@@ -12,7 +12,7 @@ const WrapperAddToCart: FunctionComponent<WrapperAddToCartProps> = ({ AddToCartW
 
   if(!product) return <></>
 
-  const isSimanProProduct = product?.product?.specificationGroups?.find((specification) => specification.name === 'Siman Pro')
+  const isSimanProProduct = product?.product?.specificationGroups?.find((specification) => specification.name === 'Siman Pro' || specification.originalName === 'Siman Pro' )
 
   if(isSimanProProduct) return <AddToCartWithSimanPro />
   

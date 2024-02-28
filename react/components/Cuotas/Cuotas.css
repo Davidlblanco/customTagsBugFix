@@ -1,0 +1,114 @@
+body {
+    --container-padding: 10px;
+    --container-radius: 5px;
+}
+
+.CuotasContainerNewpdp {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin: 8px 0;
+}
+
+.CrediSimanContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--container-padding);
+    margin: 5px 0;
+    border: 1px solid #03499a;
+    border-radius: var(--container-radius);
+}
+
+.SpinnerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.LeftDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
+}
+
+.RightDiv {
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+}
+
+.LeftDivInstallment {
+    color: #1f1f1f;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.LeftDivPrice {
+    color: #03499a;
+    font-weight: bold;
+}
+
+.OtherPaymentsContainer {
+    margin-top: 10px;
+    padding: var(--container-padding);
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 4px;
+    flex-direction: column;
+    border: 1px solid #e6e6e6;
+    border-radius: var(--container-radius);
+}
+
+.OtherPaymentsTitle {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.SimanPro {
+    color: #a83338;
+    font-weight: bold;
+}
+
+.CrediSimanIcon {
+    width: 100%;
+    height: 100%;
+    max-width: 40px;
+    max-height: 40px;
+}
+
+.red {
+    color: var(--siman-rojo, #a83338);
+    font-family: "Roboto", sans-serif;
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.12px;
+}
+
+.CuotasContainerNewpdp .OtherPaymentsContainer,
+.CuotasContainerNewpdp .CrediSimanContainer {
+    border: none;
+}
+
+.CuotasContainerNewpdp .CrediSimanContainer {
+    display: none;
+}
+
+.CuotasContainerNewpdp .OtherPaymentsContainer {
+    margin: 0;
+}
+
+.InstallmentPrice {
+    .currencyContainer {
+        font-family: Clan OT, sans-serif;
+        font-size: 20px;
+        font-weight: 475;
+        line-height: 25px;
+        letter-spacing: 0.0015em;
+        text-align: left;
+        color: #6d6e71;
+    }
+}

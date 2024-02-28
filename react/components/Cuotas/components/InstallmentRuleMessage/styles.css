@@ -1,0 +1,17 @@
+.highlight {
+    color: #a83338;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.OtherPaymentsSubtitle {
+    font-family: Roboto, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.004em;
+    text-align: left;
+    margin: 0;
+    color: #1f1f1f;
+}

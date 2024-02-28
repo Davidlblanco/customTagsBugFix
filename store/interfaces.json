@@ -1,60 +1,73 @@
 {
-  "sticky-shelf": {
-    "component": "StickyShelf",
-    "composition": "children"
-  },
-  "custom-pagination": {
-    "component": "CustomPagination"
-  },
-  "custom-credi-siman-price": {
-    "component": "CrediSimanPrice"
- },
-  "seller-name-pdp": {
-    "component": "SellerNamePDP"
-  },
-  "seller-name-shelf": {
-    "component": "SellerNameShelf"
-  },
-  "precio-live": {
-    "component": "PrecioLive"
-  },
-  "wrapper-add-to-cart": {
-    "component": "WrapperAddToCart"
-  },
-  "cookiesagreement": {
-    "component": "CookiesAgreement"
-  },
-  "rastreo": {
-    "component": "Rastreo"
-  },
-  "product-page-script": {
-    "component": "ProductPageScript"
-  },
-  "plpsattributes": {
-    "component": "PlpsAttributes"
-  },
-  "AttributesPDP": {
-    "component": "AttributesPDP"
-  },
-  "FiraSiman-Live": {
-    "component": "FiraSiman"
-  },
-  "full-logout": {
-    "component": "FullLogout"
-  },
-  "register-form": {
-    "component": "RegisterForm"
-  },
-  "power-syndigo": {
-    "component": "PowerSyndigo"
-  },
-  "HideProducts": {
-    "component": "HideProducts"
-  },
-  "skuNoDisponible": {
-    "component": "skuNoDisponible"
-  },
-  "360-photos": {
-     "component": "360Photos"
-  }
+    "sticky-shelf": {
+        "component": "StickyShelf",
+        "composition": "children"
+    },
+    "custom-pagination": {
+        "component": "CustomPagination"
+    },
+    "custom-shipping-preview": {
+        "component": "ShippingPreview",
+        "composition": "children"
+    },
+    "custom-product-specifications": {
+        "component": "ProductSpecifications"
+    },
+    "custom-credi-siman-price": {
+        "component": "CrediSimanPrice"
+    },
+    "custom-cuotas": {
+        "component": "Cuotas",
+        "content": {
+            "$ref": "app:siman.m3-custom#/definitions/CuetasCustom"
+        }
+    },
+    "seller-name-pdp": {
+        "component": "SellerNamePDP"
+    },
+    "seller-name-shelf": {
+        "component": "SellerNameShelf"
+    },
+    "precio-live": {
+        "component": "PrecioLive"
+    },
+    "wrapper-add-to-cart": {
+        "component": "WrapperAddToCart"
+    },
+    "cookiesagreement": {
+        "component": "CookiesAgreement"
+    },
+    "rastreo": {
+        "component": "Rastreo"
+    },
+    "product-page-script": {
+        "component": "ProductPageScript"
+    },
+    "plpsattributes": {
+        "component": "PlpsAttributes"
+    },
+    "AttributesPDP": {
+        "component": "AttributesPDP"
+    },
+    "FiraSiman-Live": {
+        "component": "FiraSiman"
+    },
+    "full-logout": {
+        "component": "FullLogout"
+    },
+    "register-form": {
+        "component": "RegisterForm"
+    },
+    "power-syndigo": {
+        "component": "PowerSyndigo"
+    },
+    "HideProducts": {
+        "component": "HideProducts"
+    },
+    "skuNoDisponible": {
+        "component": "skuNoDisponible"
+    },
+    "360-photos": {
+        "component": "360Photos"
+    }
 }
