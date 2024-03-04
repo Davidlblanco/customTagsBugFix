@@ -14,6 +14,8 @@ const CrediSimanPrice: StorefrontFunctionComponent = () => {
     const skuId = productContext?.selectedItem?.itemId;
     const productId = productContext?.product?.productId;
 
+    console.log(productContext);
+
     const [productData, setProductData] = useState<CredisimanType>();
 
     const { session } = useRenderSession();
