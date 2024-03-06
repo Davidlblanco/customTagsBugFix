@@ -16,11 +16,17 @@
     "custom-credi-siman-price": {
         "component": "CrediSimanPrice"
     },
+    "custom-product-gift": {
+        "component": "ProductGift"
+    },
     "custom-cuotas": {
         "component": "Cuotas",
         "content": {
             "$ref": "app:siman.m3-custom#/definitions/CuetasCustom"
         }
+    },
+    "cadastra-sizes-table": {
+        "component": "SizesTable"
     },
     "seller-name-pdp": {
         "component": "SellerNamePDP"

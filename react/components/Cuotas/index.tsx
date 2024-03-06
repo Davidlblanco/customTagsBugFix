@@ -15,8 +15,6 @@ const Cuotas: StorefrontFunctionComponent<Props> = ({ paymentsImages }) => {
         paymentIds: [], // This filter is optional
     });
 
-    console.log("bestInstallment", bestInstallment);
-
     if (isLoading) {
         return (
             <div className={styles.SpinnerContainer}>

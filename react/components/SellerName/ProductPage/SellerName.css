@@ -4,11 +4,11 @@
     align-items: center;
 }
 
-.containerSellerName img {
+/* .containerSellerName img {
     width: 16px;
     height: 16px;
     margin-right: 4px;
-}
+} */
 
 @media (max-width: 360px) {
     .containerSellerName p {
@@ -22,6 +22,7 @@
 
 .sellerName,
 .sellerText {
+    margin: 0;
     margin-right: 4px;
     font-family: Roboto, sans-serif;
     font-size: 14px;
@@ -30,7 +31,6 @@
     letter-spacing: 0.0025em;
     text-align: left;
     color: #6d6e71;
-    margin: 0;
 }
 
 .sellerName {

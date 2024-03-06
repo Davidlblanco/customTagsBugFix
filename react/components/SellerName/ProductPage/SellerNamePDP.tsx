@@ -1,7 +1,7 @@
 import React from "react";
 import { useProduct } from "vtex.product-context";
 import styles from "./SellerName.css";
-import icon from "../assets/delivery-moving.png";
+import { DeliveryIcon } from "../assets/delivery-moving";
 
 const SellerNamePDP = () => {
     const productContextValue = useProduct();
@@ -13,7 +13,7 @@ const SellerNamePDP = () => {
         if (sellerNameValue == "Tienda Siman" || sellerNameValue == "1") {
             return (
                 <div className={styles.containerSellerName}>
-                    <img src={icon} alt="" className={styles.sellerLogo} />
+                    <DeliveryIcon />
                     <p className={styles.sellerText}>
                         Vendido y entregado por:{" "}
                     </p>
@@ -28,25 +28,23 @@ const SellerNamePDP = () => {
             );
         } else {
             return (
-                <>
-                    <div className={styles.containerSellerName}>
-                        <img src={icon} alt="" className={styles.sellerLogo} />
-                        <p className={styles.sellerText}>
-                            Vendido y entregado por:{" "}
-                        </p>
-                        {sellerIdValue != "1" ? (
-                            <a href={`/${sellerIdValue}?map=seller`}>
-                                {" "}
-                                {sellerNameValue}
-                            </a>
-                        ) : (
-                            <span className={styles.sellerName}>
-                                {" "}
-                                {sellerNameValue}
-                            </span>
-                        )}
-                    </div>
-                </>
+                <div className={styles.containerSellerName}>
+                    <DeliveryIcon />
+                    <p className={styles.sellerText}>
+                        Vendido y entregado por:{" "}
+                    </p>
+                    {sellerIdValue != "1" ? (
+                        <a href={`/${sellerIdValue}?map=seller`}>
+                            {" "}
+                            {sellerNameValue}
+                        </a>
+                    ) : (
+                        <span className={styles.sellerName}>
+                            {" "}
+                            {sellerNameValue}
+                        </span>
+                    )}
+                </div>
             );
         }
     }
