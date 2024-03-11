@@ -10,7 +10,7 @@ const GetPickUpPoints = async () => {
 
     const headers = {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
     };
 
     try {
@@ -24,16 +24,16 @@ const GetPickUpPoints = async () => {
 
 const FilterPickUpPoints = (items: PickupPointItem[]) => {
     const filteredPickUpItems = items.filter(
-        item => item.pickupPoint.address.addressType === "pickup"
+        (item) => item.pickupPoint.address.addressType === "pickup"
     );
 
     const pickupPointDetails: PickupPointFiltered[] = filteredPickUpItems.map(
-        item => {
+        (item) => {
             return {
                 friendlyName: item.pickupPoint.friendlyName,
                 postalCode: item.pickupPoint.address.postalCode,
                 geoCoordinates: item.pickupPoint.address.geoCoordinates,
-                country: item.pickupPoint.address.country
+                country: item.pickupPoint.address.country,
             };
         }
     );

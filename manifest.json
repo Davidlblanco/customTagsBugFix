@@ -12,6 +12,8 @@
     "react": "3.x"
   },
   "dependencies": {
+    "vtex.shipping-estimate-translator": "1.x",
+    "vtex.address-form": "4.x",
     "vtex.styleguide": "9.x",
     "vtex.store-graphql": "2.x",
     "vtex.catalog-graphql": "1.x",

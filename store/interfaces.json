@@ -7,8 +7,7 @@
         "component": "CustomPagination"
     },
     "custom-shipping-preview": {
-        "component": "ShippingPreview",
-        "composition": "children"
+        "component": "ShippingPreview"
     },
     "custom-product-specifications": {
         "component": "ProductSpecifications"

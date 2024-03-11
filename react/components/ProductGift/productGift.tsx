@@ -25,6 +25,7 @@ const GetCurrentProductGifts = (
 
 const ProductGift = () => {
     const [gifts, setGifts] = useState<Gift[]>([]);
+    const haveGifts = gifts.length > 0;
 
     const { product, selectedItem } = useProduct();
     const selectedItemId = selectedItem?.itemId;
@@ -57,7 +58,7 @@ const ProductGift = () => {
     console.log(gifts);
 
     return (
-        gifts.length > 0 && (
+        haveGifts && (
             <div className={styles.giftsContainer}>
                 <span className={styles.giftTitle}>
                     Gratis al comprar este producto
