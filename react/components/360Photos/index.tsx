@@ -45,13 +45,11 @@ export function Photos360() {
 
       try {
          const { data } = await axios(`/_v/admin-360-photos/config`);
-
          const imgsApi = data as ImagesApiProps[];
 
-         const filterOfSkuId = imgsApi.filter((img) => img.skuId === productCtx?.selectedItem?.itemId);
-         console.log("api 360:", filterOfSkuId);
+         let filterOfSkuId = imgsApi.filter((img) => img.skuId === productCtx?.selectedItem?.itemId);
+         if(!filterOfSkuId.length) filterOfSkuId = imgsApi.filter((img) => img.childrenSkus?.find(children => children.skuId == productCtx?.selectedItem?.itemId && children.active));
          const skuChildrenId = filterOfSkuId?.map((img) => img?.childrenSkus)[0];
-         console.log("api 360:", skuChildrenId);
 
          setImageInfoApi({
             active: filterOfSkuId.map((img) => img.active)[0],
@@ -65,7 +63,7 @@ export function Photos360() {
             standardSku: productCtx?.selectedItem?.itemId,
          });
       } catch (error) {
-         console.log("api 360:", error);
+         console.warn("API 360:", error);
          setLoading(false);
       }
 
