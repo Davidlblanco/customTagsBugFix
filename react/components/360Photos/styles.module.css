@@ -24,7 +24,7 @@
    display: flex;
    align-items: center;
    justify-content: center;
-   gap: 6px;
+   gap: 4px;
 
    font-family: 'Roboto', sans-serif;
    font-size: 16px;
@@ -39,7 +39,7 @@
 
 .gradientBorder {
    position: relative;
-   max-width: 118px;
+   width: 118px;
    height: 40px;
    margin: 0 0 16px;
    border: double 1px transparent;
