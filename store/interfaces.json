@@ -8,7 +8,7 @@
   },
   "custom-credi-siman-price": {
     "component": "CrediSimanPrice"
- },
+  },
   "seller-name-pdp": {
     "component": "SellerNamePDP"
   },
@@ -55,6 +55,9 @@
     "component": "skuNoDisponible"
   },
   "360-photos": {
-     "component": "360Photos"
+    "component": "360Photos"
+  },
+  "product-comparator": {
+    "component": "ProductComparator"
   }
 }
