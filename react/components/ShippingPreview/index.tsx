@@ -3,7 +3,7 @@ import { ShippingContainer } from "./Components/shippingContainer";
 import {
     useGetShippingEstimative,
     GetUserPostalCode,
-    useGetPickUpPoints,
+    useGetBestPickupPoint,
 } from "./Logic/ShippingPreviewLogic";
 import { ExpressIcon } from "./Assets/24hrs";
 import styles from "./shippingPreview.css";
@@ -11,10 +11,10 @@ import styles from "./shippingPreview.css";
 const ShippingPreview = () => {
     const userPostalCode = GetUserPostalCode();
     const { estimative } = useGetShippingEstimative(userPostalCode);
-    const { pickupPoints } = useGetPickUpPoints();
+    const { bestPickupPoint } = useGetBestPickupPoint();
 
-    console.log(estimative);
-    console.log(pickupPoints);
+    console.log(estimative, "user address");
+    console.log(bestPickupPoint, "pickup");
 
     return (
         <div className={styles.ShippingPreviewContainer}>

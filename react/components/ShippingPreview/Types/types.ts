@@ -4,6 +4,23 @@ export interface ShippingContainerProps {
     icon: React.ReactElement;
 }
 
+export interface EstimativeData {
+    estimative: string | undefined;
+    cost: number | undefined;
+    friendlyName: string | undefined;
+    id: string | undefined;
+}
+
+export interface ShippingItem {
+    itemIndex: number;
+    addressId: string | null;
+    selectedSla: string | null;
+    selectedDeliveryChannel: string | null;
+    quantity: number;
+    shipsTo: string[];
+    slas: Sla[];
+}
+
 export interface ShippingQuery {
     shipping: ShippingData;
 }
@@ -26,8 +43,8 @@ interface ShippingSLA {
 }
 
 export type PickupPointFiltered = {
-    friendlyName: string;
     postalCode: string;
+    friendlyName: string;
     geoCoordinates: [number, number];
     country: string;
 };

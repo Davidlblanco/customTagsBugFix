@@ -1,32 +1,41 @@
 import axios from "axios";
+import { ProductContextState } from "vtex.product-context/react/ProductContextProvider";
 
-interface SimulationRequest {
-    productId: string | undefined;
-    postalCode: string;
-    country: string;
+export interface SimulationRequest {
+    productContext: Partial<ProductContextState> | undefined;
+    sellerId: string | undefined;
+    postalCode: string | undefined;
+    country: string | undefined;
     geoCoordinates: [number, number];
 }
 
 const SimulateCart = async ({
-    productId,
+    productContext,
+    sellerId,
     postalCode,
     country,
-    geoCoordinates
+    geoCoordinates,
 }: SimulationRequest) => {
     const url = "/api/checkout/pub/orderForms/simulation?RnbBehavior=0&sc=1";
 
     const requestData = {
-        items: [{ id: productId, quantity: 1, seller: "1" }],
+        items: [
+            {
+                id: productContext?.selectedItem?.itemId,
+                quantity: productContext?.selectedQuantity?.toString(),
+                seller: sellerId,
+            },
+        ],
         postalCode,
         country,
-        geoCoordinates
+        geoCoordinates,
     };
 
     const options = {
         headers: {
             Accept: "application/json",
-            "Content-Type": "application/json"
-        }
+            "Content-Type": "application/json",
+        },
     };
 
     try {

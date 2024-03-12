@@ -1,4 +1,4 @@
-query getShippingEstimates(
+query getShippingEstimate(
     $items: [ShippingItem]
     $postalCode: String
     $country: String
