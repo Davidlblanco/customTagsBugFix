@@ -58,6 +58,7 @@
     "component": "360Photos"
   },
   "product-comparator": {
-    "component": "ProductComparator"
+    "component": "ProductComparator",
+    "composition": "children"
   }
 }
