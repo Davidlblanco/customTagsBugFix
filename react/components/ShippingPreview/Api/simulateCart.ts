@@ -4,7 +4,6 @@ import { ProductContextState } from "vtex.product-context/react/ProductContextPr
 export interface SimulationRequest {
     productContext: Partial<ProductContextState> | undefined;
     sellerId: string | undefined;
-    postalCode: string | undefined;
     country: string | undefined;
     geoCoordinates: [number, number];
 }
@@ -12,7 +11,6 @@ export interface SimulationRequest {
 const SimulateCart = async ({
     productContext,
     sellerId,
-    postalCode,
     country,
     geoCoordinates,
 }: SimulationRequest) => {
@@ -26,7 +24,6 @@ const SimulateCart = async ({
                 seller: sellerId,
             },
         ],
-        postalCode,
         country,
         geoCoordinates,
     };

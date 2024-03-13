@@ -1,14 +1,26 @@
 import React from "react";
 
+export type ShippingInfo = EstimativeData | Sla | undefined;
+
 export interface ShippingContainerProps {
     icon: React.ReactElement;
+    type: ShippingType;
+    shippingData: ShippingInfo;
+}
+
+export enum ShippingType {
+    "Retiro en Tienda" = "Retiro en Tienda",
+    "Envío a domicilio" = "Envío a domicilio",
+    "Entrega express" = "Entrega express",
+    "Entrega programada" = "Entrega programada",
 }
 
 export interface EstimativeData {
-    estimative: string | undefined;
-    cost: number | undefined;
-    friendlyName: string | undefined;
-    id: string | undefined;
+    id: string;
+    friendlyName: string;
+    price: number;
+    shippingEstimate: string;
+    shippingEstimateDate: string | null;
 }
 
 export interface ShippingItem {
@@ -43,7 +55,6 @@ interface ShippingSLA {
 }
 
 export type PickupPointFiltered = {
-    postalCode: string;
     friendlyName: string;
     geoCoordinates: [number, number];
     country: string;

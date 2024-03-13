@@ -1,5 +1,4 @@
 import React, { ReactElement } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 export default function ElementList({ elements, separator }: Props) {
     if (elements.length === 1) return <>{elements}</>;
@@ -16,7 +15,7 @@ export default function ElementList({ elements, separator }: Props) {
                 if (index >= indexToStopMap) return;
 
                 return (
-                    <span key={uuidv4()}>
+                    <span key={index}>
                         {!isFirstItem ? separator : ""}
                         {element}
                     </span>
