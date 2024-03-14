@@ -42,7 +42,7 @@ const ShippingPreview = () => {
 
     return (
         <div className={styles.ShippingPreviewContainer}>
-            <div>
+            <div className={styles.shippingPreviewTitle}>
                 <span>Métodos de entrega disponibles</span>
             </div>
             {shippingOptions.map((option) => (
