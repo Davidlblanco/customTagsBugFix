@@ -3,6 +3,9 @@
         "component": "StickyShelf",
         "composition": "children"
     },
+    "custom-hide-middle-product": {
+        "component": "HideMiddleProductPage"
+    },
     "custom-pagination": {
         "component": "CustomPagination"
     },

@@ -16,6 +16,11 @@ const ShippingPreview = () => {
     const { delivery, expressDelivery, scheduledDelivery } =
         useGetShippingEstimative(userPostalCode);
     const { bestPickupPoint } = useGetBestPickupPoint();
+    const shouldRender =
+        Object.keys(bestPickupPoint || {}).length > 0 ||
+        Object.keys(scheduledDelivery || {}).length > 0 ||
+        Object.keys(expressDelivery || {}).length > 0 ||
+        Object.keys(delivery || {}).length > 0;
 
     const shippingOptions = [
         {
@@ -41,19 +46,21 @@ const ShippingPreview = () => {
     ];
 
     return (
-        <div className={styles.ShippingPreviewContainer}>
-            <div className={styles.shippingPreviewTitle}>
-                <span>Métodos de entrega disponibles</span>
+        shouldRender && (
+            <div className={styles.ShippingPreviewContainer}>
+                <div className={styles.shippingPreviewTitle}>
+                    <span>Métodos de entrega disponibles</span>
+                </div>
+                {shippingOptions.map((option) => (
+                    <ShippingContainer
+                        key={option.shippingData?.id}
+                        icon={option.icon}
+                        type={option.type}
+                        shippingData={option.shippingData}
+                    />
+                ))}
             </div>
-            {shippingOptions.map((option) => (
-                <ShippingContainer
-                    key={option.shippingData?.id}
-                    icon={option.icon}
-                    type={option.type}
-                    shippingData={option.shippingData}
-                />
-            ))}
-        </div>
+        )
     );
 };
 
