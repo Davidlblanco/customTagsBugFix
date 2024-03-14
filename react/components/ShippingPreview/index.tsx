@@ -17,11 +17,6 @@ const ShippingPreview = () => {
         useGetShippingEstimative(userPostalCode);
     const { bestPickupPoint } = useGetBestPickupPoint();
 
-    console.log(delivery, "delivery");
-    console.log(expressDelivery, "expressDelivery");
-    console.log(scheduledDelivery, "scheduledDelivery");
-    console.log(bestPickupPoint, "bestPickupPoint");
-
     const shippingOptions = [
         {
             icon: <DeliveryIcon />,

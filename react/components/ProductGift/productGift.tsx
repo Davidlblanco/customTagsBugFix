@@ -55,8 +55,6 @@ const ProductGift = () => {
 
     if (error) return <div>Error</div>;
 
-    console.log(gifts);
-
     return (
         haveGifts && (
             <div className={styles.giftsContainer}>
