@@ -7,13 +7,11 @@
    height: 47px;
 
    display: block;
-   background: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0.5) 50%,
-      rgba(255, 255, 255, 0) 80%
-   ),
-   lightgray;
+   background: linear-gradient(to right,
+         rgba(255, 255, 255, 0),
+         rgba(255, 255, 255, 0.5) 50%,
+         rgba(255, 255, 255, 0) 80%),
+      lightgray;
    background-repeat: repeat-y;
    background-size: 50px 500px;
    background-position: 0 0;
@@ -21,29 +19,34 @@
 }
 
 .button {
-   max-width: 184px;
-   height: 47px;
-
-   margin: 0 0 16px;
    padding: 0;
-
-   border-radius: 4px;
-   border: 1px solid #CCC;
 
    display: flex;
    align-items: center;
    justify-content: center;
-   gap: 6px;
+   gap: 4px;
 
-   font-family: 'ClanOT', sans-serif;
-   font-size: 18px;
-   font-weight: 700;
+   font-family: 'Roboto', sans-serif;
+   font-size: 16px;
+   font-weight: 400;
    line-height: normal;
 
-   color: #000;
+   color: #1F1F1F;
    background: #FFF;
 
    cursor: pointer;
+}
+
+.gradientBorder {
+   position: relative;
+   width: 118px;
+   height: 40px;
+   margin: 0 0 16px;
+   border: double 1px transparent;
+   border-radius: 20px;
+   background-image: linear-gradient(white, white), linear-gradient(90deg, #3F28FF -233.33%, #AB2AE7 -73.6%, #FFBCFC 100%);
+   background-origin: border-box;
+   background-clip: content-box, border-box;
 }
 
 .button:disabled {
@@ -94,7 +97,6 @@
 
 .modal-header {
    width: 100%;
-   padding-right: 10px;
 
    display: flex;
    align-items: center;
@@ -103,35 +105,40 @@
 
 .modal-title {
    display: flex;
-   align-items: center;
+   align-items: start;
 
    font-family: 'ClanOT', sans-serif;
    font-size: 12px;
    font-weight: 400;
    line-height: normal;
+   margin: 0;
+   color: #000;
+}
 
-   .modal-title-strong {
-      display: inline-block;
-      padding-left: 6px;
+.modal-title .modal-title-strong {
+   display: inline-block;
+   padding-left: 6px;
+   font-family: 'ClanOT', sans-serif;
+   font-size: 12px;
+   font-weight: 700;
+   color: #000;
+}
 
-      font-weight: 700;
-      color: #000;
-   }
+.modal-title .modal-title-text {
+   padding-left: 5px;
+   font-family: 'ClanOT', sans-serif;
+   font-size: 12px;
+   font-weight: 400;
+   line-height: normal;
+   margin: 0;
+   color: #000;
 }
 
 .modal-close {
    border: 0;
    border-radius: 50%;
 
-   font-family: 'ClanOT', sans-serif;
-   font-size: 16px;
-   font-style: normal;
-   font-weight: 700;
-   line-height: normal;
-
-   color: #000;
    background-color: transparent;
-
    cursor: pointer;
 }
 
@@ -150,6 +157,8 @@
 
 @keyframes shine {
    to {
-      background-position: 100% 0, /* move highlight to right */ 0 0;
+      background-position: 100% 0,
+         /* move highlight to right */
+         0 0;
    }
 }
