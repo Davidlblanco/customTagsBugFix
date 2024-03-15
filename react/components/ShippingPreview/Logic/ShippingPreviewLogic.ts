@@ -59,7 +59,7 @@ const DivideShippingEstimativeUserData = (
             item.friendlyName === "Envío a domicilio entrega programada"
         ) {
             scheduledDelivery = item;
-        } else if (item.friendlyName.includes("express")) {
+        } else if (item.friendlyName === "Envío a domicilio entrega express") {
             expressDelivery = item;
         }
     });
