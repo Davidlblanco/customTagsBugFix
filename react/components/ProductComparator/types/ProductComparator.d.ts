@@ -9,3 +9,12 @@ export interface Category {
     name: string;
     Title: string;
 }
+
+export type Item = {
+    name: string;
+    values: string[];
+}
+
+export type OrganizedProperties = {
+    [key: string]: [{}];
+}

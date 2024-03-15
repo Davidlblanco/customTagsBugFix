@@ -3,42 +3,52 @@ import React, { FC } from "react";
 import { useProduct } from "vtex.product-context";
 
 import ProductComparatorList from "./components/ProductComparatorList/ProductComparatorList";
+import ProductComparatorSpecifications from "./components/ProductComparatorSpecifications/ProductComparatorSpecifications";
 
 import { useConfigs } from "./hooks/useConfigs";
 import { useProductComplements } from "./hooks/useProductComplements";
 
-import style from './styles.css';
+import { hasMatchingCategory } from "./utils/hasMatchingCategory";
 
-const ProductComparator: FC = ({ children }) => {
+import styles from './styles.css';
+
+
+interface ProductComparatorProps {
+    titleProductSeen: string;
+    titleSimilarProducts: string;
+    titleSpecification: string;
+}
+
+const ProductComparator: FC<ProductComparatorProps> = ({
+    children,
+    titleProductSeen,
+    titleSimilarProducts,
+    titleSpecification
+}) => {
+
     const productContext = useProduct();
-    const categoryIds = productContext?.product?.categoryTree?.map?.((item) => item.id);
+    const { data } = useConfigs();
+    const { data: dataProduct } = useProductComplements();
 
-    const { data, isLoading } = useConfigs();
-    const { data: dataProduct, loading } = useProductComplements();
+    const isCategory = hasMatchingCategory(data, productContext);
 
-    if (isLoading || loading) {
-        return (
-            <>
-                Loading
-            </>
-        )
-    }
+    if (!isCategory || !dataProduct) return <></>;
 
-    console.log('data', dataProduct, loading);
-    console.log('categoryId ', categoryIds);
-    console.log('data ProductComparator', data);
-    console.log('productContext', productContext);
+    console.log("dataProduct", dataProduct.slice(0, 4));
 
-    const hasMatchingCategory = categoryIds?.some(id => data.some(item => item?.category?.id.toString() === id.toString() && item?.active == true));
-
-    if (!hasMatchingCategory || !dataProduct) return null;
     return (
-        <div className={style.container}>
+        <div className={styles["container-product-comparator"]}>
             <ProductComparatorList
-                products={dataProduct}
+                products={dataProduct.slice(0, 4)}
+                titleProductSeen={titleProductSeen}
+                titleSimilarProducts={titleSimilarProducts}
             >
                 {children}
             </ProductComparatorList>
+            <ProductComparatorSpecifications
+                products={dataProduct.slice(0, 4)}
+                titleSpecifications={titleSpecification}
+            />
         </div>
     )
 }

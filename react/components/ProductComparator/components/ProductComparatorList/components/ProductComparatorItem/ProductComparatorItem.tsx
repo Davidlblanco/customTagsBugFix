@@ -18,7 +18,7 @@ const ProductComparatorItem: FC<ProductComparatorItemProps> = ({
 }) => {
   const selectedSkuId = getFirstAvailableSku(product)?.itemId;
   return (
-    <>
+    <div className={styles["product-comparator-item"]}>
       <ProductContextProvider
         product={product}
         query={{ skuId: selectedSkuId }}
@@ -31,7 +31,7 @@ const ProductComparatorItem: FC<ProductComparatorItemProps> = ({
           {children}
         </a>
       </ProductContextProvider>
-    </>
+    </div>
   );
 }
 

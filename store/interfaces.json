@@ -59,6 +59,9 @@
   },
   "product-comparator": {
     "component": "ProductComparator",
+    "content": {
+      "$ref": "app:siman.m3-custom#/definitions/ProductComparator"
+    },
     "composition": "children"
   }
 }

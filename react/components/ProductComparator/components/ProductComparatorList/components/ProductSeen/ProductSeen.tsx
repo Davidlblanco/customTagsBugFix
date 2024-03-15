@@ -1,9 +1,22 @@
 import React, { FC } from "react"
 
-const ProductSeen: FC = ({ children }) => {
+import Title from "../../../Title/Title";
+
+import styles from "./styles.css";
+
+interface ProductSeenProps {
+    titleProductSeen: string;
+}
+
+const ProductSeen: FC<ProductSeenProps> = ({
+    children,
+    titleProductSeen
+}) => {
     return (
-        <div>
-            <span>Producto visto</span>
+        <div className={styles["product-comparator-seen"]}>
+            <Title
+                title={titleProductSeen}
+            />
             {children}
         </div>
     )
