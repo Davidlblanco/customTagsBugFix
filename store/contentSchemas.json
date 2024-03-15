@@ -21,7 +21,6 @@
                 }
             }
         },
-
         "paymentImage": {
             "title": "Imagem pagamento",
             "type": "object",
@@ -33,6 +32,31 @@
                     "widget": {
                         "ui:widget": "image-uploader"
                     }
+                }
+            }
+        },
+        "DescriptionSection": {
+            "type": "object",
+            "properties": {
+                "titleDescription": {
+                    "title": "Title Description",
+                    "type": "string",
+                    "default": "Descripción"
+                },
+                "titleSpecification": {
+                    "title": "Title Specification",
+                    "type": "string",
+                    "default": "Especificaciones técnicas"
+                },
+                "buttonTextViewMore": {
+                    "title": "Button text view more",
+                    "type": "string",
+                    "default": "Ver más"
+                },
+                "buttonTextSeeLess": {
+                    "title": "Button text see less",
+                    "type": "string",
+                    "default": "Ver menos"
                 }
             }
         }

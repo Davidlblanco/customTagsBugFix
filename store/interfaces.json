@@ -77,5 +77,11 @@
     },
     "360-photos": {
         "component": "360Photos"
+    },
+    "description-section": {
+        "component": "DescriptionSection",
+        "content": {
+            "$ref": "app:siman.m3-custom#/definitions/DescriptionSection"
+        }
     }
 }
