@@ -1,6 +1,9 @@
 import React from "react";
 
+import { useProduct } from "vtex.product-context";
+
 import { reorganizeProperties } from "../../../utils/reorganizeProperties";
+import { filterItems } from "../../../utils/filterItems";
 
 import SpecificationValues from "./SpecificationValues/SpecificationValues";
 
@@ -16,18 +19,26 @@ const Specification = ({
     items
 }: SpecificationProps) => {
 
-    const properties = reorganizeProperties(items);
+    const productContext = useProduct();
+
+    const propertiesProductSeen = productContext?.product?.properties;
+
+    const filteredItems = filterItems(propertiesProductSeen as Item[], items);
+    const propertiesTeste = reorganizeProperties(filteredItems);
+
+    console.log("teste", propertiesTeste);
 
     return (
         <>
             {items && items?.length > 0 && (
                 <div className={styles["container-specification"]}>
                     <ul className={styles["wrap-list"]}>
-                        {Object.entries(properties)?.map(([name, values]: [string, { [key: string]: string }[]]) => (
+                        {Object.entries(propertiesTeste)?.map(([name, values]: [string, { [key: string]: string }[]], index) => (
                             <li className={styles["list-item"]} key={name}>
-                                <span className={styles["item-name"]}>
-                                    {name}
-                                </span>
+                                <div className={styles["item-name"]}>
+                                    <span>{name}</span>
+                                    <span>{propertiesProductSeen && propertiesProductSeen[index]?.values[0]}</span>
+                                </div>
                                 <SpecificationValues
                                     values={values}
                                 />
