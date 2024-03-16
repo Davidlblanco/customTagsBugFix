@@ -26,8 +26,6 @@ const Specification = ({
     const filteredItems = filterItems(propertiesProductSeen as Item[], items);
     const propertiesTeste = reorganizeProperties(filteredItems);
 
-    console.log("teste", propertiesTeste);
-
     return (
         <>
             {items && items?.length > 0 && (
