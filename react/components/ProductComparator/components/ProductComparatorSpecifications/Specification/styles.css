@@ -34,7 +34,7 @@
                 align-items: start;
                 flex-direction: column;
 
-                margin-left: 16px;
+                padding-left: 16px;
                 border-right: 1px solid #E6E6E6;
 
                 & span {

@@ -36,6 +36,8 @@ const ProductComparator: FC<ProductComparatorProps> = ({
 
     if (!isCategory || productValues.length === 0) return null;
 
+    console.log('productValues', productValues);
+
     return (
         <div className={styles["container-product-comparator"]}>
             <ProductComparatorList
