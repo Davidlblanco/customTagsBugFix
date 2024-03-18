@@ -84,3 +84,7 @@
     }
   }
 }
+
+:global(.vtex-product-price-1-x-sellingPriceValue--product-comparator-shelf){
+  color: #A83338;
+}
