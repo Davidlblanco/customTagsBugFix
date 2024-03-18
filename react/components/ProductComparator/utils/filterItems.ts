@@ -6,7 +6,7 @@ export const filterItems = (propertiesProductSeen: Item[], items: Item[][]): Ite
 
     for (const item of items) {
         let matched = true;
-        const filteredItem: any[] = [];
+        let filteredItem: Item[] = [];
 
         for (const property of item) {
             if (propertiesProductSeen.find(prop => prop.name === property.name)) {
