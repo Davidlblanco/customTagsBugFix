@@ -23,15 +23,14 @@ const ProductComparator: FC<ProductComparatorProps> = ({
     children,
     titleProductSeen,
     titleSimilarProducts,
-    titleSpecification,
+    titleSpecification
 }) => {
+
     const productContext = useProduct();
     const product = productContext?.product;
 
-    const categoryId = productContext?.product?.categoryId as string;
-
     const { data } = useConfigs();
-    const { data: productValues } = useProductComplements([categoryId]);
+    const { data: productValues } = useProductComplements();
 
     const isCategory = hasMatchingCategory(data, product as Product);
 

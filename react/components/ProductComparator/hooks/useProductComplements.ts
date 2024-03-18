@@ -1,28 +1,48 @@
 import { useEffect, useState } from "react";
-
 import { Product } from "vtex.product-context/react/ProductTypes";
-
 import axios from "axios";
+import { useProduct } from "vtex.product-context";
 
-export function useProductComplements(id: string[] = []) {
+export function useProductComplements() {
 
-  const [data, setData] = useState<Product[]>([]);
+  const productContext = useProduct();
+  const categoryIds = productContext?.product?.categoryTree?.map((item) => item.id)?.join(",") as string[] | undefined;
+  const categoryId = productContext?.product?.categoryId as string;
+
+  const [dataByCategory, setDataByCategory] = useState<Product[]>([]);
+  const [dataByCategories, setDataByCategories] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const fetchData = async (ids: string[]) => {
+    if (ids) {
+      setLoading(true);
+      const { data } = await axios.get(`/_v/product-comparator/category/${ids}`);
+      setLoading(false);
+      return data.slice(0, 4);
+    }
+    return [];
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      if (id) {
-        setLoading(true);
-        const { data } = await axios.get(
-          `/_v/product-comparator/category/${id}`
-        );
-        setData(data.slice(0, 4));
-        setLoading(false);
+    const fetchDataAndFallback = async () => {
+      if (categoryId) {
+        const dataByCategory = await fetchData([categoryId]);
+        setDataByCategory(dataByCategory);
+      }
+
+      if (categoryIds) {
+        const dataByCategories = await fetchData(categoryIds as string[]);
+        setDataByCategories(dataByCategories);
       }
     };
 
-    fetchData();
-  }, id);
+    fetchDataAndFallback();
+  }, [categoryIds, categoryId]);
 
-  return { data, loading };
+  const data = dataByCategory.length > 0 ? dataByCategory : dataByCategories;
+
+  return {
+    data,
+    loading
+  };
 }
