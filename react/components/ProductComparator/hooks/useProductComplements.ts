@@ -1,34 +1,28 @@
-import { useProduct } from "vtex.product-context";
 import { useEffect, useState } from "react";
 
 import { Product } from "vtex.product-context/react/ProductTypes";
 
 import axios from "axios";
 
-export function useProductComplements() {
+export function useProductComplements(id: string[] = []) {
+
   const [data, setData] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const prodData = useProduct();
-
   useEffect(() => {
     const fetchData = async () => {
-      const ids = prodData?.product?.categoryTree
-        ?.map?.((item) => item.id)
-        .join(",");
-
-      if (ids) {
+      if (id) {
         setLoading(true);
         const { data } = await axios.get(
-          `/_v/product-comparator/category/${ids}`
+          `/_v/product-comparator/category/${id}`
         );
-        setData(data);
+        setData(data.slice(0, 4));
         setLoading(false);
       }
     };
 
     fetchData();
-  }, prodData?.product?.categoryTree);
+  }, id);
 
   return { data, loading };
 }
