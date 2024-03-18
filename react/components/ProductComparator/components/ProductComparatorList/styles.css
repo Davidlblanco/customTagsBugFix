@@ -1,0 +1,29 @@
+.container-product-comparator-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 532px;
+  background: #FFFFFF;
+}
+
+.wrap-product-comparator-list {
+  width: 80%;
+  padding: 12px;
+}
+
+.product-comparator-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wrap-diviser {
+  border-left: 1px solid #E6E6E6;
+  height: 532px;
+}
+
+@media (max-width: 767px) {
+  .product-comparator-list {
+    flex-direction: column;
+  }
+}

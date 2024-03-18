@@ -1,6 +1,6 @@
 {
     "definitions": {
-        "CuetasCustom": {
+        "CuotasCustom": {
             "type": "object",
             "title": "admin/editor.image-list.images.image.title",
             "properties": {
@@ -57,6 +57,26 @@
                     "title": "Button text see less",
                     "type": "string",
                     "default": "Ver menos"
+                }
+            }
+        },
+        "ProductComparator": {
+            "type": "object",
+            "properties": {
+                "titleProductSeen": {
+                    "title": "Title Product Seen",
+                    "type": "string",
+                    "default": "Producto visto"
+                },
+                "titleSimilarProducts": {
+                    "title": "Title Similar Products",
+                    "type": "string",
+                    "default": "Productos similares"
+                },
+                "titleSpecification": {
+                    "title": "Title Specification",
+                    "type": "string",
+                    "default": "Especificaciones"
                 }
             }
         }
