@@ -24,7 +24,7 @@
     "custom-cuotas": {
         "component": "Cuotas",
         "content": {
-            "$ref": "app:siman.m3-custom#/definitions/CuetasCustom"
+            "$ref": "app:siman.m3-custom#/definitions/CuotasCustom"
         }
     },
     "cadastra-sizes-table": {
