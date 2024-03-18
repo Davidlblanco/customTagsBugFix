@@ -8,7 +8,7 @@ const ProductSpecifications = () => {
 
     const productsSpecifications = productContext?.product?.specificationGroups;
     const allSpecifications = productsSpecifications?.find(
-        (specification) => specification.name === "allSpecifications"
+        (specification) => specification.originalName === "allSpecifications"
     );
 
     if (!allSpecifications) return <></>;
