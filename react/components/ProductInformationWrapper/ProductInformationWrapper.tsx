@@ -8,13 +8,13 @@ import { canUseDOM } from "vtex.render-runtime";
 import { useProduct } from "vtex.product-context";
 
 interface ProductInformationWrapperProps {
-    categorys: string[];
+    categorysWhereMiddleAppear: string[];
     ProductLeft: React.ComponentType;
     ProductMiddle: React.ComponentType;
     ProductRight: React.ComponentType;
 }
 
-interface HideCategoryTree {
+interface CategoryTree {
     id: string;
     name: string;
     href: string;
@@ -22,7 +22,12 @@ interface HideCategoryTree {
 
 const ProductInformationWrapper: FunctionComponent<
     ProductInformationWrapperProps
-> = ({ ProductLeft, ProductMiddle, ProductRight, categorys }) => {
+> = ({
+    ProductLeft,
+    ProductMiddle,
+    ProductRight,
+    categorysWhereMiddleAppear,
+}) => {
     const productContext = useProduct();
     const [productInfoLoaded, setProductInfoLoaded] = useState(false);
 
@@ -32,20 +37,27 @@ const ProductInformationWrapper: FunctionComponent<
         }
     }, [productContext?.product?.categoryTree]);
 
-    const GetProductCategorys = useCallback(
-        (categoryTree: HideCategoryTree[]) => {
-            return categoryTree.map((category) => Number(category.id));
-        },
-        []
+    const productsSpecifications = productContext?.product?.specificationGroups;
+    const allSpecifications = productsSpecifications?.find(
+        (specification) => specification.originalName === "allSpecifications"
     );
 
-    const productCategorys = GetProductCategorys(
+    const getProductCategorys = useCallback((categoryTree: CategoryTree[]) => {
+        return categoryTree.map((category) => Number(category.id));
+    }, []);
+
+    const productCategorys = getProductCategorys(
         productContext?.product?.categoryTree || []
     );
 
-    const shouldShowMiddlePage = productCategorys.some((category) =>
-        categorys.includes(category.toString())
-    );
+    const shouldShowMiddlePage =
+        categorysWhereMiddleAppear === undefined ||
+        categorysWhereMiddleAppear === null ||
+        categorysWhereMiddleAppear.length === 0
+            ? allSpecifications
+            : productCategorys.some((category) =>
+                  categorysWhereMiddleAppear.includes(category.toString())
+              );
 
     if (!shouldShowMiddlePage && canUseDOM && productInfoLoaded) {
         const container = document.querySelector(
