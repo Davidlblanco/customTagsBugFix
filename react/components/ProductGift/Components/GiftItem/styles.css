@@ -1,6 +1,7 @@
 .containerGiftItem {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 8px;
     border: 1px solid #e6e6e6;
     padding: 8px 16px;
