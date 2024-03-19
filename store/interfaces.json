@@ -3,8 +3,8 @@
         "component": "StickyShelf",
         "composition": "children"
     },
-    "custom-hide-middle-product": {
-        "component": "HideMiddleProductPage"
+    "custom-product-information-wrapper": {
+        "component": "ProductInformationWrapper"
     },
     "custom-pagination": {
         "component": "CustomPagination"
@@ -87,7 +87,7 @@
     "product-comparator": {
         "component": "ProductComparator",
         "content": {
-          "$ref": "app:siman.m3-custom#/definitions/ProductComparator"
+            "$ref": "app:siman.m3-custom#/definitions/ProductComparator"
         },
         "composition": "children"
     }
