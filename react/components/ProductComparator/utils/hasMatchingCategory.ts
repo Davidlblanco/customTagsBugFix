@@ -1,13 +1,12 @@
 import { ConfigGroup } from "../types/ProductComparator";
+import { Product } from "vtex.product-context/react/ProductTypes";
 
-export const hasMatchingCategory = (data: ConfigGroup[], productContext) => {
-    const categoryIds = productContext?.product?.categoryTree?.map?.(item => item.id);
+export const hasMatchingCategory = (data: ConfigGroup[], product: Product) => {
+    const categoryIds = product?.categoryId;
     if (!categoryIds) return false;
 
-    return categoryIds.some(id =>
-        data.some(item =>
-            item?.category?.id.toString() === id.toString() &&
-            item?.active === true
-        )
-    );
+    return data.some(item =>
+        item?.category?.id.toString() === categoryIds.toString() &&
+        item?.active === true
+    )
 }

@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 
 import { useProduct } from "vtex.product-context";
+import { Product } from "vtex.product-context/react/ProductTypes";
 
 import ProductComparatorList from "./components/ProductComparatorList/ProductComparatorList";
 import ProductComparatorSpecifications from "./components/ProductComparatorSpecifications/ProductComparatorSpecifications";
@@ -10,8 +11,7 @@ import { useProductComplements } from "./hooks/useProductComplements";
 
 import { hasMatchingCategory } from "./utils/hasMatchingCategory";
 
-import styles from './styles.css';
-
+import styles from "./styles.css";
 
 interface ProductComparatorProps {
     titleProductSeen: string;
@@ -27,30 +27,32 @@ const ProductComparator: FC<ProductComparatorProps> = ({
 }) => {
 
     const productContext = useProduct();
+    const product = productContext?.product;
+
     const { data } = useConfigs();
-    const { data: dataProduct } = useProductComplements();
+    const { data: productValues } = useProductComplements();
 
-    const isCategory = hasMatchingCategory(data, productContext);
+    const isCategory = hasMatchingCategory(data, product as Product);
 
-    if (!isCategory || !dataProduct) return <></>;
+    if (!isCategory || productValues.length === 0) return null;
 
-    console.log("dataProduct", dataProduct.slice(0, 4));
+    console.log('productValues', productValues);
 
     return (
         <div className={styles["container-product-comparator"]}>
             <ProductComparatorList
-                products={dataProduct.slice(0, 4)}
+                products={productValues}
                 titleProductSeen={titleProductSeen}
                 titleSimilarProducts={titleSimilarProducts}
             >
                 {children}
             </ProductComparatorList>
             <ProductComparatorSpecifications
-                products={dataProduct.slice(0, 4)}
+                products={productValues}
                 titleSpecifications={titleSpecification}
             />
         </div>
-    )
-}
+    );
+};
 
 export default ProductComparator;
