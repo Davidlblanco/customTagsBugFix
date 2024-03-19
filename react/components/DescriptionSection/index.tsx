@@ -24,7 +24,13 @@ const DescriptionSection = ({
 }: DescriptionSectionProps) => {
     const productContext = useProduct();
     const description = productContext?.product?.description;
-    const specification = productContext?.product?.properties;
+
+    const specificationGroups =
+        productContext?.product?.specificationGroups ?? [];
+
+    const allSpecifications = specificationGroups.find(
+        (spec) => spec.originalName == "allSpecifications"
+    )?.specifications;
 
     const [showViewMore, setShowViewMore] = useState<boolean>(false);
 
@@ -32,14 +38,14 @@ const DescriptionSection = ({
         setShowViewMore(!showViewMore);
     };
 
-    const tableSize: number = specification?.length
-        ? specification?.length * 50
+    const tableSize: number = allSpecifications?.length
+        ? allSpecifications?.length * 50
         : 0 * 50;
     const containerSize: number = calculateSizeLines(description as string);
     const checkValues: number =
         tableSize > containerSize ? tableSize + 115 : containerSize + 255;
     const isVisibleButton =
-        (specification && specification?.length > 3) ||
+        (allSpecifications && allSpecifications?.length > 3) ||
         (description && description?.length > 253);
 
     return (
@@ -55,7 +61,7 @@ const DescriptionSection = ({
                 />
                 <Specification
                     title={titleSpecification}
-                    items={specification as Item[]}
+                    items={allSpecifications as Item[]}
                     showViewMore={showViewMore}
                 />
             </div>
