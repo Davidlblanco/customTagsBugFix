@@ -1,26 +1,26 @@
 import React from "react";
 import { ShippingContainer } from "./Components/shippingContainer";
-import {
-    useGetShippingEstimative,
-    GetUserPostalCode,
-    useGetBestPickupPoint,
-} from "./Logic/ShippingPreviewLogic";
+import { GetUserPostalCode } from "./Logic/ShippingPreviewLogic";
 import { DeliveryIcon } from "./Assets/delivery-moving";
 import { PickUpIcon } from "./Assets/carbon_store";
 import { ExpressIcon } from "./Assets/24hrs";
-import styles from "./shippingPreview.css";
 import { ShippingType } from "./Types/types";
+import { useBestPickupPoint } from "./Hooks/useBestPickupPoint";
+import { useShippingEstimative } from "./Hooks/useShippingEstimative";
+import styles from "./shippingPreview.css";
 
 const ShippingPreview = () => {
     const userPostalCode = GetUserPostalCode();
     const { delivery, expressDelivery, scheduledDelivery } =
-        useGetShippingEstimative(userPostalCode);
-    const { bestPickupPoint } = useGetBestPickupPoint();
+        useShippingEstimative(userPostalCode);
+    const { bestPickupPoint } = useBestPickupPoint();
     const shouldRender =
         Object.keys(bestPickupPoint || {}).length > 0 ||
         Object.keys(scheduledDelivery || {}).length > 0 ||
         Object.keys(expressDelivery || {}).length > 0 ||
         Object.keys(delivery || {}).length > 0;
+
+    console.log(delivery, expressDelivery, scheduledDelivery, bestPickupPoint);
 
     const shippingOptions = [
         {

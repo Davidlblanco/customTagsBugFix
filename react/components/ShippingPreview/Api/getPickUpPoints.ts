@@ -1,10 +1,8 @@
 import axios from "axios";
 import { PickupPointItem, PickupPointFiltered } from "../Types/types";
 
-const GetPickUpPoints = async () => {
-    const geoCoordinates = [-88.91666666, 13.83333333];
-
-    const url = `/api/checkout/pub/pickup-points?geoCoordinates=${geoCoordinates.join(
+const GetPickUpPoints = async (countryGeoCoordinates: number[]) => {
+    const url = `/api/checkout/pub/pickup-points?geoCoordinates=${countryGeoCoordinates.join(
         ";"
     )}`;
 

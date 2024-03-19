@@ -6,6 +6,7 @@ export interface SimulationRequest {
     sellerId: string | undefined;
     country: string | undefined;
     geoCoordinates: [number, number];
+    sallesChannel: string | undefined;
 }
 
 const SimulateCart = async ({
@@ -13,8 +14,9 @@ const SimulateCart = async ({
     sellerId,
     country,
     geoCoordinates,
+    sallesChannel,
 }: SimulationRequest) => {
-    const url = "/api/checkout/pub/orderForms/simulation?RnbBehavior=0&sc=1";
+    const url = `/api/checkout/pub/orderForms/simulation?RnbBehavior=0&sc=${sallesChannel}`;
 
     const requestData = {
         items: [
