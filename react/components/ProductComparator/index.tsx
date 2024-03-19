@@ -23,9 +23,8 @@ const ProductComparator: FC<ProductComparatorProps> = ({
     children,
     titleProductSeen,
     titleSimilarProducts,
-    titleSpecification
+    titleSpecification,
 }) => {
-
     const productContext = useProduct();
     const product = productContext?.product;
 
@@ -35,8 +34,6 @@ const ProductComparator: FC<ProductComparatorProps> = ({
     const isCategory = hasMatchingCategory(data, product as Product);
 
     if (!isCategory || productValues.length === 0) return null;
-
-    console.log('productValues', productValues);
 
     return (
         <div className={styles["container-product-comparator"]}>

@@ -20,8 +20,6 @@ const ShippingPreview = () => {
         Object.keys(expressDelivery || {}).length > 0 ||
         Object.keys(delivery || {}).length > 0;
 
-    console.log(delivery, expressDelivery, scheduledDelivery, bestPickupPoint);
-
     const shippingOptions = [
         {
             icon: <DeliveryIcon />,
