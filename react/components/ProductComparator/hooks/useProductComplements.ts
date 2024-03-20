@@ -8,6 +8,7 @@ export function useProductComplements() {
   const productContext = useProduct();
   const categoryIds = productContext?.product?.categoryTree?.map((item) => item.id)?.join(",") as string[] | undefined;
   const categoryId = productContext?.product?.categoryId as string;
+  const skuId = productContext?.product?.productId;
 
   const [dataByCategory, setDataByCategory] = useState<Product[]>([]);
   const [dataByCategories, setDataByCategories] = useState<Product[]>([]);
@@ -16,7 +17,7 @@ export function useProductComplements() {
   const fetchData = async (ids: string[]) => {
     if (ids) {
       setLoading(true);
-      const { data } = await axios.get(`/_v/product-comparator/category/${ids}`);
+      const { data } = await axios.get(`/_v/product-comparator/category/${ids}/${skuId}`);
       setLoading(false);
       return data.slice(0, 4);
     }
