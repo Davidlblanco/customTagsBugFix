@@ -39,6 +39,9 @@
     "precio-live": {
         "component": "PrecioLive"
     },
+    "wrapper-add-to-cart-new": {
+        "component": "WrapperAddToCartNew"
+    },
     "wrapper-add-to-cart": {
         "component": "WrapperAddToCart"
     },
