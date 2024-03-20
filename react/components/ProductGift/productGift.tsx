@@ -53,7 +53,10 @@ const ProductGift = () => {
 
     if (loading) return <div>Loading...</div>;
 
-    if (error) return <div>Error</div>;
+    if (error) {
+        console.error(error);
+        return <></>;
+    }
 
     return (
         haveGifts && (
