@@ -1,40 +1,44 @@
 .customCrediSimanContainerCategory,
 .customCrediSimanContainer {
-   display: flex;
-   justify-content: flex-start;
-   gap: 8px;
-   align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
+    align-items: center;
 }
 
-.customCrediSimanContainerCategory{
-   padding: 0 5px;
+.customCrediSimanContainerCategory {
+    padding: 0 5px;
 }
 
 .customCredisimanPriceCategory,
 .customCrediSimanPriceProduct {
-   font-size: 34px;
-   font-weight: 700;
-   color: #03499a;
+    font-family: Clan OT, Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    font-weight: 475;
+    line-height: 38.07px;
+    letter-spacing: 0.0025em;
+    text-align: left;
+    color: #03499a;
 }
 
 .customCredisimanPriceCategory {
-   font-family: ClanOT, Arial;
-   font-size: 24px;
+    font-family: ClanOT, Arial, sans-serif;
+    font-size: 24px;
 }
 
 .customCrediSimanTagText {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   text-align: center;
-   line-height: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 1;
 }
 
 .customCrediSimanTag {
-   padding: 4px 4px;
-   font-size: 12px;
-   font-weight: 700;
-   border-radius: 4px;
-   color: #eef6ff;
-   background-color: #03499a;
+    padding: 4px 4px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 4px;
+    color: #eef6ff;
+    background-color: #03499a;
 }

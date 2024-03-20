@@ -1,0 +1,5 @@
+query collection($id: ID!) {
+   collection(id: $id) @context(provider: "vtex.catalog-graphql") {
+      name
+   }
+}

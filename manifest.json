@@ -1,7 +1,7 @@
 {
   "vendor": "siman",
   "name": "m3-custom",
-  "version": "0.0.83",
+  "version": "0.0.88",
   "title": "Custom blocks",
   "description": "Custom blocks",
   "defaultLocale": "pt-BR",
@@ -12,6 +12,7 @@
     "react": "3.x"
   },
   "dependencies": {
+    "vtex.address-form": "4.x",
     "vtex.styleguide": "9.x",
     "vtex.store-graphql": "2.x",
     "vtex.catalog-graphql": "1.x",
