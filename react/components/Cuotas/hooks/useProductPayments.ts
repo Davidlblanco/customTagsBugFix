@@ -11,7 +11,7 @@ export default function useProductPayments(props: Props) {
     const paymentConfigs = usePaymentConfigs(props);
 
     const results = useMemo(() => {
-        return paymentConfigs.configs.map((config) =>
+        return paymentConfigs?.configs?.map((config) =>
             validateConfig(config, selectedProductInfo)
         );
     }, [paymentConfigs.configs, selectedProductInfo]);
