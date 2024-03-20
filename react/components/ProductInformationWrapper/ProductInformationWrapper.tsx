@@ -42,22 +42,20 @@ const ProductInformationWrapper: FunctionComponent<
         (specification) => specification.originalName === "allSpecifications"
     );
 
-    const getProductCategorys = useCallback((categoryTree: CategoryTree[]) => {
+    const GetProductCategorys = useCallback((categoryTree: CategoryTree[]) => {
         return categoryTree.map((category) => Number(category.id));
     }, []);
 
-    const productCategorys = getProductCategorys(
+    const productCategorys = GetProductCategorys(
         productContext?.product?.categoryTree || []
     );
 
     const shouldShowMiddlePage =
-        categorysWhereMiddleAppear === undefined ||
-        categorysWhereMiddleAppear === null ||
-        categorysWhereMiddleAppear.length === 0
-            ? allSpecifications
-            : productCategorys.some((category) =>
+        categorysWhereMiddleAppear && categorysWhereMiddleAppear.length > 0
+            ? productCategorys.some((category) =>
                   categorysWhereMiddleAppear.includes(category.toString())
-              );
+              )
+            : allSpecifications && allSpecifications.specifications.length > 0;
 
     if (!shouldShowMiddlePage && canUseDOM && productInfoLoaded) {
         const container = document.querySelector(
