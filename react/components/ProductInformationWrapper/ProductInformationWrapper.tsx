@@ -8,7 +8,7 @@ import { canUseDOM } from "vtex.render-runtime";
 import { useProduct } from "vtex.product-context";
 
 interface ProductInformationWrapperProps {
-    categorysWhereMiddleAppear: string[];
+    categoriesWhereMiddleAppear: string[];
     ProductLeft: React.ComponentType;
     ProductMiddle: React.ComponentType;
     ProductRight: React.ComponentType;
@@ -26,7 +26,7 @@ const ProductInformationWrapper: FunctionComponent<
     ProductLeft,
     ProductMiddle,
     ProductRight,
-    categorysWhereMiddleAppear,
+    categoriesWhereMiddleAppear,
 }) => {
     const productContext = useProduct();
     const [productInfoLoaded, setProductInfoLoaded] = useState(false);
@@ -51,12 +51,12 @@ const ProductInformationWrapper: FunctionComponent<
     );
 
     const shouldShowMiddlePage =
-        categorysWhereMiddleAppear === undefined ||
-        categorysWhereMiddleAppear === null ||
-        categorysWhereMiddleAppear.length === 0
+        categoriesWhereMiddleAppear === undefined ||
+        categoriesWhereMiddleAppear === null ||
+        categoriesWhereMiddleAppear.length === 0
             ? allSpecifications
             : productCategorys.some((category) =>
-                  categorysWhereMiddleAppear.includes(category.toString())
+                  categoriesWhereMiddleAppear.includes(category.toString())
               );
 
     if (!shouldShowMiddlePage && canUseDOM && productInfoLoaded) {
