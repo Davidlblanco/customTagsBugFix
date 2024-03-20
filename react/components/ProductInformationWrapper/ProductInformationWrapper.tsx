@@ -42,17 +42,17 @@ const ProductInformationWrapper: FunctionComponent<
         (specification) => specification.originalName === "allSpecifications"
     );
 
-    const GetProductCategorys = useCallback((categoryTree: CategoryTree[]) => {
+    const GetProductCategories = useCallback((categoryTree: CategoryTree[]) => {
         return categoryTree.map((category) => Number(category.id));
     }, []);
 
-    const productCategorys = GetProductCategorys(
+    const productCategories = GetProductCategories(
         productContext?.product?.categoryTree || []
     );
 
     const shouldShowMiddlePage =
         categoriesWhereMiddleAppear && categoriesWhereMiddleAppear.length > 0
-            ? productCategorys.some((category) =>
+            ? productCategories.some((category) =>
                   categoriesWhereMiddleAppear.includes(category.toString())
               )
             : allSpecifications && allSpecifications.specifications.length > 0;
