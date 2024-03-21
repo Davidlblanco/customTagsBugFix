@@ -6,41 +6,37 @@ import { useProduct } from "vtex.product-context";
 export function useProductComplements() {
 
   const productContext = useProduct();
-  const categoryIds = productContext?.product?.categoryTree?.map((item) => item.id)?.join(",") as string[] | undefined;
   const categoryId = productContext?.product?.categoryId as string;
   const skuId = productContext?.product?.productId;
+  const categoryIds = productContext?.product?.categoryTree?.map((item) => item.id)?.join(",");
 
-  const [dataByCategory, setDataByCategory] = useState<Product[]>([]);
-  const [dataByCategories, setDataByCategories] = useState<Product[]>([]);
+  const [data, setData] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const fetchData = async (ids: string[]) => {
-    if (ids) {
+  const fetchDataCategory = async (categoryId: string) => {
+    try {
       setLoading(true);
-      const { data } = await axios.get(`/_v/product-comparator/category/${ids}/${skuId}`);
+      const { data } = await axios.get(`/_v/product-comparator/category/${categoryId}/${skuId}`);
       setLoading(false);
       return data.slice(0, 4);
+    } catch (error) {
+      setLoading(false);
+      console.error("Erro ao buscar dados por categoria:", error);
+      return [];
     }
-    return [];
   };
 
   useEffect(() => {
     const fetchDataAndFallback = async () => {
-      if (categoryId) {
-        const dataByCategory = await fetchData([categoryId]);
-        setDataByCategory(dataByCategory);
-      }
-
-      if (categoryIds) {
-        const dataByCategories = await fetchData(categoryIds as string[]);
-        setDataByCategories(dataByCategories);
+      if (categoryId || categoryIds) {
+        const dataByCategory = await fetchDataCategory(categoryId);
+        const dataByCategories = await fetchDataCategory(categoryIds as string);
+        setData(dataByCategory > 0 ? dataByCategory : dataByCategories);
       }
     };
 
     fetchDataAndFallback();
-  }, [categoryIds, categoryId]);
-
-  const data = dataByCategory.length > 0 ? dataByCategory : dataByCategories;
+  }, [categoryId, skuId, categoryIds]);
 
   return {
     data,
