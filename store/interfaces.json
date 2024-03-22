@@ -93,5 +93,8 @@
             "$ref": "app:siman.m3-custom#/definitions/ProductComparator"
         },
         "composition": "children"
+    },
+    "product-tags": {
+        "component": "ProductTags"
     }
 }

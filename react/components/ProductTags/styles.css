@@ -1,0 +1,14 @@
+.tags-wrapper{  
+}
+
+.tag-content{
+    padding: 2px 4px;
+    width: max-content;
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.004em;
+    text-align: left;
+    border-radius: 4px;
+}
