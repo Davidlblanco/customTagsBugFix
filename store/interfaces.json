@@ -30,11 +30,8 @@
     "cadastra-sizes-table": {
         "component": "SizesTable"
     },
-    "seller-name-pdp": {
-        "component": "SellerNamePDP"
-    },
-    "seller-name-shelf": {
-        "component": "SellerNameShelf"
+    "custom-seller-name": {
+        "component": "SellerName"
     },
     "precio-live": {
         "component": "PrecioLive"
