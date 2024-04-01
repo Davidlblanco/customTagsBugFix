@@ -89,5 +89,9 @@
         "content": {
             "$ref": "app:siman.m3-custom#/definitions/DescriptionSection"
         }
+    },
+    "product-tags": {
+        "component": "ProductTags"
     }
+
 }
