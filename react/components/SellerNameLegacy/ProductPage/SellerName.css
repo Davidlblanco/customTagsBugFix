@@ -1,0 +1,42 @@
+.containerSellerName {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* .containerSellerName img {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+} */
+
+@media (max-width: 360px) {
+    .containerSellerName p {
+        font-size: 12px;
+    }
+    .containerSellerName a,
+    .containerSellerName span {
+        font-size: 12px;
+    }
+}
+
+.sellerName,
+.sellerText {
+    margin: 0;
+    margin-right: 4px;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0.0025em;
+    text-align: left;
+    color: #6d6e71;
+}
+
+.sellerName {
+    color: #a83338;
+    margin-left: 3px;
+}
+
+.sellerLogo {
+}

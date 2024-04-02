@@ -1,0 +1,35 @@
+.nameShelf {
+  font-family: ClanOT, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  text-decoration: none;
+  color: #3f3f40;
+  z-index: 2;
+  display: inline-block;
+  white-space: nowrap;
+  max-width: 230px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: right;
+}
+.containerSallername {
+  position: relative;
+  width: 100%;
+}
+
+.sellerName {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 500px) {
+  .nameShelf {
+    max-width: 100%;
+    font-size: 10px;
+  }
+}

@@ -36,6 +36,12 @@
     "precio-live": {
         "component": "PrecioLive"
     },
+    "seller-name-pdp": {
+        "component": "SellerNamePDP"
+    },
+    "seller-name-shelf": {
+        "component": "SellerNameShelf"
+    },    
     "wrapper-add-to-cart-new": {
         "component": "WrapperAddToCartNew"
     },
@@ -84,17 +90,11 @@
             "$ref": "app:siman.m3-custom#/definitions/DescriptionSection"
         }
     },
-    "product-comparator": {
-        "component": "ProductComparator",
-        "content": {
-            "$ref": "app:siman.m3-custom#/definitions/ProductComparator"
-        },
-        "composition": "children"
-    },
     "product-tags": {
         "component": "ProductTags"
     },
     "credisiman-cuotas": {
       "component": "CredisimanCuotas"
     }
+
 }
