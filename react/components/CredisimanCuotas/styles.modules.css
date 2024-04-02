@@ -1,0 +1,24 @@
+.credisimanContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.installments {
+  height: 18px;
+
+  padding: 2px 4px;
+  border-radius: 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 18px;
+
+  color: rgb(255, 255, 255);
+  background-color: rgb(3, 73, 154);
+}
