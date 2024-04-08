@@ -3,6 +3,7 @@ import { CredisimanType, CredisimanStorage } from "../Types/credisimanTypes";
 import { getWithExpiry, setWithExpiry } from "../Cache/crediSimanCache";
 import { minutesToExpiryCache } from "../Config/constants";
 import { ProductContextState } from "vtex.product-context/react/ProductContextProvider";
+import { simulation } from "../Api/simulation";
 
 let mutex = false;
 
@@ -28,6 +29,8 @@ export const GetCrediSimanProductData = async (
             skuId,
             channelId,
         });
+
+        console.log('newProductData', newProductData);
 
         if (newProductData) {
             CalculateDiscount(newProductData, productContext);
@@ -81,5 +84,6 @@ const fetchProductData = async ({
     skuId: string | undefined;
     channelId: string | undefined;
 }) => {
-    return await getPromotions({ productId, skuId, channelId });
+    await getPromotions({ productId, skuId, channelId });
+    return await simulation({ productId, skuId, channelId });
 };
