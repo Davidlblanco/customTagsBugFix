@@ -16,7 +16,7 @@ const ProductSpecifications = () => {
     return (
         <div className={styles.ComponentContainer}>
             <span className={styles.Title}>Especificaciones</span>
-            <ul>
+            <ul className={styles.specificationList}>
                 {allSpecifications?.specifications.map(
                     (specification, index) => (
                         <li
