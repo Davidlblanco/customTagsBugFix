@@ -2,11 +2,11 @@ import axios from "axios";
 import { CredisimanType, PromotionParams } from "../Types/credisimanTypes";
 
 export const simulation = async (params: PromotionParams): Promise<CredisimanType | undefined> => {
-    const { skuId } = params;
-    const url = "/api/checkout/pub/orderForms/simulation?sc=1";
+    const { skuId, channelId, sellerId } = params;
+    const url = `/api/checkout/pub/orderForms/simulation?sc=${channelId}`;
 
     const requestData = {
-        items: [{ id: skuId, quantity: 1, seller: 1 }],
+        items: [{ id: skuId, quantity: 1, seller: sellerId }],
         paymentData: {
             payments: [{
                 paymentSystem: "401",
@@ -23,9 +23,13 @@ export const simulation = async (params: PromotionParams): Promise<CredisimanTyp
             }
         });
 
-        const discountValue = response?.data?.ratesAndBenefitsData?.teaser[0]?.effects?.parameters[0]?.value;
+        console.log('Response simulation', response?.data)
+
+        const discount = response?.data?.ratesAndBenefitsData?.teaser[0]?.effects?.parameters[0]?.value;
+        const discountValue = +discount;
         const skuId = response?.data?.items[0]?.id;
-        const totalWithDiscount = response?.data?.items[0]?.priceDefinition?.total;
+        const total = response?.data?.items[0]?.priceDefinition?.total;
+        const totalWithDiscount = ((discountValue / 100) * total - total) * -1;
 
         const data: CredisimanType = {
             discountValue,
@@ -34,7 +38,7 @@ export const simulation = async (params: PromotionParams): Promise<CredisimanTyp
             totalWithDiscount
         };
 
-        return totalWithDiscount ? data : undefined;
+        return discount ? data : undefined;
     } catch (error) {
         console.error("Erro:", error);
         return undefined;

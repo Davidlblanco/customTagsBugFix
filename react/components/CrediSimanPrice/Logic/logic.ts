@@ -1,4 +1,3 @@
-import { getPromotions } from "../Api/promotions";
 import { CredisimanType, CredisimanStorage } from "../Types/credisimanTypes";
 import { getWithExpiry, setWithExpiry } from "../Cache/crediSimanCache";
 import { minutesToExpiryCache } from "../Config/constants";
@@ -22,12 +21,14 @@ export const GetCrediSimanProductData = async (
         getWithExpiry("products");
     const allProductsData = credisimanStorage?.value ?? {};
     const productDataInCache = allProductsData[skuId ?? ""];
+    const sellerId = productContext?.selectedItem?.sellers[0]?.sellerId;
 
     if (!productDataInCache) {
         const newProductData = await fetchProductData({
             productId,
             skuId,
             channelId,
+            sellerId
         });
 
         console.log('newProductData', newProductData);
@@ -79,11 +80,12 @@ const fetchProductData = async ({
     productId,
     skuId,
     channelId,
+    sellerId
 }: {
     productId: string | undefined;
     skuId: string | undefined;
     channelId: string | undefined;
+    sellerId: string | undefined;
 }) => {
-    await getPromotions({ productId, skuId, channelId });
-    return await simulation({ productId, skuId, channelId });
+    return await simulation({ productId, skuId, channelId, sellerId });
 };
