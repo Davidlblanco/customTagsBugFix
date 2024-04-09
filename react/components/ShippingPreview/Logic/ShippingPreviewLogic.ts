@@ -47,7 +47,7 @@ export const FilterShippingEstimativeUserData = (
 ): EstimativeData[] | undefined => {
     if (!data) return undefined;
 
-    const filteredData = data.shipping.logisticsInfo[0].slas.map((item) => {
+    const filteredData = data?.shipping?.logisticsInfo[0]?.slas.map((item) => {
         return {
             ...item,
         };
