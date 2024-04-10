@@ -31,8 +31,6 @@ export const GetCrediSimanProductData = async (
             sellerId
         });
 
-        console.log('newProductData', newProductData);
-
         if (newProductData) {
             CalculateDiscount(newProductData, productContext);
             allProductsData[skuId ?? ""] = newProductData;
