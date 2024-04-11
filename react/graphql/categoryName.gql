@@ -1,0 +1,5 @@
+query category($id: ID!) {
+   category(id: $id) @context(provider: "vtex.catalog-graphql") {
+      name
+   }
+}

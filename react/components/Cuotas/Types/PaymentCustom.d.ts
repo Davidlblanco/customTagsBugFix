@@ -1,0 +1,72 @@
+export interface InputOptions {
+   value: string | number;
+   label?: string;
+}
+
+export type KeyValue = {
+   [key: string]: unknown | undefined;
+};
+
+export interface PaymentConfig {
+   id?: string;
+   paymentId: string;
+   conditions?: PaymentConfigCondition[];
+   sellerCondition?: PaymentSellerCondition;
+   BankTypes?: BankType[];
+}
+
+export interface PaymentMethodSettings {
+   paymentType: PaymentMethodType;
+   paymentId: string;
+   name: string;
+   renderAlongside?: string;
+   paymentLabel?: string;
+}
+
+export type PaymentMethodType = "customForm" | "nativeForm" | "shortcutForm";
+
+export interface PaymentConfigCondition {
+   id?: string;
+   installment: number;
+   rules: PaymentConfigRule[];
+   rulesOperator: RulesOperator;
+   deadLine: boolean;
+   noEndDate: boolean;
+   startDate: Date | string | undefined;
+   endDate: Date | string | undefined;
+}
+
+export interface PaymentSellerCondition {
+   statements?: ConditionStatement[];
+   operator?: RulesOperator;
+}
+
+export type RulesOperator = "all" | "any";
+export type RuleOperatorValue = "=";
+
+export interface PaymentConfigRule<T = unknown> {
+   id: string;
+   type: RuleType;
+   operator: RuleOperatorValue;
+   value: T;
+}
+
+export type RuleType = "minimum_price" | "sku_category" | "sku_brand" | "sku_id" | "simanpro" | "sku_collection";
+
+export interface SellerInfo {
+   SellerId: string;
+   Name: string;
+}
+
+export interface ConditionStatement {
+   subject: string;
+   verb: "=" | "!=";
+   object?: unknown;
+   error?: string;
+}
+
+export interface BankType {
+   id: string;
+   value: string;
+   label: string;
+}

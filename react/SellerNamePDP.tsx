@@ -1,3 +1,3 @@
-import { SellerNamePDP } from './components/SellerName/ProductPage/SellerNamePDP'
+import { SellerNamePDP } from "./components/SellerNameLegacy/ProductPage/SellerNamePDP";
 
-export default SellerNamePDP
+export default SellerNamePDP;

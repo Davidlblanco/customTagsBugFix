@@ -1,3 +1,3 @@
-import { SellerNameShelf } from './components/SellerName/Shelf/SellerNameShelf'
+import { SellerNameShelf } from "./components/SellerNameLegacy/Shelf/SellerNameShelf";
 
-export default SellerNameShelf
+export default SellerNameShelf;

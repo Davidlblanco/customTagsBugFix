@@ -1,0 +1,10 @@
+.ContainerPayment {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.ContainerPayment img {
+    display: block;
+    height: fit-content;
+    margin-right: 4px;
+}
