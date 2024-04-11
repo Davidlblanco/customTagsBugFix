@@ -41,12 +41,18 @@
    position: relative;
    width: 118px;
    height: 40px;
-   margin: 0 0 16px;
+   margin: 16px 0;
    border: double 1px transparent;
    border-radius: 20px;
    background-image: linear-gradient(white, white), linear-gradient(90deg, #3F28FF -233.33%, #AB2AE7 -73.6%, #FFBCFC 100%);
    background-origin: border-box;
    background-clip: content-box, border-box;
+}
+
+@media screen and (max-width: 1024px) {
+   .gradientBorder {
+      margin: 0;
+   }
 }
 
 .button:disabled {
