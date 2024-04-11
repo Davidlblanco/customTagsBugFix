@@ -21,13 +21,10 @@ export interface ImagesApiProps {
 }
 
 function generateBaseUrl(account: string, workspace: string) {
-    if (!account) return "";
+    let host = `${workspace ?? ""}--${account}`;
+    const isSVAccount = account == "siman" || account == "simanqa";
 
-    let host = "";
-
-    if (account == "siman" || account == "simanqa") {
-        host = `${workspace ?? ""}--${account}`;
-    } else host = `${account}`;
+    if (!isSVAccount) host = account.includes("qa") ? "simanqa" : "siman";
 
     return `https://${host}.myvtex.com/`;
 }
