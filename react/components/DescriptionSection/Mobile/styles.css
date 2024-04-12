@@ -1,3 +1,41 @@
-.MobileContainer {
-    display: block;
+.mobileContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+}
+
+.mobileList {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.mobileList li {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 4px;
+}
+
+
+
+
+.mobileList li span{
+    width: 50%;
+}
+.mobileList  li span + span{
+    margin-left: 8px;
+}
+
+.mobileList li span {
+    font-family: Roboto, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.005em;
+    text-align: left;
 }

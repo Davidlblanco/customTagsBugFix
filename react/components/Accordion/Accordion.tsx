@@ -28,20 +28,32 @@ const Accordion = ({
     };
 
     return (
-        <div
-            className={
-                blockClass ? styles[blockClass] : styles["accordionContainer"]
-            }
-        >
-            <button
-                className={styles.accordionTitle}
-                onClick={() => setOpen(!open)}
+        <>
+            <div
+                className={
+                    blockClass
+                        ? styles[blockClass]
+                        : styles["accordionContainer"]
+                }
             >
-                <span>{title}</span>
-                {open ? renderIcon(closeIcon) : renderIcon(openIcon)}
-            </button>
-            {open && <div className={styles.accordionChildren}>{children}</div>}
-        </div>
+                <button
+                    className={styles.accordionTitle}
+                    onClick={() => setOpen(!open)}
+                >
+                    <span>{title}</span>
+
+                    {open ? renderIcon(closeIcon) : renderIcon(openIcon)}
+                </button>
+            </div>
+
+            <div
+                className={`${styles.accordionChildren} ${
+                    open ? styles.open : ""
+                }`}
+            >
+                {children}
+            </div>
+        </>
     );
 };
 
