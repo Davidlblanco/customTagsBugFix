@@ -1,0 +1,10 @@
+.accordionContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.accordionTitle {
+    background: transparent;
+    border: none;
+}
