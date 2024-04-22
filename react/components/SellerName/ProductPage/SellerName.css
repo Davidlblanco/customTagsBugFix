@@ -33,6 +33,13 @@
     color: #6d6e71;
 }
 
+@media (max-width: 425px) {
+    .sellerName,
+    .sellerText {
+        font-size: 13px;
+    }
+}
+
 .sellerName {
     color: #a83338;
     margin-left: 3px;
