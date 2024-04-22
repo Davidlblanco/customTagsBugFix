@@ -21,6 +21,7 @@ export default function useProductPayments(props: Props) {
     }, [results]);
 
     return {
+        skuId: selectedProductInfo.skuId,
         results,
         bestPayment: bestPayment,
         bestInstallment: bestPayment?.bestInstallment,
