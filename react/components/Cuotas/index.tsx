@@ -8,7 +8,6 @@ import InstallmentMinimunPrice from "./components/InstallmentMinimunPrice/Instal
 import PaymentImages, {
     PaymentsImages,
 } from "./components/PaymentImages/PaymentImages";
-import InfoLink from "./components/InfoLink/InfoLink";
 
 const Cuotas: StorefrontFunctionComponent<Props> = ({ paymentsImages }) => {
     const { isLoading, bestInstallment } = useProductPayments({
@@ -41,7 +40,6 @@ const Cuotas: StorefrontFunctionComponent<Props> = ({ paymentsImages }) => {
                 </div>
                 <InstallmentMinimunPrice installment={bestInstallment!} />
                 <PaymentImages paymentsImages={paymentsImages} />
-                <InfoLink />
             </div>
         </div>
     );
