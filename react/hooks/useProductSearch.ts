@@ -26,7 +26,10 @@ interface QueryData {
     id: string;
   }[],
   brandId: string,
-  productId: string
+  productId: string,
+  categoryTree: {
+    id: string
+  }[]
 }
 
 export default useProductSearch;

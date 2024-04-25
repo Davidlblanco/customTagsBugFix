@@ -19,7 +19,7 @@ export default function useSelectedProductInfo() {
       skuId: selectedItem?.itemId ?? "",
       totalPrice: productQuantityPrice + simanpro.total,
       sellerId: selectedItem?.sellers[0].sellerId ?? "",
-      categoriesIds: productItem?.categoryTree?.map((category) => category.id) ?? [
+      categoriesIds: productSearch[0]?.categoryTree?.map((category) => category.id) ?? [
          productItem?.categoryId ? String(productItem?.categoryId) : "",
       ],
       brandId: productItem?.brandId ? productItem.brandId.toString() : "",
