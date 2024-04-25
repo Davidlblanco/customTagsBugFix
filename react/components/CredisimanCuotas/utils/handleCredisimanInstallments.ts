@@ -8,7 +8,15 @@ import { minutesToExpiryCache } from "../../CrediSimanPrice/Config/constants";
 import { setWithExpiry } from "../../CrediSimanPrice/Cache/crediSimanCache";
 import { useProduct } from "vtex.product-context";
 
-export function handleCredisimanInstallments() {
+const prodCredisimanIDs = ["401", "404", "405"];
+
+const qaCredisimanIDs = ["401", "403", "405"];
+
+function getCredisimanPaymentsIds(account: string) {
+    return account.includes("qa") ? qaCredisimanIDs : prodCredisimanIDs;
+}
+
+export function handleCredisimanInstallments(account: string) {
     if (!canUseDOM)
         return {
             isLoading: false,
@@ -25,7 +33,7 @@ export function handleCredisimanInstallments() {
 
     if (!cuotasInCache) {
         const { isLoading, bestInstallment, skuId } = useProductPayments({
-            paymentIds: ["401", "403", "405", "404"], // This filter is optional
+            paymentIds: getCredisimanPaymentsIds(account), // This filter is optional
         });
 
         if (bestInstallment) {
