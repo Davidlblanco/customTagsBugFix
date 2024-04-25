@@ -5,7 +5,10 @@
         id
       },
       brandId,
-      productId
+      productId,
+      categoryTree {
+			  id
+			}
     }
   }
 
