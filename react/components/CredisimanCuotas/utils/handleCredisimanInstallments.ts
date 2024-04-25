@@ -25,7 +25,7 @@ export function handleCredisimanInstallments() {
 
     if (!cuotasInCache) {
         const { isLoading, bestInstallment, skuId } = useProductPayments({
-            paymentIds: ["401", "403", "405"], // This filter is optional
+            paymentIds: ["401", "403", "405", "404"], // This filter is optional
         });
 
         if (bestInstallment) {
