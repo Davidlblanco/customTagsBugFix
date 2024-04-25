@@ -58,11 +58,17 @@ const ProductInformationWrapper: FunctionComponent<
             : allSpecifications && allSpecifications.specifications.length > 0;
 
     if (!shouldShowMiddlePage && canUseDOM && productInfoLoaded) {
-        const container = document.querySelector(
+        const containerLeft = document.querySelector(
             ".vtex-flex-layout-0-x-flexCol--main-product-left"
-        );
-        if (container && container instanceof HTMLElement) {
-            container.style.width = "71%";
+        ) as HTMLElement;
+
+        const containerRight = document.querySelector(
+            ".vtex-flex-layout-0-x-flexCol--main-product-right"
+        ) as HTMLElement;
+
+        if (containerLeft && containerRight) {
+            containerLeft.style.width = "71%";
+            containerLeft.style.marginRight = "16px";
         }
     }
 
