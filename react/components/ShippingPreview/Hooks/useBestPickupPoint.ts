@@ -1,34 +1,38 @@
 import { useEffect, useState } from "react";
-import { usePickUpPoints } from "./usePickupPoints";
 import {
     GetBestPickupPoint,
     GetCountry,
     GetDefaultSeller,
     GetProductContext,
-    GetSallesChannel,
+    UseSallesChannel,
 } from "../Logic/ShippingPreviewLogic";
+import { GetCountryDefaultGeoCoordinates } from "../Configs/defaultCountrySettings";
 
 export const useBestPickupPoint = () => {
     const [bestPickupPoint, setBestPickupPoint] = useState<Sla>();
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<boolean>(false);
-    const { pickupPoints } = usePickUpPoints();
+    const geoCoordinates = GetCountryDefaultGeoCoordinates();
+
     const productContext = GetProductContext();
     const sellerId = GetDefaultSeller()?.sellerId;
     const country = GetCountry();
-    const sallesChannel = GetSallesChannel();
+    const sallesChannel = UseSallesChannel();
 
     useEffect(() => {
+        if (!geoCoordinates || !sallesChannel) return;
         setLoading(true);
+
         const fetchBestPickupPoint = async () => {
             try {
                 const bestResult = await GetBestPickupPoint(
-                    pickupPoints,
+                    geoCoordinates,
                     country,
                     sellerId,
                     productContext,
                     sallesChannel
                 );
+
                 setBestPickupPoint(bestResult);
             } catch (error) {
                 console.error("Error fetching best pickup point:", error);
@@ -39,7 +43,7 @@ export const useBestPickupPoint = () => {
         };
 
         fetchBestPickupPoint();
-    }, [pickupPoints]);
+    }, [...geoCoordinates, sallesChannel]);
 
     return { bestPickupPoint, loading, error };
 };

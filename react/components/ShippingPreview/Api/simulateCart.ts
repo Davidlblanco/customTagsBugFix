@@ -39,7 +39,7 @@ const SimulateCart = async ({
 
     try {
         const response = await axios.post(url, requestData, options);
-        return response.data.logisticsInfo[0];
+        return response.data.logisticsInfo;
     } catch (error) {
         console.error(error);
     }

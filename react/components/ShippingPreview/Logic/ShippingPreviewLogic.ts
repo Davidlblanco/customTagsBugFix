@@ -1,15 +1,10 @@
 import { useProduct } from "vtex.product-context";
-import {
-    PickupPointFiltered,
-    ShippingQuery,
-    EstimativeData,
-    ShippingItem,
-} from "../Types/types";
+import { ShippingQuery, EstimativeData, ShippingItem } from "../Types/types";
 import { getDefaultSeller } from "../../../utils/GetDefaultSeller";
 import { useOrderForm } from "vtex.order-manager/OrderForm";
 import { useRuntime } from "vtex.render-runtime";
 import { ProductContextState } from "vtex.product-context/react/ProductContextProvider";
-import { SimulateCart, SimulationRequest } from "../Api/simulateCart";
+import { SimulateCart } from "../Api/simulateCart";
 import { useRenderSession } from "vtex.session-client";
 import { GetCountryDefaultPostalCode } from "../Configs/defaultCountrySettings";
 
@@ -18,7 +13,7 @@ export const GetCountry = (): string | undefined => {
     return culture.country;
 };
 
-export const GetSallesChannel = (): string | undefined => {
+export const UseSallesChannel = (): string | undefined => {
     const { session } = useRenderSession();
     return session?.namespaces?.store?.channel?.value;
 };
@@ -79,14 +74,14 @@ export const DivideShippingEstimativeUserData = (
 };
 
 export const GetBestPickupPoint = async (
-    pickupPoints: PickupPointFiltered[],
+    coordinates: number[],
     country: string | undefined,
     sellerId: string,
     productContext: Partial<ProductContextState> | undefined,
     sallesChannel: string | undefined
 ) => {
-    const estimatives = await GetShippingEstimatives(
-        pickupPoints,
+    const estimatives = await GetShippingEstimativesByCoordinates(
+        coordinates,
         country,
         sellerId,
         productContext,
@@ -127,27 +122,20 @@ const FilterPickupPointEstimativesByEstimative = (pointsEstimatives: Sla[]) => {
     );
 };
 
-const GetShippingEstimatives = async (
-    pickupPoints: PickupPointFiltered[],
+const GetShippingEstimativesByCoordinates = async (
+    coorDinates: number[],
     country: string | undefined,
     sellerId: string,
     productContext: Partial<ProductContextState> | undefined,
     sallesChannel: string | undefined
 ) => {
-    const queries = pickupPoints.map(async (point) => {
-        const simulationRequest: SimulationRequest = {
-            productContext,
-            sellerId,
-            country,
-            geoCoordinates: point.geoCoordinates,
-            sallesChannel,
-        };
-
-        return await SimulateCart(simulationRequest);
+    const results = await SimulateCart({
+        productContext,
+        sellerId,
+        country,
+        geoCoordinates: coorDinates as [number, number],
+        sallesChannel,
     });
-
-    const results = await Promise.all(queries);
-
     return RemoveNotPickupPoints(results);
 };
 
