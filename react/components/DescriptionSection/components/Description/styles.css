@@ -45,6 +45,9 @@
     height: 72px;
     overflow: hidden;
     transition: all 600ms ease-in-out 0s !important;
+
+    white-space: break-spaces;
+    text-align: justify;
 }
 
 
