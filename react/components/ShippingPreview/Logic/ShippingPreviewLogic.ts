@@ -29,7 +29,12 @@ export const GetDefaultSeller = () => {
 
 export const GetUserPostalCode = (): string | undefined => {
     const { orderForm } = useOrderForm();
-    const selectedAddress = orderForm?.shipping?.selectedAddress;
+
+    const selectedAddress =
+        orderForm?.shipping?.selectedAddress?.addressType !== "search"
+            ? orderForm?.shipping?.selectedAddress
+            : null;
+
     const initialPostalCode: string | undefined = selectedAddress?.postalCode
         ? selectedAddress?.postalCode
         : GetCountryDefaultPostalCode();
