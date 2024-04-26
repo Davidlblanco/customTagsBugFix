@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 export function ToggleTheme({ dark }: { dark: boolean } ) {
   useEffect(() => {
     if (window) {
-      document.body.classList.toggle('vtex-dark', dark)
+      dark ? document.body.classList.add('vtex-dark') : document.body.classList.remove('vtex-dark')
     }
   }, [])
 
