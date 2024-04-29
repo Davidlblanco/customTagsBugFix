@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 .containerDescription {
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -45,16 +45,15 @@
     height: 72px;
     overflow: hidden;
     transition: all 600ms ease-in-out 0s !important;
+
+    white-space: break-spaces;
+    text-align: justify;
 }
 
 
 /* mobile */
 
 @media(max-width: 1024px){
-    .containerDescription{
-        width: 100%;
-    }
-
     .descriptionMobile{
         height: auto !important;
     }

@@ -32,7 +32,10 @@ const Cuotas: StorefrontFunctionComponent<Props> = ({ paymentsImages }) => {
     return (
         <div className={styles.CuotasContainerNewpdp}>
             <div className={styles.OtherPaymentsContainer}>
-                <InstallmentRuleMessage installment={bestInstallment!} />
+                <InstallmentRuleMessage
+                    installment={bestInstallment!}
+                    shortMessage="sin intereses."
+                />
                 <div className={styles.InstallmentPrice}>
                     <FormattedCurrency
                         value={bestInstallment!.installmentPrice / 100}

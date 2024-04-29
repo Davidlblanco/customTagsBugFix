@@ -2,6 +2,7 @@
 
 .tablaDeTallas {
     height: 40px;
+    margin-right: 10px;
 }
 
 .guiaTablas {
@@ -240,6 +241,10 @@ td {
     letter-spacing: 0.005em;
     text-align: left;
     color: #1f1f1f;
+}
+
+.sizesBtn svg{
+    margin-right: 4px;
 }
 
 .sizesBtn:hover {

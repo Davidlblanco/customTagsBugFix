@@ -9,15 +9,20 @@ import ElementList from "../ElementList/ElementList";
 import CategoryName from "../CategoryName/CategoryName";
 import CollectionName from "../CollectionName/CollectionName";
 
-export default function InstallmentRuleMessage({ installment }: Props) {
-    const message = useMemo(() => {
+export default function InstallmentRuleMessage({
+    installment,
+    shortMessage,
+}: Props) {
+    const completeMessage = useMemo(() => {
         const rule = getRuleByPriority(installment.rulesResults);
         return rule ? ruleMessages[rule.type](rule.ruleValue) : <></>;
     }, [installment]);
 
+    const message = shortMessage ?? completeMessage;
+
     return (
         <p className={styles.OtherPaymentsSubtitle}>
-            Hasta {installment?.installment} cuotas {message}
+            Obtén hasta {installment?.installment} cuotas {message}
         </p>
     );
 }
@@ -101,4 +106,5 @@ const ruleMessages = {
 
 interface Props {
     installment: InstallmentResult;
+    shortMessage: string;
 }
