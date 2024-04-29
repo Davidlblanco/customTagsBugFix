@@ -27,6 +27,12 @@ export const GetDefaultSeller = () => {
     return getDefaultSeller(GetProductContext()?.selectedItem?.sellers);
 };
 
+export const validatePostalCode = (postalCode : string) => {
+    if(postalCode.length < 1) return false
+
+    return !postalCode.includes("*");
+};
+
 export const GetUserPostalCode = (): string | undefined => {
     const { orderForm } = useOrderForm();
 
@@ -35,7 +41,9 @@ export const GetUserPostalCode = (): string | undefined => {
             ? orderForm?.shipping?.selectedAddress
             : null;
 
-    const initialPostalCode: string | undefined = selectedAddress?.postalCode
+    const postalCodeIsValid = validatePostalCode(selectedAddress?.postalCode ?? "");
+
+    const initialPostalCode: string | undefined = postalCodeIsValid
         ? selectedAddress?.postalCode
         : GetCountryDefaultPostalCode();
 
