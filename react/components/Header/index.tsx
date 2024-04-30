@@ -40,8 +40,8 @@ const Header = ({
                     Login={Login}
                     Minicart={Minicart}
                     MegaMenu={MegaMenu}
-                    headerItems={menuItems}
-                    dropDownMenu={dropDownMenu}
+                    MenuItems={menuItems}
+                    DropDownMenuProps={dropDownMenu}
                 />
             )}
         </header>

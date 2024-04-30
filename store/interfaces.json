@@ -27,6 +27,10 @@
             "$ref": "app:siman.m3-custom#/definitions/CuotasCustom"
         }
     },
+    "custom-header": {
+        "component": "Header"
+    },
+
     "cadastra-sizes-table": {
         "component": "SizesTable"
     },
@@ -41,7 +45,7 @@
     },
     "seller-name-shelf": {
         "component": "SellerNameShelf"
-    },    
+    },
     "wrapper-add-to-cart-new": {
         "component": "WrapperAddToCartNew"
     },
@@ -94,7 +98,6 @@
         "component": "ProductTags"
     },
     "credisiman-cuotas": {
-      "component": "CredisimanCuotas"
+        "component": "CredisimanCuotas"
     }
-
 }

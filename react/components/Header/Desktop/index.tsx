@@ -10,8 +10,8 @@ interface HeaderDesktopProps {
     Login: ComponentType;
     Minicart: ComponentType;
     MegaMenu: ComponentType;
-    headerItems: MenuItemsProps[];
-    dropDownMenu: DropDownMenuProps;
+    MenuItems: MenuItemsProps[];
+    DropDownMenuProps: DropDownMenuProps;
 }
 
 const HeaderDesktop = ({
@@ -21,36 +21,38 @@ const HeaderDesktop = ({
     Login,
     Minicart,
     MegaMenu,
-    headerItems,
-    dropDownMenu,
+    MenuItems,
+    DropDownMenuProps,
 }: HeaderDesktopProps) => {
     return (
         <div className={styles.containerHeaderDesktop}>
             <div className={styles.headerTop}>
-                <div>
+                <div className={styles.headerTopLeft}>
                     <a className={styles.headerSimanLogo} href="/">
                         <img src={desktopImage} alt="Siman logo" />
                     </a>
                 </div>
-                <div>
+                <div className={styles.headerTopMiddle}>
                     <SearchBar />
                 </div>
-                <div>
+                <div className={styles.headerTopRight}>
                     <WishList />
                     <Login />
                     <Minicart />
                 </div>
             </div>
             <div className={styles.headerBottom}>
-                <MegaMenu />
-                <DropDownMenu
-                    text={dropDownMenu.text}
-                    menuImage={dropDownMenu.menuImage}
-                    items={dropDownMenu.items}
-                />
-                <div>|</div>
+                <div className={styles.headerBottomLeft}>
+                    <MegaMenu />
+                    <DropDownMenu
+                        text={DropDownMenuProps.text}
+                        menuImage={DropDownMenuProps.menuImage}
+                        items={DropDownMenuProps.items}
+                    />
+                </div>
+                <div className={styles.headerBottomMiddle}>|</div>
                 <div className={styles.headerBottomMenuItems}>
-                    {headerItems.map((item) => (
+                    {MenuItems.map((item) => (
                         <MenuItem
                             key={item.href + item.text}
                             href={item.href}

@@ -1,2 +1,26 @@
 .dropDownContainer {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    position: relative;
+}
+
+.dropDownMenuContainer {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 50px;
+    top: 11.5%;
+    left: 0%;
+    background-color: #d3d3d3;
+    position: absolute;
+    z-index: 10;
+    width: 300px;
+}
+
+.dropDownMenuContainer a {
+    justify-content: flex-start;
 }

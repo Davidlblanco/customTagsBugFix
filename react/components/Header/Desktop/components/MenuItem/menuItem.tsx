@@ -5,14 +5,19 @@ export interface MenuItemsProps {
     href?: string;
     image?: string;
     text: string;
+    blockClass?: string;
 }
 
-const MenuItem = ({ href, text, image }: MenuItemsProps) => {
+const MenuItem = ({ href, text, image, blockClass }: MenuItemsProps) => {
     const Tag = href ? "a" : "div";
 
     return (
-        <Tag className={styles.menuItem} href={href}>
-            <img src={image} alt="menu item" /> {text}
+        <Tag
+            className={blockClass ? styles[blockClass] : styles["menuItem"]}
+            href={href}
+        >
+            {image && <img src={image} alt="menu item" />}
+            {text}
         </Tag>
     );
 };

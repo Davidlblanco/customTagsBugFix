@@ -1,2 +1,51 @@
 .containerHeaderDesktop {
+    width: 100%;
+}
+
+.headerTop {
+    background-color: #a83338;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 56px;
+}
+
+.headerTopRight,
+.headerTopMiddle,
+.headerTopLeft {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.headerTopMiddle {
+    width: 60%;
+}
+
+.headerBottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1f1f1;
+    height: 52px;
+    width: 100%;
+}
+
+.headerBottomMenuItems,
+.headerBottomMiddle,
+.headerBottomLeft {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.headerBottomLeft {
+    width: 30%;
+    justify-content: space-around;
+}
+
+.headerBottomMenuItems {
+    width: 70%;
+    justify-content: space-around;
 }

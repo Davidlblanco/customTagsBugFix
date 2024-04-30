@@ -17,7 +17,7 @@ const DropDownMenu = ({ menuImage, text, items }: DropDownMenuProps) => {
                 className={styles.dropDownContainer}
                 onClick={() => setIsOpen(!isOpen)}
             >
-                <MenuItem href="" text={text} image={menuImage} />
+                <MenuItem blockClass="megaMenu" text={text} image={menuImage} />
             </button>
 
             {isOpen && (
