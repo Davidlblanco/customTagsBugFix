@@ -66,7 +66,6 @@ function getSimanProData() {
 
 function addZero(num) {
    const price = num.toString().split('.')[1];
-   console.log(price, num)
    if (price?.length === 1) {
        return Number(num).toFixed(2);
    }
@@ -80,7 +79,7 @@ function extractData(element: HTMLInputElement): SimanProData {
 
    let price = addZero(data?.[1] ?? 0)
    price = Number(price.replace(".", ""))
-   
+
    const isWithoutWarranty = months === 0;
 
    let quantity = isWithoutWarranty ? 0 : 1;
