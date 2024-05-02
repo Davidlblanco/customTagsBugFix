@@ -64,10 +64,22 @@ function getSimanProData() {
    return data;
 }
 
+function addZero(num) {
+   const price = num.toString().split('.')[1];
+   if (price?.length === 1) {
+       return Number(num).toFixed(2);
+   }
+
+   return num.toString();
+}
+
 function extractData(element: HTMLInputElement): SimanProData {
    const data = element.dataset.warranty?.split("-");
    const months = Number(data?.[0] ?? 0);
-   const price = Number(data?.[1].replace(".", "") ?? 0);
+
+   let price = addZero(data?.[1] ?? 0)
+   price = Number(price.replace(".", ""))
+
    const isWithoutWarranty = months === 0;
 
    let quantity = isWithoutWarranty ? 0 : 1;
