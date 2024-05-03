@@ -3,10 +3,12 @@ import { HeaderDesktop } from "./Desktop";
 import { useDevice } from "vtex.device-detector";
 import { MenuItemsProps } from "./Desktop/components/MenuItem/menuItem";
 import { DropDownMenuProps } from "./Desktop/components/DropDownMenu";
+import { HeaderMobile } from "./Mobile";
 import styles from "./styles.css";
 
 interface HeaderProps {
     desktopImage: string;
+    mobileImage: string;
     SearchBar: ComponentType;
     WishList: ComponentType;
     Login: ComponentType;
@@ -18,6 +20,7 @@ interface HeaderProps {
 
 const Header = ({
     desktopImage,
+    mobileImage,
     SearchBar,
     WishList,
     Login,
@@ -31,7 +34,12 @@ const Header = ({
     return (
         <header className={styles.HeaderContainer}>
             {isMobile ? (
-                <div>mobile</div>
+                <HeaderMobile
+                    mobileImage={mobileImage}
+                    SearchBar={SearchBar}
+                    Minicart={Minicart}
+                    MegaMenu={MegaMenu}
+                />
             ) : (
                 <HeaderDesktop
                     desktopImage={desktopImage}

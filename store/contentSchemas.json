@@ -59,6 +59,90 @@
                     "default": "Ver menos"
                 }
             }
+        },
+
+        "CustomHeader": {
+            "type": "object",
+            "title": "Header",
+            "properties": {
+                "desktopImage": {
+                    "title": "DesktopImage",
+                    "$ref": "app:vtex.native-types#/definitions/url",
+                    "default": "",
+                    "widget": {
+                        "ui:widget": "image-uploader"
+                    }
+                },
+                "mobileImage": {
+                    "title": "MobileImage",
+                    "$ref": "app:vtex.native-types#/definitions/url",
+                    "default": "",
+                    "widget": {
+                        "ui:widget": "image-uploader"
+                    }
+                },
+                "dropDownMenu": {
+                    "type": "array",
+                    "title": "Header dropdown menu",
+                    "items": {
+                        "$ref": "app:siman.m3-custom#/definitions/dropDownMenuItems"
+                    }
+                },
+                "menuItems": {
+                    "type": "array",
+                    "title": "Header items",
+                    "items": {
+                        "$ref": "app:siman.m3-custom#/definitions/headerItems"
+                    }
+                }
+            }
+        },
+
+        "dropDownMenuItems": {
+            "type": "object",
+            "properties": {
+                "menuImage": {
+                    "title": "Image",
+                    "type": "string",
+                    "default": ""
+                },
+                "text": {
+                    "title": "Title",
+                    "type": "string",
+                    "default": "Servicio"
+                },
+                "items": {
+                    "title": "Items",
+                    "type": "array",
+                    "items": {
+                        "$ref": "app:siman.m3-custom#/definitions/headerItems"
+                    }
+                }
+            }
+        },
+
+        "headerItems": {
+            "type": "object",
+            "properties": {
+                "href": {
+                    "title": "Href",
+                    "type": "string",
+                    "default": "/"
+                },
+                "image": {
+                    "title": "Image",
+                    "$ref": "app:vtex.native-types#/definitions/url",
+                    "default": "",
+                    "widget": {
+                        "ui:widget": "image-uploader"
+                    }
+                },
+                "text": {
+                    "title": "Item text",
+                    "type": "string",
+                    "default": "Item"
+                }
+            }
         }
     }
 }

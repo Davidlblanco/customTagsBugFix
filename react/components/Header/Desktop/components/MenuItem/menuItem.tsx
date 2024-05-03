@@ -16,7 +16,13 @@ const MenuItem = ({ href, text, image, blockClass }: MenuItemsProps) => {
             className={blockClass ? styles[blockClass] : styles["menuItem"]}
             href={href}
         >
-            {image && <img src={image} alt="menu item" />}
+            {image && (
+                <img
+                    className={styles.menuItemImage}
+                    src={image}
+                    alt="menu item"
+                />
+            )}
             {text}
         </Tag>
     );

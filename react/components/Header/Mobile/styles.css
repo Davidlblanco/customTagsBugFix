@@ -1,0 +1,19 @@
+.containerHeaderMobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #a83338;
+    height: 56px;
+    width: 100%;
+    padding: 0 15px;
+}
+
+.headerMobileMiddle {
+    width: 60%;
+}
+
+.headerMobileLeft {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}

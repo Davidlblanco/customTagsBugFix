@@ -12,6 +12,13 @@
     gap: 8px;
 }
 
+.menuItemImage {
+}
+
+.menuItem:hover {
+    color: #a83338;
+}
+
 .megaMenu {
     font-size: 21px;
 }
