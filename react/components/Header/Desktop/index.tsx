@@ -1,6 +1,12 @@
 import React, { ComponentType } from "react";
-import { MenuItem, MenuItemsProps } from "./components/MenuItem/menuItem";
-import { DropDownMenu, DropDownMenuProps } from "./components/DropDownMenu";
+import {
+    MenuItem,
+    MenuItemsProps,
+} from "../Common/Components/MenuItem/menuItem";
+import {
+    DropDownMenu,
+    DropDownMenuProps,
+} from "../Common/Components/DropDownMenu";
 import styles from "./styles.css";
 
 interface HeaderDesktopProps {

@@ -1,8 +1,8 @@
 import React, { ComponentType } from "react";
 import { HeaderDesktop } from "./Desktop";
 import { useDevice } from "vtex.device-detector";
-import { MenuItemsProps } from "./Desktop/components/MenuItem/menuItem";
-import { DropDownMenuProps } from "./Desktop/components/DropDownMenu";
+import { MenuItemsProps } from "./Common/Components/MenuItem/menuItem";
+import { DropDownMenuProps } from "./Common/Components/DropDownMenu";
 import { HeaderMobile } from "./Mobile";
 import styles from "./styles.css";
 

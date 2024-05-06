@@ -81,39 +81,44 @@
                         "ui:widget": "image-uploader"
                     }
                 },
+                "loginImage": {
+                    "title": "LoginImage",
+                    "$ref": "app:vtex.native-types#/definitions/url",
+                    "default": "",
+                    "widget": {
+                        "ui:widget": "image-uploader"
+                    }
+                },
                 "dropDownMenu": {
-                    "type": "array",
+                    "type": "object",
                     "title": "Header dropdown menu",
-                    "items": {
-                        "$ref": "app:siman.m3-custom#/definitions/dropDownMenuItems"
+                    "properties": {
+                        "menuImage": {
+                            "title": "Header dropdown Image",
+                            "$ref": "app:vtex.native-types#/definitions/url",
+                            "type": "string",
+                            "default": "",
+                            "widget": {
+                                "ui:widget": "image-uploader"
+                            }
+                        },
+                        "text": {
+                            "title": "Header dropdown Title",
+                            "type": "string",
+                            "default": "Servicio"
+                        },
+                        "items": {
+                            "title": "Header dropdown Items",
+                            "type": "array",
+                            "items": {
+                                "$ref": "app:siman.m3-custom#/definitions/headerItems"
+                            }
+                        }
                     }
                 },
                 "menuItems": {
                     "type": "array",
                     "title": "Header items",
-                    "items": {
-                        "$ref": "app:siman.m3-custom#/definitions/headerItems"
-                    }
-                }
-            }
-        },
-
-        "dropDownMenuItems": {
-            "type": "object",
-            "properties": {
-                "menuImage": {
-                    "title": "Image",
-                    "type": "string",
-                    "default": ""
-                },
-                "text": {
-                    "title": "Title",
-                    "type": "string",
-                    "default": "Servicio"
-                },
-                "items": {
-                    "title": "Items",
-                    "type": "array",
                     "items": {
                         "$ref": "app:siman.m3-custom#/definitions/headerItems"
                     }

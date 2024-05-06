@@ -24,7 +24,7 @@ const DropDownMenu = ({ menuImage, text, items }: DropDownMenuProps) => {
                 <div className={styles.dropDownMenuContainer}>
                     {items.map((item) => (
                         <MenuItem
-                            key={item?.href}
+                            key={item?.href + item.text}
                             text={item.text}
                             image={item?.image}
                             href={item.href}
