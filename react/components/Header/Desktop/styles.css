@@ -3,7 +3,6 @@
 }
 
 .headerTop {
-    background-color: #a83338;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -27,7 +26,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f1f1f1;
     height: 52px;
     width: 100%;
     box-shadow: 0px 2px 2px 0px rgba(31, 31, 31, 0.08);

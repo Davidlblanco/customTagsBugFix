@@ -4,11 +4,14 @@ import { useDevice } from "vtex.device-detector";
 import { MenuItemsProps } from "./Common/Components/MenuItem/menuItem";
 import { DropDownMenuProps } from "./Common/Components/DropDownMenu";
 import { HeaderMobile } from "./Mobile";
+import { ToggleTheme } from "../ToggleTheme";
+import { HeaderContextProvider } from "./Context/headerContext";
 import styles from "./styles.css";
 
 interface HeaderProps {
     desktopImage: string;
     mobileImage: string;
+    mobileImageDark: string;
     SearchBar: ComponentType;
     WishList: ComponentType;
     Login: ComponentType;
@@ -21,6 +24,7 @@ interface HeaderProps {
 const Header = ({
     desktopImage,
     mobileImage,
+    mobileImageDark,
     SearchBar,
     WishList,
     Login,
@@ -32,27 +36,31 @@ const Header = ({
     const { isMobile } = useDevice();
 
     return (
-        <header className={styles.HeaderContainer}>
-            {isMobile ? (
-                <HeaderMobile
-                    mobileImage={mobileImage}
-                    SearchBar={SearchBar}
-                    Minicart={Minicart}
-                    MegaMenu={MegaMenu}
-                />
-            ) : (
-                <HeaderDesktop
-                    desktopImage={desktopImage}
-                    SearchBar={SearchBar}
-                    WishList={WishList}
-                    Login={Login}
-                    Minicart={Minicart}
-                    MegaMenu={MegaMenu}
-                    MenuItems={menuItems}
-                    DropDownMenuProps={dropDownMenu}
-                />
-            )}
-        </header>
+        <HeaderContextProvider>
+            <ToggleTheme dark={true} />
+            <header className={styles.HeaderContainer}>
+                {isMobile ? (
+                    <HeaderMobile
+                        mobileImage={mobileImage}
+                        mobileImageDark={mobileImageDark}
+                        SearchBar={SearchBar}
+                        Minicart={Minicart}
+                        MegaMenu={MegaMenu}
+                    />
+                ) : (
+                    <HeaderDesktop
+                        desktopImage={desktopImage}
+                        SearchBar={SearchBar}
+                        WishList={WishList}
+                        Login={Login}
+                        Minicart={Minicart}
+                        MegaMenu={MegaMenu}
+                        MenuItems={menuItems}
+                        DropDownMenuProps={dropDownMenu}
+                    />
+                )}
+            </header>
+        </HeaderContextProvider>
     );
 };
 

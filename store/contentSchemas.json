@@ -81,6 +81,14 @@
                         "ui:widget": "image-uploader"
                     }
                 },
+                "mobileImageDark": {
+                    "title": "MobileImageDark",
+                    "$ref": "app:vtex.native-types#/definitions/url",
+                    "default": "",
+                    "widget": {
+                        "ui:widget": "image-uploader"
+                    }
+                },
                 "loginImage": {
                     "title": "LoginImage",
                     "$ref": "app:vtex.native-types#/definitions/url",
@@ -95,6 +103,15 @@
                     "properties": {
                         "menuImage": {
                             "title": "Header dropdown Image",
+                            "$ref": "app:vtex.native-types#/definitions/url",
+                            "type": "string",
+                            "default": "",
+                            "widget": {
+                                "ui:widget": "image-uploader"
+                            }
+                        },
+                        "menuImageDark": {
+                            "title": "Header dropdown Image Dark",
                             "$ref": "app:vtex.native-types#/definitions/url",
                             "type": "string",
                             "default": "",
