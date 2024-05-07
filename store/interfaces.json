@@ -102,5 +102,8 @@
     },
     "credisiman-cuotas": {
         "component": "CredisimanCuotas"
+    },
+    "toggle-theme": {
+        "component": "ToggleTheme"
     }
 }
