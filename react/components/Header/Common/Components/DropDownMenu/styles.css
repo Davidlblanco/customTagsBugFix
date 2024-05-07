@@ -8,12 +8,13 @@
 }
 
 .dropDownMenuContainer {
+    background-color: #e9e9e9;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     gap: 20px;
     padding: 32px;
-    top: 11.5%;
+    top: 11.6%;
     left: 0%;
     position: absolute;
     z-index: 10;

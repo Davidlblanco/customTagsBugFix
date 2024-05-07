@@ -89,6 +89,7 @@ const HeaderDesktop = ({
                             href={item.href}
                             image={item?.image}
                             text={item.text}
+                            isDarkMode
                         />
                     ))}
                 </div>

@@ -1,5 +1,4 @@
 import React from "react";
-import { useHeaderContext } from "../../../Context/headerContext";
 import styles from "./styles.css";
 
 export interface MenuItemsProps {
@@ -7,11 +6,16 @@ export interface MenuItemsProps {
     image?: string;
     text: string;
     blockClass?: string;
+    isDarkMode?: boolean;
 }
 
-const MenuItem = ({ href, text, image, blockClass }: MenuItemsProps) => {
-    const { isDarkMode } = useHeaderContext();
-
+const MenuItem = ({
+    href,
+    text,
+    image,
+    blockClass,
+    isDarkMode = false,
+}: MenuItemsProps) => {
     const Tag = href ? "a" : "div";
 
     return (

@@ -18,6 +18,10 @@
     justify-content: center;
 }
 
+.headerTopRight {
+    gap: 16px;
+}
+
 .headerTopMiddle {
     width: 60%;
 }

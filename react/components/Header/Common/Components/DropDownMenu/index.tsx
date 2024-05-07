@@ -29,24 +29,19 @@ const DropDownMenu = ({
                     blockClass="megaMenu"
                     text={text}
                     image={isDarkMode ? menuImageDark : menuImage}
+                    isDarkMode
                 />
             </button>
 
             {isOpen && (
-                <div
-                    className={styles.dropDownMenuContainer}
-                    style={
-                        isDarkMode
-                            ? { backgroundColor: "#4D4D4D" }
-                            : { backgroundColor: "#e9e9e9" }
-                    }
-                >
+                <div className={styles.dropDownMenuContainer}>
                     {items.map((item) => (
                         <MenuItem
                             key={item?.href + item.text}
                             text={item.text}
                             image={item?.image}
                             href={item.href}
+                            isDarkMode={false}
                         />
                     ))}
                 </div>
