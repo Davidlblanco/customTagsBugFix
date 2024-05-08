@@ -29,7 +29,7 @@ const DropDownMenu = ({
                     blockClass="megaMenu"
                     text={text}
                     image={isDarkMode ? menuImageDark : menuImage}
-                    isDarkMode
+                    isDarkMode={isDarkMode}
                 />
             </button>
 
