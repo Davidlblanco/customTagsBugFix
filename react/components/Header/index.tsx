@@ -4,7 +4,6 @@ import { useDevice } from "vtex.device-detector";
 import { MenuItemsProps } from "./Common/Components/MenuItem/menuItem";
 import { DropDownMenuProps } from "./Common/Components/DropDownMenu";
 import { HeaderMobile } from "./Mobile";
-import { ToggleTheme } from "../ToggleTheme";
 import { HeaderContextProvider } from "./Context/headerContext";
 import styles from "./styles.css";
 
@@ -37,7 +36,6 @@ const Header = ({
 
     return (
         <HeaderContextProvider>
-            <ToggleTheme dark={true} />
             <header className={styles.HeaderContainer}>
                 {isMobile ? (
                     <HeaderMobile
