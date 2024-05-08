@@ -29,8 +29,6 @@ const HeaderContextProvider = (props: ContextProps) => {
         }
     }, []);
 
-    console.log(isDarkMode);
-
     const ctx: HeaderContextProps = useMemo(
         () => ({
             isDarkMode,
