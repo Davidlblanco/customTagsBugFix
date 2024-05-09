@@ -1,5 +1,6 @@
-import React, { ComponentType } from "react";
+import React, { ComponentType, useState } from "react";
 import { useHeaderContext } from "../Context/headerContext";
+import { ArrowLeftIcon } from "../assets/ArrowLeft";
 import styles from "./styles.css";
 
 interface HeaderMobileProps {
@@ -18,15 +19,42 @@ const HeaderMobile = ({
     MegaMenu,
 }: HeaderMobileProps) => {
     const { isDarkMode } = useHeaderContext();
+    const [isSearchBarFocused, setIsSearchBarFocused] = useState(false);
 
-    return (
+    const handleSearchBarFocus = () => {
+        setIsSearchBarFocused(true);
+    };
+
+    const handleSearchBarReturn = () => {
+        setIsSearchBarFocused(false);
+    };
+
+    const getBackGroundStyle = () => {
+        return isDarkMode
+            ? { backgroundColor: "#1F1F1F" }
+            : { backgroundColor: "#a83338" };
+    };
+
+    console.log(isSearchBarFocused);
+
+    return isSearchBarFocused ? (
+        <div
+            className={styles.containerHeaderMobileFocus}
+            style={getBackGroundStyle()}
+        >
+            <button
+                className={styles.headerMobileReturnArrow}
+                onClick={() => handleSearchBarReturn()}
+            >
+                {/* <img src={} alt="return arrow"/> */}
+                <ArrowLeftIcon />
+            </button>
+            <SearchBar />
+        </div>
+    ) : (
         <div
             className={styles.containerHeaderMobile}
-            style={
-                isDarkMode
-                    ? { backgroundColor: "#1F1F1F" }
-                    : { backgroundColor: "#a83338" }
-            }
+            style={getBackGroundStyle()}
         >
             <div className={styles.headerMobileLeft}>
                 <MegaMenu />
@@ -38,7 +66,12 @@ const HeaderMobile = ({
                 </a>
             </div>
             <div className={styles.headerMobileMiddle}>
-                <SearchBar />
+                <button
+                    className={styles.headerMobileMiddleSearch}
+                    onFocus={handleSearchBarFocus}
+                >
+                    <SearchBar />
+                </button>
             </div>
 
             <div className={styles.headerMobileRight}>

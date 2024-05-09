@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { MenuItem, MenuItemsProps } from "../MenuItem/menuItem";
 import { useHeaderContext } from "../../../Context/headerContext";
 import styles from "./styles.css";
@@ -18,12 +18,34 @@ const DropDownMenu = ({
 }: DropDownMenuProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const { isDarkMode } = useHeaderContext();
+    const dropDownRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                dropDownRef.current &&
+                !dropDownRef.current.contains(event.target as Node)
+            ) {
+                setIsOpen(false);
+            }
+        };
+
+        window.addEventListener("click", handleClickOutside);
+
+        return () => {
+            window.removeEventListener("click", handleClickOutside);
+        };
+    }, []);
+
+    const toggleDropDown = () => {
+        setIsOpen(!isOpen);
+    };
 
     return (
-        <>
+        <div className={styles.dropDown} ref={dropDownRef}>
             <button
                 className={styles.dropDownContainer}
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={toggleDropDown}
             >
                 <MenuItem
                     blockClass="megaMenu"
@@ -46,7 +68,7 @@ const DropDownMenu = ({
                     ))}
                 </div>
             )}
-        </>
+        </div>
     );
 };
 

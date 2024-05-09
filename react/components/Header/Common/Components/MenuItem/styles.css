@@ -19,7 +19,7 @@
 }
 
 .menuItem:hover {
-    color: #a83338;
+    text-decoration: underline;
 }
 
 .megaMenu {
