@@ -46,7 +46,6 @@ const HeaderMobile = ({
                 className={styles.headerMobileReturnArrow}
                 onClick={() => handleSearchBarReturn()}
             >
-                {/* <img src={} alt="return arrow"/> */}
                 <ArrowLeftIcon />
             </button>
             <SearchBar />
