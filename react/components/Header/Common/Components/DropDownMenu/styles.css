@@ -1,3 +1,10 @@
+.dropDown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
 .dropDownContainer {
     background-color: transparent;
     border: none;
