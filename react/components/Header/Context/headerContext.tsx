@@ -5,6 +5,7 @@ import React, {
     ReactNode,
     useEffect,
 } from "react";
+import waitForSingleEl from "../../../utils/waitForSingleEl";
 
 export const HeaderContext = createContext({} as any);
 
@@ -20,14 +21,22 @@ const HeaderContextProvider = (props: ContextProps) => {
     const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
     useEffect(() => {
-        const body = document.querySelector("body");
+        const fetchBody = async () => {
+            const body: Element = await waitForSingleEl("body");
 
-        if (body?.classList.contains("vtex-dark")) {
-            setIsDarkMode(true);
-        } else {
-            setIsDarkMode(false);
-        }
+            console.log(body);
+
+            if (body?.classList.contains("vtex-dark")) {
+                setIsDarkMode(true);
+            } else {
+                setIsDarkMode(false);
+            }
+        };
+
+        fetchBody();
     }, []);
+
+    console.log(isDarkMode, "isDarkMode");
 
     const ctx: HeaderContextProps = useMemo(
         () => ({
