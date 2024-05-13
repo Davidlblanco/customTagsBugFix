@@ -1,8 +1,13 @@
 import React, { useEffect } from "react";
 
-export function ToggleTheme({ dark }: { dark: boolean } ) {
+interface ToggleThemeProps {
+  dark: boolean;
+  darkClass: string;
+}
+
+export function ToggleTheme({ dark, darkClass = 'vtex-dark' }: ToggleThemeProps ) {
   useEffect(() => {
-    dark ? document.body.classList.add('vtex-dark') : document.body.classList.remove('vtex-dark')
+    dark ? document.body.classList.add(darkClass) : document.body.classList.remove(darkClass)
   }, [])
 
   return <></>
@@ -16,6 +21,10 @@ ToggleTheme.schema = {
     dark: {
       title: 'dark',
       type: 'boolean',
+    },
+    darkClass: {
+      title: 'nombre de la clase',
+      type: 'string',
     }
   }
 };
