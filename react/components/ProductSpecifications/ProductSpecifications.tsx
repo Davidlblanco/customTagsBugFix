@@ -14,25 +14,28 @@ const ProductSpecifications = () => {
     if (!allSpecifications) return <></>;
 
     return (
-        <div className={styles.ComponentContainer}>
-            <span className={styles.Title}>Especificaciones</span>
+        <div className={styles.componentContainer}>
+            <span className={styles.title}>Especificaciones</span>
             <ul className={styles.specificationList}>
                 {allSpecifications?.specifications.map(
                     (specification, index) => (
                         <li
-                            className={`${styles.SpecificationElement} ${
+                            className={`${styles.specificationElement} ${
                                 index < 4 || showAll ? styles.show : ""
                             }`}
                             key={specification.name}
                         >
-                            {specification.name}: {specification.values[0]}
+                            {specification.name}:
+                            <span className={styles.specificationValue}>
+                                {specification.values[0]}
+                            </span>
                         </li>
                     )
                 )}
             </ul>
             {allSpecifications?.specifications?.length > 4 && (
                 <button
-                    className={styles.ShowMore}
+                    className={styles.showMore}
                     onClick={() => setShowAll(!showAll)}
                 >
                     {showAll ? "Ver menos" : "Ver más"}

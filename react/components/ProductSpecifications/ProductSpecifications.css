@@ -1,7 +1,7 @@
-.ComponentContainer {
+.componentContainer {
 }
 
-.Title {
+.title {
     font-family: Roboto, sans-serif;
     font-size: 16px;
     font-weight: 400;
@@ -11,7 +11,7 @@
     color: #1f1f1f;
 }
 
-.SpecificationElement {
+.specificationElement {
     font-family: Roboto, sans-serif;
     font-size: 12px;
     font-weight: 400;
@@ -24,12 +24,12 @@
     transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
-.SpecificationElement.show {
+.specificationElement.show {
     max-height: 120px;
     opacity: 1;
 }
 
-.ShowMore {
+.showMore {
     background-color: transparent;
     border: none;
     font-family: Roboto, sans-serif;
@@ -41,6 +41,13 @@
     color: #ef3742;
     text-decoration: underline;
     cursor: pointer;
+}
+
+.specificationValue{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 @media only screen and (max-width: 1024px) {
