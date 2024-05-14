@@ -65,12 +65,12 @@ const HeaderMobile = ({
                 </a>
             </div>
             <div className={styles.headerMobileMiddle}>
-                <button
+                <div
                     className={styles.headerMobileMiddleSearch}
                     onFocus={handleSearchBarFocus}
                 >
                     <SearchBar />
-                </button>
+                </div>
             </div>
 
             <div className={styles.headerMobileRight}>
