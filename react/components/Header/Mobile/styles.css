@@ -1,54 +1,58 @@
 .containerHeaderMobileFocus,
 .containerHeaderMobile {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 56px;
-    width: 100%;
-    padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  width: 100%;
+  padding: 0 15px;
 }
 
 .containerHeaderMobileFocus {
-    gap: 20px;
+  gap: 20px;
 }
 
 .headerMobileMiddle,
 .headerMobileLeft,
 .headerMobileRight {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .headerMobileMiddle {
-    width: 60%;
+  width: 60%;
 }
 
 .headerMobileReturnArrow,
 .headerMobileMiddleSearch {
-    margin: 0;
-    background-color: transparent;
-    border: none;
-    padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  padding: 0;
 }
 
 .headerMobileReturnArrow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .headerMobileLeft {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .headerSimanLogo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.headerSimanLogoImgMobile {
+  height: 30px;
 }

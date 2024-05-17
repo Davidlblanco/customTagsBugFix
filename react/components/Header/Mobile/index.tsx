@@ -59,6 +59,7 @@ const HeaderMobile = ({
                 <MegaMenu />
                 <a className={styles.headerSimanLogo} href="/">
                     <img
+                        className={styles.headerSimanLogoImgMobile}
                         src={isDarkMode ? mobileImageDark : mobileImage}
                         alt="Siman logo"
                     />

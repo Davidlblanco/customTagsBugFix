@@ -45,7 +45,11 @@ const HeaderDesktop = ({
             >
                 <div className={styles.headerTopLeft}>
                     <a className={styles.headerSimanLogo} href="/">
-                        <img src={desktopImage} alt="Siman logo" />
+                        <img
+                            className={styles.headerSimanLogoImg}
+                            src={desktopImage}
+                            alt="Siman logo"
+                        />
                     </a>
                 </div>
                 <div className={styles.headerTopMiddle}>
