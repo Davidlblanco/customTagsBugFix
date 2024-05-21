@@ -59,6 +59,66 @@
                     "default": "Ver menos"
                 }
             }
+        },
+        "InfoCardCustom": {
+          "type": "object",
+          "properties": {
+            "image": {
+              "title": "Imagem",
+              "description": "Imagem",
+              "$ref": "app:vtex.native-types#/definitions/url",
+              "default": "",
+              "widget": {
+                  "ui:widget": "image-uploader"
+              }
+            },
+            "imageMobile": {
+            "title": "Imagem Mobile",
+            "description": "Imagem Mobile",
+            "$ref": "app:vtex.native-types#/definitions/url",
+            "default": "",
+            "widget": {
+                "ui:widget": "image-uploader"
+            }
+            },
+            "titulo": {
+                "title": "Title Text",
+                "$ref": "app:vtex.native-types#/definitions/richText",
+                "default": "Title Text"
+            },
+            "btnText": {
+                "title": "BTN Text",
+                "$ref": "app:vtex.native-types#/definitions/richText",
+                "default": "BTN Text"
+            },
+            "background": {
+                "title": "Background",
+                "type": "string",
+                "default": "",
+                "widget": {
+                  "ui:widget": "color"
+                }
+            },
+            "styleText": {
+              "title": "Color Title",
+              "type": "string",
+              "default": "",
+              "widget": {
+                "ui:widget": "color"
+              }
+            },
+            "styleBtn": {
+              "title": "Color Btn",
+              "type": "string",
+              "default": "",
+              "widget": {
+                "ui:widget": "color"
+              }
+              
+            }
+           
+          }
         }
+     
     }
 }
