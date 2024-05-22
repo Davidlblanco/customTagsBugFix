@@ -63,6 +63,23 @@
         "InfoCardCustom": {
           "type": "object",
           "properties": {
+            "isFullMode": {
+              "title": "Imagem Full Mode",
+              "type": "boolean",
+              "default": true
+            },
+            "widthContentText": {
+              "title": "Width Container Text Full Mode",
+              "description": "percentage or pixel (works full mode off)",
+              "type": "string",
+              "default": "100%"
+            },
+            "widthContentImg": {
+              "title": "Width Image Full Mode",
+              "description": "percentage or pixel (works full mode off)",
+              "type": "string",
+              "default": "100%"
+            },
             "image": {
               "title": "Imagem",
               "description": "Imagem",
@@ -81,40 +98,82 @@
                 "ui:widget": "image-uploader"
             }
             },
+            "background": {
+              "title": "Background",
+              "type": "string",
+              "default": "",
+              "widget": {
+                "ui:widget": "color"
+              }
+          },
+          "styleText": {
+            "title": "Color Title/SubTitle",
+            "type": "string",
+            "default": "",
+            "widget": {
+              "ui:widget": "color"
+            }
+          },
             "titulo": {
                 "title": "Title Text",
-                "$ref": "app:vtex.native-types#/definitions/richText",
+                "type": "string",
                 "default": "Title Text"
             },
+            "sizeTitulo": {
+              "title": "Title Size ",
+              "type": "string",
+              "description": "sizeDesktop-sizeMobile (ex: 18px-12px)",
+              "default": "16px-8px"
+          },
+          "marginTitulo": {
+            "title": "Title Margin Bottom ",
+            "type": "string",
+            "description": "pixelDesktop-pixelMobile (ex: 18px-12px)",
+            "default": "32px-16px"
+        },
+            "subtitle": {
+              "title": "Subtitle Text",
+              "type": "string",
+              "default": "Subtitle Text"
+          },
+          "sizeSubTitulo": {
+            "title": "SubTitle Size",
+            "type": "string",
+            "description": "sizeDesktop-sizeMobile (ex: 18px-12px)",
+            "default": "16px-8px"
+        },
+          
+    
+            "buttonMode": {
+              "title": "is Button ?",
+              "type": "boolean",
+              "default": true
+            },
             "btnText": {
-                "title": "BTN Text",
-                "$ref": "app:vtex.native-types#/definitions/richText",
-                "default": "BTN Text"
-            },
-            "background": {
-                "title": "Background",
-                "type": "string",
-                "default": "",
-                "widget": {
-                  "ui:widget": "color"
-                }
-            },
-            "styleText": {
-              "title": "Color Title",
+              "title": "Button Text",
+              "type": "string",
+              "default": "BTN Text"
+          },
+          "btnLink": {
+            "title": "Button Link",
+            "type": "string",
+            "default": "/"
+          },
+          "styleBtn": {
+            "title": "Button Color",
+            "type": "string",
+            "default": "",
+            "widget": {
+              "ui:widget": "color"
+            }
+          },
+            "backgroundBtn": {
+              "title": "Button Background",
               "type": "string",
               "default": "",
               "widget": {
                 "ui:widget": "color"
               }
-            },
-            "styleBtn": {
-              "title": "Color Btn",
-              "type": "string",
-              "default": "",
-              "widget": {
-                "ui:widget": "color"
-              }
-              
             }
            
           }
