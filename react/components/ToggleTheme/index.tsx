@@ -5,9 +5,11 @@ interface ToggleThemeProps {
     darkClass: string;
 }
 
+const defaultDarkClass = "vtex-dark";
+
 export function ToggleTheme({
     dark,
-    darkClass = "vtex-dark",
+    darkClass = defaultDarkClass,
 }: ToggleThemeProps) {
     const pathname = window?.location?.pathname;
     useEffect(() => {
@@ -17,8 +19,7 @@ export function ToggleTheme({
     }, []);
 
     useEffect(() => {
-        console.log("pathname: ", pathname);
-        if (pathname != "/") document.body.classList.remove(darkClass);
+        if (pathname != "/") document.body.classList.remove(defaultDarkClass);
     }, [pathname]);
 
     return <></>;
