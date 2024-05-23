@@ -1,30 +1,40 @@
 import React, { useEffect } from "react";
 
 interface ToggleThemeProps {
-  dark: boolean;
-  darkClass: string;
+    dark: boolean;
+    darkClass: string;
 }
 
-export function ToggleTheme({ dark, darkClass = 'vtex-dark' }: ToggleThemeProps ) {
-  useEffect(() => {
-    dark ? document.body.classList.add(darkClass) : document.body.classList.remove(darkClass)
-  }, [])
+export function ToggleTheme({
+    dark,
+    darkClass = "vtex-dark",
+}: ToggleThemeProps) {
+    const pathname = window?.location?.pathname;
+    useEffect(() => {
+        dark
+            ? document.body.classList.add(darkClass)
+            : document.body.classList.remove(darkClass);
+    }, []);
 
-  return <></>
+    useEffect(() => {
+        console.log("pathname: ", pathname);
+        if (pathname != "/") document.body.classList.remove(darkClass);
+    }, [pathname]);
+
+    return <></>;
 }
-
 
 ToggleTheme.schema = {
-  title: 'Cambiar tema',
-  type: 'object',
-  properties: {
-    dark: {
-      title: 'dark',
-      type: 'boolean',
+    title: "Cambiar Tema",
+    type: "object",
+    properties: {
+        dark: {
+            title: "Dark",
+            type: "boolean",
+        },
+        darkClass: {
+            title: "Nombre de la clase",
+            type: "string",
+        },
     },
-    darkClass: {
-      title: 'nombre de la clase',
-      type: 'string',
-    }
-  }
 };
