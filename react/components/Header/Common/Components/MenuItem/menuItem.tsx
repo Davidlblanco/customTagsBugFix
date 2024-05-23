@@ -31,7 +31,7 @@ const MenuItem = ({
                     alt="menu item"
                 />
             )}
-            {text}
+            <span>{text}</span>
         </Tag>
     );
 };
