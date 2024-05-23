@@ -1,67 +1,68 @@
 .containerHeaderDesktop {
-  width: 100%;
+    width: 100%;
 }
 
 .headerTop {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 56px;
 }
 
 .headerTopRight,
 .headerTopMiddle,
 .headerTopLeft {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 .headerSimanLogo {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .headerSimanLogoImg {
-  height: 24px;
+    height: 24px;
 }
 
 .headerTopRight {
-  gap: 16px;
+    gap: 16px;
 }
 
 .headerTopMiddle {
-  width: 60%;
+    width: 60%;
 }
 
 .headerBottom {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 52px;
-  width: 100%;
-  box-shadow: 0px 2px 2px 0px rgba(31, 31, 31, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0px 2px 2px 0px rgba(31, 31, 31, 0.08);
 }
 
 .headerBottomMenuItems,
 .headerBottomMiddle,
 .headerBottomLeft {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 .headerBottomLeft {
-  width: 30%;
-  justify-content: space-around;
+    width: 30%;
+    justify-content: space-around;
 }
 
 .headerBottomMenuItems {
-  justify-content: space-around;
-  width: 70%;
+    justify-content: space-around;
+    width: 70%;
 }
