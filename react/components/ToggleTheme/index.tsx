@@ -21,8 +21,9 @@ export function ToggleTheme({
     }, []);
 
     useEffect(() => {
-        if (pathname != "/" && notDefaultDarkClass)
-            document.body.classList.remove(defaultDarkClass);
+        if (pathname != "/" && notDefaultDarkClass) {
+            document.body.classList.remove(darkClass);
+        }
     }, [pathname]);
 
     return <></>;
