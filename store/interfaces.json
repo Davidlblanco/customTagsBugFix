@@ -27,6 +27,13 @@
             "$ref": "app:siman.m3-custom#/definitions/CuotasCustom"
         }
     },
+    "custom-header": {
+        "component": "Header",
+        "content": {
+            "$ref": "app:siman.m3-custom#/definitions/CustomHeader"
+        }
+    },
+
     "cadastra-sizes-table": {
         "component": "SizesTable"
     },
@@ -41,7 +48,7 @@
     },
     "seller-name-shelf": {
         "component": "SellerNameShelf"
-    },    
+    },
     "wrapper-add-to-cart-new": {
         "component": "WrapperAddToCartNew"
     },
@@ -101,6 +108,8 @@
       "content": {
           "$ref": "app:siman.m3-custom#/definitions/InfoCardCustom"
       }
+    },
+    "toggle-theme": {
+        "component": "ToggleTheme"
     }
-
 }

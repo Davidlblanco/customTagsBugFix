@@ -8,6 +8,7 @@ interface ITituloeBanner {
     widthContentImg: string;
     image: string;
     imageMobile: string;
+    imageActionUrl: string;
     titulo: string;
     sizeTitulo: string;
     marginTitulo: string;
@@ -28,14 +29,10 @@ const splitAndValidate = (
     expectedParts: number = 2
 ): string[] => {
     if (!input) {
-        console.warn(`Expected a valid string but got: "${input}"`);
         return new Array(expectedParts).fill("");
     }
     const parts = input.split(separator);
     if (parts.length !== expectedParts) {
-        console.warn(
-            `Expected ${expectedParts} parts but got ${parts.length} from input: "${input}"`
-        );
         return new Array(expectedParts).fill("");
     }
     return parts;
@@ -45,6 +42,7 @@ const InfoCardCustom = ({
     isFullMode,
     image,
     imageMobile,
+    imageActionUrl,
     titulo,
     sizeTitulo,
     marginTitulo,
@@ -131,11 +129,13 @@ const InfoCardCustom = ({
                         className={styles.infoCard_image}
                         style={{ width: widthContentImg }}
                     >
-                        <img
-                            className={styles.infoCard_image_img}
-                            src={imageUrl}
-                            alt="Banner"
-                        />
+                        <a href={imageActionUrl}>
+                            <img
+                                className={styles.infoCard_image_img}
+                                src={imageUrl}
+                                alt="Banner"
+                            />
+                        </a>
                     </div>
                 </div>
             ) : (
