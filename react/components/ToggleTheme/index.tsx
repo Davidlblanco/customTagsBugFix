@@ -11,7 +11,9 @@ export function ToggleTheme({
     dark,
     darkClass = defaultDarkClass,
 }: ToggleThemeProps) {
+    const notDefaultDarkClass = darkClass !== defaultDarkClass;
     const pathname = window?.location?.pathname;
+
     useEffect(() => {
         dark
             ? document.body.classList.add(darkClass)
@@ -19,7 +21,8 @@ export function ToggleTheme({
     }, []);
 
     useEffect(() => {
-        if (pathname != "/") document.body.classList.remove(defaultDarkClass);
+        if (pathname != "/" && notDefaultDarkClass)
+            document.body.classList.remove(defaultDarkClass);
     }, [pathname]);
 
     return <></>;
