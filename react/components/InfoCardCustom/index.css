@@ -63,26 +63,26 @@
   margin: 0 auto;
 }
 
-.infoCard_image_relative {
+.infoCard_image_container {
   position: relative;
   width: 100%;
   margin: auto;
 }
 
-.infoCard_image_relative .infoCard_image {
+.infoCard_image_container .infoCard_image {
   display: block;
   width: 100%;
   height: auto;
 }
 
-.infoCard_image_relative .infoCard_content_wrapper {
+.infoCard_image_container .infoCard_content_wrapper {
   position: absolute;
   top: 16px;
   left: 16px;
 
 }
 
-.infoCard_image_relative .infoCard_btnText {
+.infoCard_image_container .infoCard_btnText {
   position: absolute;
   left: 16px;
   bottom: 16px;

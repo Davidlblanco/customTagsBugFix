@@ -1,7 +1,6 @@
 import React from "react";
 import { useDevice } from "vtex.device-detector";
 import styles from "./index.css";
-
 interface ITituloeBanner {
     isFullMode: boolean;
     widthContentText: string;
@@ -21,6 +20,7 @@ interface ITituloeBanner {
     styleBtn: string;
     buttonMode: boolean;
     backgroundBtn: string;
+    blockClass: string | string[];
 }
 
 const splitAndValidate = (
@@ -57,6 +57,7 @@ const InfoCardCustom = ({
     styleText,
     buttonMode,
     backgroundBtn,
+    blockClass,
 }: ITituloeBanner) => {
     const { device } = useDevice();
     const isPhone = device === "phone";
@@ -112,8 +113,26 @@ const InfoCardCustom = ({
         </>
     );
 
+    const generateCustomClass = (originalClass: string) => {
+        const isArray = Array.isArray(blockClass);
+
+        if (isArray) {
+            const finalClass = blockClass.map(
+                (value) => `${originalClass}--${value}`
+            );
+
+            return finalClass.toString().replace(/,/g, " ");
+        }
+
+        return `${originalClass}--${blockClass}`;
+    };
+
     return (
-        <div className={styles.infoCard_container}>
+        <div
+            className={`${styles.infoCard_container} ${generateCustomClass(
+                styles.infoCard_container
+            )}`}
+        >
             {!isFullMode ? (
                 <div className={styles.infoCard_wrapper_fullmode}>
                     <div
@@ -139,8 +158,12 @@ const InfoCardCustom = ({
                     </div>
                 </div>
             ) : (
-                <div className={styles.infoCard_image_relative}>
-                    <img src={imageUrl} alt="Banner" />
+                <div className={styles.infoCard_image_container}>
+                    <img
+                        src={imageUrl}
+                        alt="Banner"
+                        className={styles.infoCard_image}
+                    />
                     {renderContent()}
                 </div>
             )}
