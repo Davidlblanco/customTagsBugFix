@@ -101,7 +101,13 @@
         "component": "ProductTags"
     },
     "credisiman-cuotas": {
-        "component": "CredisimanCuotas"
+      "component": "CredisimanCuotas"
+    },
+    "info-card-custom": {
+      "component": "InfoCardCustom",
+      "content": {
+          "$ref": "app:siman.m3-custom#/definitions/InfoCardCustom"
+      }
     },
     "toggle-theme": {
         "component": "ToggleTheme"

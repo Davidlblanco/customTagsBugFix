@@ -1,0 +1,103 @@
+.infoCard_container {}
+
+.infoCard_wrapper_fullmode {
+  display: flex;
+  margin: 0 auto;
+}
+
+.infoCard_wrapper_fullmode .infoCard_text_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.infoCard_wrapper_fullmode .infoCard_btnText {
+  margin-top: 50px;
+}
+
+.infoCard_image_img {
+  display: block;
+}
+
+.infoCard_titulo {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 27px;
+  font-weight: 700;
+  line-height: normal;
+  color: inherit;
+}
+
+.infoCard_subtitulo {
+  margin: 4px 0 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22.4px;
+  color: inherit;
+}
+
+.infoCard_btnText {
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22.4px;
+
+}
+
+.infocard_buttonMode {
+  padding: 16px 32px;
+  max-height: 43px;
+  border: 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: inherit;
+  background-color: inherit;
+  color: inherit;
+  transition: all .3s linear;
+  text-decoration: none;
+  margin: 0 auto;
+}
+
+.infoCard_image_container {
+  position: relative;
+  width: 100%;
+  margin: auto;
+}
+
+.infoCard_image_container .infoCard_image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.infoCard_image_container .infoCard_content_wrapper {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+
+}
+
+.infoCard_image_container .infoCard_btnText {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+}
+
+@media screen and (max-width: 1025px) {
+  .infoCard_titulo {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22.4px;
+  }
+
+  .infoCard_subtitulo {
+    font-size: 12px;
+    line-height: 16.8px;
+  }
+
+}
