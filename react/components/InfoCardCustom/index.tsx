@@ -114,17 +114,17 @@ const InfoCardCustom = ({
     );
 
     const generateCustomClass = (originalClass: string) => {
-        const isArray = Array.isArray(blockClass);
+        let blockClassArray: string[] = [];
 
-        if (isArray) {
-            const finalClass = blockClass.map(
-                (value) => `${originalClass}--${value}`
-            );
+        if (typeof blockClass === "string")
+            blockClassArray = blockClass.split(" ");
+        else blockClassArray = blockClass;
 
-            return finalClass.toString().replace(/,/g, " ");
-        }
+        const finalClass = blockClassArray?.map(
+            (value) => `${originalClass}--${value}`
+        );
 
-        return `${originalClass}--${blockClass}`;
+        return finalClass.toString().replace(/,/g, " ");
     };
 
     return (
