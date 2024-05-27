@@ -1,6 +1,7 @@
 .infoCard_container {
   width: 100%;
   height: auto;
+  color: inherit;
 }
 
 .infoCard_wrapper_fullmode {
@@ -47,7 +48,7 @@
   font-size: 16px;
   font-weight: 700;
   line-height: 22.4px;
-
+  color: inherit;
 }
 
 .infocard_buttonMode {
