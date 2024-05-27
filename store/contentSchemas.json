@@ -22,7 +22,7 @@
             }
         },
         "paymentImage": {
-            "title": "Imagem pagamento",
+            "title": "Image Payment",
             "type": "object",
             "properties": {
                 "image": {
@@ -61,129 +61,125 @@
             }
         },
         "InfoCardCustom": {
-          "type": "object",
-          "properties": {
-            "isFullMode": {
-              "title": "Imagem Full Mode",
-              "type": "boolean",
-              "default": true
-            },
-            "widthContentText": {
-              "title": "Width Container Text Full Mode",
-              "description": "percentage or pixel (works full mode off)",
-              "type": "string",
-              "default": "100%"
-            },
-            "widthContentImg": {
-              "title": "Width Image Full Mode",
-              "description": "percentage or pixel (works full mode off)",
-              "type": "string",
-              "default": "100%"
-            },
-            "image": {
-              "title": "Imagem",
-              "description": "Imagem",
-              "$ref": "app:vtex.native-types#/definitions/url",
-              "default": "",
-              "widget": {
-                  "ui:widget": "image-uploader"
-              }
-            },
-            "imageMobile": {
-              "title": "Imagem Mobile",
-              "description": "Imagem Mobile",
-              "$ref": "app:vtex.native-types#/definitions/url",
-              "default": "",
-              "widget": {
-                  "ui:widget": "image-uploader"
-              }
-            },
-            "imageActionUrl": {
-              "title": "Image Url ",
-              "type": "string",
-              "default": ""
-            },
-            "background": {
-              "title": "Background",
-              "type": "string",
-              "default": "",
-              "widget": {
-                "ui:widget": "color"
-              }
-          },
-          "styleText": {
-            "title": "Color Title/SubTitle",
-            "type": "string",
-            "default": "",
-            "widget": {
-              "ui:widget": "color"
+            "type":"object",
+            "properties":{ 
+               "cardLink":{
+                "title":"Card - Link",
+                "description":"Link that involves all content",
+                "type":"string",
+                "default":"/"
+                },
+               "isFullMode":{
+                  "title":"Is Full Mode?",
+                  "type":"boolean",
+                  "default":true
+               },
+               "fullModeTextWidth":{
+                  "title":"Full Mode - Text width",
+                  "description":"percentage or pixel (works full mode off)",
+                  "type":"string",
+                  "default":"100%"
+               },
+               "fullModeImgWidth":{
+                  "title":"Full Mode - Image width",
+                  "description":"percentage or pixel (works full mode off)",
+                  "type":"string",
+                  "default":"100%"
+               },
+               "imageDesktop":{
+                  "title":"Image - Desktop",
+                  "$ref":"app:vtex.native-types#/definitions/url",
+                  "default":"",
+                  "widget":{
+                     "ui:widget":"image-uploader"
+                  }
+               },
+               "imageMobile":{
+                  "title":"Image Mobile",
+                  "$ref":"app:vtex.native-types#/definitions/url",
+                  "default":"",
+                  "widget":{
+                     "ui:widget":"image-uploader"
+                  }
+               },
+               "backgroundColor":{
+                  "title":"Background - Color",
+                  "type":"string",
+                  "default":"",
+                  "widget":{
+                     "ui:widget":"color"
+                  }
+               },
+               "titleText":{
+                "title":"Title - Text",
+                "type":"string",
+                "default":""
+               },
+               "titleSize":{
+                  "title":"Title - Size ",
+                  "type":"string",
+                  "description":"sizeDesktop-sizeMobile (64px-16px)",
+                  "default":"48px-16px"
+               },
+               "titleMargin":{
+                  "title":"Title - Margin Bottom ",
+                  "type":"string",
+                  "description":"pixelDesktop-pixelMobile (ex: 18px-12px)",
+                  "default":"32px-16px"
+               },
+               "subtitle":{
+                  "title":"Subtitle - Text",
+                  "type":"string",
+                  "default":""
+               },
+               "subtitleSize":{
+                  "title":"Subtitle - Size",
+                  "type":"string",
+                  "description":"sizeDesktop-sizeMobile (32px-8px)",
+                  "default":"32px-8px"
+               },
+               "titlesColor":{
+                    "title":"Title/SubTitle - Color",
+                    "type":"string",
+                    "default":"",
+                    "widget":{
+                    "ui:widget":"color"
+                    }
+               },
+               "btnText":{
+                  "title":"Button - Text",
+                  "type":"string",
+                  "default":""
+               },
+               "btnLink":{
+                  "title":"Button - Link",
+                  "type":"string",
+                  "default":"/"
+               },
+               "btnColor":{
+                  "title":"Button - Color",
+                  "type":"string",
+                  "default":"",
+                  "widget":{
+                     "ui:widget":"color"
+                  }
+               },
+               "isButton":{
+                "title":"Is button?",
+                "description": "Defines whether it is a Button or a Link.",
+                "type":"boolean",
+                "default":false
+                },
+               "btnBackground":{
+                  "title":"Button - Background",
+                  "type":"string",
+                  "default":"",
+                  "widget":{
+                     "ui:widget":"color"
+                  }
+               }
             }
-          },
-            "titulo": {
-                "title": "Title Text",
-                "type": "string",
-                "default": ""
-            },
-            "sizeTitulo": {
-              "title": "Title Size ",
-              "type": "string",
-              "description": "sizeDesktop-sizeMobile (ex: 18px-12px)",
-              "default": "16px-8px"
-          },
-          "marginTitulo": {
-            "title": "Title Margin Bottom ",
-            "type": "string",
-            "description": "pixelDesktop-pixelMobile (ex: 18px-12px)",
-            "default": "32px-16px"
-        },
-            "subtitle": {
-              "title": "Subtitle Text",
-              "type": "string",
-              "default": ""
-          },
-          "sizeSubTitulo": {
-            "title": "SubTitle Size",
-            "type": "string",
-            "description": "sizeDesktop-sizeMobile (ex: 18px-12px)",
-            "default": "16px-8px"
-        },
-          
-    
-            "buttonMode": {
-              "title": "is Button ?",
-              "type": "boolean",
-              "default": false
-            },
-            "btnText": {
-              "title": "Button Text",
-              "type": "string",
-              "default": ""
-          },
-          "btnLink": {
-            "title": "Button Link",
-            "type": "string",
-            "default": "/"
-          },
-          "styleBtn": {
-            "title": "Button Color",
-            "type": "string",
-            "default": "",
-            "widget": {
-              "ui:widget": "color"
-            }
-          },
-            "backgroundBtn": {
-              "title": "Button Background",
-              "type": "string",
-              "default": "",
-              "widget": {
-                "ui:widget": "color"
-              }
-            }
-           
-          }
-        },
-
+         },
         "CustomHeader": {
             "type": "object",
             "title": "Header",
@@ -265,7 +261,6 @@
                 }
             }
         },
-
         "headerItems": {
             "type": "object",
             "properties": {
@@ -289,6 +284,5 @@
                 }
             }
         }
-     
     }
 }

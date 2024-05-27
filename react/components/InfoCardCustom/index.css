@@ -1,4 +1,7 @@
-.infoCard_container {}
+.infoCard_container {
+  width: 100%;
+  height: auto;
+}
 
 .infoCard_wrapper_fullmode {
   display: flex;

@@ -3,23 +3,23 @@ import { useDevice } from "vtex.device-detector";
 import styles from "./index.css";
 interface ITituloeBanner {
     isFullMode: boolean;
-    widthContentText: string;
-    widthContentImg: string;
-    image: string;
+    fullModeTextWidth: string;
+    fullModeImgWidth: string;
+    imageDesktop: string;
     imageMobile: string;
-    imageActionUrl: string;
-    titulo: string;
-    sizeTitulo: string;
-    marginTitulo: string;
+    cardLink: string;
+    titleText: string;
+    titleSize: string;
+    titleMargin: string;
     subtitle: string;
-    sizeSubTitulo: string;
+    subtitleSize: string;
     btnText: string;
     btnLink: string;
-    background: string;
-    styleText: string;
-    styleBtn: string;
-    buttonMode: boolean;
-    backgroundBtn: string;
+    backgroundColor: string;
+    titlesColor: string;
+    btnColor: string;
+    isButton: boolean;
+    btnBackground: string;
     blockClass: string | string[];
 }
 
@@ -40,42 +40,42 @@ const splitAndValidate = (
 
 const InfoCardCustom = ({
     isFullMode,
-    image,
+    imageDesktop,
     imageMobile,
-    imageActionUrl,
-    titulo,
-    sizeTitulo,
-    marginTitulo,
+    cardLink,
+    titleText,
+    titleSize,
+    titleMargin,
     subtitle,
-    sizeSubTitulo,
+    subtitleSize,
     btnText,
     btnLink,
-    widthContentText,
-    widthContentImg,
-    background,
-    styleBtn,
-    styleText,
-    buttonMode,
-    backgroundBtn,
+    fullModeTextWidth,
+    fullModeImgWidth,
+    backgroundColor,
+    btnColor,
+    titlesColor,
+    isButton,
+    btnBackground,
     blockClass,
 }: ITituloeBanner) => {
     const { device } = useDevice();
     const isPhone = device === "phone";
-    const imageUrl = isPhone ? imageMobile : image;
+    const imageUrl = isPhone ? imageMobile : imageDesktop;
 
-    const [sizeTitleDesk, sizeTitleMob] = splitAndValidate(sizeTitulo);
-    const [sizeSubTitleDesk, sizeSubTitleMob] = splitAndValidate(sizeSubTitulo);
+    const [sizeTitleDesk, sizeTitleMob] = splitAndValidate(titleSize);
+    const [sizeSubTitleDesk, sizeSubTitleMob] = splitAndValidate(subtitleSize);
     const [marginBottomTitleDesk, marginBottomTitleMob] =
-        splitAndValidate(marginTitulo);
+        splitAndValidate(titleMargin);
 
     const renderButton = () => (
         <a
             className={`${styles.infoCard_btnText} ${
-                buttonMode ? styles.infocard_buttonMode : ""
+                isButton ? styles.infocard_buttonMode : ""
             }`}
             style={{
-                color: styleBtn,
-                background: buttonMode ? backgroundBtn : "transparent",
+                color: btnColor,
+                background: isButton ? btnBackground : "transparent",
             }}
             href={btnLink}
         >
@@ -87,7 +87,7 @@ const InfoCardCustom = ({
         <>
             <div
                 className={styles.infoCard_content_wrapper}
-                style={{ color: styleText }}
+                style={{ color: titlesColor }}
             >
                 <p
                     className={styles.infoCard_titulo}
@@ -98,7 +98,7 @@ const InfoCardCustom = ({
                             : marginBottomTitleDesk,
                     }}
                 >
-                    {titulo}
+                    {titleText}
                 </p>
                 <p
                     className={styles.infoCard_subtitulo}
@@ -128,33 +128,32 @@ const InfoCardCustom = ({
     };
 
     return (
-        <div
+        <a
             className={`${styles.infoCard_container} ${generateCustomClass(
                 styles.infoCard_container
             )}`}
+            href={cardLink}
         >
             {!isFullMode ? (
                 <div className={styles.infoCard_wrapper_fullmode}>
                     <div
                         className={styles.infoCard_text_content}
                         style={{
-                            background: background,
-                            width: widthContentText,
+                            background: backgroundColor,
+                            width: fullModeTextWidth,
                         }}
                     >
                         {renderContent()}
                     </div>
                     <div
                         className={styles.infoCard_image}
-                        style={{ width: widthContentImg }}
+                        style={{ width: fullModeImgWidth }}
                     >
-                        <a href={imageActionUrl}>
-                            <img
-                                className={styles.infoCard_image_img}
-                                src={imageUrl}
-                                alt="Banner"
-                            />
-                        </a>
+                        <img
+                            className={styles.infoCard_image_img}
+                            src={imageUrl}
+                            alt="Banner"
+                        />
                     </div>
                 </div>
             ) : (
@@ -167,12 +166,12 @@ const InfoCardCustom = ({
                     {renderContent()}
                 </div>
             )}
-        </div>
+        </a>
     );
 };
 
 InfoCardCustom.schema = {
-    title: "Info Card Custom",
+    titleText: "Info Card Custom",
 };
 
 export default InfoCardCustom;
