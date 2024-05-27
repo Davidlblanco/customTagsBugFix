@@ -11,7 +11,7 @@ interface ITituloeBanner {
     titleText: string;
     titleSize: string;
     titleMargin: string;
-    subtitle: string;
+    subtitleText: string;
     subtitleSize: string;
     btnText: string;
     btnLink: string;
@@ -46,7 +46,7 @@ const InfoCardCustom = ({
     titleText,
     titleSize,
     titleMargin,
-    subtitle,
+    subtitleText,
     subtitleSize,
     btnText,
     btnLink,
@@ -106,7 +106,7 @@ const InfoCardCustom = ({
                         fontSize: isPhone ? sizeSubTitleMob : sizeSubTitleDesk,
                     }}
                 >
-                    {subtitle}
+                    {subtitleText}
                 </p>
             </div>
             {renderButton()}

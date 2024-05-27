@@ -127,7 +127,7 @@
                   "description":"pixelDesktop-pixelMobile (ex: 18px-12px)",
                   "default":"32px-16px"
                },
-               "subtitle":{
+               "subtitleText":{
                   "title":"Subtitle - Text",
                   "type":"string",
                   "default":""
