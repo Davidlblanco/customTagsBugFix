@@ -1,6 +1,8 @@
 import React from "react";
 import { useDevice } from "vtex.device-detector";
 import styles from "./index.css";
+import RichText from "vtex.rich-text/index";
+
 interface ITituloeBanner {
     isFullMode: boolean;
     fullModeTextWidth: string;
@@ -98,7 +100,7 @@ const InfoCardCustom = ({
                             : marginBottomTitleDesk,
                     }}
                 >
-                    {titleText}
+                    <RichText text={titleText} />
                 </p>
                 <p
                     className={styles.infoCard_subtitulo}
@@ -106,7 +108,7 @@ const InfoCardCustom = ({
                         fontSize: isPhone ? sizeSubTitleMob : sizeSubTitleDesk,
                     }}
                 >
-                    {subtitleText}
+                    <RichText text={subtitleText} />
                 </p>
             </div>
             {renderButton()}
@@ -128,45 +130,47 @@ const InfoCardCustom = ({
     };
 
     return (
-        <a
-            className={`${styles.infoCard_container} ${generateCustomClass(
-                styles.infoCard_container
-            )}`}
-            href={cardLink}
-        >
-            {!isFullMode ? (
-                <div className={styles.infoCard_wrapper_fullmode}>
-                    <div
-                        className={styles.infoCard_text_content}
-                        style={{
-                            background: backgroundColor,
-                            width: fullModeTextWidth,
-                        }}
-                    >
-                        {renderContent()}
+        <div>
+            <a
+                className={`${styles.infoCard_container} ${generateCustomClass(
+                    styles.infoCard_container
+                )}`}
+                href={cardLink}
+            >
+                {!isFullMode ? (
+                    <div className={styles.infoCard_wrapper_fullmode}>
+                        <div
+                            className={styles.infoCard_text_content}
+                            style={{
+                                background: backgroundColor,
+                                width: fullModeTextWidth,
+                            }}
+                        >
+                            {renderContent()}
+                        </div>
+                        <div
+                            className={styles.infoCard_image}
+                            style={{ width: fullModeImgWidth }}
+                        >
+                            <img
+                                className={styles.infoCard_image_img}
+                                src={imageUrl}
+                                alt="Banner"
+                            />
+                        </div>
                     </div>
-                    <div
-                        className={styles.infoCard_image}
-                        style={{ width: fullModeImgWidth }}
-                    >
+                ) : (
+                    <div className={styles.infoCard_image_container}>
                         <img
-                            className={styles.infoCard_image_img}
                             src={imageUrl}
                             alt="Banner"
+                            className={styles.infoCard_image}
                         />
+                        {renderContent()}
                     </div>
-                </div>
-            ) : (
-                <div className={styles.infoCard_image_container}>
-                    <img
-                        src={imageUrl}
-                        alt="Banner"
-                        className={styles.infoCard_image}
-                    />
-                    {renderContent()}
-                </div>
-            )}
-        </a>
+                )}
+            </a>
+        </div>
     );
 };
 
