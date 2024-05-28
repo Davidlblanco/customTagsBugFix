@@ -16,6 +16,7 @@ interface HeaderProps {
     Login: ComponentType;
     Minicart: ComponentType;
     MegaMenu: ComponentType;
+    MegaMenuMobile: ComponentType;
     menuItems: MenuItemsProps[];
     dropDownMenu: DropDownMenuProps;
 }
@@ -30,6 +31,7 @@ const Header = ({
     Minicart,
     MegaMenu,
     menuItems,
+    MegaMenuMobile,
     dropDownMenu,
 }: HeaderProps) => {
     const { isMobile } = useDevice();
@@ -43,7 +45,7 @@ const Header = ({
                         mobileImageDark={mobileImageDark}
                         SearchBar={SearchBar}
                         Minicart={Minicart}
-                        MegaMenu={MegaMenu}
+                        MegaMenuMobile={MegaMenuMobile}
                     />
                 ) : (
                     <HeaderDesktop

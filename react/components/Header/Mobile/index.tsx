@@ -8,7 +8,7 @@ interface HeaderMobileProps {
     mobileImageDark: string;
     SearchBar: ComponentType;
     Minicart: ComponentType;
-    MegaMenu: ComponentType;
+    MegaMenuMobile: ComponentType;
 }
 
 const HeaderMobile = ({
@@ -16,7 +16,7 @@ const HeaderMobile = ({
     mobileImageDark,
     SearchBar,
     Minicart,
-    MegaMenu,
+    MegaMenuMobile,
 }: HeaderMobileProps) => {
     const { isDarkMode } = useHeaderContext();
     const [isSearchBarFocused, setIsSearchBarFocused] = useState(false);
@@ -56,7 +56,7 @@ const HeaderMobile = ({
             style={getBackGroundStyle()}
         >
             <div className={styles.headerMobileLeft}>
-                <MegaMenu />
+                <MegaMenuMobile />
                 <a className={styles.headerSimanLogo} href="/">
                     <img
                         className={styles.headerSimanLogoImgMobile}
