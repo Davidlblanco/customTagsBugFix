@@ -130,7 +130,7 @@ const InfoCardCustom = ({
     };
 
     return (
-        <div>
+        <div className={styles.infoCard}>
             <a
                 className={`${styles.infoCard_container} ${generateCustomClass(
                     styles.infoCard_container
