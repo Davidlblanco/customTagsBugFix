@@ -20,7 +20,7 @@ export function CredisimanCuotas() {
             </span>
             <img
                 src="https://simanqa.vtexassets.com/arquivos/credisiman-tag-pdp.png"
-                alt="tarjeta de crédito siman en color azul"
+                alt="Credisiman"
                 width={24}
                 height={24}
                 loading="lazy"

@@ -18,7 +18,7 @@ const CredisimanImage = (props: CredisimanImageProps) => {
         ? `${VisaCredisimanSVG}`
         : `${DefaultCredisimanSVG}`;
 
-    return <img src={imageSource} />;
+    return <img src={imageSource} alt="Credisiman"/>;
 };
 
 export default CredisimanImage;
