@@ -73,12 +73,14 @@
   position: relative;
   width: 100%;
   margin: auto;
+
 }
 
 .infoCard_image_container .infoCard_image {
   display: block;
   width: 100%;
   height: auto;
+  border-radius: 16px;
 }
 
 .infoCard_image_container .infoCard_content_wrapper {
@@ -92,6 +94,7 @@
   position: absolute;
   left: 16px;
   bottom: 16px;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 1025px) {
