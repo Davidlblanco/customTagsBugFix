@@ -1,13 +1,14 @@
 import React from "react";
 import { handleCredisimanInstallments } from "./utils/handleCredisimanInstallments";
 import { useRuntime } from "vtex.render-runtime";
+import CredisimanImage from "../../utils/CredisimanImage/CredisimanImage";
 
 import style from "./styles.modules.css";
 
 export function CredisimanCuotas() {
     const { account } = useRuntime();
-
     const { credisiman } = handleCredisimanInstallments(account);
+    const countryAccount: string = account ?? "siman";
 
     const canRender = credisiman?.installment && credisiman.installment > 1;
 
@@ -18,13 +19,7 @@ export function CredisimanCuotas() {
             <span className={style.installments}>
                 {credisiman?.installment} Cuotas
             </span>
-            <img
-                src="https://simanqa.vtexassets.com/arquivos/credisiman-tag-pdp.png"
-                alt="Credisiman"
-                width={24}
-                height={24}
-                loading="lazy"
-            />
+            <CredisimanImage countryAccount={countryAccount} />
         </div>
     );
 }
