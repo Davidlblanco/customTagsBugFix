@@ -1,10 +1,18 @@
-.ContainerPayment {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-}
-.ContainerPayment img {
-    display: block;
-    height: fit-content;
-    margin-right: 4px;
+.tag-preview-installments {
+  height: 28px;
+  padding: 4px 8px;
+
+  box-sizing: border-box;
+  border-radius: 50px;
+  border: 2px solid #fff;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14.06px;
+  letter-spacing: 0.015em;
+  text-align: left;
+
+  color: #000000;
+  background-color: #f5f5f5;
 }

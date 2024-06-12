@@ -1,21 +1,25 @@
-// import React from "react";
-// import styles from "./styles.css";
-// // import Cero from "../../assets/svgs/CeroInteres.svg";
-// import { InstallmentResult } from "../../Logic/PaymentCustomValidators";
-// import InstallmentRuleMessage from "../InstallmentRuleMessage/InstallmentRuleMessage";
-// import InstallmentMinimunPrice from "../InstallmentMinimunPrice/InstallmentMinimunPrice";
-// import { FormattedCurrency } from "vtex.format-currency";
+import React from "react";
+import styles from "./styles.css";
+import { TagsStyles } from "../../Types/PaymentCustom";
 
-// export default function InstallmentDetails({ installment }: Props) {
-//     return (
-//         <div className={styles.ContainerPayment}>
-//             {/* <img src={Cero as unknown as string} alt="Cero" /> */}
-//             <p className={styles.OtherPaymentsSubtitle}>
-//                 <InstallmentRuleMessage installment={installment} />
-//                 <FormattedCurrency value={installment.installmentPrice / 100} />
-//                 <br />
-//                 <InstallmentMinimunPrice installment={installment} />
-//             </p>
-//         </div>
-//     );
-// }
+interface InstallmentDetailsProps {
+  installment?: number;
+  tag: {
+    styles: TagsStyles;
+    quantityImgs?: number;
+  }
+}
+
+export default function InstallmentDetails({ installment, tag }: InstallmentDetailsProps) {
+    return (
+      <span
+        className={styles['tag-preview-installments']}
+        style={{
+          zIndex: tag.quantityImgs ? tag.quantityImgs * 10 + 2 : 0,
+          ...tag.styles,
+        }}
+      >
+        {installment} cuotas con
+      </span>
+    );
+}
