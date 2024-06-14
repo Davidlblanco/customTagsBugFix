@@ -12,6 +12,10 @@ const credisimanVisaCountriesList = [
     "simaninstoregt",
     "simanqagt",
     "simanqainstoregt",
+    "simancrc",
+    "simaninstorecr",
+    "simanqacr",
+    "simanqainstorecr",
 ];
 
 interface CredisimanImageProps {
