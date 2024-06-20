@@ -6,7 +6,7 @@ export default function UseSimanPro() {
    const [selected, setSelected] = useState<SimanProData[]>([]);
    const productContext = useProduct();
    const isAvailable = !!productContext?.product?.properties.some((item) => item.name === "Siman Pro");
-   const total = useMemo(() => selected.reduce((acc, item) => acc + item.price * item.quantity, 0), [selected]);
+   const total = useMemo(() => selected.reduce((acc, item) => acc + item.price * item.quantity, 0) * 100, [selected]);
    const isActive = useMemo(() => selected.some((item) => item.quantity >= 1), [selected]);
 
    useEffect(() => {
