@@ -6,6 +6,7 @@ import {
     PaymentSellerCondition,
     RuleOperatorValue,
     RuleType,
+    TagCuotasValues,
 } from "../Types/PaymentCustom";
 import { SelectedProductInfo } from "../hooks/useSelectedProductInfo";
 
@@ -28,6 +29,7 @@ export function validateConfig(
         isValid: sellerValid && conditions?.some((x) => x?.valid), // At least one condition must be valid
         installments: conditions,
         bestInstallment: getBestInstallment(conditions),
+        tagsCuotas: filterBestTags(config?.tagCuotas)
     };
 }
 
@@ -306,6 +308,24 @@ function getBestInstallment(
         // Otherwise we return the previous one
         return prev;
     }, null);
+}
+
+function filterBestTags(data: TagCuotasValues[] | undefined): TagCuotasValues[] | null {
+    if (!data) return null;
+
+    const result = {};
+
+    for (let i = 0; i < data.length; i++) {
+        const item = data?.[i];
+        const bankId = item?.bank?.id as string;
+        const monthsValue = item?.months?.value as number;
+
+        if (!result?.[bankId] || result?.[bankId]?.months?.value < monthsValue) {
+            result[bankId] = item;
+        }
+    }
+
+    return Object.values(result);
 }
 
 export interface RuleResult<T = unknown> {

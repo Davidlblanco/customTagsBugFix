@@ -10,10 +10,53 @@ export type KeyValue = {
 export interface PaymentConfig {
    id?: string;
    paymentId: string;
-   conditions?: PaymentConfigCondition[];
-   sellerCondition?: PaymentSellerCondition;
-   BankTypes?: BankType[];
+   BankTypes: BankType[];
+   conditions: PaymentMethodCondition[];
+   sellerCondition: PaymentSellerCondition;
+   tagCuotas: TagCuotasValues[];
 }
+
+export interface TagCuotasValues {
+   id?: string;
+   bank: BankValues;
+   months: MonthsValues;
+   tag: TagValues;
+   deadlineTag?: DeadlineTagValues;
+}
+
+export type TagValues = {
+   tagText?: string;
+   tagDesign?: TagDesignValues;
+   tagImage?: TagImageValues;
+}
+
+export type BankValues = {
+   id?: string;
+   value?: string;
+   label?: string
+}
+
+export type MonthsValues = {
+   id: string;
+   value: number;
+   label: string
+}
+
+export type TagImageValues = {
+   name: string;
+   url?: string;
+}
+
+export type DeadlineTagValues = {
+   noEndDate: boolean;
+   startDate: Date | string | undefined;
+   endDate?: Date | string | undefined;
+}
+
+export type TagDesignValues = {
+   [key: string]: string;
+}
+
 
 export interface PaymentMethodSettings {
    paymentType: PaymentMethodType;
@@ -72,34 +115,34 @@ export interface BankType {
 }
 
 interface TagsStyles {
-  backgroundColor?: string;
-  borderColor?: string;
-  borderRadius?: string;
-  color?: string;
-  fontSize?: string;
+   backgroundColor?: string;
+   borderColor?: string;
+   borderRadius?: string;
+   color?: string;
+   fontSize?: string;
 }
 
 interface GenericTagsApi {
-  tagIsActive: boolean;
-  tagsImgs: Array<{
-    paymentId: number
-    id: string;
-    value: string;
-    path: string;
-  }>;
-  styles: Array<{
-    id: string;
-    value: string;
-  }>;
+   tagIsActive: boolean;
+   tagsImgs: Array<{
+      paymentId: number
+      id: string;
+      value: string;
+      path: string;
+   }>;
+   styles: Array<{
+      id: string;
+      value: string;
+   }>;
 }
 
 interface GenericTagsFront {
-  tagIsActive: boolean;
-  tagsImgs: Array<{
-    paymentId: number
-    id: string;
-    value: string;
-    path: string;
-  }>;
-  styles: TagsStyles;
+   tagIsActive: boolean;
+   tagsImgs: Array<{
+      paymentId: number
+      id: string;
+      value: string;
+      path: string;
+   }>;
+   styles: TagsStyles;
 }
