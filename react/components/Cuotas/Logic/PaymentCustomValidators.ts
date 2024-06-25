@@ -310,22 +310,41 @@ function getBestInstallment(
     }, null);
 }
 
+
 function filterBestTags(data: TagCuotasValues[] | undefined): TagCuotasValues[] | null {
     if (!data) return null;
 
-    const result = {};
+    const result: { [key: string]: TagCuotasValues } = {};
+    const now = new Date();
+    let maxMonthsItemWithoutBank: TagCuotasValues | null = null;
 
-    for (let i = 0; i < data.length; i++) {
-        const item = data?.[i];
-        const bankId = item?.bank?.id as string;
-        const monthsValue = item?.months?.value as number;
+    for (const item of data) {
+        const bankId = item.bank?.id;
+        const monthsValue = item?.months?.value;
+        const startDate = new Date(item?.deadlineTag?.startDate as string);
+        const endDate = item?.deadlineTag?.endDate ? new Date(item.deadlineTag.endDate) : null;
+        const noEndDate = item?.deadlineTag?.noEndDate;
 
-        if (!result?.[bankId] || result?.[bankId]?.months?.value < monthsValue) {
-            result[bankId] = item;
+        if (now >= startDate && (noEndDate || (endDate && now <= endDate))) {
+            if (bankId) {
+                if (!result[bankId] || result[bankId].months.value < monthsValue) {
+                    result[bankId] = item;
+                }
+            } else {
+                if (!maxMonthsItemWithoutBank || maxMonthsItemWithoutBank.months.value < monthsValue) {
+                    maxMonthsItemWithoutBank = item;
+                }
+            }
         }
     }
 
-    return Object.values(result);
+    const filteredResult = Object.values(result);
+
+    if (maxMonthsItemWithoutBank) {
+        filteredResult.push(maxMonthsItemWithoutBank);
+    }
+
+    return filteredResult;
 }
 
 export interface RuleResult<T = unknown> {
