@@ -344,6 +344,9 @@ function filterBestTags(data: TagCuotasValues[] | undefined): TagCuotasValues[] 
         filteredResult.push(maxMonthsItemWithoutBank);
     }
 
+    // Sort the array by months in descending order
+    filteredResult?.sort((a, b) => b.months.value - a.months.value);
+
     return filteredResult;
 }
 
