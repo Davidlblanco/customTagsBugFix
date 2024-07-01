@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useAvailablePaymentConfigs } from "../../../contexts/AvailablePaymentConfigsContext";
+import { useAvailablePaymentConfigs } from "../../../hooks/useAvailablePaymentConfigsContext";
 
 export default function usePaymentConfigs(filters: PaymentConfigFilters) {
     const { availableConfigs, isLoading } = useAvailablePaymentConfigs();
@@ -15,6 +15,7 @@ export default function usePaymentConfigs(filters: PaymentConfigFilters) {
                 );
             }
         }
+
         return result;
     }, [availableConfigs, filters]);
 
