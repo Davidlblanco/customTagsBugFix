@@ -4,20 +4,10 @@
             "type": "object",
             "title": "admin/editor.image-list.images.image.title",
             "properties": {
-                "crediSimanImage": {
-                    "title": "admin/editor.image-list.images.image.title",
-                    "$ref": "app:vtex.native-types#/definitions/url",
-                    "default": "",
-                    "widget": {
-                        "ui:widget": "image-uploader"
-                    }
-                },
-                "paymentsImages": {
-                    "type": "array",
-                    "title": "Lista de imagens",
-                    "items": {
-                        "$ref": "app:siman.m3-custom#/definitions/paymentImage"
-                    }
+                "hidePrice": {
+                  "title": "ocultar el precio",
+                  "type": "boolean",
+                  "default": false
                 }
             }
         },

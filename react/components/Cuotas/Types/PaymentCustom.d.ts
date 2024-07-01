@@ -70,3 +70,36 @@ export interface BankType {
    value: string;
    label: string;
 }
+
+interface TagsStyles {
+  backgroundColor?: string;
+  borderColor?: string;
+  borderRadius?: string;
+  color?: string;
+  fontSize?: string;
+}
+
+interface GenericTagsApi {
+  tagIsActive: boolean;
+  tagsImgs: Array<{
+    paymentId: number
+    id: string;
+    value: string;
+    path: string;
+  }>;
+  styles: Array<{
+    id: string;
+    value: string;
+  }>;
+}
+
+interface GenericTagsFront {
+  tagIsActive: boolean;
+  tagsImgs: Array<{
+    paymentId: number
+    id: string;
+    value: string;
+    path: string;
+  }>;
+  styles: TagsStyles;
+}

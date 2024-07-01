@@ -1,18 +1,13 @@
-import { PaymentConfig } from "../Types/PaymentCustom";
-import useGet from "../../../hooks/useGet";
 import { useMemo } from "react";
+import { useAvailablePaymentConfigs } from "../../../contexts/AvailablePaymentConfigsContext";
 
 export default function usePaymentConfigs(filters: PaymentConfigFilters) {
-    const { data, isLoading } = useGet<PaymentConfig[]>({
-        url: "/_v/payment-custom-config/configActives/",
-    });
+    const { availableConfigs, isLoading } = useAvailablePaymentConfigs();
 
     const configs = useMemo(() => {
-        if (!data) return null;
+        if (!availableConfigs) return [];
 
-        let result = data;
-
-        // ---- Filter configs ----
+        let result = availableConfigs;
         if (filters) {
             if (filters.paymentIds?.length) {
                 result = result.filter((config) =>
@@ -20,12 +15,11 @@ export default function usePaymentConfigs(filters: PaymentConfigFilters) {
                 );
             }
         }
-
         return result;
-    }, [data, filters]);
+    }, [availableConfigs, filters]);
 
     return {
-        configs: configs ?? [],
+        configs: configs,
         isLoading,
     };
 }
