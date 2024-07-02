@@ -11,6 +11,9 @@
     "pixel": "0.x",
     "react": "3.x"
   },
+  "peerDependencies": {
+    "siman.custom-tags": "0.x"
+  },
   "dependencies": {
     "vtex.address-form": "4.x",
     "vtex.styleguide": "9.x",
@@ -38,7 +41,6 @@
     "vtex.device-detector": "0.x",
     "vtex.store-drawer": "0.x",
     "vtex.session-client": "1.x",
-    "siman.custom-tags": "1.x",
     "vtex.login": "2.x",
     "vtex.rich-text": "0.x"
   },
