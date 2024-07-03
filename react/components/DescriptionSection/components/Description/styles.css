@@ -47,6 +47,7 @@
 
   white-space: break-spaces;
   text-align: justify;
+  height: auto;
 }
 
 /* mobile */
