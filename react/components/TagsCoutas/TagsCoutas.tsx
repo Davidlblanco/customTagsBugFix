@@ -2,12 +2,14 @@ import React from "react";
 import useProductPayments from "../Cuotas/hooks/useProductPayments";
 import { formatTags } from "./utils/formatTags";
 
-import style from './styles.css'
+import style from "./styles.css";
 
 const TagsCoutas = () => {
     const { bestPayment } = useProductPayments({
         paymentIds: [],
     });
+
+    console.log(bestPayment);
 
     const formattedTags = formatTags(bestPayment?.tagsCuotas);
 
@@ -15,22 +17,16 @@ const TagsCoutas = () => {
         <div className={style.containerTagsCuotas}>
             {formattedTags &&
                 formattedTags?.map(({ tag, tagStyle }, index) => (
-                    <div
-                        key={index}
-                        className={style.tagsCuotas}
-                    >
+                    <div key={index} className={style.tagsCuotas}>
                         {tag?.tagText && (
-                            <div
-                                className={style.tagStyle}
-                                style={tagStyle}
-                            >
+                            <div className={style.tagStyle} style={tagStyle}>
                                 {tag.tagText}
                             </div>
                         )}
                         {tag?.tagImage?.url && (
                             <img
                                 src={tag.tagImage.url}
-                                alt={'Tag cuotas'}
+                                alt={"Tag cuotas"}
                                 className={style.tagImg}
                             />
                         )}

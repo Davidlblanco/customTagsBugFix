@@ -1,7 +1,7 @@
 {
   "vendor": "siman",
   "name": "m3-custom",
-  "version": "0.0.136",
+  "version": "1.0.2",
   "title": "Custom blocks",
   "description": "Custom blocks",
   "defaultLocale": "pt-BR",
@@ -10,6 +10,9 @@
     "store": "0.x",
     "pixel": "0.x",
     "react": "3.x"
+  },
+  "peerDependencies": {
+    "siman.custom-tags": "0.x"
   },
   "dependencies": {
     "vtex.address-form": "4.x",
@@ -38,7 +41,6 @@
     "vtex.device-detector": "0.x",
     "vtex.store-drawer": "0.x",
     "vtex.session-client": "1.x",
-    "siman.custom-tags": "1.x",
     "vtex.login": "2.x",
     "vtex.rich-text": "0.x"
   },

@@ -43,7 +43,7 @@ const CrediSimanPrice: StorefrontFunctionComponent = () => {
 
     if (!productData) return <></>;
 
-    const shouldShowTag = productData?.discountValue > 0;
+    //const shouldShowTag = productData?.discountValue > 0;
 
     return (
         <div
@@ -62,13 +62,13 @@ const CrediSimanPrice: StorefrontFunctionComponent = () => {
             >
                 <FormattedCurrency value={productData?.totalWithDiscount} />
             </span>
-            {shouldShowTag && (
+            {/* shouldShowTag && (
                 <div className={styles.customCrediSimanTag}>
                     <span className={styles.customCrediSimanTagText}>
                         -{productData?.discountValue}%
                     </span>
                 </div>
-            )}
+            ) */}
             <CrediSimanImage countryAccount={countryAccount} />
         </div>
     );
