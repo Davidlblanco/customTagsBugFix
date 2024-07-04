@@ -320,12 +320,13 @@ function filterBestTags(data: TagCuotasValues[] | undefined): TagCuotasValues[] 
 
     for (const item of data) {
         const bankId = item.bank?.id;
+        const active = item?.active;
         const monthsValue = item?.months?.value;
         const startDate = new Date(item?.deadlineTag?.startDate as string);
         const endDate = item?.deadlineTag?.endDate ? new Date(item.deadlineTag.endDate) : null;
         const noEndDate = item?.deadlineTag?.noEndDate;
 
-        if (now >= startDate && (noEndDate || (endDate && now <= endDate))) {
+        if (active == true && now >= startDate && (noEndDate || (endDate && now <= endDate))) {
             if (bankId) {
                 if (!result[bankId] || result[bankId].months.value < monthsValue) {
                     result[bankId] = item;

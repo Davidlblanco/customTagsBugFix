@@ -18,6 +18,7 @@ export interface PaymentConfig {
 
 export interface TagCuotasValues {
    id?: string;
+   active: boolean;
    bank: BankValues;
    months: MonthsValues;
    tag: TagValues;
