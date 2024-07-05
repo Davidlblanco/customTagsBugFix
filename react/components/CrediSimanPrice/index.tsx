@@ -3,7 +3,7 @@ import { FormattedCurrency } from "vtex.format-currency";
 import { useProduct } from "vtex.product-context";
 import { CredisimanType } from "./Types/credisimanTypes";
 import { GetCrediSimanProductData } from "./Logic/logic";
-import CrediSimanSVG from "./Assets/CredisimanImage";
+import CrediSimanImage from "../../utils/CredisimanImage/CredisimanImage";
 import styles from "./CrediSimanPrice.css";
 import GetPageType from "../../utils/getPageType";
 import { useRenderSession } from "vtex.session-client";
@@ -43,7 +43,7 @@ const CrediSimanPrice: StorefrontFunctionComponent = () => {
 
     if (!productData) return <></>;
 
-    const shouldShowTag = productData?.discountValue > 0;
+    //const shouldShowTag = productData?.discountValue > 0;
 
     return (
         <div
@@ -62,14 +62,14 @@ const CrediSimanPrice: StorefrontFunctionComponent = () => {
             >
                 <FormattedCurrency value={productData?.totalWithDiscount} />
             </span>
-            {shouldShowTag && (
+            {/* shouldShowTag && (
                 <div className={styles.customCrediSimanTag}>
                     <span className={styles.customCrediSimanTagText}>
                         -{productData?.discountValue}%
                     </span>
                 </div>
-            )}
-            <CrediSimanSVG countryAccount={countryAccount} />
+            ) */}
+            <CrediSimanImage countryAccount={countryAccount} />
         </div>
     );
 };

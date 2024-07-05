@@ -1,18 +1,12 @@
 import React from "react";
-
-import { calculateSizeLines } from "../utils/calculateSizeLines";
-
 import style from "./styles.css";
 
 interface DescriptionProps {
     title: string;
-    content: string;
-    showViewMore: boolean;
+    content?: string;
 }
 
-const Description = ({ title, content, showViewMore }: DescriptionProps) => {
-    const containerSize: number = calculateSizeLines(content);
-
+const Description = ({ title, content }: DescriptionProps) => {
     return (
         <>
             {content && (
@@ -20,14 +14,7 @@ const Description = ({ title, content, showViewMore }: DescriptionProps) => {
                     <div className={style.wrapTitle}>
                         <h3 className={style.title}>{title}</h3>
                     </div>
-                    <span
-                        style={{
-                            height: showViewMore ? containerSize + 72 : 72,
-                        }}
-                        className={`${style.description} ${
-                            showViewMore ? style.descriptionMobile : ""
-                        }`}
-                    >
+                    <span className={`${style.description}`}>
                         <div dangerouslySetInnerHTML={{ __html: content }} />
                     </span>
                 </div>
