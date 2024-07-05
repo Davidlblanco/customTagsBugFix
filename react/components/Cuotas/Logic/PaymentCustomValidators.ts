@@ -29,7 +29,7 @@ export function validateConfig(
         isValid: sellerValid && conditions?.some((x) => x?.valid), // At least one condition must be valid
         installments: conditions,
         bestInstallment: getBestInstallment(conditions),
-        tagsCuotas: filterBestTags(config?.tagCuotas)
+        tagsCuotas: filterBestTags(config?.tagCuotas, conditions)
     };
 }
 
@@ -311,29 +311,31 @@ function getBestInstallment(
 }
 
 
-function filterBestTags(data: TagCuotasValues[] | undefined): TagCuotasValues[] | null {
-    if (!data) return null;
+function filterBestTags(tags: TagCuotasValues[] | undefined, conditions: any[]): TagCuotasValues[] | null {
+    if (!tags) return null;
 
     const result: { [key: string]: TagCuotasValues } = {};
     const now = new Date();
     let maxMonthsItemWithoutBank: TagCuotasValues | null = null;
 
-    for (const item of data) {
-        const bankId = item.bank?.id;
-        const active = item?.active;
-        const monthsValue = item?.months?.value;
-        const startDate = new Date(item?.deadlineTag?.startDate as string);
-        const endDate = item?.deadlineTag?.endDate ? new Date(item.deadlineTag.endDate) : null;
-        const noEndDate = item?.deadlineTag?.noEndDate;
-
+    for (const tag of tags) {
+        const bankId = tag.bank?.id;
+        const active = tag?.active;
+        const monthsValue = tag?.months?.value;
+        const startDate = new Date(tag?.deadlineTag?.startDate as string);
+        const endDate = tag?.deadlineTag?.endDate ? new Date(tag.deadlineTag.endDate) : null;
+        const noEndDate = tag?.deadlineTag?.noEndDate;
         if (active == true && now >= startDate && (noEndDate || (endDate && now <= endDate))) {
             if (bankId) {
                 if (!result[bankId] || result[bankId].months.value < monthsValue) {
-                    result[bankId] = item;
+
+                    const shouldIncludeTag = conditions.some((condition) => (tag.months.value == condition.installment) && condition.valid)
+                    
+                    if(shouldIncludeTag) result[bankId] = tag;
                 }
             } else {
                 if (!maxMonthsItemWithoutBank || maxMonthsItemWithoutBank.months.value < monthsValue) {
-                    maxMonthsItemWithoutBank = item;
+                    maxMonthsItemWithoutBank = tag;
                 }
             }
         }
