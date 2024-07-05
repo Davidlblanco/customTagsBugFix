@@ -82,7 +82,7 @@ interface TagsStyles {
 interface GenericTagsApi {
   tagIsActive: boolean;
   tagsImgs: Array<{
-    paymentId: number
+    paymentId: string
     id: string;
     value: string;
     path: string;
@@ -96,7 +96,7 @@ interface GenericTagsApi {
 interface GenericTagsFront {
   tagIsActive: boolean;
   tagsImgs: Array<{
-    paymentId: number
+    paymentId: string
     id: string;
     value: string;
     path: string;
