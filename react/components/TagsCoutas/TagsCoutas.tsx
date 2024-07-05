@@ -9,8 +9,6 @@ const TagsCoutas = () => {
         paymentIds: [],
     });
 
-    console.log(bestPayment);
-
     const formattedTags = formatTags(bestPayment?.tagsCuotas);
 
     return (
