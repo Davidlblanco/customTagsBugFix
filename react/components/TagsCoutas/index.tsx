@@ -1,15 +1,22 @@
 import React from "react";
 import useProductPayments from "../Cuotas/hooks/useProductPayments";
-import { formatTags } from "./utils/formatTags";
+import formatTags from "./utils/formatTags";
 
 import style from "./styles.css";
 
 const TagsCoutas = () => {
-    const { bestPayment } = useProductPayments({
+    const { results } = useProductPayments({
         paymentIds: [],
     });
 
-    const formattedTags = formatTags(bestPayment?.tagsCuotas);
+    const allValidTags = results
+        .filter((payment) => payment.isValid)
+        .flatMap((payment) => payment.tagsCuotas || [])
+        .filter(
+            (tagsCuotas) => tagsCuotas !== null && tagsCuotas !== undefined
+        );
+
+    const formattedTags = formatTags(allValidTags);
 
     return (
         <div className={style.containerTagsCuotas}>

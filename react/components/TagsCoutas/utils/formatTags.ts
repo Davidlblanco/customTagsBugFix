@@ -1,7 +1,7 @@
 import { TagCuotasValues } from "../../Cuotas/Types/PaymentCustom";
 import { CSSProperties } from 'react';
 
-export const formatTags = (tags: TagCuotasValues[] | undefined | null) => {
+const formatTags = (tags: TagCuotasValues[] | undefined | null) => {
   return tags?.map((value) => {
     const { tag } = value;
     const tagStyle: CSSProperties = {
@@ -18,3 +18,5 @@ export const formatTags = (tags: TagCuotasValues[] | undefined | null) => {
     return { tag, tagStyle };
   });
 };
+
+export default formatTags;
