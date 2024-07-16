@@ -1,16 +1,17 @@
 import React from "react";
 import { AvailablePaymentConfigsContextProvider } from "./contexts/AvailablePaymentConfigsContext";
 import { GenericTagsContextProvider } from "./contexts/GenericTagsContext";
-import { CustomTagsConfigContextProvider } from "siman.custom-tags";
+import { CustomTagConfigsContextProvider } from "siman.custom-tags";
 
 export default function CustomContext({ children }) {
+    console.log("CustomContext", CustomTagConfigsContextProvider);
     return (
-        <CustomTagsConfigContextProvider>
+        <CustomTagConfigsContextProvider>
             <AvailablePaymentConfigsContextProvider>
                 <GenericTagsContextProvider>
                     {children}
                 </GenericTagsContextProvider>
             </AvailablePaymentConfigsContextProvider>
-        </CustomTagsConfigContextProvider>
+        </CustomTagConfigsContextProvider>
     );
 }

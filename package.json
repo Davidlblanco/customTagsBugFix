@@ -7,6 +7,7 @@
     "format": "prettier --write \"**/*.{ts,js,json}\""
   },
   "devDependencies": {
+    "@types/graphql": "^14.5.0",
     "@types/node": "^12.12.21",
     "@types/react-dom": "^17.0.0",
     "@vtex/intl-equalizer": "^2.4.2",
