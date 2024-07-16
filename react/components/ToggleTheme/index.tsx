@@ -11,6 +11,8 @@ export function ToggleTheme({
     dark,
     darkClass = defaultDarkClass,
 }: ToggleThemeProps) {
+    if (darkClass.trim() === "") darkClass = defaultDarkClass;
+
     const notDefaultDarkClass = darkClass !== defaultDarkClass;
     const pathname = window?.location?.pathname;
 

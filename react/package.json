@@ -60,7 +60,7 @@
     "graphql": "^14.5.4",
     "prettier": "^2.0.0",
     "react-intl": "^3.11.0",
-    "siman.m3-custom": "http://siman.vtexassets.com/_v/public/typings/v1/siman.m3-custom@0.0.50/public/@types/siman.m3-custom",
+    "siman.custom-tags": "http://siman.vtexassets.com/_v/public/typings/v1/siman.custom-tags@0.x/public/@types/siman.custom-tags",
     "tslint-eslint-rules": "^5.4.0",
     "typescript": "3.9.7",
     "typescript-styled-plugin": "^0.15.0",
