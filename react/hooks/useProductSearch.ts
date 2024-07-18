@@ -4,11 +4,13 @@ import Product from '../graphql/product.gql';
 
 
 function useProductSearch({ IDs }: Props) {
-  const { data } = useQuery<{ productsByIdentifier: QueryData[] }, QueryOpt>(Product, {
+  const { data, error } = useQuery<{ productsByIdentifier: QueryData[] }, QueryOpt>(Product, {
     variables: {
       values: IDs
     },
   })
+
+  if(error) return []
 
   return data ? data.productsByIdentifier : [];
 }
