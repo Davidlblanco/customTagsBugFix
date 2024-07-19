@@ -1,0 +1,31 @@
+.cuotasPdp {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+
+    & .tagPreviewWrapper {
+        padding: 8px;
+
+        & .tagPreviewDetails {
+            display: flex;
+            align-items: end;
+
+            & .installmentPrice {
+                margin-left: 5px;
+
+                & .currencyContainer {
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 27px;
+                    font-weight: 700;
+
+                    color: #1F1F1F;
+                }
+            }
+        }
+
+        & .wrapPaymentImages {
+            height: 32px;
+            margin-left: 5px;
+            margin-top: 3px;
+        }
+    }
+}

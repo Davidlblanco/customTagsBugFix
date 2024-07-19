@@ -8,18 +8,28 @@ interface InstallmentDetailsProps {
     styles: TagsStyles;
     quantityImgs?: number;
   }
+  visibility: 'pdp' | 'product-summary';
 }
 
-export default function InstallmentDetails({ installment, tag }: InstallmentDetailsProps) {
-    return (
-      <span
-        className={styles['tag-preview-installments']}
-        style={{
-          zIndex: tag.quantityImgs ? tag.quantityImgs * 10 + 2 : 0,
-          ...tag.styles,
-        }}
-      >
-        {installment} cuotas con
-      </span>
-    );
+export default function InstallmentDetails({
+  installment,
+  tag,
+  visibility
+}: InstallmentDetailsProps) {
+  return (
+    <span
+      className={`${visibility == "pdp" ? styles.tagPreviewInstallmentsPdp : styles.tagPreviewInstallmentsSummary}`}
+      style={{
+        zIndex: tag.quantityImgs ? tag.quantityImgs * 10 + 2 : 0,
+        ...tag.styles,
+      }}
+    >
+      {visibility === "pdp" && (
+        <>Obtén hasta {installment} cuotas de</>
+      )}
+      {visibility === "product-summary" && (
+        <>{installment} cuotas con</>
+      )}
+    </span>
+  );
 }

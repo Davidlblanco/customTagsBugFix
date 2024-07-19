@@ -1,0 +1,28 @@
+.containerCredisimanCards {
+    width: 100%;
+    max-width: 83%;
+    min-height: 158px;
+    margin: 0 auto;
+
+    border-radius: 16px;
+    background-color: #F5F5F5;
+
+    & .wrapCredisimanCards {
+        padding: 16px;
+
+        & .titleCredisimanCards {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 22.4px;
+
+            color: #000;
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+
+        & .wrapPaymentImages {
+            height: 32px;
+        }
+    }
+}

@@ -1,0 +1,22 @@
+.cuotasProductSummary {
+    background-color: transparent;
+
+    & .tagPreviewWrapper {
+        padding: 0;
+
+        display: flex;
+        align-items: stretch;
+
+        & .otherPaymentsContainer {
+            margin-top: 10px;
+            padding: var(--container-padding);
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            gap: 4px;
+            flex-direction: column;
+            border: 1px solid #e6e6e6;
+            border-radius: var(--container-radius);
+        }
+    }
+}

@@ -115,7 +115,7 @@ export interface BankType {
    label: string;
 }
 
-interface TagsStyles {
+export interface TagsStyles {
    backgroundColor?: string;
    borderColor?: string;
    borderRadius?: string;
@@ -126,21 +126,23 @@ interface TagsStyles {
 interface GenericTagsApi {
    tagIsActive: boolean;
    tagsImgs: Array<{
-      paymentId: number
+      paymentId: string;
       id: string;
       value: string;
       path: string;
    }>;
-   styles: Array<{
-      id: string;
-      value: string;
-   }>;
+   styles: Styles[];
+}
+
+type Styles = {
+   id: string;
+   value: string;
 }
 
 interface GenericTagsFront {
    tagIsActive: boolean;
    tagsImgs: Array<{
-      paymentId: number
+      paymentId: string;
       id: string;
       value: string;
       path: string;

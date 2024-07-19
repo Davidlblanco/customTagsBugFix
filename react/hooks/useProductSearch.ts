@@ -1,12 +1,10 @@
 import { useQuery } from 'react-apollo';
 import Product from '../graphql/product.gql';
 
-
-
 function useProductSearch({ IDs }: Props) {
   const { data } = useQuery<{ productsByIdentifier: QueryData[] }, QueryOpt>(Product, {
     variables: {
-      values: IDs
+      values: IDs.filter((item) => item !== '2')
     },
   })
 

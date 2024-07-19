@@ -1,46 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Spinner } from "vtex.styleguide";
-import styles from "./Cuotas.css";
+
+import CuotasPdp from "./components/CuotasPdp/CuotasPdp";
+import CuotasProductSummary from "./components/CuotasProductSummary/CuotasProductSummary";
+
 import useProductPayments from "./hooks/useProductPayments";
-import { FormattedCurrency } from "vtex.format-currency";
+import useGenericTagStyles from "../../hooks/useGenericTagStyles";
+
 import { GenericTagsFront } from "./Types/PaymentCustom";
-import PaymentImages from "./components/PaymentImages/PaymentImages";
-import InstallmentDetails from "./components/InstallmentDetail/InstallmentDetails";
-import { useGenericTags } from "../../contexts/GenericTagsContext";
+import { Results } from "./Types/Results";
+import { BestInstallment } from "./Types/BestInstallment";
 
-const Cuotas: StorefrontFunctionComponent<Props> = ({ hidePrice }) => {
-    const [tagsPreview, setTagsPreview] = useState<GenericTagsFront | null>(
-        null
-    );
-    const { tags } = useGenericTags();
+import styles from "./Cuotas.css";
 
+const Cuotas: StorefrontFunctionComponent<Props> = ({
+    visibility = 'product-summary'
+}) => {
+    const { tagsPreview, isLoading: tagIsLoading } = useGenericTagStyles();
     const { isLoading, bestInstallment, results } = useProductPayments({
         paymentIds: [], // This filter is optional
     });
 
-    useEffect(() => {
-        if (!tags) return;
-        setTagsPreview({
-            ...tags,
-            styles: {
-                backgroundColor: tags.styles?.find(
-                    (tag) => tag.id === "backgroundColor"
-                )?.value,
-                borderColor: tags.styles?.find(
-                    (tag) => tag.id === "borderColor"
-                )?.value,
-                borderRadius: tags.styles?.find(
-                    (tag) => tag.id === "borderRadius"
-                )?.value,
-                fontSize: tags.styles?.find((tag) => tag.id === "fontSize")
-                    ?.value,
-                color: tags.styles?.find((tag) => tag.id === "textColor")
-                    ?.value,
-            },
-        });
-    }, [tags]);
-
-    if (isLoading) {
+    if (isLoading || tagIsLoading) {
         return (
             <div className={styles.SpinnerContainer}>
                 <Spinner />
@@ -48,58 +29,49 @@ const Cuotas: StorefrontFunctionComponent<Props> = ({ hidePrice }) => {
         );
     }
 
-    const canRender =
-        bestInstallment?.installment && bestInstallment.installment > 1;
+    const canRender = bestInstallment?.installment &&
+        bestInstallment.installment > 1;
 
     if (!canRender || !tagsPreview?.tagIsActive) {
         return <></>;
     }
 
+    const ComponentCuotas = componentConfig[visibility].el;
+
     return (
-        <div
-            className={`${styles.CuotasContainerNewpdp} ${hidePrice ? styles["without-price"] : ""
-                }`}
-        >
-            {tagsPreview && tagsPreview.tagIsActive && (
-                <div className={styles["tag-preview-wrapper"]}>
-                    <InstallmentDetails
-                        installment={bestInstallment?.installment}
-                        tag={{
-                            quantityImgs: tagsPreview?.tagsImgs?.length,
-                            styles: tagsPreview.styles,
-                        }}
-                    />
-
-                    <PaymentImages
-                        paymentsImages={tagsPreview?.tagsImgs}
-                        availablePayments={results.map((result) => ({
-                            paymentId: result.paymentId,
-                            isValid: result.isValid,
-                        }))}
-                        tagStyles={tagsPreview.styles}
-                    />
-                </div>
-            )}
-
-            {!hidePrice && (
-                <div className={styles.OtherPaymentsContainer}>
-                    <div className={styles.InstallmentPrice}>
-                        <FormattedCurrency
-                            value={bestInstallment!.installmentPrice / 100}
-                        />
-                    </div>
-                </div>
-            )}
+        <div className={`${styles.CuotasContainerNewpdp}`}>
+            <ComponentCuotas
+                tagsPreview={tagsPreview}
+                results={results}
+                bestInstallment={bestInstallment}
+            />
         </div>
     );
 };
 
-Cuotas.schema = {
-    title: "Custom Cuotas",
+const componentConfig: Record<VisibilityType, ComponentConfig> = {
+    'pdp': { el: CuotasPdp },
+    'product-summary': { el: CuotasProductSummary }
 };
 
 type Props = {
-    hidePrice: boolean;
+    visibility: VisibilityType;
+};
+
+type VisibilityType = 'pdp' | 'product-summary';
+
+interface CuotasProps {
+    tagsPreview: GenericTagsFront;
+    results: Results[];
+    bestInstallment: BestInstallment;
+}
+
+interface ComponentConfig {
+    el: React.FC<CuotasProps>;
+}
+
+Cuotas.schema = {
+    title: "Custom Cuotas",
 };
 
 export { Cuotas };
