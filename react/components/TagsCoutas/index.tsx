@@ -11,7 +11,13 @@ const TagsCoutas = () => {
 
     const allValidTags = results
         .filter((payment) => payment.isValid)
-        .flatMap((payment) => payment.tagsCuotas || [])
+        .flatMap(
+            (payment) =>
+                payment.tagsCuotas?.find(
+                    (c) =>
+                        c.months.value === payment.bestInstallment?.installment
+                ) ?? []
+        )
         .filter(
             (tagsCuotas) => tagsCuotas !== null && tagsCuotas !== undefined
         );
