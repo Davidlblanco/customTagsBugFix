@@ -4,7 +4,7 @@ import formatTags from "./utils/formatTags";
 
 import style from "./styles.css";
 
-const TagsCoutas = () => {
+const TagsCuotas = () => {
     const { results } = useProductPayments({
         paymentIds: [],
     });
@@ -26,25 +26,24 @@ const TagsCoutas = () => {
 
     return (
         <div className={style.containerTagsCuotas}>
-            {formattedTags &&
-                formattedTags?.map(({ tag, tagStyle }, index) => (
-                    <div key={index} className={style.tagsCuotas}>
-                        {tag?.tagText && (
-                            <div className={style.tagStyle} style={tagStyle}>
-                                {tag.tagText}
-                            </div>
-                        )}
-                        {tag?.tagImage?.url && (
-                            <img
-                                src={tag.tagImage.url}
-                                alt={"Tag cuotas"}
-                                className={style.tagImg}
-                            />
-                        )}
-                    </div>
-                ))}
+            {formattedTags?.map(({ tag, tagStyle }, index) => (
+                <div key={index} className={style.tagsCuotas}>
+                    {tag?.tagText && (
+                        <div className={style.tagStyle} style={tagStyle}>
+                            {tag.tagText}
+                        </div>
+                    )}
+                    {tag?.tagImage?.url && (
+                        <img
+                            src={tag.tagImage.url}
+                            alt="Tag cuotas"
+                            className={style.tagImg}
+                        />
+                    )}
+                </div>
+            ))}
         </div>
     );
 };
 
-export default TagsCoutas;
+export default TagsCuotas;
