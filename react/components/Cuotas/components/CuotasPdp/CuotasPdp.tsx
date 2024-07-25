@@ -5,6 +5,8 @@ import InstallmentDetails from "../InstallmentDetail/InstallmentDetails";
 import PaymentImages from "../PaymentImages/PaymentImages";
 import InformationDrawer from "./components/InformationDrawer/InformationDrawer";
 
+import { credisimanInstallments } from "./utils/credisimanInstallments";
+
 import { GenericTagsFront } from "../../Types/PaymentCustom";
 import { Results } from "../../Types/Results";
 import { BestInstallment } from "../../Types/BestInstallment";
@@ -22,17 +24,26 @@ const CuotasPdp = ({
     bestInstallment,
     results,
 }: CuotasPdpProps) => {
+
+    const {
+        credisimanResults,
+        otherResults,
+        updateAllTagsPreview,
+        updateCredisimanTagsPreview,
+        updateOthersTagsPreview
+    } = credisimanInstallments(results, tagsPreview);
+
     return (
         <>
-            {tagsPreview && tagsPreview.tagIsActive && (
+            {updateAllTagsPreview && updateAllTagsPreview.tagIsActive && (
                 <div className={`${styles.cuotasPdp}`}>
                     <div className={`${styles.tagPreviewWrapper}`}>
                         <div className={`${styles.tagPreviewDetails}`}>
                             <InstallmentDetails
                                 installment={bestInstallment?.installment}
                                 tag={{
-                                    quantityImgs: tagsPreview?.tagsImgs?.length,
-                                    styles: tagsPreview.styles,
+                                    quantityImgs: updateAllTagsPreview?.tagsImgs?.length,
+                                    styles: updateAllTagsPreview?.styles,
                                 }}
                                 visibility={'pdp'}
                             />
@@ -44,18 +55,19 @@ const CuotasPdp = ({
                         </div>
                         <div className={`${styles.wrapPaymentImages}`}>
                             <PaymentImages
-                                paymentsImages={tagsPreview?.tagsImgs}
+                                paymentsImages={updateAllTagsPreview?.tagsImgs}
                                 availablePayments={results?.map((result) => ({
                                     paymentId: result.paymentId,
                                     isValid: result.isValid,
                                 }))}
-                                tagStyles={tagsPreview?.styles}
+                                tagStyles={updateAllTagsPreview?.styles}
                             />
                         </div>
                         <InformationDrawer
-                            tagsPreview={tagsPreview}
-                            results={results}
-                            bestInstallment={bestInstallment}
+                            credisimanResults={credisimanResults}
+                            otherResults={otherResults}
+                            updateCredisimanTagsPreview={updateCredisimanTagsPreview}
+                            updateOthersTagsPreview={updateOthersTagsPreview}
                         />
                     </div>
                 </div>

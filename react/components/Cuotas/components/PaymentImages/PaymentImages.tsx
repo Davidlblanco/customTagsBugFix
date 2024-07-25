@@ -4,13 +4,16 @@ import { GenericTagsApi, TagsStyles } from "../../Types/PaymentCustom";
 import styles from "./styles.css";
 
 export default function PaymentImages({ paymentsImages, tagStyles, availablePayments }: Props) {
+
   const checksIfPaymentIsValid = paymentsImages?.map(img => {
+
     const isValid = availablePayments.find(pay => pay.paymentId === img.paymentId)?.isValid
 
     return {
       ...img,
       isValid,
     }
+
   }).filter(img => img.isValid)
 
   return (
@@ -36,9 +39,13 @@ export default function PaymentImages({ paymentsImages, tagStyles, availablePaym
             <img
               src={img.value}
               alt={img.id}
-              width={14}
-              height={14}
-              style={{ objectFit: 'cover' }}
+              style={{
+                objectFit: 'contain',
+                maxWidth: '20px',
+                width: '100%',
+                maxHeight: '16px',
+                height: '100%'
+              }}
             />
           </span>
         )
@@ -48,8 +55,8 @@ export default function PaymentImages({ paymentsImages, tagStyles, availablePaym
 }
 
 interface Props {
-  paymentsImages: GenericTagsApi['tagsImgs'];
-  tagStyles: TagsStyles;
+  paymentsImages?: GenericTagsApi['tagsImgs'];
+  tagStyles?: TagsStyles;
   availablePayments: {
     paymentId: string;
     isValid: boolean;

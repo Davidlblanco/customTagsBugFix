@@ -2,8 +2,9 @@ import React from "react";
 
 import InstallmentDetails from "../InstallmentDetail/InstallmentDetails";
 import PaymentImages from "../PaymentImages/PaymentImages";
-import { GenericTagsFront } from "../../Types/PaymentCustom";
+import { credisimanInstallments } from "../CuotasPdp/utils/credisimanInstallments";
 
+import { GenericTagsFront } from "../../Types/PaymentCustom";
 import { BestInstallment } from "../../Types/BestInstallment";
 import { Results } from "../../Types/Results";
 
@@ -20,25 +21,26 @@ const CuotasProductSummary = ({
     bestInstallment,
     results
 }: CuotasProductSummaryProps) => {
+    const { updateAllTagsPreview } = credisimanInstallments(results, tagsPreview);
     return (
         <div className={`${styles.cuotasProductSummary}`}>
-            {tagsPreview && tagsPreview.tagIsActive && (
+            {updateAllTagsPreview && updateAllTagsPreview.tagIsActive && (
                 <div className={`${styles.tagPreviewWrapper}`}>
                     <InstallmentDetails
                         installment={bestInstallment?.installment}
                         tag={{
-                            quantityImgs: tagsPreview?.tagsImgs?.length,
-                            styles: tagsPreview.styles,
+                            quantityImgs: updateAllTagsPreview?.tagsImgs?.length,
+                            styles: updateAllTagsPreview.styles,
                         }}
                         visibility={'product-summary'}
                     />
                     <PaymentImages
-                        paymentsImages={tagsPreview?.tagsImgs}
+                        paymentsImages={updateAllTagsPreview?.tagsImgs}
                         availablePayments={results?.map((result) => ({
                             paymentId: result.paymentId,
                             isValid: result.isValid,
                         }))}
-                        tagStyles={tagsPreview?.styles}
+                        tagStyles={updateAllTagsPreview?.styles}
                     />
                 </div>
             )}

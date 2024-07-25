@@ -70,7 +70,7 @@ export function Photos360() {
                     img.childrenSkus?.find(
                         (children) =>
                             children.skuId ==
-                                productCtx?.selectedItem?.itemId &&
+                            productCtx?.selectedItem?.itemId &&
                             children.active
                     )
                 );

@@ -2,30 +2,26 @@ import React from "react";
 import { Drawer, DrawerHeader, DrawerCloseButton } from "vtex.store-drawer";
 
 import OtherCards from "../OtherCards/OtherCards";
+import CredisimanCards from "../CredisimanCards/CredisimanCards";
 
 import { GenericTagsFront } from "../../../../Types/PaymentCustom";
-import { BestInstallment } from "../../../../Types/BestInstallment";
 import { Results } from "../../../../Types/Results";
 
 import style from './styles.css';
-import CredisimanCards from "../CredisimanCards/CredisimanCards";
 
 interface InformationDrawerProps {
-    tagsPreview?: GenericTagsFront | null;
-    bestInstallment?: BestInstallment;
-    results: Results[];
+    credisimanResults: Results[];
+    otherResults: Results[];
+    updateCredisimanTagsPreview?: GenericTagsFront | null;
+    updateOthersTagsPreview?: GenericTagsFront | null;
 }
 
 const InformationDrawer = ({
-    tagsPreview,
-    bestInstallment,
-    results
+    credisimanResults,
+    otherResults,
+    updateCredisimanTagsPreview,
+    updateOthersTagsPreview
 }: InformationDrawerProps) => {
-    const values: InformationDrawerProps = {
-        tagsPreview,
-        bestInstallment,
-        results
-    }
     return (
         <Drawer
             header={
@@ -40,10 +36,16 @@ const InformationDrawer = ({
         >
             <div className={`${style.wrapDrawerContent}`}>
                 <CredisimanCards
-                    values={values}
+                    values={{
+                        updateCredisimanTagsPreview,
+                        credisimanResults
+                    }}
                 />
                 <OtherCards
-                    values={values}
+                    values={{
+                        updateOthersTagsPreview,
+                        otherResults
+                    }}
                 />
             </div>
         </Drawer>

@@ -1,30 +1,30 @@
 import React from "react";
-
-import { GenericTagsFront } from "../../../../Types/PaymentCustom";
-import { BestInstallment } from "../../../../Types/BestInstallment";
-import { Results } from "../../../../Types/Results";
+import { FormattedCurrency } from "vtex.format-currency";
 
 import PaymentImages from "../../../PaymentImages/PaymentImages";
+import InstallmentDetailDrawer from "../InstallmentDetailDrawer/InstallmentDetailDrawer";
+import InstallmentsWithInterest from "../InstallmentsWithInterest/InstallmentsWithInterest";
+
+import { getBestPayment } from "../../../../hooks/useProductPayments";
+
+import { GenericTagsFront } from "../../../../Types/PaymentCustom";
+import { Results } from "../../../../Types/Results";
 
 import style from './styles.css';
 
 interface CredisimanCardsProps {
     values: {
-        tagsPreview?: GenericTagsFront | null;
-        bestInstallment?: BestInstallment;
-        results: Results[];
+        updateCredisimanTagsPreview?: GenericTagsFront | null;
+        credisimanResults: Results[];
     }
 }
 
 const CredisimanCards = ({ values }: CredisimanCardsProps) => {
-    const { tagsPreview, results } = values;
-
-    const otherResults = results.filter((result) => result.paymentId === '403' && result.isValid) ?? [];
-    const otherTagsImgs = tagsPreview?.tagsImgs?.filter((result) => result.paymentId === '403') ?? [];
-
+    const { updateCredisimanTagsPreview, credisimanResults } = values;
+    const bestInstallment = getBestPayment(credisimanResults)?.bestInstallment;
     return (
         <>
-            {tagsPreview && tagsPreview.tagIsActive && (
+            {credisimanResults.length > 0 && updateCredisimanTagsPreview && updateCredisimanTagsPreview.tagIsActive && (
                 <div className={`${style.containerCredisimanCards}`}>
                     <div className={`${style.wrapCredisimanCards}`}>
                         <h2 className={`${style.titleCredisimanCards}`}>
@@ -32,13 +32,26 @@ const CredisimanCards = ({ values }: CredisimanCardsProps) => {
                         </h2>
                         <div className={`${style.wrapPaymentImages}`}>
                             <PaymentImages
-                                paymentsImages={otherTagsImgs}
-                                availablePayments={otherResults?.map((result) => ({
+                                paymentsImages={updateCredisimanTagsPreview?.tagsImgs}
+                                availablePayments={credisimanResults?.map((result) => ({
                                     paymentId: result.paymentId,
                                     isValid: result.isValid,
                                 }))}
-                                tagStyles={tagsPreview?.styles}
+                                tagStyles={updateCredisimanTagsPreview?.styles}
                             />
+                        </div>
+                        <InstallmentsWithInterest />
+                        <div className={`${style.wrapInfomartionCredisiman}`}>
+                            <InstallmentDetailDrawer
+                                installment={bestInstallment?.installment}
+                                firstText="Hasta"
+                                secundText="cuotas sin intereses"
+                            />
+                            <div className={`${style.installmentPrice}`}>
+                                <FormattedCurrency
+                                    value={bestInstallment!.installmentPrice / 100}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

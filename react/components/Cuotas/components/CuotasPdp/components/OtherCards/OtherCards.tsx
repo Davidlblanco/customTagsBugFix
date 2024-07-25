@@ -1,81 +1,113 @@
 import React from "react";
-
 import { FormattedCurrency } from "vtex.format-currency";
 
 import PaymentImages from "../../../PaymentImages/PaymentImages";
 import InstallmentDetailDrawer from "../InstallmentDetailDrawer/InstallmentDetailDrawer";
+import { getBestPayment } from "../../../../hooks/useProductPayments";
 
 import { GenericTagsFront } from "../../../../Types/PaymentCustom";
-import { BestInstallment } from "../../../../Types/BestInstallment";
 import { Results } from "../../../../Types/Results";
 
 import style from './styles.css';
 
 interface OtherCardsProps {
     values: {
-        tagsPreview?: GenericTagsFront | null;
-        bestInstallment?: BestInstallment;
-        results: Results[];
+        updateOthersTagsPreview?: GenericTagsFront | null;
+        otherResults: Results[];
     }
 }
 
 const OtherCards = ({ values }: OtherCardsProps) => {
-    const { tagsPreview, results } = values;
+    const { updateOthersTagsPreview, otherResults } = values;
 
-    const findMaxInstallment = (results: Results[]): Results | null => {
-        if (results.length === 0) return null;
+    const { groupedTags, sortedInstallments } = processInstallments(otherResults);
 
-        return results.reduce((maxResult, currentResult) => {
-            const maxInstallmentPrice = currentResult.installments.reduce((maxPrice, installment) =>
-                installment.installmentPrice > maxPrice ? installment.installmentPrice : maxPrice
-                , 0);
-
-            return maxInstallmentPrice > (maxResult?.installments.reduce((maxPrice, installment) =>
-                installment.installmentPrice > maxPrice ? installment.installmentPrice : maxPrice
-                , 0) ?? 0) ? currentResult : maxResult;
-        }, results[0] || null);
-    };
-
-
-    const otherResults = results.filter((result) => result.paymentId !== '403' && result.isValid) ?? [];
-    const otherTagsImgs = tagsPreview?.tagsImgs?.filter((result) => result.paymentId !== '403') ?? [];
-    const bestInstallment = findMaxInstallment(otherResults)?.bestInstallment;
+    const isSingleItem = sortedInstallments.length === 1;
 
     return (
         <>
-            {tagsPreview && tagsPreview.tagIsActive && (
+            {updateOthersTagsPreview && updateOthersTagsPreview.tagIsActive && (
                 <div className={`${style.containerOtherCards}`}>
                     <div className={`${style.wrapOtherCards}`}>
                         <h2 className={`${style.titleOtherCards}`}>
                             Con otras tarjetas
                         </h2>
-                        <div className={`${style.wrapPaymentImages}`}>
-                            <PaymentImages
-                                paymentsImages={otherTagsImgs}
-                                availablePayments={otherResults?.map((result) => ({
-                                    paymentId: result.paymentId,
-                                    isValid: result.isValid,
-                                }))}
-                                tagStyles={tagsPreview?.styles}
-                            />
-                        </div>
-                        <div className={`${style.wrapInfomartionOther}`}>
-                            <InstallmentDetailDrawer
-                                installment={bestInstallment?.installment}
-                                firstText="Hasta"
-                                secundText="cuotas sin intereses"
-                            />
-                            <div className={`${style.installmentPrice}`}>
-                                <FormattedCurrency
-                                    value={bestInstallment!.installmentPrice / 100}
-                                />
-                            </div>
-                        </div>
+                        {sortedInstallments.map((installment, index) => {
+                            const isLastItem = index === sortedInstallments.length - 1;
+                            return (
+                                <div
+                                    key={installment}
+                                    className={`
+                                        ${style.wrapContentPaymentImages} 
+                                        ${!isSingleItem && !isLastItem ? style.borderWrapContentPayment : ''}
+                                        ${isSingleItem ? style.singleItem : ''}
+                                    `}
+                                >
+                                    <div className={`${style.wrapPaymentImages}`}>
+                                        <PaymentImages
+                                            paymentsImages={updateOthersTagsPreview?.tagsImgs}
+                                            availablePayments={groupedTags[installment].map((bank) => ({
+                                                paymentId: bank.paymentId,
+                                                isValid: bank.isValid,
+                                            }))}
+                                            tagStyles={updateOthersTagsPreview?.styles}
+                                        />
+                                    </div>
+                                    <div className={`${style.wrapInfomartionOther}`}>
+                                        <InstallmentDetailDrawer
+                                            installment={installment}
+                                            firstText="Hasta"
+                                            secundText="cuotas sin intereses"
+                                        />
+                                        <div className={`${style.installmentPrice}`}>
+                                            <FormattedCurrency
+                                                value={groupedTags[installment][0].bestInstallment!.installmentPrice / 100}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             )}
         </>
-    )
-}
+    );
+};
+
+const processInstallments = (otherResults: Results[]): ProcessInstallmentsResult => {
+    const filteredBanks = otherResults?.filter(result =>
+        result?.installments.some(installment => installment.installment >= 6)
+    );
+
+    const bestInstallments = filteredBanks?.map(bank => {
+        return {
+            ...bank,
+            bestInstallment: getBestPayment([bank])?.bestInstallment
+        };
+    });
+
+    const groupedTags = bestInstallments.reduce((acc, bank) => {
+        const installment = bank.bestInstallment?.installment;
+        if (!installment) return acc;
+
+        if (!acc[installment]) {
+            acc[installment] = [];
+        }
+        acc[installment].push(bank);
+        return acc;
+    }, {});
+
+    const sortedInstallments = Object.keys(groupedTags)
+        .map(Number)
+        .sort((a, b) => b - a);
+
+    return { groupedTags, sortedInstallments };
+};
 
 export default OtherCards;
+
+interface ProcessInstallmentsResult {
+    groupedTags: Record<number, Results[]>;
+    sortedInstallments: number[];
+}

@@ -8,7 +8,14 @@
     background-color: #F5F5F5;
 
     & .wrapCredisimanCards {
-        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        gap: 16px;
+        height: 100%;
+        padding-top: 16px;
+        padding-bottom: 16px;
 
         & .titleCredisimanCards {
             font-family: 'Roboto', sans-serif;
@@ -17,12 +24,38 @@
             line-height: 22.4px;
 
             color: #000;
-            margin-top: 5px;
-            margin-bottom: 0;
+            margin: 0 !important;
+
+            padding-left: 16px;
+            padding-right: 16px;
         }
 
         & .wrapPaymentImages {
             height: 32px;
+
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        & .wrapInfomartionCredisiman {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding-left: 16px;
+            padding-right: 16px;
+
+            & .installmentPrice {
+                & .currencyContainer {
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 21px;
+                    font-weight: 700;
+                    line-height: 29.4px;
+                    line-height: 16.8px;
+
+                    color: #1F1F1F;
+                }
+            }
         }
     }
 }

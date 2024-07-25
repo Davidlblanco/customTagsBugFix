@@ -29,7 +29,7 @@ export default function useProductPayments(props: Props) {
     };
 }
 
-function getBestPayment(data: PaymentResult[]): PaymentResult | null {
+export function getBestPayment(data: PaymentResult[]): PaymentResult | null {
     return data.reduce((prev: PaymentResult | null, current) => {
         // If the current payment is not valid, we ignore it
         if (!current.isValid || !current.bestInstallment) return prev;
@@ -49,4 +49,4 @@ function getBestPayment(data: PaymentResult[]): PaymentResult | null {
     }, null);
 }
 
-interface Props extends PaymentConfigFilters {}
+interface Props extends PaymentConfigFilters { }
