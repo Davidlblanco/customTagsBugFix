@@ -273,6 +273,16 @@
                     "default": "Item"
                 }
             }
+        },
+        "credisimanPrice": {
+          "type": "object",
+          "properties": {
+              "isShelf": {
+                  "title": "is shelf",
+                  "type": "boolean",
+                  "default": false
+              }
+          }
         }
     }
 }
