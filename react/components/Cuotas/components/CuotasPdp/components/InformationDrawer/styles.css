@@ -39,4 +39,14 @@
     flex-direction: column;
     gap: 16px;
     width: 100%;
+
+    & :global(.siman-m3-custom-1-x-tag-preview-flag-container) {
+        margin-left: 5px;
+    }
+}
+
+@media(max-width: 780px) {
+    .wrapDrawerContent {
+        margin-bottom: 30px;
+    }
 }

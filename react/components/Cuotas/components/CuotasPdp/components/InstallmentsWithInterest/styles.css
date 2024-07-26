@@ -56,3 +56,10 @@
         padding: 16px;
     }
 }
+
+@media(max-width: 780px) {
+    .installmentsWithInterestValues {
+        gap: 0 !important;
+        justify-content: space-between;
+    }
+}

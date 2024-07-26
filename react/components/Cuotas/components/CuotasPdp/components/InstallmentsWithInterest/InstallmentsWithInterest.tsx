@@ -12,9 +12,6 @@ const InstallmentsWithInterest = () => {
 
     const maxInterestRate = getCredisimanFinancing(productCommertialOffer);
 
-    console.log('productCommertialOffer', productCommertialOffer);
-    console.log('maxInterestRate', maxInterestRate);
-
     return (
         <>
             {maxInterestRate && (

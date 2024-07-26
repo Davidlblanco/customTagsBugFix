@@ -99,3 +99,23 @@ body {
 .CuotasContainerNewpdp .OtherPaymentsContainer {
     margin: 0;
 }
+
+/* mobile comparator shelf  */
+@media(max-width: 780px) {
+    :global(.vtex-flex-layout-0-x-flexColChild--product-comparator-shelf) {
+        & .CuotasContainerNewpdp {
+            & .tagPreviewWrapper {
+                flex-direction: column;
+
+                & .tagPreviewInstallmentsSummary {
+                    width: max-content;
+                }
+
+                & .tag-preview-flag-container {
+                    height: 30px;
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+}
