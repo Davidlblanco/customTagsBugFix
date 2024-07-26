@@ -1,170 +1,171 @@
 .skeleton-container {
-   margin: 0 0 16px;
+    margin: 0 0 16px;
 }
 
 .skeleton-loader {
-   max-width: 184px;
-   height: 47px;
+    max-width: 184px;
+    height: 47px;
 
-   display: block;
-   background: linear-gradient(to right,
-         rgba(255, 255, 255, 0),
-         rgba(255, 255, 255, 0.5) 50%,
-         rgba(255, 255, 255, 0) 80%),
-      lightgray;
-   background-repeat: repeat-y;
-   background-size: 50px 500px;
-   background-position: 0 0;
-   animation: shine 1s infinite;
+    display: block;
+    background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 0.5) 50%,
+            rgba(255, 255, 255, 0) 80%
+        ),
+        lightgray;
+    background-repeat: repeat-y;
+    background-size: 50px 500px;
+    background-position: 0 0;
+    animation: shine 1s infinite;
 }
 
 .button {
-   padding: 0;
+    padding: 0;
 
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   gap: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
 
-   font-family: 'Roboto', sans-serif;
-   font-size: 16px;
-   font-weight: 400;
-   line-height: normal;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
 
-   color: #1F1F1F;
-   background: #FFF;
+    color: #1f1f1f;
+    background: #fff;
 
-   cursor: pointer;
+    cursor: pointer;
 }
 
 .gradientBorder {
-   position: relative;
-   width: 118px;
-   height: 40px;
-   margin: 16px 0;
-   border: double 1px transparent;
-   border-radius: 20px;
-   background-image: linear-gradient(white, white), linear-gradient(90deg, #3F28FF -233.33%, #AB2AE7 -73.6%, #FFBCFC 100%);
-   background-origin: border-box;
-   background-clip: content-box, border-box;
+    position: relative;
+    width: 118px;
+    height: 40px;
+    margin: 16px 0;
+    border: double 1px transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(white, white),
+        linear-gradient(90deg, #3f28ff -233.33%, #ab2ae7 -73.6%, #ffbcfc 100%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
 }
 
 @media screen and (max-width: 1024px) {
-   .gradientBorder {
-      margin: 0;
-   }
+    .gradientBorder {
+        margin: 0;
+    }
 }
 
 .button:disabled {
-   opacity: .5;
-   cursor: no-drop;
+    opacity: 0.5;
+    cursor: no-drop;
 }
 
 .modal-overlay {
-   width: 100%;
-   height: 100vh;
+    width: 100%;
+    height: 100vh;
 
-   display: flex;
-   align-items: center;
-   justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-   position: fixed;
-   left: 0;
-   top: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
 
-   z-index: 999;
+    z-index: 999;
 
-   background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.85);
 }
 
 .modal-wrapper {
-   width: 100%;
-   max-width: 1800px;
-   margin: 0 50px;
-   padding: 10px;
+    width: 100%;
+    max-width: 1800px;
+    margin: 0 50px;
+    padding: 10px;
 
-   border-radius: 10px;
-   border: 1px solid #D9D9D9;
+    border-radius: 10px;
+    border: 1px solid #d9d9d9;
 
-   display: flex;
-   flex-direction: column;
-   align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-   background-color: #fff;
+    background-color: #fff;
 
-   @media screen and (max-width: 1024px) {
-      margin: 0 16px;
-   }
+    @media screen and (max-width: 1024px) {
+        margin: 0 16px;
+    }
 }
 
 .modal-wrapper:last-child:focus-visible {
-   border: 0;
+    border: 0;
 }
 
 .modal-header {
-   width: 100%;
+    width: 100%;
 
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .modal-title {
-   display: flex;
-   align-items: start;
+    display: flex;
+    align-items: flex-start;
 
-   font-family: 'ClanOT', sans-serif;
-   font-size: 12px;
-   font-weight: 400;
-   line-height: normal;
-   margin: 0;
-   color: #000;
+    font-family: "ClanOT", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+    color: #000;
 }
 
 .modal-title .modal-title-strong {
-   display: inline-block;
-   padding-left: 6px;
-   font-family: 'ClanOT', sans-serif;
-   font-size: 12px;
-   font-weight: 700;
-   color: #000;
+    display: inline-block;
+    padding-left: 6px;
+    font-family: "ClanOT", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #000;
 }
 
 .modal-title .modal-title-text {
-   padding-left: 5px;
-   font-family: 'ClanOT', sans-serif;
-   font-size: 12px;
-   font-weight: 400;
-   line-height: normal;
-   margin: 0;
-   color: #000;
+    padding-left: 5px;
+    font-family: "ClanOT", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+    color: #000;
 }
 
 .modal-close {
-   border: 0;
-   border-radius: 50%;
+    border: 0;
+    border-radius: 50%;
 
-   background-color: transparent;
-   cursor: pointer;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .modal-close:hover {
-   background-color: #e7e2e2;
+    background-color: #e7e2e2;
 }
 
 .modal-close:active {
-   background-color: #b4b1b1;
+    background-color: #b4b1b1;
 }
 
 .modal-wrapper img {
-   max-height: 80vh;
-   cursor: grab;
+    max-height: 80vh;
+    cursor: grab;
 }
 
 @keyframes shine {
-   to {
-      background-position: 100% 0,
-         /* move highlight to right */
-         0 0;
-   }
+    to {
+        background-position: 100% 0, /* move highlight to right */ 0 0;
+    }
 }
