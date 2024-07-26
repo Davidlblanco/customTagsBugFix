@@ -3,129 +3,150 @@
 
 .containerStickyShelfOpen,
 .containerStickyShelfClose {
-  display: block;
-  transition: 0.4s ease-in-out;
-  width: auto;
-  box-shadow: rgb(0 0 0 / 20%) 0px 0px 4px 1px;
-  bottom: 3%;
-  position: fixed;
-  left: 0;
-  background: #ffdc20;
-  z-index: 1000;
+    display: block;
+    transition: 0.4s ease-in-out;
+    width: auto;
+    box-shadow: rgb(0 0 0 / 20%) 0px 0px 4px 1px;
+    bottom: 3%;
+    position: fixed;
+    left: 0;
+    background: #ffdc20;
+    z-index: 1000;
 }
 
 .containerLogo {
-  max-width: 130px;
-  padding: 10px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    max-width: 130px;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .containerStickyShelfOpen {
-  max-width: 280px;
-  background: #ffffff;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  padding-bottom: 10px;
+    max-width: 280px;
+    background: #ffffff;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-bottom: 10px;
 }
 
 .openText,
 .closeText {
-  text-transform: uppercase;
-  font-weight: 700;
-  color: #000000;
-  text-align: center;
-  font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #000000;
+    text-align: center;
+    font-size: 15px;
 }
 
 .openText {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 .containerStickyShelfOpen :global(.vtex-product-price-1-x-sellingPrice),
 .containerStickyShelfOpen :global(.vtex-product-price-1-x-listPrice--m3-shelf) {
-  width: 100%;
+    width: 100%;
 }
 
-.containerStickyShelfOpen :global(.vtex-store-components-3-x-discountInsideContainer) {
-  top: 20px;
-  background: #ffdc20;
-  color: #000000;
+.containerStickyShelfOpen
+    :global(.vtex-store-components-3-x-discountInsideContainer) {
+    top: 20px;
+    background: #ffdc20;
+    color: #000000;
 }
 
-.containerStickyShelfOpen :global(.vtex-flex-layout-0-x-flexRowContent--m3-shelf-price-selling-savings) {
-  display: block;
+.containerStickyShelfOpen
+    :global(
+        .vtex-flex-layout-0-x-flexRowContent--m3-shelf-price-selling-savings
+    ) {
+    display: block;
 }
 
-.containerStickyShelfOpen :global(.vtex-product-price-1-x-sellingPrice--m3-shelf--hasListPrice) {
-  margin-top: 10px;
+.containerStickyShelfOpen
+    :global(.vtex-product-price-1-x-sellingPrice--m3-shelf--hasListPrice) {
+    margin-top: 10px;
 }
 
 .containerStickyShelfOpen :global(.vtex-add-to-cart-button-0-x-buttonText) {
-  color: #000000;
-  font-size: 0;
+    color: #000000;
+    font-size: 0;
 }
 
 .containerStickyShelfOpen :global(.vtex-button) {
-  margin: 0 !important;
-  margin-bottom: 10px !important;
-  background: #ffdc20;
-  border: 0;
+    margin: 0 !important;
+    margin-bottom: 10px !important;
+    background: #ffdc20;
+    border: 0;
 }
 
-.containerStickyShelfOpen :global(.vtex-slider-layout-0-x-paginationDot--m3-shelf-products-slide--isActive) {
-  background: #000000;
+.containerStickyShelfOpen
+    :global(
+        .vtex-slider-layout-0-x-paginationDot--m3-shelf-products-slide--isActive
+    ) {
+    background: #000000;
 }
 
-.containerStickyShelfOpen :global(.vtex-add-to-cart-button-0-x-buttonText)::before {
-  content: "Agregar a tu carrito";
-  font-size: 12px;
+.containerStickyShelfOpen
+    :global(.vtex-add-to-cart-button-0-x-buttonText)::before {
+    content: "Agregar a tu carrito";
+    font-size: 12px;
 }
 
 .containerHeader {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  background: #000000;
-  border-top-right-radius: 5px;
-  padding-right: 10px;
-  height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: #000000;
+    border-top-right-radius: 5px;
+    padding-right: 10px;
+    height: 50px;
 }
 
 .containerHeaderLogo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 @media (max-height: 440px) {
-  .containerStickyShelfOpen :global(.vtex-product-summary-2-x-element--m3-shelf-product) {
-    max-height: 75vh;
-  }
+    .containerStickyShelfOpen
+        :global(.vtex-product-summary-2-x-element--m3-shelf-product) {
+        max-height: 75vh;
+    }
 
-  .containerStickyShelfOpen :global(.vtex-product-summary-2-x-imageWrapper--m3-shelf-product-image) {
-    max-height: 38vh;
-  }
-  .containerStickyShelfOpen :global(.vtex-product-summary-2-x-image--m3-shelf-product-image) {
-    height: 38vh !important;
-  }
-  .containerStickyShelfOpen:last-child {
-    margin: 0;
-  }
-  .containerStickyShelfOpen :global(.vtex-slider-layout-0-x-sliderLayoutContainer--m3-shelf-products-slide) {
-    margin: 0;
-  }
-  .containerStickyShelfOpen :global(.vtex-product-summary-2-x-nameContainer) {
-    min-height: 28px !important;
-  }
-  .containerStickyShelfOpen :global(.vtex-product-price-1-x-sellingPrice--m3-shelf--hasListPrice) {
-    margin: 0;
-  }
+    .containerStickyShelfOpen
+        :global(
+            .vtex-product-summary-2-x-imageWrapper--m3-shelf-product-image
+        ) {
+        max-height: 38vh;
+    }
+    .containerStickyShelfOpen
+        :global(.vtex-product-summary-2-x-image--m3-shelf-product-image) {
+        height: 38vh !important;
+    }
+    .containerStickyShelfOpen:last-child {
+        margin: 0;
+    }
+    .containerStickyShelfOpen
+        :global(
+            .vtex-slider-layout-0-x-sliderLayoutContainer--m3-shelf-products-slide
+        ) {
+        margin: 0;
+    }
+    .containerStickyShelfOpen :global(.vtex-product-summary-2-x-nameContainer) {
+        min-height: 28px !important;
+    }
+    .containerStickyShelfOpen
+        :global(.vtex-product-price-1-x-sellingPrice--m3-shelf--hasListPrice) {
+        margin: 0;
+    }
 
-  .containerStickyShelfOpen :global(.vtex-slider-layout-0-x-paginationDotsContainer--m3-shelf-products-slide) {
-    bottom: -18px;
-  }
+    .containerStickyShelfOpen
+        :global(
+            .vtex-slider-layout-0-x-paginationDotsContainer--m3-shelf-products-slide
+        ) {
+        bottom: -18px;
+    }
 }

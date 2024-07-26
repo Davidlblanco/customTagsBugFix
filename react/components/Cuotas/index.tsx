@@ -51,6 +51,8 @@ const Cuotas: StorefrontFunctionComponent<Props> = ({ hidePrice }) => {
     const canRender =
         bestInstallment?.installment && bestInstallment.installment > 1;
 
+    console.log(tagsPreview);
+
     if (!canRender || !tagsPreview?.tagIsActive) {
         return <></>;
     }
@@ -61,13 +63,13 @@ const Cuotas: StorefrontFunctionComponent<Props> = ({ hidePrice }) => {
                 hidePrice ? styles["without-price"] : ""
             }`}
         >
-            {tagsPreview && tagsPreview.tagIsActive && (
+            {tagsPreview?.tagIsActive && (
                 <div className={styles["tag-preview-wrapper"]}>
                     <InstallmentDetails
                         installment={bestInstallment?.installment}
                         tag={{
                             quantityImgs: tagsPreview?.tagsImgs?.length,
-                            styles: tagsPreview.styles,
+                            styles: tagsPreview?.styles,
                         }}
                     />
 
@@ -77,7 +79,7 @@ const Cuotas: StorefrontFunctionComponent<Props> = ({ hidePrice }) => {
                             paymentId: result.paymentId,
                             isValid: result.isValid,
                         }))}
-                        tagStyles={tagsPreview.styles}
+                        tagStyles={tagsPreview?.styles}
                     />
                 </div>
             )}

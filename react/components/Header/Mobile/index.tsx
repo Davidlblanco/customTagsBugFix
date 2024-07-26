@@ -35,8 +35,6 @@ const HeaderMobile = ({
             : { backgroundColor: "#a83338" };
     };
 
-    console.log(isSearchBarFocused);
-
     return isSearchBarFocused ? (
         <div
             className={styles.containerHeaderMobileFocus}
