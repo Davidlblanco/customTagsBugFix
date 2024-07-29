@@ -22,10 +22,7 @@
         "component": "ProductGift"
     },
     "custom-cuotas": {
-        "component": "Cuotas",
-        "content": {
-            "$ref": "app:siman.m3-custom#/definitions/CuotasCustom"
-        }
+        "component": "Cuotas"
     },
     "custom-header": {
         "component": "Header",

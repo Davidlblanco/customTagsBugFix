@@ -13,9 +13,12 @@ import { BestInstallment } from "./Types/BestInstallment";
 
 import styles from "./Cuotas.css";
 
-const Cuotas: StorefrontFunctionComponent<Props> = ({
-    visibility = 'product-summary'
-}) => {
+interface CuotasProps {
+    visibility: VisibilityType;
+}
+
+const Cuotas = ({ visibility }: CuotasProps) => {
+
     const { tagsPreview, isLoading: tagIsLoading } = useGenericTagStyles();
     const { isLoading, bestInstallment, results } = useProductPayments({
         paymentIds: [], // This filter is optional
@@ -36,7 +39,7 @@ const Cuotas: StorefrontFunctionComponent<Props> = ({
         return <></>;
     }
 
-    const ComponentCuotas = componentConfig[visibility].el;
+    const ComponentCuotas = componentConfig[visibility]?.el;
 
     return (
         <div className={`${styles.CuotasContainerNewpdp}`}>
@@ -54,24 +57,16 @@ const componentConfig: Record<VisibilityType, ComponentConfig> = {
     'product-summary': { el: CuotasProductSummary }
 };
 
-type Props = {
-    visibility: VisibilityType;
-};
-
 type VisibilityType = 'pdp' | 'product-summary';
 
-interface CuotasProps {
+interface ComponentProps {
     tagsPreview: GenericTagsFront;
     results: Results[];
     bestInstallment: BestInstallment;
 }
 
 interface ComponentConfig {
-    el: React.FC<CuotasProps>;
+    el: React.FC<ComponentProps>;
 }
-
-Cuotas.schema = {
-    title: "Custom Cuotas",
-};
 
 export { Cuotas };
