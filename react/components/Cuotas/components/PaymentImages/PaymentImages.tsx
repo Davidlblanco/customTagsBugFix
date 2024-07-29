@@ -13,50 +13,50 @@ export default function PaymentImages({ paymentsImages, tagStyles, availablePaym
     }
   }).filter(img => img.isValid)
 
-   return (
-      <div
-        className={styles['tag-preview-flag-container']}
-        style={{
-          width: `calc(18px * ${checksIfPaymentIsValid?.length})`,
-        }}
-      >
-        {checksIfPaymentIsValid?.map((img, i) => {
-          const left = i === 0 ? '-5px' : `${(20 * i) - (7 + i)}px`;
+  return (
+    <div
+      className={styles['tag-preview-flag-container']}
+      style={{
+        width: `calc(18px * ${checksIfPaymentIsValid?.length})`,
+      }}
+    >
+      {checksIfPaymentIsValid?.map((img, i) => {
+        const left = i === 0 ? '-5px' : `${(20 * i) - (7 + i)}px`;
 
-          return (
-            <span
-              key={img.id}
-              className={styles['tag-preview-flag']}
-              style={{
-                zIndex: i === 0 ? checksIfPaymentIsValid?.length * 10 + 1 : Math.round(checksIfPaymentIsValid?.length * 10 / i),
-                left,
-                ...tagStyles,
-              }}
-            >
-              <img
-                src={img.value}
-                alt={img.id}
-                width={14}
-                height={14}
-                style={{ objectFit: 'cover' }}
-              />
-            </span>
+        return (
+          <span
+            key={img.id}
+            className={styles['tag-preview-flag']}
+            style={{
+              zIndex: i === 0 ? checksIfPaymentIsValid?.length * 10 + 1 : Math.round(checksIfPaymentIsValid?.length * 10 / i),
+              left,
+              ...tagStyles,
+            }}
+          >
+            <img
+              src={img.value}
+              alt={img.id}
+              width={14}
+              height={14}
+              style={{ objectFit: 'cover' }}
+            />
+          </span>
 
-          )
-        })}
-      </div>
-   );
+        )
+      })}
+    </div>
+  );
 }
 
 interface Props {
-   paymentsImages: GenericTagsApi['tagsImgs'];
-   tagStyles: TagsStyles;
-   availablePayments: {
-        paymentId: string;
-        isValid: boolean;
-    }[]
+  paymentsImages: GenericTagsApi['tagsImgs'];
+  tagStyles: TagsStyles;
+  availablePayments: {
+    paymentId: string;
+    isValid: boolean;
+  }[]
 }
 
 export type PaymentsImages = {
-   image: string;
+  image: string;
 };

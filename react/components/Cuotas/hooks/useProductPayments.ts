@@ -49,4 +49,4 @@ function getBestPayment(data: PaymentResult[]): PaymentResult | null {
     }, null);
 }
 
-interface Props extends PaymentConfigFilters {}
+interface Props extends PaymentConfigFilters { }

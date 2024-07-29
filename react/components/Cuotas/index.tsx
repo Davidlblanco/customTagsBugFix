@@ -51,17 +51,14 @@ const Cuotas: StorefrontFunctionComponent<Props> = ({ hidePrice }) => {
     const canRender =
         bestInstallment?.installment && bestInstallment.installment > 1;
 
-    console.log(tagsPreview);
-
     if (!canRender || !tagsPreview?.tagIsActive) {
         return <></>;
     }
 
     return (
         <div
-            className={`${styles.CuotasContainerNewpdp} ${
-                hidePrice ? styles["without-price"] : ""
-            }`}
+            className={`${styles.CuotasContainerNewpdp} ${hidePrice ? styles["without-price"] : ""
+                }`}
         >
             {tagsPreview?.tagIsActive && (
                 <div className={styles["tag-preview-wrapper"]}>
