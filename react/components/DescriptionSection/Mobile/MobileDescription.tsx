@@ -19,7 +19,12 @@ const MobileDescription = ({
 }: Props) => {
     return (
         <div className={styles.mobileContainer}>
-            <Accordion title={titleDescription}>{description}</Accordion>
+            <Accordion title={titleDescription}>
+                <div
+                    className={styles.mobileDescription}
+                    dangerouslySetInnerHTML={{ __html: description ?? "" }}
+                />
+            </Accordion>
             <Accordion title={titleSpecification}>
                 <ul className={styles.mobileList}>
                     {RenderSpecifications(allSpecifications)}

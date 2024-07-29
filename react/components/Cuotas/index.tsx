@@ -57,9 +57,8 @@ const Cuotas: StorefrontFunctionComponent<Props> = ({ hidePrice }) => {
 
     return (
         <div
-            className={`${styles.CuotasContainerNewpdp} ${
-                hidePrice ? styles["without-price"] : ""
-            }`}
+            className={`${styles.CuotasContainerNewpdp} ${hidePrice ? styles["without-price"] : ""
+                }`}
         >
             {tagsPreview && tagsPreview.tagIsActive && (
                 <div className={styles["tag-preview-wrapper"]}>

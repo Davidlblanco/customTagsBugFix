@@ -10,7 +10,7 @@ import { useProduct } from "vtex.product-context";
 
 const prodCredisimanIDs = ["401", "404", "405"];
 
-const qaCredisimanIDs = ["401", "403", "405"];
+const qaCredisimanIDs = ["402", "403", "405"];
 
 function getCredisimanPaymentsIds(account: string) {
     return account.includes("qa") ? qaCredisimanIDs : prodCredisimanIDs;

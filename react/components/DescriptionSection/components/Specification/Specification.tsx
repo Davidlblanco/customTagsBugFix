@@ -22,7 +22,7 @@ export const RenderSpecifications = (items: Item[] | undefined) => {
             </li>
         ));
     }
-    return <></>;
+    return [<></>];
 };
 
 const Specification = ({ title, items, showViewMore }: SpecificationProps) => {

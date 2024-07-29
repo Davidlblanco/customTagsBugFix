@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Description from "../components/Description/Description";
 import Specification, { Item } from "../components/Specification/Specification";
-import { calculateSizeLines } from "../components/utils/calculateSizeLines";
 import { ProductSpecification } from "vtex.product-context/react/ProductTypes";
 import style from "./styles.css";
+import calculateDescriptionSizeLines from "../components/utils/calculateDescriptionSizeLines";
+import useScreenSize from "../../../hooks/useScreenSize";
+import calculateSpecificationSizeLines from "../components/utils/calculateSpecificationSizeLines";
 
+const ANIMATION_TIME = 600;
 interface DescriptionSectionProps {
     titleDescription: string;
     titleSpecification: string;
@@ -26,27 +29,53 @@ const DesktopDescription = ({
     showViewMore,
     showAlls,
 }: DescriptionSectionProps) => {
-    const tableSize: number = allSpecifications?.length
-        ? allSpecifications?.length * 50
-        : 0 * 50;
-    const containerSize: number = calculateSizeLines(description as string);
-    const checkValues: number =
-        tableSize > containerSize ? tableSize + 115 : containerSize + 255;
+    const [maxHeight, setMaxHeight] = useState(0);
+    const ref = useRef<HTMLDivElement>(null);
+    const screenSize = useScreenSize();
+
+    useEffect(() => {
+        if (!ref.current || !showViewMore) return;
+
+        const timeout = setTimeout(() => {
+            setMaxHeight(ref.current?.clientHeight ?? 0);
+        }, ANIMATION_TIME);
+
+        return () => {
+            clearTimeout(timeout);
+        };
+    }, [
+        showViewMore,
+        ref?.current,
+        description,
+        allSpecifications,
+        screenSize.width,
+    ]);
+
+    useEffect(() => {
+        const baseHeight = Math.max(
+            calculateDescriptionSizeLines(description),
+            calculateSpecificationSizeLines(allSpecifications)
+        );
+        setMaxHeight(baseHeight);
+    }, [description, screenSize.width]);
+
     const isVisibleButton =
         (allSpecifications && allSpecifications?.length > 3) ||
         (description && description?.length > 253);
 
+    const activeMaxHeight = showViewMore ? maxHeight : 250;
+
     return (
         <div className={style.wrapDescriptionSection}>
             <div
-                style={{ height: showViewMore ? checkValues : 255 }}
+                style={{
+                    maxHeight: activeMaxHeight,
+                    transition: `transition: all ${ANIMATION_TIME}ms ease-in-out 0s`,
+                }}
                 className={`${style.wrapContent}`}
+                ref={ref}
             >
-                <Description
-                    title={titleDescription}
-                    content={description as string}
-                    showViewMore={showViewMore}
-                />
+                <Description title={titleDescription} content={description} />
                 <Specification
                     title={titleSpecification}
                     items={allSpecifications as Item[]}

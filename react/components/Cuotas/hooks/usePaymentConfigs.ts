@@ -15,6 +15,7 @@ export default function usePaymentConfigs(filters: PaymentConfigFilters) {
                 );
             }
         }
+
         return result;
     }, [availableConfigs, filters]);
 
