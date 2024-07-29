@@ -3,6 +3,7 @@ import useProductPayments from "../Cuotas/hooks/useProductPayments";
 import formatTags from "./utils/formatTags";
 
 import style from "./styles.css";
+import { TagCuotasValues } from "../Cuotas/Types/PaymentCustom";
 
 const TagsCuotas = () => {
     const { results } = useProductPayments({
@@ -11,13 +12,7 @@ const TagsCuotas = () => {
 
     const allValidTags = results
         .filter((payment) => payment.isValid)
-        .flatMap(
-            (payment) =>
-                payment.tagsCuotas?.find(
-                    (c) =>
-                        c.months.value === payment.bestInstallment?.installment
-                ) ?? []
-        )
+        .flatMap((payment) => filterHighestBankTag(payment.tagsCuotas))
         .filter(
             (tagsCuotas) => tagsCuotas !== null && tagsCuotas !== undefined
         );
@@ -45,5 +40,28 @@ const TagsCuotas = () => {
         </div>
     );
 };
+
+function filterHighestBankTag(data?: TagCuotasValues[] | null) {
+    if (!data) return [];
+    const resp: TagCuotasValues[] = [];
+
+    for (const item of data) {
+        const bankId = item.bank.id;
+        const itemInArrayIndex = resp.findIndex((x) => x.bank.id === bankId);
+
+        if (itemInArrayIndex === -1) {
+            resp.push(item);
+            continue;
+        }
+
+        const months = item.months.value;
+        const monthsInArray = resp[itemInArrayIndex].months.value;
+        if (months > monthsInArray) {
+            resp[itemInArrayIndex] = item;
+        }
+    }
+
+    return resp;
+}
 
 export default TagsCuotas;
