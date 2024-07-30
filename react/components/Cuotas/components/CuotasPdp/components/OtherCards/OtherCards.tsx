@@ -23,10 +23,11 @@ const OtherCards = ({ values }: OtherCardsProps) => {
     const { groupedTags, sortedInstallments } = processInstallments(otherResults);
 
     const isSingleItem = sortedInstallments.length === 1;
+    const minInstallments = sortedInstallments.some((item) => item >= 6);
 
     return (
         <>
-            {updateOthersTagsPreview && updateOthersTagsPreview.tagIsActive && (
+            {minInstallments && updateOthersTagsPreview && updateOthersTagsPreview.tagIsActive && (
                 <div className={`${style.containerOtherCards}`}>
                     <div className={`${style.wrapOtherCards}`}>
                         <h2 className={`${style.titleOtherCards}`}>
