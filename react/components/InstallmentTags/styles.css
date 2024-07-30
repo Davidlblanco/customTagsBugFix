@@ -1,8 +1,5 @@
 .installment-tags {
   display: flex;
   flex-wrap: wrap;
-}
-
-.installment-tags > div {
   gap: 5px;
 }
