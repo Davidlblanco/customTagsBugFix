@@ -1,5 +1,5 @@
 import { RuleResult } from "../Logic/PaymentCustomValidators";
-import { TagCuotasValues } from "./PaymentCustom";
+import { BankType, TagCuotasValues } from "./PaymentCustom";
 
 export type Results = {
     paymentId: string;
@@ -17,4 +17,5 @@ export type Results = {
         installmentPrice: number;
     } | null;
     tagsCuotas: TagCuotasValues[] | null;
+    BankTypes: BankType[];
 };

@@ -1,13 +1,14 @@
 import { GenericTagsFront } from "../../../Types/PaymentCustom";
+import { Results } from "../../../Types/Results";
+import { getValidatedTagsImgs } from "./getValidatedTagsImgs";
 
 export const getImages = (
     ids: string[],
     visibility: 'credisiman' | 'others' | 'all',
-    tagsPreview?: GenericTagsFront | null
+    tagsPreview?: GenericTagsFront | null,
+    results?: Results[]
 ): GenericTagsFront | null => {
     if (!tagsPreview) return null;
-
-    const { tagsImgs = [] } = tagsPreview;
 
     const imageCredisimanV3 = {
         paymentId: '402',
@@ -31,7 +32,8 @@ export const getImages = (
     }[] = [];
 
     if (visibility === "all") {
-        updateImages = [...tagsImgs];
+        const allValidatedTags = getValidatedTagsImgs(results, tagsPreview);
+        updateImages = [...allValidatedTags];
 
         if (ids.includes(imageCredisimanV3.paymentId)) {
             updateImages.unshift(imageCredisimanV3);
@@ -40,6 +42,7 @@ export const getImages = (
         if (ids.includes(imageCredisimanV2.paymentId)) {
             updateImages.unshift(imageCredisimanV2);
         }
+
     } else if (visibility === "credisiman") {
         updateImages = [];
 
@@ -51,7 +54,8 @@ export const getImages = (
             updateImages.unshift(imageCredisimanV2);
         }
     } else if (visibility === "others") {
-        updateImages = [...tagsImgs];
+        const othersValidatedTags = getValidatedTagsImgs(results, tagsPreview);
+        updateImages = [...othersValidatedTags];
     }
 
     return {

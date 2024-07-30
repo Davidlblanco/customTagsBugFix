@@ -24,9 +24,9 @@ export const credisimanInstallments = (
     const credisimanResults = results?.filter((result) => ids.includes(result.paymentId) && result.isValid);
     const otherResults = results?.filter((result) => !ids.includes(result.paymentId) && result.isValid);
 
-    const updateAllTagsPreview = getImages(ids, "all", tagsPreview);
+    const updateAllTagsPreview = getImages(ids, "all", tagsPreview, results);
     const updateCredisimanTagsPreview = getImages(ids, "credisiman", tagsPreview);
-    const updateOthersTagsPreview = getImages(ids, "others", tagsPreview);
+    const updateOthersTagsPreview = getImages(ids, "others", tagsPreview, results);
 
     return {
         credisimanResults,
@@ -36,3 +36,4 @@ export const credisimanInstallments = (
         updateOthersTagsPreview
     };
 }
+
