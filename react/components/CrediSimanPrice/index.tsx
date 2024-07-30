@@ -8,6 +8,7 @@ import GetPageType from "../../utils/getPageType";
 import { useRenderSession } from "vtex.session-client";
 import { handleCredisimanStyles } from "./utils/handleCredisimanStyles";
 import styles from "./CrediSimanPrice.css";
+import { calculateDiscountPercentage } from "./utils/calculateDiscontPercentage";
 
 interface CredisimanPriceProps {
   isShelf?: boolean;
@@ -91,7 +92,12 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
                 order: credisimanTagStyles?.image.position === 'right' ? 2 : 3,
               }}
             >
-              {productData?.discountValue}%
+              {calculateDiscountPercentage({ 
+                type: credisimanTagStyles?.percentageBasis,
+                totalWithCredisiman: productData?.totalWithDiscount,
+                listPrice: productContext?.product?.items[0].sellers[0].commertialOffer.ListPrice,
+                discount: productData.discountValue
+              })}
             </span>
           )}
 
