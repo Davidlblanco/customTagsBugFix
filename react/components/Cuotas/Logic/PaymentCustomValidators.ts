@@ -6,6 +6,7 @@ import {
     PaymentSellerCondition,
     RuleOperatorValue,
     RuleType,
+    TagCuotasValues,
 } from "../Types/PaymentCustom";
 import { SelectedProductInfo } from "../hooks/useSelectedProductInfo";
 
@@ -28,6 +29,7 @@ export function validateConfig(
         isValid: sellerValid && conditions?.some((x) => x?.valid), // At least one condition must be valid
         installments: conditions,
         bestInstallment: getBestInstallment(conditions),
+        tagsCuotas: filterBestTags(config?.tagCuotas, conditions)
     };
 }
 
@@ -306,6 +308,49 @@ function getBestInstallment(
         // Otherwise we return the previous one
         return prev;
     }, null);
+}
+
+
+function filterBestTags(tags: TagCuotasValues[] | undefined, conditions: any[]): TagCuotasValues[] | null {
+    if (!tags) return null;
+
+    const result: { [key: string]: TagCuotasValues } = {};
+    const now = new Date();
+    let maxMonthsItemWithoutBank: TagCuotasValues | null = null;
+
+    for (const tag of tags) {
+        const bankId = tag.bank?.id;
+        const active = tag?.active;
+        const monthsValue = tag?.months?.value;
+        const startDate = new Date(tag?.deadlineTag?.startDate as string);
+        const endDate = tag?.deadlineTag?.endDate ? new Date(tag.deadlineTag.endDate) : null;
+        const noEndDate = tag?.deadlineTag?.noEndDate;
+        if (active == true && now >= startDate && (noEndDate || (endDate && now <= endDate))) {
+            if (bankId) {
+                if (!result[bankId] || result[bankId].months.value < monthsValue) {
+
+                    const shouldIncludeTag = conditions.some((condition) => (tag.months.value == condition.installment) && condition.valid)
+                    
+                    if(shouldIncludeTag) result[bankId] = tag;
+                }
+            } else {
+                if (!maxMonthsItemWithoutBank || maxMonthsItemWithoutBank.months.value < monthsValue) {
+                    maxMonthsItemWithoutBank = tag;
+                }
+            }
+        }
+    }
+
+    const filteredResult = Object.values(result);
+
+    if (maxMonthsItemWithoutBank) {
+        filteredResult.push(maxMonthsItemWithoutBank);
+    }
+
+    // Sort the array by months in descending order
+    filteredResult?.sort((a, b) => b.months.value - a.months.value);
+
+    return filteredResult;
 }
 
 export interface RuleResult<T = unknown> {

@@ -161,8 +161,8 @@ html {
 }
 
 @media (max-width: 960px) {
-  .containerPagination {
-    
-    margin-left: 0px;
-}
+    .containerPagination {
+
+        margin-left: 0px;
+    }
 }

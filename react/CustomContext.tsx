@@ -4,7 +4,6 @@ import { GenericTagsContextProvider } from "./contexts/GenericTagsContext";
 import { CustomTagConfigsContextProvider } from "siman.custom-tags";
 
 export default function CustomContext({ children }) {
-    console.log("CustomContext", CustomTagConfigsContextProvider);
     return (
         <CustomTagConfigsContextProvider>
             <AvailablePaymentConfigsContextProvider>
