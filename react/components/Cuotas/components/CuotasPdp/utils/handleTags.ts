@@ -6,7 +6,7 @@ import { getImages } from "./getImages";
 import { Results } from "../../../Types/Results";
 import { GenericTagsFront } from "../../../Types/PaymentCustom";
 
-type CredisimanInstallments = {
+type handleTags = {
     credisimanResults: Results[];
     otherResults: Results[];
     updateAllTagsPreview?: GenericTagsFront | null;
@@ -14,10 +14,10 @@ type CredisimanInstallments = {
     updateOthersTagsPreview?: GenericTagsFront | null;
 }
 
-export const credisimanInstallments = (
+export const handleTags = (
     results: Results[],
     tagsPreview?: GenericTagsFront | null
-): CredisimanInstallments => {
+): handleTags => {
     const { account } = useRuntime();
     const ids = getCredisimanPaymentsIds(account);
 

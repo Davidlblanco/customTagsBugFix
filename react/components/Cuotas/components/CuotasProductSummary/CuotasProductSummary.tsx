@@ -2,7 +2,7 @@ import React from "react";
 
 import InstallmentDetails from "../InstallmentDetail/InstallmentDetails";
 import PaymentImages from "../PaymentImages/PaymentImages";
-import { credisimanInstallments } from "../CuotasPdp/utils/credisimanInstallments";
+import { handleTags } from "../CuotasPdp/utils/handleTags";
 
 import { GenericTagsFront } from "../../Types/PaymentCustom";
 import { BestInstallment } from "../../Types/BestInstallment";
@@ -21,7 +21,7 @@ const CuotasProductSummary = ({
     bestInstallment,
     results
 }: CuotasProductSummaryProps) => {
-    const { updateAllTagsPreview } = credisimanInstallments(results, tagsPreview);
+    const { updateAllTagsPreview } = handleTags(results, tagsPreview);
     return (
         <div className={`${styles.cuotasProductSummary}`}>
             {updateAllTagsPreview && updateAllTagsPreview.tagIsActive && (

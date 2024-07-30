@@ -5,7 +5,7 @@ import InstallmentDetails from "../InstallmentDetail/InstallmentDetails";
 import PaymentImages from "../PaymentImages/PaymentImages";
 import InformationDrawer from "./components/InformationDrawer/InformationDrawer";
 
-import { credisimanInstallments } from "./utils/credisimanInstallments";
+import { handleTags } from "./utils/handleTags";
 
 import { GenericTagsFront } from "../../Types/PaymentCustom";
 import { Results } from "../../Types/Results";
@@ -31,7 +31,7 @@ const CuotasPdp = ({
         updateAllTagsPreview,
         updateCredisimanTagsPreview,
         updateOthersTagsPreview
-    } = credisimanInstallments(results, tagsPreview);
+    } = handleTags(results, tagsPreview);
 
     return (
         <>
