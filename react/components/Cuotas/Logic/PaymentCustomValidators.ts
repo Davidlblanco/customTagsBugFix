@@ -28,6 +28,7 @@ export function validateConfig(
         isValid: sellerValid && conditions?.some((x) => x?.valid), // At least one condition must be valid
         installments: conditions,
         bestInstallment: getBestInstallment(conditions),
+        BankTypes: config.BankTypes
     };
 }
 

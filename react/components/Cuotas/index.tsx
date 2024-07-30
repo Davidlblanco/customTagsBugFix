@@ -55,6 +55,13 @@ const Cuotas: StorefrontFunctionComponent<Props> = ({ hidePrice }) => {
         return <></>;
     }
 
+    const validatedTagsImgs = tagsPreview?.tagsImgs?.filter(item => {
+        return results?.some(config => {
+            return item.paymentId === config.paymentId &&
+                config?.BankTypes?.some(bank => bank.name === item.id);
+        });
+    });
+
     return (
         <div
             className={`${styles.CuotasContainerNewpdp} ${hidePrice ? styles["without-price"] : ""
@@ -65,13 +72,13 @@ const Cuotas: StorefrontFunctionComponent<Props> = ({ hidePrice }) => {
                     <InstallmentDetails
                         installment={bestInstallment?.installment}
                         tag={{
-                            quantityImgs: tagsPreview?.tagsImgs?.length,
+                            quantityImgs: validatedTagsImgs.length,
                             styles: tagsPreview?.styles,
                         }}
                     />
 
                     <PaymentImages
-                        paymentsImages={tagsPreview?.tagsImgs}
+                        paymentsImages={validatedTagsImgs}
                         availablePayments={results.map((result) => ({
                             paymentId: result.paymentId,
                             isValid: result.isValid,

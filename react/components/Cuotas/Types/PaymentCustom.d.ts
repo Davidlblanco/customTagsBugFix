@@ -66,40 +66,39 @@ export interface ConditionStatement {
 }
 
 export interface BankType {
-   id: string;
-   value: string;
-   label: string;
+   id?: string;
+   name?: string;
 }
 
 interface TagsStyles {
-  backgroundColor?: string;
-  borderColor?: string;
-  borderRadius?: string;
-  color?: string;
-  fontSize?: string;
+   backgroundColor?: string;
+   borderColor?: string;
+   borderRadius?: string;
+   color?: string;
+   fontSize?: string;
 }
 
 interface GenericTagsApi {
-  tagIsActive: boolean;
-  tagsImgs: Array<{
-    paymentId: string
-    id: string;
-    value: string;
-    path: string;
-  }>;
-  styles: Array<{
-    id: string;
-    value: string;
-  }>;
+   tagIsActive: boolean;
+   tagsImgs: Array<{
+      paymentId: string
+      id: string;
+      value: string;
+      path: string;
+   }>;
+   styles: Array<{
+      id: string;
+      value: string;
+   }>;
 }
 
 interface GenericTagsFront {
-  tagIsActive: boolean;
-  tagsImgs: Array<{
-    paymentId: string
-    id: string;
-    value: string;
-    path: string;
-  }>;
-  styles: TagsStyles;
+   tagIsActive: boolean;
+   tagsImgs: Array<{
+      paymentId: string
+      id: string;
+      value: string;
+      path: string;
+   }>;
+   styles: TagsStyles;
 }
