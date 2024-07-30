@@ -117,5 +117,8 @@
     },
     "tags-cuotas": {
         "component": "TagsCuotas"
+    },
+    "installment-tags": {
+        "component": "InstallmentTags"
     }
 }

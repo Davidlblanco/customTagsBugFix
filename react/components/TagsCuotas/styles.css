@@ -1,36 +1,35 @@
 .containerTagsCuotas {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 6px;
-    padding-bottom: 0.5rem;
-    padding-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
+.tagsCuotas {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
-    & .tagsCuotas {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-
-        & .tagImg {
-            max-width: 20px;
-            max-height: 20px;
-        }
-    }
+.tagImg {
+  max-width: 20px;
+  max-height: 20px;
 }
 
 @media (max-width: 680px) {
-    .containerTagsCuotas {
-        gap: 4px !important;
-        padding-bottom: 0.3rem !important;
+  .containerTagsCuotas {
+    gap: 4px !important;
+    padding-bottom: 0.3rem !important;
+  }
 
-        & .tagsCuotas {
-            gap: 3px !important;
+  .tagsCuotas {
+    gap: 3px !important;
+  }
 
-            & .tagStyle {
-                font-size: 10px !important;
-                padding: 4px 4px !important;
-                min-width: 62px !important;
-            }
-        }
-    }
+  .tagStyle {
+    font-size: 10px !important;
+    padding: 4px 4px !important;
+    min-width: 62px !important;
+  }
 }
