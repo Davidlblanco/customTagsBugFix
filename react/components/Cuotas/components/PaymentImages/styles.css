@@ -9,13 +9,17 @@
 
   border-radius: 50%;
   border: 2px solid #fff;
-  
+
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   position: absolute;
   left: -10px;
 
   background-color: #F5F5F5;
+}
+
+.tag-preview-flag {
+  background-color: #F5F5F5 !important;
 }

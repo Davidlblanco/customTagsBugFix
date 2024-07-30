@@ -110,9 +110,8 @@ export interface ConditionStatement {
 }
 
 export interface BankType {
-   id: string;
-   value: string;
-   label: string;
+   id?: string;
+   name?: string;
 }
 
 export interface TagsStyles {

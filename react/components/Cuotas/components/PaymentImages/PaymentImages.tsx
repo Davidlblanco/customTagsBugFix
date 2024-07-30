@@ -6,7 +6,6 @@ import styles from "./styles.css";
 export default function PaymentImages({ paymentsImages, tagStyles, availablePayments }: Props) {
 
   const checksIfPaymentIsValid = paymentsImages?.map(img => {
-
     const isValid = availablePayments.find(pay => pay.paymentId === img.paymentId)?.isValid
 
     return {

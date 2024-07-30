@@ -29,7 +29,8 @@ export function validateConfig(
         isValid: sellerValid && conditions?.some((x) => x?.valid), // At least one condition must be valid
         installments: conditions,
         bestInstallment: getBestInstallment(conditions),
-        tagsCuotas: filterBestTags(config?.tagCuotas, conditions)
+        tagsCuotas: filterBestTags(config?.tagCuotas, conditions),
+        BankTypes: config.BankTypes
     };
 }
 
@@ -330,8 +331,8 @@ function filterBestTags(tags: TagCuotasValues[] | undefined, conditions: any[]):
                 if (!result[bankId] || result[bankId].months.value < monthsValue) {
 
                     const shouldIncludeTag = conditions.some((condition) => (tag.months.value == condition.installment) && condition.valid)
-                    
-                    if(shouldIncludeTag) result[bankId] = tag;
+
+                    if (shouldIncludeTag) result[bankId] = tag;
                 }
             } else {
                 if (!maxMonthsItemWithoutBank || maxMonthsItemWithoutBank.months.value < monthsValue) {
