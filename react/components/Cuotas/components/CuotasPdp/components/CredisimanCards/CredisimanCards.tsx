@@ -20,8 +20,11 @@ interface CredisimanCardsProps {
 }
 
 const CredisimanCards = ({ values }: CredisimanCardsProps) => {
+
     const { updateCredisimanTagsPreview, credisimanResults } = values;
-    const bestInstallment = getBestPayment(credisimanResults)?.bestInstallment;
+    const interestFreeCredisiman = credisimanResults?.filter((item) => item?.paymentId !== '405');
+    const bestInstallment = getBestPayment(interestFreeCredisiman)?.bestInstallment;
+
     return (
         <>
             {credisimanResults.length > 0 && updateCredisimanTagsPreview && updateCredisimanTagsPreview.tagIsActive && (
@@ -40,7 +43,9 @@ const CredisimanCards = ({ values }: CredisimanCardsProps) => {
                                 tagStyles={updateCredisimanTagsPreview?.styles}
                             />
                         </div>
-                        <InstallmentsWithInterest />
+                        <InstallmentsWithInterest
+                            credisimanResults={credisimanResults}
+                        />
                         <div className={`${style.wrapInfomartionCredisiman}`}>
                             <InstallmentDetailDrawer
                                 installment={bestInstallment?.installment}

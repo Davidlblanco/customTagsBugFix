@@ -33,6 +33,7 @@ const CuotasPdp = ({
         updateOthersTagsPreview
     } = handleTags(results, tagsPreview);
 
+
     return (
         <>
             {updateAllTagsPreview && updateAllTagsPreview.tagIsActive && (

@@ -2,15 +2,25 @@ import React from "react";
 
 import { FormattedCurrency } from "vtex.format-currency";
 import { useProduct } from "vtex.product-context";
-import { CommercialOffer, Installment } from "vtex.product-context/react/ProductTypes";
+
+import { getBestPayment } from "../../../../hooks/useProductPayments";
+import { getCredisimanFinancing } from "../../utils/getCredisimanFinancing";
+
+import { Results } from "../../../../Types/Results";
 
 import style from './styles.css';
 
-const InstallmentsWithInterest = () => {
+interface InstallmentsWithInterestProps {
+    credisimanResults: Results[];
+}
+
+const InstallmentsWithInterest = ({ credisimanResults }: InstallmentsWithInterestProps) => {
     const productSelected = useProduct()?.selectedItem;
     const productCommertialOffer = productSelected?.sellers?.[0]?.commertialOffer;
 
-    const maxInterestRate = getCredisimanFinancing(productCommertialOffer);
+    const credisiman = credisimanResults?.filter((item) => item?.paymentId === '405');
+    const bestInstallment = getBestPayment(credisiman ?? [])?.bestInstallment;
+    const maxInterestRate = getCredisimanFinancing(productCommertialOffer, bestInstallment?.installment);
 
     return (
         <>
@@ -49,50 +59,5 @@ const InstallmentsWithInterest = () => {
     )
 }
 
-function formatCredisimanFinancing(commercialOffer: CommercialOffer, maxInterestRate: Installment): Financing {
-    const totalValuePlusInterestRate = maxInterestRate?.TotalValuePlusInterestRate;
-    const price = commercialOffer?.Price;
-
-    const interestRate = price > 0 ? ((totalValuePlusInterestRate - price) / price) * 100 : 0;
-
-    const financing: Financing = {
-        interestRate: Math.round(interestRate * 100) / 100,
-        fullCredit: totalValuePlusInterestRate,
-        totalInterest: totalValuePlusInterestRate - price,
-        installmentValue: maxInterestRate.Value,
-        numberOfInstallments: maxInterestRate.NumberOfInstallments
-    };
-
-    return financing;
-}
-
-function getCredisimanFinancing(commercialOffer?: CommercialOffer): Financing | null {
-    const installments = commercialOffer?.Installments;
-    const credisimanInstallments = installments?.filter(installment =>
-        installment?.PaymentSystemName.includes("Credisiman") && installment.InterestRate !== null && installment.InterestRate > 0
-    ) ?? [];
-
-    let maxInterestRateInstallment: Installment | null = null;
-
-    for (const installment of credisimanInstallments) {
-        if (
-            maxInterestRateInstallment === null ||
-            installment.NumberOfInstallments > maxInterestRateInstallment.NumberOfInstallments ||
-            installment.InterestRate > maxInterestRateInstallment?.InterestRate
-        ) {
-            maxInterestRateInstallment = installment;
-        }
-    }
-
-    return maxInterestRateInstallment ? formatCredisimanFinancing(commercialOffer!, maxInterestRateInstallment) : null;
-}
-
-type Financing = {
-    interestRate: number;
-    fullCredit: number;
-    totalInterest: number;
-    installmentValue?: number;
-    numberOfInstallments?: number;
-}
 
 export default InstallmentsWithInterest;
