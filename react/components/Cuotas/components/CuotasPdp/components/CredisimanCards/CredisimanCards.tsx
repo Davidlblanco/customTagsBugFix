@@ -20,11 +20,10 @@ interface CredisimanCardsProps {
 }
 
 const CredisimanCards = ({ values }: CredisimanCardsProps) => {
-
     const { updateCredisimanTagsPreview, credisimanResults } = values;
     const interestFreeCredisiman = credisimanResults?.filter((item) => item?.paymentId !== '405');
     const bestInstallment = getBestPayment(interestFreeCredisiman)?.bestInstallment;
-
+    const interestFreeValid = bestInstallment ? true : false;
     return (
         <>
             {credisimanResults.length > 0 && updateCredisimanTagsPreview && updateCredisimanTagsPreview.tagIsActive && (
@@ -45,19 +44,24 @@ const CredisimanCards = ({ values }: CredisimanCardsProps) => {
                         </div>
                         <InstallmentsWithInterest
                             credisimanResults={credisimanResults}
+                            interestFreeValid={interestFreeValid}
                         />
-                        <div className={`${style.wrapInfomartionCredisiman}`}>
-                            <InstallmentDetailDrawer
-                                installment={bestInstallment?.installment}
-                                firstText="Hasta"
-                                secundText="cuotas sin intereses"
-                            />
-                            <div className={`${style.installmentPrice}`}>
-                                <FormattedCurrency
-                                    value={bestInstallment!.installmentPrice / 100}
+                        {interestFreeValid && (
+                            <div className={`${style.wrapInfomartionCredisiman}`}>
+                                <InstallmentDetailDrawer
+                                    installment={bestInstallment?.installment}
+                                    firstText="Hasta"
+                                    secundText="cuotas sin intereses"
                                 />
+                                {bestInstallment?.installmentPrice && (
+                                    <div className={`${style.installmentPrice}`}>
+                                        <FormattedCurrency
+                                            value={bestInstallment!.installmentPrice / 100}
+                                        />
+                                    </div>
+                                )}
                             </div>
-                        </div>
+                        )}
                     </div>
                 </div>
             )}

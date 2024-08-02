@@ -4,8 +4,6 @@ import { useAvailablePaymentConfigs } from "../../../contexts/AvailablePaymentCo
 export default function usePaymentConfigs(filters: PaymentConfigFilters) {
     const { availableConfigs, isLoading } = useAvailablePaymentConfigs();
 
-    console.log("availableConfigs", availableConfigs);
-
     const configs = useMemo(() => {
         if (!availableConfigs) return [];
 

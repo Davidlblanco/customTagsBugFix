@@ -12,20 +12,25 @@ import style from './styles.css';
 
 interface InstallmentsWithInterestProps {
     credisimanResults: Results[];
+    interestFreeValid: boolean;
 }
 
-const InstallmentsWithInterest = ({ credisimanResults }: InstallmentsWithInterestProps) => {
+const InstallmentsWithInterest = ({
+    credisimanResults,
+    interestFreeValid
+}: InstallmentsWithInterestProps) => {
     const productSelected = useProduct()?.selectedItem;
     const productCommertialOffer = productSelected?.sellers?.[0]?.commertialOffer;
-
     const credisiman = credisimanResults?.filter((item) => item?.paymentId === '405');
     const bestInstallment = getBestPayment(credisiman ?? [])?.bestInstallment;
     const maxInterestRate = getCredisimanFinancing(productCommertialOffer, bestInstallment?.installment);
-
     return (
         <>
-            {maxInterestRate && (
-                <div className={`${style.containerInstallmentsWithInterest}`}>
+            {maxInterestRate ? (
+                <div className={`
+                    ${style.containerInstallmentsWithInterest} 
+                    ${!interestFreeValid ? style.containerInstallmentsBorderNone : ''}
+                `}>
                     <div className={`${style.wrapInstallmentsWithInterest}`}>
                         <div className={`${style.wrapInstallments}`}>
                             <div className={`${style.installmentsInformation}`}>
@@ -39,25 +44,55 @@ const InstallmentsWithInterest = ({ credisimanResults }: InstallmentsWithInteres
                             </div>
                         </div>
                         <span className={`${style.installmentsWithInterestValues}`}>
-                            Total interés:
-                            <FormattedCurrency
-                                value={maxInterestRate?.totalInterest}
-                            />
-                            | Total crédito:
-                            <FormattedCurrency
-                                value={maxInterestRate?.fullCredit}
-                            />
+                            <div className={`${style.interestValues}`}>
+                                <span className={`${style.interestTitle}`}>Total interés:</span>
+                                <FormattedCurrency
+                                    value={maxInterestRate?.totalInterest}
+                                />
+                            </div>
+
+                            <span>|</span>
+
+                            <div className={`${style.interestValues}`}>
+                                <span className={`${style.interestTitle}`}>Total crédito:</span>
+                                <FormattedCurrency
+                                    value={maxInterestRate?.fullCredit}
+                                />
+                            </div>
                         </span>
                     </div>
-                    <div className={`${style.installmentsWithInterestInformation}`}>
+                    <div className={`
+                        ${style.installmentsWithInterestInformation} 
+                        ${!interestFreeValid ? style.interestInformationPaddingNone : ''}
+                    `}>
                         *{maxInterestRate?.interestRate}% tasa de interés efectiva anual. Sujeta a aprobación por
                         el departamento de créditos de Almacenes Siman S.A. de C.V.
+                    </div>
+                </div>
+            ) : (
+                <div className={`
+                    ${style.containerInstallmentsWithInterest} 
+                    ${!interestFreeValid ? style.containerInstallmentsBorderNone : ''}
+                `}>
+                    <div className={`${style.wrapInstallmentsWithInterest}`}>
+                        <div className={`${style.wrapInstallments}`}>
+                            <div className={`${style.installmentsInformation}`}>
+                                Hasta {bestInstallment?.installment} cuotas con financiamiento*
+                            </div>
+
+                            {bestInstallment?.installmentPrice && (
+                                <div className={`${style.installmentsWithInterestPrice}`}>
+                                    <FormattedCurrency
+                                        value={bestInstallment!.installmentPrice / 100}
+                                    />
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             )}
         </>
     )
 }
-
 
 export default InstallmentsWithInterest;

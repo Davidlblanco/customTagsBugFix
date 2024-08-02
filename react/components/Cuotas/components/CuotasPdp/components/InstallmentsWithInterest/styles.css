@@ -19,6 +19,8 @@
                 font-weight: 400;
                 line-height: 16.8px;
                 color: #000000;
+
+                max-width: 150px;
             }
 
             & .installmentsWithInterestPrice {
@@ -29,7 +31,6 @@
                 color: #1F1F1F;
             }
         }
-
 
         & .installmentsWithInterestValues {
             font-family: 'Roboto', sans-serif;
@@ -42,6 +43,15 @@
             display: flex;
             align-items: center;
             gap: 5px;
+
+            word-break: break-word;
+
+            & .interestValues {
+                & .interestTitle {
+                    white-space: nowrap;
+                    margin-right: 5px;
+                }
+            }
         }
     }
 
@@ -55,6 +65,10 @@
 
         padding: 16px;
     }
+
+    & .interestInformationPaddingNone {
+        padding-bottom: 0 !important;
+    }
 }
 
 @media(max-width: 780px) {
@@ -62,4 +76,8 @@
         gap: 0 !important;
         justify-content: space-between;
     }
+}
+
+.containerInstallmentsBorderNone {
+    border: none !important;
 }

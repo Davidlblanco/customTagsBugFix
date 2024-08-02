@@ -1,7 +1,6 @@
 import { CommercialOffer, Installment } from "vtex.product-context/react/ProductTypes";
 
 export function getCredisimanFinancing(commercialOffer?: CommercialOffer, bestInstallment?: number): Financing | null {
-
     const installments = commercialOffer?.Installments;
     const credisimanInstallments = installments?.filter(installment =>
         installment?.PaymentSystemName.includes("Credisiman") && installment.InterestRate !== null && installment.InterestRate > 0
@@ -33,7 +32,7 @@ function formatCredisimanFinancing(commercialOffer: CommercialOffer, maxInterest
     return financing;
 }
 
-type Financing = {
+export type Financing = {
     interestRate: number;
     fullCredit: number;
     totalInterest: number;

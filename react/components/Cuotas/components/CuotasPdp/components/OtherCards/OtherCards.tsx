@@ -19,12 +19,9 @@ interface OtherCardsProps {
 
 const OtherCards = ({ values }: OtherCardsProps) => {
     const { updateOthersTagsPreview, otherResults } = values;
-
     const { groupedTags, sortedInstallments } = processInstallments(otherResults);
-
     const isSingleItem = sortedInstallments.length === 1;
-    const minInstallments = sortedInstallments.some((item) => item >= 6);
-
+    const minInstallments = sortedInstallments?.some((item) => item >= 6);
     return (
         <>
             {minInstallments && updateOthersTagsPreview && updateOthersTagsPreview.tagIsActive && (
@@ -60,11 +57,13 @@ const OtherCards = ({ values }: OtherCardsProps) => {
                                             firstText="Hasta"
                                             secundText="cuotas sin intereses"
                                         />
-                                        <div className={`${style.installmentPrice}`}>
-                                            <FormattedCurrency
-                                                value={groupedTags[installment][0].bestInstallment!.installmentPrice / 100}
-                                            />
-                                        </div>
+                                        {groupedTags[installment][0]?.bestInstallment!.installmentPrice && (
+                                            <div className={`${style.installmentPrice}`}>
+                                                <FormattedCurrency
+                                                    value={groupedTags[installment][0]?.bestInstallment!.installmentPrice / 100}
+                                                />
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             );
@@ -78,7 +77,7 @@ const OtherCards = ({ values }: OtherCardsProps) => {
 
 const processInstallments = (otherResults: Results[]): ProcessInstallmentsResult => {
     const filteredBanks = otherResults?.filter(result =>
-        result?.installments.some(installment => installment.installment >= 6)
+        result?.installments?.some(installment => installment?.installment >= 6)
     );
 
     const bestInstallments = filteredBanks?.map(bank => {
