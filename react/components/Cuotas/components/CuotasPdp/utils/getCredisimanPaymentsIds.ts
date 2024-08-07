@@ -1,7 +1,10 @@
-export const getCredisimanPaymentsIds = (account: string): string[] => {
+import { useRuntime } from "vtex.render-runtime";
+
+export const getCredisimanPaymentsIds = (): string[] => {
+    const { account } = useRuntime();
     const countryAccount: string = account ?? "siman";
-    const prodCredisimanIDs = ["401", "404", "405"];
-    const qaCredisimanIDs = ["402", "403", "405"];
+    const prodCredisimanIDs = ["401", "404"];
+    const qaCredisimanIDs = ["402", "403"];
 
     return countryAccount.includes("qa") ? qaCredisimanIDs : prodCredisimanIDs;
 }

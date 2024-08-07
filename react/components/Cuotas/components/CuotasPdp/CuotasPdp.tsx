@@ -6,15 +6,13 @@ import PaymentImages from "../PaymentImages/PaymentImages";
 import InformationDrawer from "./components/InformationDrawer/InformationDrawer";
 
 import { handleTags } from "./utils/handleTags";
+import { bestInstallmentValues } from "./utils/bestInstallmentValues";
 
 import { GenericTagsFront } from "../../Types/PaymentCustom";
 import { Results } from "../../Types/Results";
 import { BestInstallment } from "../../Types/BestInstallment";
 
 import styles from './styles.css';
-import { useProduct } from "vtex.product-context";
-import { getCredisimanFinancing } from "./utils/getCredisimanFinancing";
-import { CommercialOffer } from "vtex.product-context/react/ProductTypes";
 
 interface CuotasPdpProps {
     tagsPreview?: GenericTagsFront | null;
@@ -27,8 +25,6 @@ const CuotasPdp = ({
     bestInstallment,
     results,
 }: CuotasPdpProps) => {
-    const productSelected = useProduct()?.selectedItem;
-    const productCommertialOffer = productSelected?.sellers?.[0]?.commertialOffer;
     const {
         credisimanResults,
         otherResults,
@@ -36,7 +32,7 @@ const CuotasPdp = ({
         updateCredisimanTagsPreview,
         updateOthersTagsPreview
     } = handleTags(results, tagsPreview);
-    const installmentValues = bestInstallmentValues(productCommertialOffer, bestInstallment, credisimanResults);
+    const installmentValues = bestInstallmentValues(bestInstallment, results);
     return (
         <>
             {updateAllTagsPreview && updateAllTagsPreview.tagIsActive && (
@@ -82,37 +78,7 @@ const CuotasPdp = ({
     )
 }
 
-const bestInstallmentValues = (
-    productCommertialOffer: CommercialOffer | undefined,
-    bestInstallment: BestInstallment,
-    credisimanResults: Results[]
-): BestInstallmentValues => {
-    const installment = bestInstallment?.installment;
-    const credisimanFinancing = getCredisimanFinancing(productCommertialOffer, installment);
-
-    let values: BestInstallmentValues = {};
-
-    const credisimanCuotas = credisimanResults?.find((item) => item.paymentId === '405' && item?.isValid);
-
-    if (credisimanFinancing && credisimanCuotas) {
-        values = {
-            installment: credisimanFinancing?.numberOfInstallments,
-            installmentPrice: parseFloat((credisimanFinancing?.installmentValue ?? 0 / 100).toFixed(2))
-        };
-    } else {
-        values = {
-            installment: bestInstallment?.installment,
-            installmentPrice: parseFloat(((bestInstallment?.installmentPrice ?? 0) / 100).toFixed(2))
-        };
-    }
-
-    return values;
-};
 
 
 export default CuotasPdp;
 
-type BestInstallmentValues = {
-    installment?: number;
-    installmentPrice?: number;
-};

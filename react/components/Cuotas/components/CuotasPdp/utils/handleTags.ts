@@ -1,25 +1,14 @@
-import { useRuntime } from "vtex.render-runtime";
-
 import { getCredisimanPaymentsIds } from "./getCredisimanPaymentsIds";
 import { getImages } from "./getImages";
 
 import { Results } from "../../../Types/Results";
 import { GenericTagsFront } from "../../../Types/PaymentCustom";
 
-type handleTags = {
-    credisimanResults: Results[];
-    otherResults: Results[];
-    updateAllTagsPreview?: GenericTagsFront | null;
-    updateCredisimanTagsPreview?: GenericTagsFront | null;
-    updateOthersTagsPreview?: GenericTagsFront | null;
-}
-
 export const handleTags = (
     results: Results[],
     tagsPreview?: GenericTagsFront | null
 ): handleTags => {
-    const { account } = useRuntime();
-    const ids = getCredisimanPaymentsIds(account);
+    const ids = getCredisimanPaymentsIds();
 
     const credisimanResults = results?.filter((result) => ids.includes(result.paymentId) && result.isValid);
     const otherResults = results?.filter((result) => !ids.includes(result.paymentId) && result.isValid);
@@ -36,3 +25,11 @@ export const handleTags = (
         updateOthersTagsPreview
     };
 };
+
+type handleTags = {
+    credisimanResults: Results[];
+    otherResults: Results[];
+    updateAllTagsPreview?: GenericTagsFront | null;
+    updateCredisimanTagsPreview?: GenericTagsFront | null;
+    updateOthersTagsPreview?: GenericTagsFront | null;
+}

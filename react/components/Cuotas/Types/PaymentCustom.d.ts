@@ -58,7 +58,6 @@ export type TagDesignValues = {
    [key: string]: string;
 }
 
-
 export interface PaymentMethodSettings {
    paymentType: PaymentMethodType;
    paymentId: string;
@@ -72,6 +71,7 @@ export type PaymentMethodType = "customForm" | "nativeForm" | "shortcutForm";
 export interface PaymentConfigCondition {
    id?: string;
    installment: number;
+   interestRate: boolean,
    rules: PaymentConfigRule[];
    rulesOperator: RulesOperator;
    deadLine: boolean;

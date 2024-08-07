@@ -1,9 +1,14 @@
 import { CommercialOffer, Installment } from "vtex.product-context/react/ProductTypes";
 
-export function getCredisimanFinancing(commercialOffer?: CommercialOffer, bestInstallment?: number): Financing | null {
+export function getCredisimanFinancing(
+    commercialOffer?: CommercialOffer,
+    bestInstallment?: number
+): Financing | null {
     const installments = commercialOffer?.Installments;
     const credisimanInstallments = installments?.filter(installment =>
-        installment?.PaymentSystemName.includes("Credisiman") && installment.InterestRate !== null && installment.InterestRate > 0
+        installment?.PaymentSystemName.includes("Credisiman") &&
+        installment?.InterestRate !== null &&
+        installment?.InterestRate > 0
     ) ?? [];
 
     for (const installment of credisimanInstallments) {
@@ -15,12 +20,13 @@ export function getCredisimanFinancing(commercialOffer?: CommercialOffer, bestIn
     return null;
 }
 
-function formatCredisimanFinancing(commercialOffer: CommercialOffer, maxInterestRate: Installment): Financing {
+function formatCredisimanFinancing(
+    commercialOffer: CommercialOffer,
+    maxInterestRate: Installment
+): Financing {
     const totalValuePlusInterestRate = maxInterestRate?.TotalValuePlusInterestRate;
     const price = commercialOffer?.Price;
-
     const interestRate = price > 0 ? ((totalValuePlusInterestRate - price) / price) * 100 : 0;
-
     const financing: Financing = {
         interestRate: Math.round(interestRate * 100) / 100,
         fullCredit: totalValuePlusInterestRate,

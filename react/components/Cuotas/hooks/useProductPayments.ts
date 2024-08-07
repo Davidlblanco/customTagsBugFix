@@ -29,22 +29,24 @@ export default function useProductPayments(props: Props) {
     };
 }
 
-export function getBestPayment(data: PaymentResult[]): PaymentResult | null {
+export function getBestPayment(data: PaymentResult[], interestRate?: boolean): PaymentResult | null {
     return data.reduce((prev: PaymentResult | null, current) => {
-        // If the current payment is not valid, we ignore it
-        if (!current.isValid || !current.bestInstallment) return prev;
+        if (!current.isValid || current.installments.length === 0) return prev;
 
-        // If there is no previous payment, we return the current one
-        if (!prev?.bestInstallment) return current;
+        const filteredInstallments = current.installments.filter(inst =>
+            interestRate === undefined || inst.interestRate === interestRate
+        );
 
-        // If the current payment has a higher installment, we return the current one
-        if (
-            current.bestInstallment.installment >
-            prev.bestInstallment.installment
-        )
-            return current;
+        if (filteredInstallments.length === 0) return prev;
 
-        // Otherwise we return the previous one
+        const bestInstallment = filteredInstallments.reduce((prevInst, currInst) =>
+            currInst.installment > prevInst.installment ? currInst : prevInst
+        );
+
+        if (!prev || bestInstallment.installment > (prev.bestInstallment?.installment || 0)) {
+            return { ...current, bestInstallment };
+        }
+
         return prev;
     }, null);
 }

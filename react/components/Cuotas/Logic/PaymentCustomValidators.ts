@@ -70,6 +70,7 @@ function validateCondition(
 
     return {
         installment: condition.installment,
+        interestRate: condition?.interestRate,
         valid,
         rulesResults,
         installmentPrice: productInfo.totalPrice / condition.installment,

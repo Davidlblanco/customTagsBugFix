@@ -21,8 +21,7 @@ interface CredisimanCardsProps {
 
 const CredisimanCards = ({ values }: CredisimanCardsProps) => {
     const { updateCredisimanTagsPreview, credisimanResults } = values;
-    const interestFreeCredisiman = credisimanResults?.filter((item) => item?.paymentId !== '405');
-    const bestInstallment = getBestPayment(interestFreeCredisiman)?.bestInstallment;
+    const bestInstallment = getBestPayment(credisimanResults, false)?.bestInstallment;
     const interestFreeValid = bestInstallment ? true : false;
     return (
         <>
