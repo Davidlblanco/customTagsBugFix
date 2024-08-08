@@ -6,7 +6,6 @@ import { GetCrediSimanProductData } from "./Logic/logic";
 // import CrediSimanImage from "../../utils/CredisimanImage/CredisimanImage";
 import GetPageType from "../../utils/getPageType";
 import { useRenderSession } from "vtex.session-client";
-import { handleCredisimanStyles } from "./utils/handleCredisimanStyles";
 import styles from "./CrediSimanPrice.css";
 import { calculateDiscountPercentage } from "./utils/calculateDiscontPercentage";
 
@@ -38,11 +37,8 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
                     productContext
                 );
 
-                if (result?.promotionId) {
-                  const styles = await handleCredisimanStyles(result?.promotionId)
-
-                  setCredisimanTagStyles(styles)
-                }
+                const styleSettings = result?.styles ?? null;
+                if (styleSettings) setCredisimanTagStyles(styleSettings);
 
                 setProductData(result);
             }

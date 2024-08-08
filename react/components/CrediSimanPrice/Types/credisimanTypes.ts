@@ -4,6 +4,7 @@ export type CredisimanType = {
    method: "percentage" | "nominal";
    skuId: string[];
    totalWithDiscount: number;
+   styles: ConfigGroup['configs']
 };
 
 export type PromotionParams = {
