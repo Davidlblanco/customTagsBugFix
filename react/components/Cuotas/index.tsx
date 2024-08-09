@@ -35,7 +35,7 @@ const Cuotas = ({ visibility }: CuotasProps) => {
     const canRender = bestInstallment?.installment &&
         bestInstallment.installment > 1;
 
-    if (!canRender || !tagsPreview?.tagIsActive) {
+    if (!canRender) {
         return <></>;
     }
 
@@ -60,7 +60,7 @@ const componentConfig: Record<VisibilityType, ComponentConfig> = {
 type VisibilityType = 'pdp' | 'product-summary';
 
 interface ComponentProps {
-    tagsPreview: GenericTagsFront;
+    tagsPreview?: GenericTagsFront | null;
     results: Results[];
     bestInstallment: BestInstallment;
 }

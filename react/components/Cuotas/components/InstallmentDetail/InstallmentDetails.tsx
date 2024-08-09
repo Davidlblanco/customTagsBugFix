@@ -6,7 +6,8 @@ interface InstallmentDetailsProps {
   installment?: number;
   tag: {
     styles: TagsStyles;
-    quantityImgs?: number;
+    tagIsActive?: boolean;
+    quantityImgs: number;
   }
   visibility: 'pdp' | 'product-summary';
 }
@@ -16,6 +17,7 @@ export default function InstallmentDetails({
   tag,
   visibility
 }: InstallmentDetailsProps) {
+  const verifyImages = tag?.quantityImgs > 0 && tag?.tagIsActive == true;
   return (
     <span
       className={`${visibility == "pdp" ? styles.tagPreviewInstallmentsPdp : styles.tagPreviewInstallmentsSummary}`}
@@ -28,7 +30,7 @@ export default function InstallmentDetails({
         <>Obtén hasta {installment} cuotas de</>
       )}
       {visibility === "product-summary" && (
-        <>{installment} cuotas con</>
+        <>{installment} cuotas {verifyImages ? 'con' : ''} </>
       )}
     </span>
   );

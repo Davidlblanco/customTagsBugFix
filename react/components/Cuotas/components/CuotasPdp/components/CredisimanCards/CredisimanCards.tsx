@@ -23,24 +23,29 @@ const CredisimanCards = ({ values }: CredisimanCardsProps) => {
     const { updateCredisimanTagsPreview, credisimanResults } = values;
     const bestInstallment = getBestPayment(credisimanResults, false)?.bestInstallment;
     const interestFreeValid = bestInstallment ? true : false;
+    const verifyTagsPreview = updateCredisimanTagsPreview &&
+        updateCredisimanTagsPreview?.tagIsActive &&
+        updateCredisimanTagsPreview?.tagsImgs?.length > 0;
     return (
         <>
-            {credisimanResults.length > 0 && updateCredisimanTagsPreview && updateCredisimanTagsPreview.tagIsActive && (
+            {credisimanResults.length > 0 && (
                 <div className={`${style.containerCredisimanCards}`}>
                     <div className={`${style.wrapCredisimanCards}`}>
                         <h2 className={`${style.titleCredisimanCards}`}>
                             Con tarjetas Credisiman
                         </h2>
-                        <div className={`${style.wrapPaymentImages}`}>
-                            <PaymentImages
-                                paymentsImages={updateCredisimanTagsPreview?.tagsImgs}
-                                availablePayments={credisimanResults?.map((result) => ({
-                                    paymentId: result.paymentId,
-                                    isValid: result.isValid,
-                                }))}
-                                tagStyles={updateCredisimanTagsPreview?.styles}
-                            />
-                        </div>
+                        {verifyTagsPreview && (
+                            <div className={`${style.wrapPaymentImages}`}>
+                                <PaymentImages
+                                    paymentsImages={updateCredisimanTagsPreview?.tagsImgs}
+                                    availablePayments={credisimanResults?.map((result) => ({
+                                        paymentId: result.paymentId,
+                                        isValid: result.isValid,
+                                    }))}
+                                    tagStyles={updateCredisimanTagsPreview?.styles}
+                                />
+                            </div>
+                        )}
                         <InstallmentsWithInterest
                             credisimanResults={credisimanResults}
                             interestFreeValid={interestFreeValid}

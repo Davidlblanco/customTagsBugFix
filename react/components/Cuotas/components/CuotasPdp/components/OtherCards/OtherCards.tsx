@@ -22,9 +22,12 @@ const OtherCards = ({ values }: OtherCardsProps) => {
     const { groupedTags, sortedInstallments } = processInstallments(otherResults);
     const isSingleItem = sortedInstallments.length === 1;
     const minInstallments = sortedInstallments?.some((item) => item >= 6);
+    const verifyTagsPreview = updateOthersTagsPreview &&
+        updateOthersTagsPreview?.tagIsActive &&
+        updateOthersTagsPreview?.tagsImgs?.length > 0;
     return (
         <>
-            {minInstallments && updateOthersTagsPreview && updateOthersTagsPreview.tagIsActive && (
+            {minInstallments && (
                 <div className={`${style.containerOtherCards}`}>
                     <div className={`${style.wrapOtherCards}`}>
                         <h2 className={`${style.titleOtherCards}`}>
@@ -41,16 +44,19 @@ const OtherCards = ({ values }: OtherCardsProps) => {
                                         ${isSingleItem ? style.singleItem : ''}
                                     `}
                                 >
-                                    <div className={`${style.wrapPaymentImages}`}>
-                                        <PaymentImages
-                                            paymentsImages={updateOthersTagsPreview?.tagsImgs}
-                                            availablePayments={groupedTags[installment].map((bank) => ({
-                                                paymentId: bank.paymentId,
-                                                isValid: bank.isValid,
-                                            }))}
-                                            tagStyles={updateOthersTagsPreview?.styles}
-                                        />
-                                    </div>
+                                    {verifyTagsPreview && (
+                                        <div className={`${style.wrapPaymentImages}`}>
+                                            <PaymentImages
+                                                paymentsImages={updateOthersTagsPreview?.tagsImgs}
+                                                availablePayments={groupedTags[installment].map((bank) => ({
+                                                    paymentId: bank.paymentId,
+                                                    isValid: bank.isValid,
+                                                }))}
+                                                tagStyles={updateOthersTagsPreview?.styles}
+                                            />
+                                        </div>
+                                    )}
+
                                     <div className={`${style.wrapInfomartionOther}`}>
                                         <InstallmentDetailDrawer
                                             installment={installment}

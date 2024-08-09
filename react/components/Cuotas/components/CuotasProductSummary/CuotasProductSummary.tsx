@@ -22,26 +22,32 @@ const CuotasProductSummary = ({
     results
 }: CuotasProductSummaryProps) => {
     const { updateAllTagsPreview } = handleTags(results, tagsPreview);
+    const verifyTagsPreview = updateAllTagsPreview &&
+        updateAllTagsPreview?.tagIsActive &&
+        updateAllTagsPreview?.tagsImgs?.length > 0;
     return (
         <div className={`${styles.cuotasProductSummary}`}>
-            {updateAllTagsPreview && updateAllTagsPreview.tagIsActive && (
+            {results.length > 0 && (
                 <div className={`${styles.tagPreviewWrapper}`}>
                     <InstallmentDetails
                         installment={bestInstallment?.installment}
                         tag={{
-                            quantityImgs: updateAllTagsPreview?.tagsImgs?.length,
-                            styles: updateAllTagsPreview.styles,
+                            quantityImgs: updateAllTagsPreview?.tagsImgs?.length ?? 0,
+                            tagIsActive: updateAllTagsPreview?.tagIsActive,
+                            styles: updateAllTagsPreview?.styles ?? {},
                         }}
                         visibility={'product-summary'}
                     />
-                    <PaymentImages
-                        paymentsImages={updateAllTagsPreview?.tagsImgs}
-                        availablePayments={results?.map((result) => ({
-                            paymentId: result.paymentId,
-                            isValid: result.isValid,
-                        }))}
-                        tagStyles={updateAllTagsPreview?.styles}
-                    />
+                    {verifyTagsPreview && (
+                        <PaymentImages
+                            paymentsImages={updateAllTagsPreview?.tagsImgs}
+                            availablePayments={results?.map((result) => ({
+                                paymentId: result.paymentId,
+                                isValid: result.isValid,
+                            }))}
+                            tagStyles={updateAllTagsPreview?.styles}
+                        />
+                    )}
                 </div>
             )}
         </div>
