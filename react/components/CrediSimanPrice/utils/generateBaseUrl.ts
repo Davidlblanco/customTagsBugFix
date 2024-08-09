@@ -1,6 +1,8 @@
-export default function generateBaseUrl(account: string) {
-  const isQaEnvironment = account.includes("qa");
-  const host = isQaEnvironment ? "simanqa" : "siman";
+export default function generateBaseUrl(account: string, workspace: string) {
+  let host = `${workspace ?? ""}--${account}`;
+  const isSVAccount = account == "siman" || account == "simanqa";
+
+  if (!isSVAccount) host = account.includes("qa") ? "simanqa" : "siman";
 
   return `https://${host}.myvtex.com`;
 }

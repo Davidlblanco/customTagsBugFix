@@ -29,8 +29,8 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
 
     const sallesChannelId = session?.namespaces?.store?.channel?.value;
 
-    const { account } = useRuntime();
-    const baseUrl = generateBaseUrl(account);
+    const { account, workspace } = useRuntime();
+    const baseUrl = generateBaseUrl(account, workspace);
 
     useEffect(() => {
         const fetchData = async () => {
