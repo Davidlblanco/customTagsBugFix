@@ -12,6 +12,7 @@ export type PromotionParams = {
    skuId: string | undefined;
    channelId: string | undefined;
    sellerId?: string | undefined;
+   baseUrl: string | undefined;
 };
 
 export type CredisimanStorage = {

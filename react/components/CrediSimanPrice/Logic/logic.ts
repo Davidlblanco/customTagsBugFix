@@ -10,7 +10,8 @@ export const GetCrediSimanProductData = async (
     productId: string | undefined,
     skuId: string | undefined,
     channelId: string | undefined,
-    productContext: Partial<ProductContextState> | undefined
+    productContext: Partial<ProductContextState> | undefined,
+    baseUrl: string | undefined,
 ): Promise<CredisimanType | undefined> => {
     while (mutex) {
         await new Promise((resolve) => setTimeout(resolve, 10));
@@ -28,7 +29,8 @@ export const GetCrediSimanProductData = async (
             productId,
             skuId,
             channelId,
-            sellerId
+            sellerId,
+            baseUrl
         });
 
         if (newProductData) {
@@ -78,12 +80,14 @@ const fetchProductData = async ({
     productId,
     skuId,
     channelId,
-    sellerId
+    sellerId,
+    baseUrl
 }: {
     productId: string | undefined;
     skuId: string | undefined;
     channelId: string | undefined;
     sellerId: string | undefined;
+    baseUrl: string | undefined;
 }) => {
-    return await simulation({ productId, skuId, channelId, sellerId });
+    return await simulation({ productId, skuId, channelId, sellerId, baseUrl });
 };
