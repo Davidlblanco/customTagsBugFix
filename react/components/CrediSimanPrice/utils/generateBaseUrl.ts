@@ -1,8 +1,7 @@
 export default function generateBaseUrl(account: string, workspace: string) {
-  let host = `${workspace ?? ""}--${account}`;
-  const isSVAccount = account == "siman" || account == "simanqa";
+  let host = `${workspace}--${account}`;
 
-  if (!isSVAccount) host = account.includes("qa") ? "simanqa" : "siman";
+  if (!workspace) host = `${account}`;
 
   return `https://${host}.myvtex.com`;
 }
