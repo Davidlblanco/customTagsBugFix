@@ -36,7 +36,6 @@
             "$ref": "app:siman.m3-custom#/definitions/CustomHeader"
         }
     },
-
     "cadastra-sizes-table": {
         "component": "SizesTable"
     },
@@ -118,5 +117,11 @@
     },
     "toggle-theme": {
         "component": "ToggleTheme"
+    },
+    "tags-cuotas": {
+        "component": "TagsCuotas"
+    },
+    "installment-tags": {
+        "component": "InstallmentTags"
     }
 }

@@ -23,9 +23,6 @@ const HeaderContextProvider = (props: ContextProps) => {
     useEffect(() => {
         const fetchBody = async () => {
             const body: Element = await waitForSingleEl("body");
-
-            console.log(body);
-
             if (body?.classList.contains("vtex-dark")) {
                 setIsDarkMode(true);
             } else {
@@ -35,8 +32,6 @@ const HeaderContextProvider = (props: ContextProps) => {
 
         fetchBody();
     }, []);
-
-    console.log(isDarkMode, "isDarkMode");
 
     const ctx: HeaderContextProps = useMemo(
         () => ({

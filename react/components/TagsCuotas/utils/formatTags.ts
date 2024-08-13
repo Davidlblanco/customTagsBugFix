@@ -1,0 +1,23 @@
+import { TagCuotasValues } from "../../Cuotas/Types/PaymentCustom";
+import { CSSProperties } from "react";
+
+const formatTags = (tags: TagCuotasValues[] | undefined | null) => {
+    return tags?.map((value) => {
+        const { tag } = value;
+        const tagStyle: CSSProperties = {
+            borderStyle: "solid",
+            borderWidth: "1px",
+            padding: "5px 6px",
+            lineHeight: "initial",
+            fontWeight: 700,
+            fontFamily: "Roboto",
+            minWidth: "68px",
+            textAlign: "center",
+            fontSize: "12px",
+            ...tag?.tagDesign,
+        };
+        return { tag, tagStyle };
+    });
+};
+
+export default formatTags;

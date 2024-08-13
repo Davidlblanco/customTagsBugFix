@@ -5,9 +5,9 @@
             "title": "admin/editor.image-list.images.image.title",
             "properties": {
                 "hidePrice": {
-                  "title": "ocultar el precio",
-                  "type": "boolean",
-                  "default": false
+                    "title": "ocultar el precio",
+                    "type": "boolean",
+                    "default": false
                 }
             }
         },
@@ -51,125 +51,125 @@
             }
         },
         "InfoCardCustom": {
-            "type":"object",
-            "properties":{ 
-               "cardLink":{
-                "title":"Card - Link",
-                "description":"Link that involves all content",
-                "type":"string",
-                "default":"/"
+            "type": "object",
+            "properties": {
+                "cardLink": {
+                    "title": "Card - Link",
+                    "description": "Link that involves all content",
+                    "type": "string",
+                    "default": "/"
                 },
-               "isFullMode":{
-                  "title":"Is Full Mode?",
-                  "type":"boolean",
-                  "default":true
-               },
-               "fullModeTextWidth":{
-                  "title":"Full Mode - Text width",
-                  "description":"percentage or pixel (works full mode off)",
-                  "type":"string",
-                  "default":"100%"
-               },
-               "fullModeImgWidth":{
-                  "title":"Full Mode - Image width",
-                  "description":"percentage or pixel (works full mode off)",
-                  "type":"string",
-                  "default":"100%"
-               },
-               "imageDesktop":{
-                  "title":"Image - Desktop",
-                  "$ref":"app:vtex.native-types#/definitions/url",
-                  "default":"",
-                  "widget":{
-                     "ui:widget":"image-uploader"
-                  }
-               },
-               "imageMobile":{
-                  "title":"Image Mobile",
-                  "$ref":"app:vtex.native-types#/definitions/url",
-                  "default":"",
-                  "widget":{
-                     "ui:widget":"image-uploader"
-                  }
-               },
-               "backgroundColor":{
-                  "title":"Background - Color",
-                  "type":"string",
-                  "default":"",
-                  "widget":{
-                     "ui:widget":"color"
-                  }
-               },
-               "titleText":{
-                "title":"Title - Text",
-                "type":"string",
-                "default":""
-               },
-               "titleSize":{
-                  "title":"Title - Size ",
-                  "type":"string",
-                  "description":"sizeDesktop-sizeMobile (64px-16px)",
-                  "default":"48px-16px"
-               },
-               "titleMargin":{
-                  "title":"Title - Margin Bottom ",
-                  "type":"string",
-                  "description":"pixelDesktop-pixelMobile (ex: 18px-12px)",
-                  "default":"32px-16px"
-               },
-               "subtitleText":{
-                  "title":"Subtitle - Text",
-                  "type":"string",
-                  "default":""
-               },
-               "subtitleSize":{
-                  "title":"Subtitle - Size",
-                  "type":"string",
-                  "description":"sizeDesktop-sizeMobile (32px-8px)",
-                  "default":"32px-8px"
-               },
-               "titlesColor":{
-                    "title":"Title/SubTitle - Color",
-                    "type":"string",
-                    "default":"",
-                    "widget":{
-                    "ui:widget":"color"
+                "isFullMode": {
+                    "title": "Is Full Mode?",
+                    "type": "boolean",
+                    "default": true
+                },
+                "fullModeTextWidth": {
+                    "title": "Full Mode - Text width",
+                    "description": "percentage or pixel (works full mode off)",
+                    "type": "string",
+                    "default": "100%"
+                },
+                "fullModeImgWidth": {
+                    "title": "Full Mode - Image width",
+                    "description": "percentage or pixel (works full mode off)",
+                    "type": "string",
+                    "default": "100%"
+                },
+                "imageDesktop": {
+                    "title": "Image - Desktop",
+                    "$ref": "app:vtex.native-types#/definitions/url",
+                    "default": "",
+                    "widget": {
+                        "ui:widget": "image-uploader"
                     }
-               },
-               "btnText":{
-                  "title":"Button - Text",
-                  "type":"string",
-                  "default":""
-               },
-               "btnLink":{
-                  "title":"Button - Link",
-                  "type":"string",
-                  "default":"/"
-               },
-               "btnColor":{
-                  "title":"Button - Color",
-                  "type":"string",
-                  "default":"",
-                  "widget":{
-                     "ui:widget":"color"
-                  }
-               },
-               "isButton":{
-                "title":"Is button?",
-                "description": "Defines whether it is a Button or a Link.",
-                "type":"boolean",
-                "default":false
                 },
-               "btnBackground":{
-                  "title":"Button - Background",
-                  "type":"string",
-                  "default":"",
-                  "widget":{
-                     "ui:widget":"color"
-                  }
-               }
+                "imageMobile": {
+                    "title": "Image Mobile",
+                    "$ref": "app:vtex.native-types#/definitions/url",
+                    "default": "",
+                    "widget": {
+                        "ui:widget": "image-uploader"
+                    }
+                },
+                "backgroundColor": {
+                    "title": "Background - Color",
+                    "type": "string",
+                    "default": "",
+                    "widget": {
+                        "ui:widget": "color"
+                    }
+                },
+                "titleText": {
+                    "title": "Title - Text",
+                    "type": "string",
+                    "default": ""
+                },
+                "titleSize": {
+                    "title": "Title - Size ",
+                    "type": "string",
+                    "description": "sizeDesktop-sizeMobile (64px-16px)",
+                    "default": "48px-16px"
+                },
+                "titleMargin": {
+                    "title": "Title - Margin Bottom ",
+                    "type": "string",
+                    "description": "pixelDesktop-pixelMobile (ex: 18px-12px)",
+                    "default": "32px-16px"
+                },
+                "subtitleText": {
+                    "title": "Subtitle - Text",
+                    "type": "string",
+                    "default": ""
+                },
+                "subtitleSize": {
+                    "title": "Subtitle - Size",
+                    "type": "string",
+                    "description": "sizeDesktop-sizeMobile (32px-8px)",
+                    "default": "32px-8px"
+                },
+                "titlesColor": {
+                    "title": "Title/SubTitle - Color",
+                    "type": "string",
+                    "default": "",
+                    "widget": {
+                        "ui:widget": "color"
+                    }
+                },
+                "btnText": {
+                    "title": "Button - Text",
+                    "type": "string",
+                    "default": ""
+                },
+                "btnLink": {
+                    "title": "Button - Link",
+                    "type": "string",
+                    "default": "/"
+                },
+                "btnColor": {
+                    "title": "Button - Color",
+                    "type": "string",
+                    "default": "",
+                    "widget": {
+                        "ui:widget": "color"
+                    }
+                },
+                "isButton": {
+                    "title": "Is button?",
+                    "description": "Defines whether it is a Button or a Link.",
+                    "type": "boolean",
+                    "default": false
+                },
+                "btnBackground": {
+                    "title": "Button - Background",
+                    "type": "string",
+                    "default": "",
+                    "widget": {
+                        "ui:widget": "color"
+                    }
+                }
             }
-         },
+        },
         "CustomHeader": {
             "type": "object",
             "title": "Header",
