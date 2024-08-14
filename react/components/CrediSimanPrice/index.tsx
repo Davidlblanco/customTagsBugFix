@@ -68,6 +68,7 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
           className={styles['tag-preview__credisiman']}
           style={{
             order: credisimanTagStyles?.viewFields.text.position === 'right' ? 1 : 2,
+            fontSize: `${credisimanTagStyles?.tagStyles.fontSize}`,
           }}
         >
           {credisimanTagStyles?.viewFields.price.active && (
@@ -75,7 +76,7 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
               className={styles['tag-preview__credisiman-price']}
               style={{
                 color: credisimanTagStyles?.viewFields.price.color,
-                fontSize: `${credisimanTagStyles?.tagStyles.fontSize}px`,
+                fontSize: `1em`,
                 order: credisimanTagStyles?.image.position === 'right' ? 1 : 2,
               }}
             >
@@ -92,6 +93,7 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
                 color: credisimanTagStyles?.tagStyles.color,
                 backgroundColor: credisimanTagStyles?.tagStyles.backgroundColor,
                 order: credisimanTagStyles?.image.position === 'right' ? 2 : 3,
+                fontSize: `clamp(12px, 0.5em, 24px)`,
               }}
             >
               {calculateDiscountPercentage({ 
@@ -126,6 +128,7 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
             style={{
               color: credisimanTagStyles?.viewFields.text.color,
               order: credisimanTagStyles?.viewFields.text.position === 'right' ? 2 : 1,
+              fontSize: `${credisimanTagStyles?.tagStyles.fontSize}`,
             }}
           >
             {credisimanTagStyles?.viewFields.text.phrase}
