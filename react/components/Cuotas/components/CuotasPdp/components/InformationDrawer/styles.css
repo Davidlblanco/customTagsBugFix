@@ -1,5 +1,5 @@
 :global(.siman-m3-custom-1-x-drawer) {
-    max-height: 96.5%;
+    max-height: 100vh;
 
     :global(.siman-m3-custom-1-x-drawerContent) {
         & :global(.siman-m3-custom-1-x-drawerHeader) {

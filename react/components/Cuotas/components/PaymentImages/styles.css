@@ -23,3 +23,7 @@
 .tag-preview-flag {
   background-color: #F5F5F5 !important;
 }
+
+.tag-preview-flag.more {
+  font-size: 14px !important;
+}

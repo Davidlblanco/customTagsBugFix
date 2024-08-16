@@ -3,7 +3,7 @@ import { GenericTagsApi, TagsStyles } from "../../Types/PaymentCustom";
 
 import styles from "./styles.css";
 
-export default function PaymentImages({ paymentsImages, tagStyles, availablePayments }: Props) {
+export default function PaymentImages({ paymentsImages, tagStyles, availablePayments, isPdp }: Props) {
 
   const checksIfPaymentIsValid = paymentsImages?.map(img => {
     const isValid = availablePayments.find(pay => pay.paymentId === img.paymentId)?.isValid
@@ -15,6 +15,8 @@ export default function PaymentImages({ paymentsImages, tagStyles, availablePaym
 
   }).filter(img => img.isValid)
 
+  if (!checksIfPaymentIsValid) return <></>
+
   return (
     <div
       className={styles['tag-preview-flag-container']}
@@ -22,7 +24,7 @@ export default function PaymentImages({ paymentsImages, tagStyles, availablePaym
         width: `calc(18px * ${checksIfPaymentIsValid?.length})`,
       }}
     >
-      {checksIfPaymentIsValid?.map((img, i) => {
+      {checksIfPaymentIsValid.slice(0, isPdp ? checksIfPaymentIsValid.length : 3).map((img, i) => {
         const left = i === 0 ? '-5px' : `${(20 * i) - (7 + i)}px`;
 
         return (
@@ -49,6 +51,19 @@ export default function PaymentImages({ paymentsImages, tagStyles, availablePaym
           </span>
         )
       })}
+
+      {checksIfPaymentIsValid.length > 3 && !isPdp && (
+        <span
+          className={`${styles['tag-preview-flag']} ${styles.more}`}
+          style={{
+            zIndex: Math.round(checksIfPaymentIsValid?.length * 10 / 3),
+            left: `54px`,
+            ...tagStyles,
+          }}
+        >
+          +{checksIfPaymentIsValid.length - 3}
+        </span>
+      )}
     </div>
   );
 }
@@ -60,6 +75,7 @@ interface Props {
     paymentId: string;
     isValid: boolean;
   }[]
+  isPdp?: boolean
 }
 
 export type PaymentsImages = {
