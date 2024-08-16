@@ -26,6 +26,7 @@ const CredisimanCards = ({ values }: CredisimanCardsProps) => {
     const verifyTagsPreview = updateCredisimanTagsPreview &&
         updateCredisimanTagsPreview?.tagIsActive &&
         updateCredisimanTagsPreview?.tagsImgs?.length > 0;
+
     return (
         <>
             {credisimanResults.length > 0 && (
@@ -43,6 +44,8 @@ const CredisimanCards = ({ values }: CredisimanCardsProps) => {
                                         isValid: result.isValid,
                                     }))}
                                     tagStyles={updateCredisimanTagsPreview?.styles}
+                                    isPdp={true}
+                                    results={credisimanResults}
                                 />
                             </div>
                         )}

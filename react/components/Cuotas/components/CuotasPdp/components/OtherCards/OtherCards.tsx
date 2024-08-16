@@ -52,6 +52,7 @@ const OtherCards = ({ values }: OtherCardsProps) => {
                                                     paymentId: bank.paymentId,
                                                     isValid: bank.isValid,
                                                 }))}
+                                                isPdp={true}
                                                 tagStyles={updateOthersTagsPreview?.styles}
                                             />
                                         </div>

@@ -3,7 +3,6 @@ import { Results } from "../../../Types/Results";
 import { getValidatedTagsImgs } from "./getValidatedTagsImgs";
 
 export const getImages = (
-    ids: string[],
     visibility: 'credisiman' | 'others' | 'all',
     tagsPreview?: GenericTagsFront | null,
     results?: Results[]
@@ -31,32 +30,17 @@ export const getImages = (
         path: string;
     }[] = [];
 
-    const isValidCredisimanV3 = isValidCredisiman(results, imageCredisimanV3.paymentId);
-    const isValidCredisimanV2 = isValidCredisiman(results, imageCredisimanV2.paymentId);
-
     if (visibility === "all") {
         const allValidatedTags = getValidatedTagsImgs(results, tagsPreview);
         updateImages = [...allValidatedTags];
 
-        if (isValidCredisimanV3 && ids.includes(imageCredisimanV3.paymentId)) {
-            updateImages.unshift(imageCredisimanV3);
-        }
-
-        if (isValidCredisimanV2 && ids.includes(imageCredisimanV2.paymentId)) {
-            updateImages.unshift(imageCredisimanV2);
-        }
-
+        updateImages.unshift(imageCredisimanV3);
+        updateImages.unshift(imageCredisimanV2);
     } else if (visibility === "credisiman") {
         updateImages = [];
 
-        if (isValidCredisimanV3 && ids.includes(imageCredisimanV3.paymentId)) {
-            updateImages.unshift(imageCredisimanV3);
-        }
-
-        if (isValidCredisimanV2 && ids.includes(imageCredisimanV2.paymentId)) {
-            updateImages.unshift(imageCredisimanV2);
-        }
-
+        updateImages.unshift(imageCredisimanV3);
+        updateImages.unshift(imageCredisimanV2);
     } else if (visibility === "others") {
         const othersValidatedTags = getValidatedTagsImgs(results, tagsPreview);
         updateImages = [...othersValidatedTags];
@@ -67,8 +51,3 @@ export const getImages = (
         tagsImgs: updateImages
     };
 };
-
-const isValidCredisiman = (results: Results[] | undefined, paymentId: string) => {
-    const isValid = results?.find((item) => item.paymentId === paymentId)?.isValid;
-    return isValid;
-}

@@ -13,9 +13,9 @@ export const handleTags = (
     const credisimanResults = results?.filter((result) => ids.includes(result.paymentId) && result.isValid);
     const otherResults = results?.filter((result) => !ids.includes(result.paymentId) && result.isValid);
 
-    const updateAllTagsPreview = getImages(ids, "all", tagsPreview, results);
-    const updateCredisimanTagsPreview = getImages(ids, "credisiman", tagsPreview, results);
-    const updateOthersTagsPreview = getImages(ids, "others", tagsPreview, results);
+    const updateAllTagsPreview = getImages("all", tagsPreview, results);
+    const updateCredisimanTagsPreview = getImages("credisiman", tagsPreview, results);
+    const updateOthersTagsPreview = getImages("others", tagsPreview, results);
 
     return {
         credisimanResults,

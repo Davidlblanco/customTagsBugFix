@@ -46,6 +46,7 @@ const CuotasProductSummary = ({
                                 isValid: result.isValid,
                             }))}
                             tagStyles={updateAllTagsPreview?.styles}
+                            results={results}
                         />
                     )}
                 </div>

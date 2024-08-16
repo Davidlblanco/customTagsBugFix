@@ -67,7 +67,8 @@ const CuotasPdp = ({
                                         isValid: result.isValid,
                                     }))}
                                     tagStyles={updateAllTagsPreview?.styles}
-                                    isPdp
+                                    results={results}
+                                    isPdp={true}
                                 />
                             </div>
                         ) : (

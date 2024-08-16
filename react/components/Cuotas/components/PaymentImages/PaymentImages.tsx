@@ -2,18 +2,37 @@ import React from "react";
 import { GenericTagsApi, TagsStyles } from "../../Types/PaymentCustom";
 
 import styles from "./styles.css";
+import { getBestPayment } from "../../hooks/useProductPayments";
+import { Results } from "../../Types/Results";
 
-export default function PaymentImages({ paymentsImages, tagStyles, availablePayments, isPdp }: Props) {
+export default function PaymentImages({
+  paymentsImages,
+  tagStyles,
+  availablePayments,
+  isPdp,
+  results
+}: Props) {
+  const resultsCredisiman = results?.filter((item) => item.paymentId === '403' || item.paymentId === '402') ?? [];
+  const bestInstallmentCredisimanFalse = getBestPayment(resultsCredisiman, false)?.bestInstallment;
+  const bestInstallmentCredisimanTrue = getBestPayment(resultsCredisiman, true)?.bestInstallment;
 
-  const checksIfPaymentIsValid = paymentsImages?.map(img => {
-    const isValid = availablePayments.find(pay => pay.paymentId === img.paymentId)?.isValid
+  const filteredCredisimanImages = paymentsImages?.filter((img) =>
+    (img.paymentId === '402' && bestInstallmentCredisimanFalse) || (img.paymentId === '403' && bestInstallmentCredisimanTrue)
+  );
 
-    return {
-      ...img,
-      isValid,
-    }
-
-  }).filter(img => img.isValid)
+  const checksIfPaymentIsValid = [
+    ...filteredCredisimanImages ?? [],
+    ...paymentsImages?.map(img => {
+      const isValid = availablePayments.find((pay) =>
+        pay.paymentId === img.paymentId &&
+        pay.paymentId !== '403' && pay.paymentId !== '402'
+      )?.isValid;
+      return {
+        ...img,
+        isValid,
+      }
+    }).filter(img => img.isValid) ?? []
+  ];
 
   if (!checksIfPaymentIsValid) return <></>
 
@@ -76,6 +95,7 @@ interface Props {
     isValid: boolean;
   }[]
   isPdp?: boolean
+  results?: Results[];
 }
 
 export type PaymentsImages = {
