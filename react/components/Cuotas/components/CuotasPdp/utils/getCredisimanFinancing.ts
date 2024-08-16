@@ -1,10 +1,12 @@
+import { useProduct } from "vtex.product-context";
 import { CommercialOffer, Installment } from "vtex.product-context/react/ProductTypes";
 
 export function getCredisimanFinancing(
-    commercialOffer?: CommercialOffer,
     bestInstallment?: number
 ): Financing | null {
-    const installments = commercialOffer?.Installments;
+    const productSelected = useProduct()?.selectedItem;
+    const productCommertialOffer = productSelected?.sellers?.[0]?.commertialOffer;
+    const installments = productCommertialOffer?.Installments;
     const credisimanInstallments = installments?.filter(installment =>
         installment?.PaymentSystemName.includes("Credisiman") &&
         installment?.InterestRate !== null &&
@@ -13,7 +15,7 @@ export function getCredisimanFinancing(
 
     for (const installment of credisimanInstallments) {
         if (bestInstallment && installment?.NumberOfInstallments === bestInstallment) {
-            return formatCredisimanFinancing(commercialOffer!, installment);
+            return formatCredisimanFinancing(productCommertialOffer!, installment);
         }
     }
 

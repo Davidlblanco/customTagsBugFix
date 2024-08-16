@@ -1,4 +1,3 @@
-import { useProduct } from "vtex.product-context";
 import { BestInstallment } from "../../../Types/BestInstallment";
 import { Results } from "../../../Types/Results";
 import { getCredisimanFinancing } from "./getCredisimanFinancing";
@@ -8,10 +7,8 @@ export const bestInstallmentValues = (
     bestInstallment: BestInstallment,
     results: Results[]
 ): BestInstallmentValues => {
-    const productSelected = useProduct()?.selectedItem;
-    const productCommertialOffer = productSelected?.sellers?.[0]?.commertialOffer;
     const installment = bestInstallment?.installment;
-    const credisimanFinancing = getCredisimanFinancing(productCommertialOffer, installment);
+    const credisimanFinancing = getCredisimanFinancing(installment);
     const bestInstallmentWhithOutFinancing = getBestPayment(results, false)?.bestInstallment;
 
     let values: BestInstallmentValues = {};

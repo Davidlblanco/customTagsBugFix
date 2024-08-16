@@ -4,6 +4,7 @@ import { GenericTagsApi, TagsStyles } from "../../Types/PaymentCustom";
 import styles from "./styles.css";
 import { getBestPayment } from "../../hooks/useProductPayments";
 import { Results } from "../../Types/Results";
+import { getCredisimanFinancing } from "../CuotasPdp/utils/getCredisimanFinancing";
 
 export default function PaymentImages({
   paymentsImages,
@@ -15,9 +16,10 @@ export default function PaymentImages({
   const resultsCredisiman = results?.filter((item) => item.paymentId === '403' || item.paymentId === '402') ?? [];
   const bestInstallmentCredisimanFalse = getBestPayment(resultsCredisiman, false)?.bestInstallment;
   const bestInstallmentCredisimanTrue = getBestPayment(resultsCredisiman, true)?.bestInstallment;
+  const isValidCredisimanFinancing = getCredisimanFinancing(bestInstallmentCredisimanTrue?.installment)
 
   const filteredCredisimanImages = paymentsImages?.filter((img) =>
-    (img.paymentId === '402' && bestInstallmentCredisimanFalse) || (img.paymentId === '403' && bestInstallmentCredisimanTrue)
+    (img.paymentId === '402' && bestInstallmentCredisimanFalse?.valid) || (img.paymentId === '403' && isValidCredisimanFinancing)
   );
 
   const checksIfPaymentIsValid = [

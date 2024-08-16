@@ -1,7 +1,6 @@
 import React from "react";
 
 import { FormattedCurrency } from "vtex.format-currency";
-import { useProduct } from "vtex.product-context";
 
 import { getBestPayment } from "../../../../hooks/useProductPayments";
 import { getCredisimanFinancing } from "../../utils/getCredisimanFinancing";
@@ -19,10 +18,8 @@ const InstallmentsWithInterest = ({
     credisimanResults,
     interestFreeValid
 }: InstallmentsWithInterestProps) => {
-    const productSelected = useProduct()?.selectedItem;
-    const productCommertialOffer = productSelected?.sellers?.[0]?.commertialOffer;
     const bestInstallment = getBestPayment(credisimanResults, true)?.bestInstallment;
-    const maxInterestRate = getCredisimanFinancing(productCommertialOffer, bestInstallment?.installment);
+    const maxInterestRate = getCredisimanFinancing(bestInstallment?.installment);
     return (
         <>
             {maxInterestRate && (
