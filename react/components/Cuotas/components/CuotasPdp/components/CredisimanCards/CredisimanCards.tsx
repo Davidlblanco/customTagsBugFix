@@ -54,14 +54,15 @@ const CredisimanCards = ({ values }: CredisimanCardsProps) => {
                             interestFreeValid={interestFreeValid}
                         />
                         {interestFreeValid && (
-                            <div className={`${style.wrapInfomartionCredisiman}`}>
+                            <div className={`${style.wrapCredisimanInterestFreeInstallments}`}>
                                 <InstallmentDetailDrawer
                                     installment={bestInstallment?.installment}
                                     firstText="Hasta"
                                     secundText="cuotas sin intereses"
+                                    className={`${style.credsimanTextInterestFreeInstallments}`}
                                 />
                                 {bestInstallment?.installmentPrice && (
-                                    <div className={`${style.installmentPrice}`}>
+                                    <div className={`${style.credisimanPriceInterestFreeInstallments}`}>
                                         <FormattedCurrency
                                             value={bestInstallment!.installmentPrice / 100}
                                         />

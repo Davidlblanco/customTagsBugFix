@@ -58,14 +58,15 @@ const OtherCards = ({ values }: OtherCardsProps) => {
                                         </div>
                                     )}
 
-                                    <div className={`${style.wrapInfomartionOther}`}>
+                                    <div className={`${style.wrapInterestFreeInformation}`}>
                                         <InstallmentDetailDrawer
                                             installment={installment}
                                             firstText="Hasta"
                                             secundText="cuotas sin intereses"
+                                            className={`${style.otherTextInterestFreeInstallments}`}
                                         />
                                         {groupedTags[installment][0]?.bestInstallment!.installmentPrice && (
-                                            <div className={`${style.installmentPrice}`}>
+                                            <div className={`${style.interestFreeInstallmentsPrice}`}>
                                                 <FormattedCurrency
                                                     value={groupedTags[installment][0]?.bestInstallment!.installmentPrice / 100}
                                                 />

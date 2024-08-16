@@ -37,7 +37,7 @@
             padding-right: 16px;
         }
 
-        & .wrapInfomartionCredisiman {
+        & .wrapCredisimanInterestFreeInstallments {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -45,7 +45,7 @@
             padding-left: 16px;
             padding-right: 16px;
 
-            & .installmentPrice {
+            & .credisimanPriceInterestFreeInstallments {
                 & .currencyContainer {
                     font-family: 'Roboto', sans-serif;
                     font-size: 21px;
@@ -58,4 +58,12 @@
             }
         }
     }
+}
+
+.credsimanTextInterestFreeInstallments {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16.8px;
+    color: #000000;
 }

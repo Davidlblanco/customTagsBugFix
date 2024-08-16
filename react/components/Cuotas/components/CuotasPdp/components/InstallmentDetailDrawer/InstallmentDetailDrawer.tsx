@@ -1,22 +1,24 @@
 import React from "react";
 
-import styles from "./styles.css";
+//import styles from "./styles.css";
 
 interface InstallmentDetailDrawerProps {
   installment?: number;
   firstText: string;
   secundText: string;
+  className?: any
 }
 
 const InstallmentDetailDrawer = ({
   installment,
   firstText,
-  secundText
+  secundText,
+  className
 }: InstallmentDetailDrawerProps) => {
   const text = `${firstText} ${installment} ${secundText}`;
   return (
     <span
-      className={`${styles.textInstallmentDetailDrawer}`}
+      className={className}
     >
       {text}
     </span>

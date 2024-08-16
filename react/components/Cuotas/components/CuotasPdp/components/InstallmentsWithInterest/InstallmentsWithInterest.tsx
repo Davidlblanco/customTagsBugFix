@@ -27,41 +27,45 @@ const InstallmentsWithInterest = ({
         <>
             {maxInterestRate && (
                 <div className={`
-                    ${style.containerInstallmentsWithInterest} 
+                    ${style.containerCredisimanInstallmentsWithInterest} 
                     ${!interestFreeValid ? style.containerInstallmentsBorderNone : ''}
                 `}>
-                    <div className={`${style.wrapInstallmentsWithInterest}`}>
-                        <div className={`${style.wrapInstallments}`}>
-                            <div className={`${style.installmentsInformation}`}>
+                    <div className={`${style.wrapCredisimanInstallmentsWithInterest}`}>
+                        <div className={`${style.wrapCredisimanInstallments}`}>
+                            <div className={`${style.informationNumberOfInstallments}`}>
                                 Hasta {maxInterestRate?.numberOfInstallments} cuotas con financiamiento*
                             </div>
 
-                            <div className={`${style.installmentsWithInterestPrice}`}>
+                            <div className={`${style.priceOfInstallments}`}>
                                 <FormattedCurrency
                                     value={maxInterestRate?.installmentValue ?? 0}
                                 />
                             </div>
                         </div>
-                        <span className={`${style.installmentsWithInterestValues}`}>
-                            <div className={`${style.interestValues}`}>
-                                <span className={`${style.interestTitle}`}>Total interés:</span>
-                                <FormattedCurrency
-                                    value={maxInterestRate?.totalInterest}
-                                />
+                        <span className={`${style.wrapCredisimanFinancingValues}`}>
+                            <div className={`${style.wrapTotalInterest}`}>
+                                <span className={`${style.titleTotalInterest}`}>Total interés:</span>
+                                <span className={`${style.priceTotalInterest}`}>
+                                    <FormattedCurrency
+                                        value={maxInterestRate?.totalInterest}
+                                    />
+                                </span>
                             </div>
 
                             <span>|</span>
 
-                            <div className={`${style.interestValues}`}>
-                                <span className={`${style.interestTitle}`}>Total crédito:</span>
-                                <FormattedCurrency
-                                    value={maxInterestRate?.fullCredit}
-                                />
+                            <div className={`${style.wrapFullCredit}`}>
+                                <span className={`${style.titleFullCredit}`}>Total crédito:</span>
+                                <span className={`${style.pricefullCredit}`}>
+                                    <FormattedCurrency
+                                        value={maxInterestRate?.fullCredit}
+                                    />
+                                </span>
                             </div>
                         </span>
                     </div>
                     <div className={`
-                        ${style.installmentsWithInterestInformation} 
+                        ${style.interestPercentageInformation} 
                         ${!interestFreeValid ? style.interestInformationPaddingNone : ''}
                     `}>
                         *{maxInterestRate?.interestRate}% tasa de interés efectiva anual. Sujeta a aprobación por
