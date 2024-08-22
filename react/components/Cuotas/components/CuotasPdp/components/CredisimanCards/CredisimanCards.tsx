@@ -52,6 +52,7 @@ const CredisimanCards = ({ values }: CredisimanCardsProps) => {
                         <InstallmentsWithInterest
                             credisimanResults={credisimanResults}
                             interestFreeValid={interestFreeValid}
+                            updateCredisimanTagsPreview={updateCredisimanTagsPreview}
                         />
                         {interestFreeValid && (
                             <div className={`${style.wrapCredisimanInterestFreeInstallments}`}>

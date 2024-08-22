@@ -6,20 +6,24 @@ import { getBestPayment } from "../../../../hooks/useProductPayments";
 import { getCredisimanFinancing } from "../../utils/getCredisimanFinancing";
 
 import { Results } from "../../../../Types/Results";
+import { GenericTagsFront } from "../../../../Types/PaymentCustom";
 
 import style from './styles.css';
 
 interface InstallmentsWithInterestProps {
     credisimanResults: Results[];
     interestFreeValid: boolean;
+    updateCredisimanTagsPreview?: GenericTagsFront | null;
 }
 
 const InstallmentsWithInterest = ({
     credisimanResults,
-    interestFreeValid
+    interestFreeValid,
+    updateCredisimanTagsPreview,
 }: InstallmentsWithInterestProps) => {
     const bestInstallment = getBestPayment(credisimanResults, true)?.bestInstallment;
     const maxInterestRate = getCredisimanFinancing(bestInstallment?.installment);
+    const textInformation = updateCredisimanTagsPreview?.tagInformation?.value ?? '';
     return (
         <>
             {maxInterestRate && (
@@ -65,8 +69,9 @@ const InstallmentsWithInterest = ({
                         ${style.interestPercentageInformation} 
                         ${!interestFreeValid ? style.interestInformationPaddingNone : ''}
                     `}>
-                        *{maxInterestRate?.interestRate}% tasa de interés efectiva anual. Sujeta a aprobación por
-                        el departamento de créditos de Almacenes Siman S.A. de C.V.
+                        {/* *{maxInterestRate?.interestRate}% tasa de interés efectiva anual. Sujeta a aprobación por
+                        el departamento de créditos de Almacenes Siman S.A. de C.V. */}
+                        {textInformation}
                     </div>
                 </div>
             )}

@@ -131,6 +131,10 @@ interface GenericTagsApi {
       path: string;
    }>;
    styles: Styles[];
+   tagInformation: {
+    id: string;
+    value: string;
+   }
 }
 
 type Styles = {
@@ -147,4 +151,8 @@ interface GenericTagsFront {
       path: string;
    }>;
    styles: TagsStyles;
+   tagInformation: {
+    id: string;
+    value: string;
+   }
 }
