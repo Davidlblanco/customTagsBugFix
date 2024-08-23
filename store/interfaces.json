@@ -15,7 +15,7 @@
     "custom-product-specifications": {
         "component": "ProductSpecifications"
     },
-    "custom-credi-siman-price": {
+    "custom-credisiman-price": {
         "component": "CrediSimanPrice",
         "content": {
            "$ref": "app:siman.m3-custom#/definitions/credisimanPrice"

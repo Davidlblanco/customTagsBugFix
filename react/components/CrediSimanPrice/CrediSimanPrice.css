@@ -58,8 +58,8 @@
 }
 
 .tag-preview__info-text {
-  max-width: 176px;
   margin: 0;
 
   font-size: 14px;
+  text-align: start;
 }
