@@ -9,7 +9,7 @@ import { useRenderSession } from "vtex.session-client";
 import styles from "./CrediSimanPrice.css";
 import { calculateDiscountPercentage } from "./utils/calculateDiscontPercentage";
 import { useRuntime } from "vtex.render-runtime";
-import generateBaseUrl from "./utils/generateBaseUrl";
+import generateBaseUrlToSv from "../../utils/generateBaseUrlToSv";
 
 interface CredisimanPriceProps {
   isShelf?: boolean;
@@ -30,7 +30,7 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
     const sallesChannelId = session?.namespaces?.store?.channel?.value;
 
     const { account, workspace } = useRuntime();
-    const baseUrl = generateBaseUrl(account, workspace);
+    const baseUrl = generateBaseUrlToSv(account, workspace);
 
     useEffect(() => {
         const fetchData = async () => {

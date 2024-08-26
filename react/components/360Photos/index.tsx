@@ -5,6 +5,7 @@ import { useProduct } from "vtex.product-context";
 import style from "./styles.module.css";
 import Icon from "./Icons/Open360";
 import { useRuntime } from "vtex.render-runtime";
+import generateBaseUrlToSV from "../../utils/generateBaseUrlToSv"
 
 export interface ImagesProps {
     images: string;
@@ -20,18 +21,9 @@ export interface ImagesApiProps {
     skuName: string;
 }
 
-function generateBaseUrl(account: string, workspace: string) {
-    let host = `${workspace ?? ""}--${account}`;
-    const isSVAccount = account == "siman" || account == "simanqa";
-
-    if (!isSVAccount) host = account.includes("qa") ? "simanqa" : "siman";
-
-    return `https://${host}.myvtex.com/`;
-}
-
 export function Photos360() {
     const { account, workspace } = useRuntime();
-    const baseUrl = generateBaseUrl(account, workspace);
+    const baseUrl = generateBaseUrlToSV(account, workspace);
 
     const [imageInfoApi, setImageInfoApi] = useState<{
         active: boolean;
