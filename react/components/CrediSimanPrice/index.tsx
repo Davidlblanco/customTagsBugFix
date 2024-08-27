@@ -67,7 +67,6 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
         <div
           className={styles['tag-preview__credisiman']}
           style={{
-            order: credisimanTagStyles?.viewFields.text.position === 'right' ? 1 : 2,
             fontSize: `${credisimanTagStyles?.tagStyles.fontSize}`,
           }}
         >
@@ -77,7 +76,7 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
               style={{
                 color: credisimanTagStyles?.viewFields.price.color,
                 fontSize: `1em`,
-                order: credisimanTagStyles?.image.position === 'right' ? 1 : 2,
+                order: credisimanTagStyles?.image.position === 'right' ? 2 : 3,
               }}
             >
               <FormattedCurrency value={productData?.totalWithDiscount} />
@@ -92,7 +91,7 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
                 borderColor: credisimanTagStyles?.tagStyles.borderColor,
                 color: credisimanTagStyles?.tagStyles.color,
                 backgroundColor: credisimanTagStyles?.tagStyles.backgroundColor,
-                order: credisimanTagStyles?.image.position === 'right' ? 2 : 3,
+                order: credisimanTagStyles?.image.position === 'right' ? 3 : 4,
                 fontSize: `clamp(12px, 0.5em, 24px)`,
               }}
             >
@@ -116,24 +115,24 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
               width={24}
               height={24}
               style={{
-                order: credisimanTagStyles?.image.position === 'right' ? 3 : 1,
+                order: credisimanTagStyles?.image.position === 'right' ? 4 : 2,
               }}
             />
           )}
-        </div>
 
-        {credisimanTagStyles?.viewFields.text.active && (
-          <p
-            className={styles['tag-preview__info-text']}
-            style={{
-              color: credisimanTagStyles?.viewFields.text.color,
-              order: credisimanTagStyles?.viewFields.text.position === 'right' ? 2 : 1,
-              fontSize: `${credisimanTagStyles?.tagStyles.fontSize}`,
-            }}
-          >
-            {credisimanTagStyles?.viewFields.text.phrase}
-          </p>
-        )}
+          {credisimanTagStyles?.viewFields.text.active && (
+            <p
+              className={styles['tag-preview__info-text']}
+              style={{
+                color: credisimanTagStyles?.viewFields.text.color,
+                order: credisimanTagStyles?.viewFields.text.position === 'right' ? 5 : 1,
+                fontSize: `${credisimanTagStyles?.tagStyles.fontSize}`,
+              }}
+            >
+              {credisimanTagStyles?.viewFields.text.phrase}
+            </p>
+          )}
+        </div>
       </div>
     );
 };
