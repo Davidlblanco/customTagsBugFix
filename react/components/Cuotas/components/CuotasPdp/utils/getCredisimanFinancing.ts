@@ -9,8 +9,7 @@ export function getCredisimanFinancing(bestInstallment?: number): Financing | nu
         installments?.filter(
             (installment) =>
                 installment?.PaymentSystemName.includes("Credisiman") &&
-                installment?.InterestRate !== null &&
-                installment?.InterestRate > 0
+                installment?.PaymentSystemName.includes("Financiadas")
         ) ?? [];
 
     for (const installment of credisimanInstallments) {

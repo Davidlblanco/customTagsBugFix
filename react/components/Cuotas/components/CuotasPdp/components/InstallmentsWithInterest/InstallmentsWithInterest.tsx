@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FormattedCurrency } from "vtex.format-currency";
+// import { FormattedCurrency } from "vtex.format-currency";
 
 import { getBestPayment } from "../../../../hooks/useProductPayments";
 import { getCredisimanFinancing } from "../../utils/getCredisimanFinancing";
@@ -42,10 +42,10 @@ const InstallmentsWithInterest = ({
                             </div>
 
                             <div className={`${style.priceOfInstallments}`}>
-                                <FormattedCurrency value={maxInterestRate?.installmentValue ?? 0} />
+                                {/* <FormattedCurrency value={maxInterestRate?.installmentValue ?? 0} /> */}
                             </div>
                         </div>
-                        <span className={`${style.wrapCredisimanFinancingValues}`}>
+                        {/* <span className={`${style.wrapCredisimanFinancingValues}`}>
                             <div className={`${style.wrapTotalInterest}`}>
                                 <span className={`${style.titleTotalInterest}`}>Total interés:</span>
                                 <span className={`${style.priceTotalInterest}`}>
@@ -61,7 +61,7 @@ const InstallmentsWithInterest = ({
                                     <FormattedCurrency value={maxInterestRate?.fullCredit} />
                                 </span>
                             </div>
-                        </span>
+                        </span> */}
                     </div>
                     <div
                         className={`
