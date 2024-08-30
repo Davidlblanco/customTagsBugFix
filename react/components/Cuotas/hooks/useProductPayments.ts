@@ -1,19 +1,14 @@
 import { useMemo } from "react";
 import usePaymentConfigs, { PaymentConfigFilters } from "./usePaymentConfigs";
 import useSelectedProductInfo from "./useSelectedProductInfo";
-import {
-    PaymentResult,
-    validateConfig,
-} from "../Logic/PaymentCustomValidators";
+import { PaymentResult, validateConfig } from "../Logic/PaymentCustomValidators";
 
 export default function useProductPayments(props: Props) {
     const selectedProductInfo = useSelectedProductInfo();
     const paymentConfigs = usePaymentConfigs(props);
 
     const results = useMemo(() => {
-        return paymentConfigs?.configs?.map((config) =>
-            validateConfig(config, selectedProductInfo)
-        );
+        return paymentConfigs?.configs?.map((config) => validateConfig(config, selectedProductInfo));
     }, [paymentConfigs.configs, selectedProductInfo]);
 
     const bestPayment = useMemo(() => {
@@ -29,26 +24,20 @@ export default function useProductPayments(props: Props) {
     };
 }
 
-export function getBestPayment(data: PaymentResult[], interestRate?: boolean): PaymentResult | null {
+export function getBestPayment(data: PaymentResult[]): PaymentResult | null {
     return data.reduce((prev: PaymentResult | null, current) => {
-        if (!current.isValid || current.installments.length === 0) return prev;
+        // If the current payment is not valid, we ignore it
+        if (!current.isValid || !current.bestInstallment) return prev;
 
-        const filteredInstallments = current.installments.filter(inst =>
-            interestRate === undefined || inst.interestRate === interestRate
-        );
+        // If there is no previous payment, we return the current one
+        if (!prev?.bestInstallment) return current;
 
-        if (filteredInstallments.length === 0) return prev;
+        // If the current payment has a higher installment, we return the current one
+        if (current.bestInstallment.installment > prev.bestInstallment.installment) return current;
 
-        const bestInstallment = filteredInstallments.reduce((prevInst, currInst) =>
-            currInst.installment > prevInst.installment ? currInst : prevInst
-        );
-
-        if (!prev || bestInstallment.installment > (prev.bestInstallment?.installment || 0)) {
-            return { ...current, bestInstallment };
-        }
-
+        // Otherwise we return the previous one
         return prev;
     }, null);
 }
 
-interface Props extends PaymentConfigFilters { }
+interface Props extends PaymentConfigFilters {}

@@ -1,18 +1,14 @@
 import React from "react";
 import { FormattedCurrency } from "vtex.format-currency";
-
 import InstallmentDetails from "../InstallmentDetail/InstallmentDetails";
 import PaymentImages from "../PaymentImages/PaymentImages";
 import InformationDrawer from "./components/InformationDrawer/InformationDrawer";
-
 import { handleTags } from "./utils/handleTags";
-import { bestInstallmentValues } from "./utils/bestInstallmentValues";
-
 import { GenericTagsFront } from "../../Types/PaymentCustom";
 import { Results } from "../../Types/Results";
 import { BestInstallment } from "../../Types/BestInstallment";
-
-import styles from './styles.css';
+import { getCredisimanFinancing } from "./utils/getCredisimanFinancing";
+import styles from "./styles.css";
 
 interface CuotasPdpProps {
     tagsPreview?: GenericTagsFront | null;
@@ -20,22 +16,17 @@ interface CuotasPdpProps {
     results: Results[];
 }
 
-const CuotasPdp = ({
-    tagsPreview,
-    bestInstallment,
-    results,
-}: CuotasPdpProps) => {
+const CuotasPdp = ({ tagsPreview, bestInstallment, results }: CuotasPdpProps) => {
     const {
         credisimanResults,
         otherResults,
         updateAllTagsPreview,
         updateCredisimanTagsPreview,
-        updateOthersTagsPreview
+        updateOthersTagsPreview,
     } = handleTags(results, tagsPreview);
-    const installmentValues = bestInstallmentValues(bestInstallment, results);
-    const verifyTagsPreview = updateAllTagsPreview &&
-        updateAllTagsPreview?.tagIsActive &&
-        updateAllTagsPreview?.tagsImgs?.length > 0;
+    const installmentValues = bestInstallmentValues(bestInstallment, credisimanResults);
+    const verifyTagsPreview =
+        updateAllTagsPreview && updateAllTagsPreview?.tagIsActive && updateAllTagsPreview?.tagsImgs?.length > 0;
     return (
         <>
             {results.length > 0 && (
@@ -48,13 +39,11 @@ const CuotasPdp = ({
                                     quantityImgs: updateAllTagsPreview?.tagsImgs?.length ?? 0,
                                     styles: updateAllTagsPreview?.styles ?? {},
                                 }}
-                                visibility={'pdp'}
+                                visibility={"pdp"}
                             />
                             {installmentValues?.installmentPrice && (
                                 <div className={`${styles.installmentPrice}`}>
-                                    <FormattedCurrency
-                                        value={installmentValues!.installmentPrice}
-                                    />
+                                    <FormattedCurrency value={installmentValues!.installmentPrice} />
                                 </div>
                             )}
                         </div>
@@ -67,7 +56,6 @@ const CuotasPdp = ({
                                         isValid: result.isValid,
                                     }))}
                                     tagStyles={updateAllTagsPreview?.styles}
-                                    results={results}
                                     isPdp={true}
                                 />
                             </div>
@@ -84,10 +72,38 @@ const CuotasPdp = ({
                 </div>
             )}
         </>
-    )
-}
+    );
+};
 
+const bestInstallmentValues = (
+    bestInstallment: BestInstallment,
+    credisimanResults: Results[]
+): BestInstallmentValues => {
+    const installment = bestInstallment?.installment;
+    const credisimanFinancing = getCredisimanFinancing(installment);
 
+    let values: BestInstallmentValues = {};
+
+    const credisimanCuotas = credisimanResults?.find((item) => item.paymentId === "406" && item?.isValid);
+
+    if (credisimanFinancing && credisimanCuotas) {
+        values = {
+            installment: credisimanFinancing?.numberOfInstallments,
+            installmentPrice: parseFloat((credisimanFinancing?.installmentValue ?? 0 / 100).toFixed(2)),
+        };
+    } else {
+        values = {
+            installment: bestInstallment?.installment,
+            installmentPrice: parseFloat(((bestInstallment?.installmentPrice ?? 0) / 100).toFixed(2)),
+        };
+    }
+
+    return values;
+};
+
+type BestInstallmentValues = {
+    installment?: number;
+    installmentPrice?: number;
+};
 
 export default CuotasPdp;
-

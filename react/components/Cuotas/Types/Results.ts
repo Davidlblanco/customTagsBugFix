@@ -6,14 +6,12 @@ export type Results = {
     isValid: boolean;
     installments: {
         installment: number;
-        interestRate: boolean;
         valid: boolean;
         rulesResults: RuleResult<unknown>[];
         installmentPrice: number;
     }[];
     bestInstallment: {
         installment: number;
-        interestRate: boolean;
         valid: boolean;
         rulesResults: RuleResult<unknown>[];
         installmentPrice: number;

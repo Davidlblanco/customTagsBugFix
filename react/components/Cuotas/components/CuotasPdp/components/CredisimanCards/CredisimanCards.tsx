@@ -10,20 +10,23 @@ import { getBestPayment } from "../../../../hooks/useProductPayments";
 import { GenericTagsFront } from "../../../../Types/PaymentCustom";
 import { Results } from "../../../../Types/Results";
 
-import style from './styles.css';
+import style from "./styles.css";
 
 interface CredisimanCardsProps {
     values: {
         updateCredisimanTagsPreview?: GenericTagsFront | null;
         credisimanResults: Results[];
-    }
+    };
 }
 
 const CredisimanCards = ({ values }: CredisimanCardsProps) => {
     const { updateCredisimanTagsPreview, credisimanResults } = values;
-    const bestInstallment = getBestPayment(credisimanResults, false)?.bestInstallment;
+    const interestFreeCredisiman = credisimanResults?.filter((item) => item?.paymentId !== "406");
+    const bestInstallment = getBestPayment(interestFreeCredisiman)?.bestInstallment;
     const interestFreeValid = bestInstallment ? true : false;
-    const verifyTagsPreview = updateCredisimanTagsPreview &&
+
+    const verifyTagsPreview =
+        updateCredisimanTagsPreview &&
         updateCredisimanTagsPreview?.tagIsActive &&
         updateCredisimanTagsPreview?.tagsImgs?.length > 0;
 
@@ -32,9 +35,7 @@ const CredisimanCards = ({ values }: CredisimanCardsProps) => {
             {credisimanResults.length > 0 && (
                 <div className={`${style.containerCredisimanCards}`}>
                     <div className={`${style.wrapCredisimanCards}`}>
-                        <h2 className={`${style.titleCredisimanCards}`}>
-                            Con tarjetas Credisiman
-                        </h2>
+                        <h2 className={`${style.titleCredisimanCards}`}>Con tarjetas Credisiman</h2>
                         {verifyTagsPreview && (
                             <div className={`${style.wrapPaymentImages}`}>
                                 <PaymentImages
@@ -45,7 +46,6 @@ const CredisimanCards = ({ values }: CredisimanCardsProps) => {
                                     }))}
                                     tagStyles={updateCredisimanTagsPreview?.styles}
                                     isPdp={true}
-                                    results={credisimanResults}
                                 />
                             </div>
                         )}
@@ -64,9 +64,7 @@ const CredisimanCards = ({ values }: CredisimanCardsProps) => {
                                 />
                                 {bestInstallment?.installmentPrice && (
                                     <div className={`${style.credisimanPriceInterestFreeInstallments}`}>
-                                        <FormattedCurrency
-                                            value={bestInstallment!.installmentPrice / 100}
-                                        />
+                                        <FormattedCurrency value={bestInstallment!.installmentPrice / 100} />
                                     </div>
                                 )}
                             </div>
@@ -75,7 +73,7 @@ const CredisimanCards = ({ values }: CredisimanCardsProps) => {
                 </div>
             )}
         </>
-    )
-}
+    );
+};
 
 export default CredisimanCards;

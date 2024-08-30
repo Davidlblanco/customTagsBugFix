@@ -8,7 +8,7 @@ import { getCredisimanFinancing } from "../../utils/getCredisimanFinancing";
 import { Results } from "../../../../Types/Results";
 import { GenericTagsFront } from "../../../../Types/PaymentCustom";
 
-import style from './styles.css';
+import style from "./styles.css";
 
 interface InstallmentsWithInterestProps {
     credisimanResults: Results[];
@@ -21,16 +21,20 @@ const InstallmentsWithInterest = ({
     interestFreeValid,
     updateCredisimanTagsPreview,
 }: InstallmentsWithInterestProps) => {
-    const bestInstallment = getBestPayment(credisimanResults, true)?.bestInstallment;
+    const credisiman = credisimanResults?.filter((item) => item?.paymentId === "406");
+    const bestInstallment = getBestPayment(credisiman ?? [])?.bestInstallment;
     const maxInterestRate = getCredisimanFinancing(bestInstallment?.installment);
-    const textInformation = updateCredisimanTagsPreview?.tagInformation?.value ?? '';
+
+    const textInformation = updateCredisimanTagsPreview?.tagInformation?.value ?? "";
     return (
         <>
             {maxInterestRate && (
-                <div className={`
+                <div
+                    className={`
                     ${style.containerCredisimanInstallmentsWithInterest} 
-                    ${!interestFreeValid ? style.containerInstallmentsBorderNone : ''}
-                `}>
+                    ${!interestFreeValid ? style.containerInstallmentsBorderNone : ""}
+                `}
+                >
                     <div className={`${style.wrapCredisimanInstallmentsWithInterest}`}>
                         <div className={`${style.wrapCredisimanInstallments}`}>
                             <div className={`${style.informationNumberOfInstallments}`}>
@@ -38,18 +42,14 @@ const InstallmentsWithInterest = ({
                             </div>
 
                             <div className={`${style.priceOfInstallments}`}>
-                                <FormattedCurrency
-                                    value={maxInterestRate?.installmentValue ?? 0}
-                                />
+                                <FormattedCurrency value={maxInterestRate?.installmentValue ?? 0} />
                             </div>
                         </div>
                         <span className={`${style.wrapCredisimanFinancingValues}`}>
                             <div className={`${style.wrapTotalInterest}`}>
                                 <span className={`${style.titleTotalInterest}`}>Total interés:</span>
                                 <span className={`${style.priceTotalInterest}`}>
-                                    <FormattedCurrency
-                                        value={maxInterestRate?.totalInterest}
-                                    />
+                                    <FormattedCurrency value={maxInterestRate?.totalInterest} />
                                 </span>
                             </div>
 
@@ -58,17 +58,17 @@ const InstallmentsWithInterest = ({
                             <div className={`${style.wrapFullCredit}`}>
                                 <span className={`${style.titleFullCredit}`}>Total crédito:</span>
                                 <span className={`${style.pricefullCredit}`}>
-                                    <FormattedCurrency
-                                        value={maxInterestRate?.fullCredit}
-                                    />
+                                    <FormattedCurrency value={maxInterestRate?.fullCredit} />
                                 </span>
                             </div>
                         </span>
                     </div>
-                    <div className={`
+                    <div
+                        className={`
                         ${style.interestPercentageInformation} 
-                        ${!interestFreeValid ? style.interestInformationPaddingNone : ''}
-                    `}>
+                        ${!interestFreeValid ? style.interestInformationPaddingNone : ""}
+                    `}
+                    >
                         {/* *{maxInterestRate?.interestRate}% tasa de interés efectiva anual. Sujeta a aprobación por
                         el departamento de créditos de Almacenes Siman S.A. de C.V. */}
                         {textInformation}
@@ -76,7 +76,7 @@ const InstallmentsWithInterest = ({
                 </div>
             )}
         </>
-    )
-}
+    );
+};
 
 export default InstallmentsWithInterest;

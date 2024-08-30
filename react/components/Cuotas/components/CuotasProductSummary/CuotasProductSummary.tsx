@@ -8,7 +8,7 @@ import { GenericTagsFront } from "../../Types/PaymentCustom";
 import { BestInstallment } from "../../Types/BestInstallment";
 import { Results } from "../../Types/Results";
 
-import styles from './styles.css';
+import styles from "./styles.css";
 
 interface CuotasProductSummaryProps {
     tagsPreview?: GenericTagsFront | null;
@@ -16,15 +16,10 @@ interface CuotasProductSummaryProps {
     results: Results[];
 }
 
-const CuotasProductSummary = ({
-    tagsPreview,
-    bestInstallment,
-    results
-}: CuotasProductSummaryProps) => {
+const CuotasProductSummary = ({ tagsPreview, bestInstallment, results }: CuotasProductSummaryProps) => {
     const { updateAllTagsPreview } = handleTags(results, tagsPreview);
-    const verifyTagsPreview = updateAllTagsPreview &&
-        updateAllTagsPreview?.tagIsActive &&
-        updateAllTagsPreview?.tagsImgs?.length > 0;
+    const verifyTagsPreview =
+        updateAllTagsPreview && updateAllTagsPreview?.tagIsActive && updateAllTagsPreview?.tagsImgs?.length > 0;
     return (
         <div className={`${styles.cuotasProductSummary}`}>
             {results.length > 0 && (
@@ -36,7 +31,7 @@ const CuotasProductSummary = ({
                             tagIsActive: updateAllTagsPreview?.tagIsActive,
                             styles: updateAllTagsPreview?.styles ?? {},
                         }}
-                        visibility={'product-summary'}
+                        visibility={"product-summary"}
                     />
                     {verifyTagsPreview && (
                         <PaymentImages
@@ -46,13 +41,12 @@ const CuotasProductSummary = ({
                                 isValid: result.isValid,
                             }))}
                             tagStyles={updateAllTagsPreview?.styles}
-                            results={results}
                         />
                     )}
                 </div>
             )}
         </div>
-    )
-}
+    );
+};
 
 export default CuotasProductSummary;

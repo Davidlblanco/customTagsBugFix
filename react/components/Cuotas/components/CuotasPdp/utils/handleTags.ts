@@ -4,10 +4,7 @@ import { getImages } from "./getImages";
 import { Results } from "../../../Types/Results";
 import { GenericTagsFront } from "../../../Types/PaymentCustom";
 
-export const handleTags = (
-    results: Results[],
-    tagsPreview?: GenericTagsFront | null
-): handleTags => {
+export const handleTags = (results: Results[], tagsPreview?: GenericTagsFront | null): handleTags => {
     const ids = getCredisimanPaymentsIds();
 
     const credisimanResults = results?.filter((result) => ids.includes(result.paymentId) && result.isValid);
@@ -22,7 +19,7 @@ export const handleTags = (
         otherResults,
         updateAllTagsPreview,
         updateCredisimanTagsPreview,
-        updateOthersTagsPreview
+        updateOthersTagsPreview,
     };
 };
 
@@ -32,4 +29,4 @@ type handleTags = {
     updateAllTagsPreview?: GenericTagsFront | null;
     updateCredisimanTagsPreview?: GenericTagsFront | null;
     updateOthersTagsPreview?: GenericTagsFront | null;
-}
+};
