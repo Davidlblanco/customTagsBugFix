@@ -44,6 +44,10 @@
   margin: 0;
 }
 
+.infoCard_subtitleTextLink{
+  text-decoration: underline;
+}
+
 .infoCard_btnText {
   padding: 0;
   font-family: 'Roboto', sans-serif;

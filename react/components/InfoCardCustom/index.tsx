@@ -13,6 +13,7 @@ interface ITituloeBanner {
     titleText: string;
     titleSize: string;
     titleMargin: string;
+    subtitleTextLink: boolean;
     subtitleText: string;
     subtitleSize: string;
     btnText: string;
@@ -48,6 +49,7 @@ const InfoCardCustom = ({
     titleText,
     titleSize,
     titleMargin,
+    subtitleTextLink,
     subtitleText,
     subtitleSize,
     btnText,
@@ -103,7 +105,7 @@ const InfoCardCustom = ({
                     <RichText text={titleText} />
                 </p>
                 <p
-                    className={styles.infoCard_subtitulo}
+                    className={`${styles.infoCard_subtitulo} ${subtitleTextLink ? styles.infoCard_subtitleTextLink : ''}`}
                     style={{
                         fontSize: isPhone ? sizeSubTitleMob : sizeSubTitleDesk,
                     }}
