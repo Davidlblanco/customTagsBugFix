@@ -172,6 +172,52 @@
                     "widget": {
                         "ui:widget": "color"
                     }
+                },
+                "ctaColor": {
+                    "type": "object",
+                    "title": "Additional Option",
+                    "properties": {
+                        "selection": {
+                            "type": "string",
+                            "enum": ["Default", "Color CTA Mobile"],
+                            "title": "Custom CTA Style Mobile",
+                            "default": "Default"
+                        }
+                    },
+                    "dependencies": {
+                        "selection": {
+                            "oneOf": [
+                                {
+                                    "properties": {
+                                        "selection": { "enum": ["Default"] }
+                                    }
+                                },
+                                {
+                                    "properties": {
+                                        "selection": {
+                                            "enum": ["Color CTA Mobile"]
+                                        },
+                                        "ctaColor": {
+                                            "title": "Button - Color",
+                                            "type": "string",
+                                            "widget": {
+                                                "ui:widget": "color"
+                                            },
+                                            "default": ""
+                                        },
+                                        "ctaBackground": {
+                                            "title": "Button - Background",
+                                            "type": "string",
+                                            "widget": {
+                                                "ui:widget": "color"
+                                            },
+                                            "default": ""
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
                 }
             }
         },
