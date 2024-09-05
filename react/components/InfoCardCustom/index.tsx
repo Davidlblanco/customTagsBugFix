@@ -114,8 +114,6 @@ const InfoCardCustom = ({
         </a>
     );
 
-    console.log("titleTextWeight", titleTextWeight);
-
     const renderContent = () => (
         <>
             <div
