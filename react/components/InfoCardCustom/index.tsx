@@ -31,6 +31,7 @@ interface ITituloeBanner {
     btnBackground: string;
     blockClass: string | string[];
     ctaColor: string | string[] | CtaColorObject;
+    titleTextWeight: boolean;
 }
 
 const splitAndValidate = (
@@ -69,7 +70,8 @@ const InfoCardCustom = ({
     isButton,
     btnBackground,
     blockClass,
-    ctaColor
+    ctaColor,
+    titleTextWeight
 }: ITituloeBanner) => {
     const { device } = useDevice();
     const isPhone = device === "phone";
@@ -85,7 +87,7 @@ const InfoCardCustom = ({
       ctaBackgroundValue = ctaColor.ctaBackground ?? "";
       ctaBackgroundValue = ctaColor.ctaBackground ?? "";
       ctaSelection = ctaColor.selection ?? "";
-      
+
   } else if (typeof ctaColor === "string") {
       ctaColorValue = ctaColor;
   }
@@ -112,6 +114,8 @@ const InfoCardCustom = ({
         </a>
     );
 
+    console.log("titleTextWeight", titleTextWeight);
+
     const renderContent = () => (
         <>
             <div
@@ -119,7 +123,7 @@ const InfoCardCustom = ({
                 style={{ color: titlesColor }}
             >
                 <p
-                    className={styles.infoCard_titulo}
+                    className={`${styles.infoCard_titulo} ${titleTextWeight ? styles.infoCard_titulo_weight : ''}`}
                     style={{
                         fontSize: isPhone ? sizeTitleMob : sizeTitleDesk,
                         marginBottom: isPhone

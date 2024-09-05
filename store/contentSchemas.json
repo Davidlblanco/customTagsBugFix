@@ -100,6 +100,12 @@
                         "ui:widget": "color"
                     }
                 },
+                "titleTextWeight": {
+                    "title": "Is Bold?",
+                    "description": "Define si el Titulo es Bold o no.",
+                    "type": "boolean",
+                    "default": false
+                },
                 "titleText": {
                     "title": "Title - Text",
                     "type": "string",
