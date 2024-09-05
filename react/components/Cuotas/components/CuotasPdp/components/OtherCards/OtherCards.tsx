@@ -84,14 +84,29 @@ const OtherCards = ({ values }: OtherCardsProps) => {
 };
 
 const processInstallments = (otherResults: Results[]): ProcessInstallmentsResult => {
-    const filteredBanks = otherResults?.filter(result =>
+    const paymentsById = otherResults.reduce((acc: Record<string, Results>, result) => {
+        if (!acc[result.paymentId]) {
+            acc[result.paymentId] = result;
+        } else {
+            const currentBestInstallment = result.bestInstallment?.installment || 0;
+            const previousBestInstallment = acc[result.paymentId].bestInstallment?.installment || 0;
+
+            if (currentBestInstallment > previousBestInstallment) {
+                acc[result.paymentId] = result;
+            }
+        }
+        return acc;
+    }, {} as Record<string, Results>);
+
+    const filteredBanks = Object.values(paymentsById)?.filter((result: Results) =>
         result?.installments?.some(installment => installment?.installment >= 6)
     );
 
     const bestInstallments = filteredBanks?.map(bank => {
+        const typedBank = bank as Results;
         return {
-            ...bank,
-            bestInstallment: getBestPayment([bank])?.bestInstallment
+            ...typedBank,
+            bestInstallment: getBestPayment([typedBank])?.bestInstallment || null
         };
     });
 
@@ -104,7 +119,7 @@ const processInstallments = (otherResults: Results[]): ProcessInstallmentsResult
         }
         acc[installment].push(bank);
         return acc;
-    }, {});
+    }, {} as Record<number, Results[]>);
 
     const sortedInstallments = Object.keys(groupedTags)
         .map(Number)

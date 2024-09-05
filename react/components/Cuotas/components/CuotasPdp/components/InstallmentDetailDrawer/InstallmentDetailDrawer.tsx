@@ -1,7 +1,5 @@
 import React from "react";
 
-//import styles from "./styles.css";
-
 interface InstallmentDetailDrawerProps {
   installment?: number;
   firstText: string;
