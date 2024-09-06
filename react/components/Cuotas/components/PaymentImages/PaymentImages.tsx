@@ -1,16 +1,22 @@
 import React from "react";
-import { GenericTagsApi, TagsStyles } from "../../Types/PaymentCustom";
+import { BankType, GenericTagsApi, TagsStyles } from "../../Types/PaymentCustom";
 
 import styles from "./styles.css";
 
 export default function PaymentImages({ paymentsImages, tagStyles, availablePayments, isPdp }: Props) {
     const checksIfPaymentIsValid = paymentsImages
         ?.map((img) => {
-            const isValid = availablePayments.find((pay) => pay.paymentId === img.paymentId)?.isValid;
-
+            const payment = availablePayments.find((pay) => {
+                if (pay?.BankTypes && pay?.BankTypes.length > 0) {
+                    return pay?.BankTypes?.some(bank => bank.name === img.id && pay.paymentId === img.paymentId)
+                } else {
+                    return pay.paymentId === img.paymentId;
+                }
+            });
+            const isValid = payment?.isValid;
             return {
                 ...img,
-                isValid,
+                isValid
             };
         })
         .filter((img) => img.isValid);
@@ -77,6 +83,8 @@ interface Props {
     availablePayments: {
         paymentId: string;
         isValid: boolean;
+        BankTypes?: BankType[];
+
     }[];
     isPdp?: boolean;
 }

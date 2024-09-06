@@ -27,6 +27,9 @@ const CuotasPdp = ({ tagsPreview, bestInstallment, results }: CuotasPdpProps) =>
     const installmentValues = bestInstallmentValues(bestInstallment, credisimanResults);
     const verifyTagsPreview =
         updateAllTagsPreview && updateAllTagsPreview?.tagIsActive && updateAllTagsPreview?.tagsImgs?.length > 0;
+
+    console.log('pdateAllTagsPreview', updateAllTagsPreview, results);
+
     return (
         <>
             {results.length > 0 && (
@@ -54,6 +57,7 @@ const CuotasPdp = ({ tagsPreview, bestInstallment, results }: CuotasPdpProps) =>
                                     availablePayments={results?.map((result) => ({
                                         paymentId: result.paymentId,
                                         isValid: result.isValid,
+                                        BankTypes: result?.BankTypes
                                     }))}
                                     tagStyles={updateAllTagsPreview?.styles}
                                     isPdp={true}

@@ -39,6 +39,7 @@ const CuotasProductSummary = ({ tagsPreview, bestInstallment, results }: CuotasP
                             availablePayments={results?.map((result) => ({
                                 paymentId: result.paymentId,
                                 isValid: result.isValid,
+                                BankTypes: result?.BankTypes
                             }))}
                             tagStyles={updateAllTagsPreview?.styles}
                         />

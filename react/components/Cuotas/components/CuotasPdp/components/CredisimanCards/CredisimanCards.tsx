@@ -42,7 +42,7 @@ const CredisimanCards = ({ values }: CredisimanCardsProps) => {
                                     paymentsImages={updateCredisimanTagsPreview?.tagsImgs}
                                     availablePayments={credisimanResults?.map((result) => ({
                                         paymentId: result.paymentId,
-                                        isValid: result.isValid,
+                                        isValid: result.isValid
                                     }))}
                                     tagStyles={updateCredisimanTagsPreview?.styles}
                                     isPdp={true}

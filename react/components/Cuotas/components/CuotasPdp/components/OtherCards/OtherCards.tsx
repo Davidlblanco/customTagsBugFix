@@ -25,6 +25,9 @@ const OtherCards = ({ values }: OtherCardsProps) => {
     const verifyTagsPreview = updateOthersTagsPreview &&
         updateOthersTagsPreview?.tagIsActive &&
         updateOthersTagsPreview?.tagsImgs?.length > 0;
+
+    console.log('otherResults', otherResults);
+
     return (
         <>
             {minInstallments && (
@@ -107,6 +110,8 @@ const processInstallments = (otherResults: Results[]): ProcessInstallmentsResult
         return {
             ...typedBank,
             bestInstallment: getBestPayment([typedBank])?.bestInstallment || null
+
+
         };
     });
 
