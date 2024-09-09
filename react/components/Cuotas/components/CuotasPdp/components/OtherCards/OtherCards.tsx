@@ -25,9 +25,6 @@ const OtherCards = ({ values }: OtherCardsProps) => {
     const verifyTagsPreview = updateOthersTagsPreview &&
         updateOthersTagsPreview?.tagIsActive &&
         updateOthersTagsPreview?.tagsImgs?.length > 0;
-
-    console.log('otherResults', otherResults);
-
     return (
         <>
             {minInstallments && (
@@ -38,6 +35,9 @@ const OtherCards = ({ values }: OtherCardsProps) => {
                         </h2>
                         {sortedInstallments.map((installment, index) => {
                             const isLastItem = index === sortedInstallments.length - 1;
+                            const verifyImg = groupedTags[installment].some((item) =>
+                                updateOthersTagsPreview?.tagsImgs?.some((tag) => item?.paymentId === tag.paymentId)
+                            );
                             return (
                                 <div
                                     key={installment}
@@ -47,7 +47,7 @@ const OtherCards = ({ values }: OtherCardsProps) => {
                                         ${isSingleItem ? style.singleItem : ''}
                                     `}
                                 >
-                                    {verifyTagsPreview && (
+                                    {verifyTagsPreview && verifyImg && (
                                         <div className={`${style.wrapPaymentImages}`}>
                                             <PaymentImages
                                                 paymentsImages={updateOthersTagsPreview?.tagsImgs}
@@ -60,7 +60,6 @@ const OtherCards = ({ values }: OtherCardsProps) => {
                                             />
                                         </div>
                                     )}
-
                                     <div className={`${style.wrapInterestFreeInformation}`}>
                                         <InstallmentDetailDrawer
                                             installment={installment}
@@ -101,17 +100,15 @@ const processInstallments = (otherResults: Results[]): ProcessInstallmentsResult
         return acc;
     }, {} as Record<string, Results>);
 
-    const filteredBanks = Object.values(paymentsById)?.filter((result: Results) =>
-        result?.installments?.some(installment => installment?.installment >= 6)
-    );
+    const filteredBanks = Object.values(paymentsById)?.filter((result: Results) => {
+        return result.installments?.some(installment => installment.installment >= 6);
+    });
 
     const bestInstallments = filteredBanks?.map(bank => {
         const typedBank = bank as Results;
         return {
             ...typedBank,
             bestInstallment: getBestPayment([typedBank])?.bestInstallment || null
-
-
         };
     });
 

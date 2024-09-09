@@ -3,7 +3,12 @@ import { BankType, GenericTagsApi, TagsStyles } from "../../Types/PaymentCustom"
 
 import styles from "./styles.css";
 
-export default function PaymentImages({ paymentsImages, tagStyles, availablePayments, isPdp }: Props) {
+export default function PaymentImages({
+    paymentsImages,
+    tagStyles,
+    availablePayments,
+    isPdp
+}: Props) {
     const checksIfPaymentIsValid = paymentsImages
         ?.map((img) => {
             const payment = availablePayments.find((pay) => {
