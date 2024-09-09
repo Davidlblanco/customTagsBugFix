@@ -12,6 +12,7 @@ import styles from "./styles.css";
 
 interface HeaderDesktopProps {
     desktopImage: string;
+    logoUrl: string;
     SearchBar: ComponentType;
     WishList: ComponentType;
     Login: ComponentType;
@@ -23,6 +24,7 @@ interface HeaderDesktopProps {
 
 const HeaderDesktop = ({
     desktopImage,
+    logoUrl,
     SearchBar,
     WishList,
     Login,
@@ -44,7 +46,7 @@ const HeaderDesktop = ({
                 }
             >
                 <div className={styles.headerTopLeft}>
-                    <a className={styles.headerSimanLogo} href="/">
+                    <a className={styles.headerSimanLogo} href={logoUrl}>
                         <img
                             className={styles.headerSimanLogoImg}
                             src={desktopImage}

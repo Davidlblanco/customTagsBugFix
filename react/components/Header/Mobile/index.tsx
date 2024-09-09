@@ -5,6 +5,7 @@ import styles from "./styles.css";
 
 interface HeaderMobileProps {
     mobileImage: string;
+    logoUrl: string;
     mobileImageDark: string;
     SearchBar: ComponentType;
     Minicart: ComponentType;
@@ -13,6 +14,7 @@ interface HeaderMobileProps {
 
 const HeaderMobile = ({
     mobileImage,
+    logoUrl,
     mobileImageDark,
     SearchBar,
     Minicart,
@@ -55,7 +57,7 @@ const HeaderMobile = ({
         >
             <div className={styles.headerMobileLeft}>
                 <MegaMenuMobile />
-                <a className={styles.headerSimanLogo} href="/">
+                <a className={styles.headerSimanLogo} href={logoUrl}>
                     <img
                         className={styles.headerSimanLogoImgMobile}
                         src={isDarkMode ? mobileImageDark : mobileImage}
