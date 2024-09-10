@@ -35,7 +35,7 @@ const Cuotas = ({ visibility }: CuotasProps) => {
     const canRender = bestInstallment?.installment &&
         bestInstallment.installment > 1;
 
-    if (!canRender) {
+    if (!canRender || !tagsPreview?.tagIsActive) {
         return <></>;
     }
 
