@@ -182,6 +182,11 @@
                         "ui:widget": "image-uploader"
                     }
                 },
+                "logoUrl": {
+                    "title": "LogoUrl",
+                    "type": "string",
+                    "default": "/"
+                },
                 "mobileImage": {
                     "title": "MobileImage",
                     "$ref": "app:vtex.native-types#/definitions/url",
