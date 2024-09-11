@@ -10,12 +10,16 @@ export type Results = {
         rulesResults: RuleResult<unknown>[];
         installmentPrice: number;
     }[];
-    bestInstallment: {
-        installment: number;
-        valid: boolean;
-        rulesResults: RuleResult<unknown>[];
-        installmentPrice: number;
-    } | null;
+    bestInstallment: BestInstallment;
     tagsCuotas: TagCuotasValues[] | null;
     BankTypes: BankType[];
 };
+
+
+
+export type BestInstallment = {
+    installment: number;
+    valid: boolean;
+    rulesResults: RuleResult<unknown>[];
+    installmentPrice: number;
+} | null;

@@ -150,6 +150,7 @@ interface GenericTagsFront {
         path: string;
     }>;
     styles: TagsStyles;
+    interestRate?: number;
     tagInformation: {
         id: string;
         value: string;

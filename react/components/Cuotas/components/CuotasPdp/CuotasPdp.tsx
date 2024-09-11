@@ -24,7 +24,7 @@ const CuotasPdp = ({ tagsPreview, bestInstallment, results }: CuotasPdpProps) =>
         updateCredisimanTagsPreview,
         updateOthersTagsPreview,
     } = handleTags(results, tagsPreview);
-    const installmentValues = bestInstallmentValues(bestInstallment, credisimanResults);
+    const installmentValues = bestInstallmentValues(bestInstallment, credisimanResults, tagsPreview);
     const verifyTagsPreview =
         updateAllTagsPreview && updateAllTagsPreview?.tagIsActive && updateAllTagsPreview?.tagsImgs?.length > 0;
     return (
@@ -78,16 +78,13 @@ const CuotasPdp = ({ tagsPreview, bestInstallment, results }: CuotasPdpProps) =>
 
 const bestInstallmentValues = (
     bestInstallment: BestInstallment,
-    credisimanResults: Results[]
+    credisimanResults: Results[],
+    tagsPreview?: GenericTagsFront | null
 ): BestInstallmentValues => {
-    const installment = bestInstallment?.installment;
-    const credisimanFinancing = getCredisimanFinancing(installment);
-
+    const credisimanFinancing = getCredisimanFinancing(credisimanResults, tagsPreview?.interestRate);
     let values: BestInstallmentValues = {};
 
-    const credisimanCuotas = credisimanResults?.find((item) => item.paymentId === "406" && item?.isValid);
-
-    if (credisimanFinancing && credisimanCuotas) {
+    if (credisimanFinancing) {
         values = {
             installment: credisimanFinancing?.numberOfInstallments,
             installmentPrice: parseFloat((credisimanFinancing?.installmentValue ?? 0 / 100).toFixed(2)),

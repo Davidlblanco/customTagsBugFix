@@ -1,8 +1,7 @@
 import React from "react";
 
-// import { FormattedCurrency } from "vtex.format-currency";
+import { FormattedCurrency } from "vtex.format-currency";
 
-import { getBestPayment } from "../../../../hooks/useProductPayments";
 import { getCredisimanFinancing } from "../../utils/getCredisimanFinancing";
 
 import { Results } from "../../../../Types/Results";
@@ -21,10 +20,7 @@ const InstallmentsWithInterest = ({
     interestFreeValid,
     updateCredisimanTagsPreview,
 }: InstallmentsWithInterestProps) => {
-    const credisiman = credisimanResults?.filter((item) => item?.paymentId === "406");
-    const bestInstallment = getBestPayment(credisiman ?? [])?.bestInstallment;
-    const maxInterestRate = getCredisimanFinancing(bestInstallment?.installment);
-
+    const maxInterestRate = getCredisimanFinancing(credisimanResults, updateCredisimanTagsPreview?.interestRate);
     const textInformation = updateCredisimanTagsPreview?.tagInformation?.value ?? "";
     return (
         <>
@@ -42,10 +38,10 @@ const InstallmentsWithInterest = ({
                             </div>
 
                             <div className={`${style.priceOfInstallments}`}>
-                                {/* <FormattedCurrency value={maxInterestRate?.installmentValue ?? 0} /> */}
+                                <FormattedCurrency value={maxInterestRate?.installmentValue ?? 0} />
                             </div>
                         </div>
-                        {/* <span className={`${style.wrapCredisimanFinancingValues}`}>
+                        <span className={`${style.wrapCredisimanFinancingValues}`}>
                             <div className={`${style.wrapTotalInterest}`}>
                                 <span className={`${style.titleTotalInterest}`}>Total interés:</span>
                                 <span className={`${style.priceTotalInterest}`}>
@@ -61,7 +57,7 @@ const InstallmentsWithInterest = ({
                                     <FormattedCurrency value={maxInterestRate?.fullCredit} />
                                 </span>
                             </div>
-                        </span> */}
+                        </span>
                     </div>
                     <div
                         className={`
@@ -69,8 +65,6 @@ const InstallmentsWithInterest = ({
                         ${!interestFreeValid ? style.interestInformationPaddingNone : ""}
                     `}
                     >
-                        {/* *{maxInterestRate?.interestRate}% tasa de interés efectiva anual. Sujeta a aprobación por
-                        el departamento de créditos de Almacenes Siman S.A. de C.V. */}
                         {textInformation}
                     </div>
                 </div>

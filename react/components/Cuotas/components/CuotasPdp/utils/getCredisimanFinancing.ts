@@ -1,39 +1,30 @@
-import { useProduct } from "vtex.product-context";
-import { CommercialOffer, Installment } from "vtex.product-context/react/ProductTypes";
+import { getBestPayment } from "../../../hooks/useProductPayments";
+import { BestInstallment, Results } from "../../../Types/Results";
 
-export function getCredisimanFinancing(bestInstallment?: number): Financing | null {
-    const productSelected = useProduct()?.selectedItem;
-    const productCommertialOffer = productSelected?.sellers?.[0]?.commertialOffer;
-    const installments = productCommertialOffer?.Installments;
-    const credisimanInstallments =
-        installments?.filter(
-            (installment) =>
-                installment?.PaymentSystemName.includes("Credisiman") &&
-                installment?.PaymentSystemName.includes("Financiadas")
-        ) ?? [];
-
-    for (const installment of credisimanInstallments) {
-        if (bestInstallment && installment?.NumberOfInstallments === bestInstallment) {
-            return formatCredisimanFinancing(productCommertialOffer!, installment);
-        }
-    }
-
-    return null;
+export function getCredisimanFinancing(credisimanResults: Results[], interestRate?: number): Financing | null {
+    const credisiman = credisimanResults?.filter((item) => item?.paymentId === "406" && item?.isValid);
+    const bestInstallment = getBestPayment(credisiman ?? [])?.bestInstallment;
+    return bestInstallment ? formatCredisimanFinancing(bestInstallment, interestRate) : null;
 }
 
-function formatCredisimanFinancing(commercialOffer: CommercialOffer, maxInterestRate: Installment): Financing {
-    const totalValuePlusInterestRate = maxInterestRate?.TotalValuePlusInterestRate;
-    const price = commercialOffer?.Price;
-    const interestRate = price > 0 ? ((totalValuePlusInterestRate - price) / price) * 100 : 0;
+function formatCredisimanFinancing(bestInstallment?: BestInstallment, interestRatePercentage?: number): Financing {
+    const numberOfInstallments = bestInstallment?.installment ?? 0;
+    const price = (bestInstallment?.installmentPrice ?? 0) * numberOfInstallments / 100;
+    const fullCredit = price + (price * (interestRatePercentage ?? 0) / 100);
+
     const financing: Financing = {
-        interestRate: Math.round(interestRate * 100) / 100,
-        fullCredit: totalValuePlusInterestRate,
-        totalInterest: totalValuePlusInterestRate - price,
-        installmentValue: maxInterestRate.Value,
-        numberOfInstallments: maxInterestRate.NumberOfInstallments,
+        interestRate: interestRatePercentage ?? 0,
+        fullCredit: roundToTwoDecimals(fullCredit),
+        totalInterest: roundToTwoDecimals(fullCredit - price),
+        installmentValue: roundToTwoDecimals(fullCredit / numberOfInstallments),
+        numberOfInstallments: numberOfInstallments,
     };
 
     return financing;
+}
+
+function roundToTwoDecimals(value: number): number {
+    return parseFloat(value.toFixed(2));
 }
 
 export type Financing = {
