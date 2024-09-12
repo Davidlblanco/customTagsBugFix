@@ -100,6 +100,12 @@
                         "ui:widget": "color"
                     }
                 },
+                "titleTextWeight": {
+                    "title": "Is Bold?",
+                    "description": "Define si el Titulo es Bold o no.",
+                    "type": "boolean",
+                    "default": false
+                },
                 "titleText": {
                     "title": "Title - Text",
                     "type": "string",
@@ -116,6 +122,11 @@
                     "type": "string",
                     "description": "pixelDesktop-pixelMobile (ex: 18px-12px)",
                     "default": "32px-16px"
+                },
+                "subtitleTextLink": {
+                    "title": "Subtitle as link",
+                    "type": "boolean",
+                    "default": false
                 },
                 "subtitleText": {
                     "title": "Subtitle - Text",
@@ -166,6 +177,52 @@
                     "default": "",
                     "widget": {
                         "ui:widget": "color"
+                    }
+                },
+                "ctaColor": {
+                    "type": "object",
+                    "title": "Additional Option",
+                    "properties": {
+                        "selection": {
+                            "type": "string",
+                            "enum": ["Default", "Color CTA Mobile"],
+                            "title": "Custom CTA Style Mobile",
+                            "default": "Default"
+                        }
+                    },
+                    "dependencies": {
+                        "selection": {
+                            "oneOf": [
+                                {
+                                    "properties": {
+                                        "selection": { "enum": ["Default"] }
+                                    }
+                                },
+                                {
+                                    "properties": {
+                                        "selection": {
+                                            "enum": ["Color CTA Mobile"]
+                                        },
+                                        "ctaColor": {
+                                            "title": "Button - Color",
+                                            "type": "string",
+                                            "widget": {
+                                                "ui:widget": "color"
+                                            },
+                                            "default": ""
+                                        },
+                                        "ctaBackground": {
+                                            "title": "Button - Background",
+                                            "type": "string",
+                                            "widget": {
+                                                "ui:widget": "color"
+                                            },
+                                            "default": ""
+                                        }
+                                    }
+                                }
+                            ]
+                        }
                     }
                 }
             }

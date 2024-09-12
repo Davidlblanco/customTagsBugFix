@@ -3,6 +3,12 @@ import { useDevice } from "vtex.device-detector";
 import styles from "./index.css";
 import RichText from "vtex.rich-text/index";
 
+interface CtaColorObject {
+  ctaColor?: string;
+  ctaBackground?: string;
+  selection?: string;
+}
+
 interface ITituloeBanner {
     isFullMode: boolean;
     fullModeTextWidth: string;
@@ -13,6 +19,7 @@ interface ITituloeBanner {
     titleText: string;
     titleSize: string;
     titleMargin: string;
+    subtitleTextLink: boolean;
     subtitleText: string;
     subtitleSize: string;
     btnText: string;
@@ -23,6 +30,8 @@ interface ITituloeBanner {
     isButton: boolean;
     btnBackground: string;
     blockClass: string | string[];
+    ctaColor: string | string[] | CtaColorObject;
+    titleTextWeight: boolean;
 }
 
 const splitAndValidate = (
@@ -48,6 +57,7 @@ const InfoCardCustom = ({
     titleText,
     titleSize,
     titleMargin,
+    subtitleTextLink,
     subtitleText,
     subtitleSize,
     btnText,
@@ -60,11 +70,30 @@ const InfoCardCustom = ({
     isButton,
     btnBackground,
     blockClass,
+    ctaColor,
+    titleTextWeight
 }: ITituloeBanner) => {
     const { device } = useDevice();
     const isPhone = device === "phone";
     const imageUrl = isPhone ? imageMobile : imageDesktop;
 
+   
+    let ctaColorValue = "";
+    let ctaBackgroundValue = "";
+    let ctaSelection = "";
+
+    if (typeof ctaColor === "object" && !Array.isArray(ctaColor)) {
+      ctaColorValue = ctaColor.ctaColor ?? "";
+      ctaBackgroundValue = ctaColor.ctaBackground ?? "";
+      ctaBackgroundValue = ctaColor.ctaBackground ?? "";
+      ctaSelection = ctaColor.selection ?? "";
+
+  } else if (typeof ctaColor === "string") {
+      ctaColorValue = ctaColor;
+  }
+
+    const ctaColorConfig = ctaColor && ctaSelection === "Color CTA Mobile" ? ctaColor : false;
+    
     const [sizeTitleDesk, sizeTitleMob] = splitAndValidate(titleSize);
     const [sizeSubTitleDesk, sizeSubTitleMob] = splitAndValidate(subtitleSize);
     const [marginBottomTitleDesk, marginBottomTitleMob] =
@@ -76,8 +105,8 @@ const InfoCardCustom = ({
                 isButton ? styles.infocard_buttonMode : ""
             }`}
             style={{
-                color: btnColor,
-                background: isButton ? btnBackground : "transparent",
+                color: isPhone && ctaColorConfig? ctaColorValue : btnColor,
+                background: isButton ? isPhone && ctaColorConfig ? ctaBackgroundValue : btnBackground : "transparent",
             }}
             href={btnLink}
         >
@@ -92,7 +121,7 @@ const InfoCardCustom = ({
                 style={{ color: titlesColor }}
             >
                 <p
-                    className={styles.infoCard_titulo}
+                    className={`${styles.infoCard_titulo} ${titleTextWeight ? styles.infoCard_titulo_weight : ''}`}
                     style={{
                         fontSize: isPhone ? sizeTitleMob : sizeTitleDesk,
                         marginBottom: isPhone
@@ -103,7 +132,7 @@ const InfoCardCustom = ({
                     <RichText text={titleText} />
                 </p>
                 <p
-                    className={styles.infoCard_subtitulo}
+                    className={`${styles.infoCard_subtitulo} ${subtitleTextLink ? styles.infoCard_subtitleTextLink : ''}`}
                     style={{
                         fontSize: isPhone ? sizeSubTitleMob : sizeSubTitleDesk,
                     }}
