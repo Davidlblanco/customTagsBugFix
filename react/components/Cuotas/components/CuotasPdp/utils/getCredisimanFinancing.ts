@@ -9,22 +9,32 @@ export function getCredisimanFinancing(credisimanResults: Results[], interestRat
 
 function formatCredisimanFinancing(bestInstallment?: BestInstallment, interestRatePercentage?: number): Financing {
     const numberOfInstallments = bestInstallment?.installment ?? 0;
-    const price = (bestInstallment?.installmentPrice ?? 0) * numberOfInstallments / 100;
-    const fullCredit = price + (price * (interestRatePercentage ?? 0) / 100);
+    const principal = (bestInstallment?.installmentPrice ?? 0) * numberOfInstallments / 100;
+
+    const dailyInterestRate = (interestRatePercentage ?? 0) / 365;
+    let monthlyInterestRate = (dailyInterestRate * 30 * 1.13) / 100;
+    monthlyInterestRate = truncateDecimals(monthlyInterestRate, 5);
+
+    let cuota = (principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfInstallments)) /
+        (Math.pow(1 + monthlyInterestRate, numberOfInstallments) - 1);
+    cuota = truncateDecimals(cuota, 2);
+
+    const fullCredit = cuota * numberOfInstallments;
 
     const financing: Financing = {
         interestRate: interestRatePercentage ?? 0,
-        fullCredit: roundToTwoDecimals(fullCredit),
-        totalInterest: roundToTwoDecimals(fullCredit - price),
-        installmentValue: roundToTwoDecimals(fullCredit / numberOfInstallments),
-        numberOfInstallments: numberOfInstallments,
+        fullCredit: truncateDecimals(fullCredit, 2),
+        totalInterest: truncateDecimals(fullCredit - principal, 2),
+        installmentValue: cuota,
+        numberOfInstallments: numberOfInstallments
     };
 
     return financing;
 }
 
-function roundToTwoDecimals(value: number): number {
-    return parseFloat(value.toFixed(2));
+function truncateDecimals(value: number, quantity: number): number {
+    const factor = Math.pow(10, quantity);
+    return Math.floor(value * factor) / factor;
 }
 
 export type Financing = {
