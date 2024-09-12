@@ -113,6 +113,9 @@
         "component": "ToggleTheme"
     },
     "tags-cuotas": {
-        "component": "TagsCoutas"
+        "component": "TagsCuotas"
+    },
+    "installment-tags": {
+        "component": "InstallmentTags"
     }
 }
