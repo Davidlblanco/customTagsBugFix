@@ -15,8 +15,8 @@ export function calculateDiscountPercentage({
     const priceWithDiscount = listPrice - totalWithCredisiman;
     const discountPercentage = (priceWithDiscount / listPrice) * 100
     
-    return `${Math.round(discountPercentage)}%`;
+    return `-${Math.round(discountPercentage)}%`;
   }
 
-  return `${discount}%`;
+  return `-${discount}%`;
 }
