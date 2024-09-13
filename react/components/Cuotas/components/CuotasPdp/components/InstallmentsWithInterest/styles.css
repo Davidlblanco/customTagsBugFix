@@ -44,7 +44,7 @@
             align-items: center;
             gap: 5px;
 
-            word-break: break-word;
+            flex-wrap: wrap;
 
             & .wrapTotalInterest {
                 & .titleTotalInterest {

@@ -48,9 +48,6 @@ const InstallmentsWithInterest = ({
                                     <FormattedCurrency value={maxInterestRate?.totalInterest} />
                                 </span>
                             </div>
-
-                            <span>|</span>
-
                             <div className={`${style.wrapFullCredit}`}>
                                 <span className={`${style.titleFullCredit}`}>Total crédito:</span>
                                 <span className={`${style.pricefullCredit}`}>
