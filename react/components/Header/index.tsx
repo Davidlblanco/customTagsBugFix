@@ -9,6 +9,7 @@ import styles from "./styles.css";
 
 interface HeaderProps {
     desktopImage: string;
+    logoUrl: string;
     mobileImage: string;
     mobileImageDark: string;
     SearchBar: ComponentType;
@@ -23,6 +24,7 @@ interface HeaderProps {
 
 const Header = ({
     desktopImage,
+    logoUrl,
     mobileImage,
     mobileImageDark,
     SearchBar,
@@ -42,6 +44,7 @@ const Header = ({
                 {isMobile ? (
                     <HeaderMobile
                         mobileImage={mobileImage}
+                        logoUrl={logoUrl}
                         mobileImageDark={mobileImageDark}
                         SearchBar={SearchBar}
                         Minicart={Minicart}
@@ -50,6 +53,7 @@ const Header = ({
                 ) : (
                     <HeaderDesktop
                         desktopImage={desktopImage}
+                        logoUrl={logoUrl}
                         SearchBar={SearchBar}
                         WishList={WishList}
                         Login={Login}
