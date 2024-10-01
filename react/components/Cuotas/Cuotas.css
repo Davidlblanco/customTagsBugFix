@@ -4,17 +4,8 @@ body {
 }
 
 .CuotasContainerNewpdp {
-    background-color: #f9f9f9;
     border-radius: 8px;
     margin: 8px 0;
-  
-    &.without-price {
-      background-color: transparent;
-
-      .tag-preview-wrapper {
-        padding: 0;
-      }
-    }
 }
 
 .CrediSimanContainer {
@@ -109,22 +100,22 @@ body {
     margin: 0;
 }
 
-.InstallmentPrice {
-    .currencyContainer {
-        font-family: Clan OT, sans-serif;
-        font-size: 20px;
-        font-weight: 475;
-        line-height: 25px;
-        letter-spacing: 0.0015em;
-        text-align: left;
-        color: #6d6e71;
+/* mobile comparator shelf  */
+@media(max-width: 780px) {
+    :global(.vtex-flex-layout-0-x-flexColChild--product-comparator-shelf) {
+        & .CuotasContainerNewpdp {
+            & .tagPreviewWrapper {
+                flex-direction: column;
+
+                & .tagPreviewInstallmentsSummary {
+                    width: max-content;
+                }
+
+                & .tag-preview-flag-container {
+                    height: 30px;
+                    margin-left: 5px;
+                }
+            }
+        }
     }
 }
-
-.tag-preview-wrapper {
-  padding: 14px 8px 2px;
-
-  display: flex;
-  align-items: stretch;
-}
-

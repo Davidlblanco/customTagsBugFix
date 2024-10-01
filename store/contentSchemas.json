@@ -1,16 +1,5 @@
 {
     "definitions": {
-        "CuotasCustom": {
-            "type": "object",
-            "title": "admin/editor.image-list.images.image.title",
-            "properties": {
-                "hidePrice": {
-                    "title": "ocultar el precio",
-                    "type": "boolean",
-                    "default": false
-                }
-            }
-        },
         "paymentImage": {
             "title": "Image Payment",
             "type": "object",

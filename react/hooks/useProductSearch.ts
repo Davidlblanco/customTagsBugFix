@@ -7,7 +7,7 @@ function useProductSearch({ IDs }: Props) {
 
     const { data, error } = useQuery<TData, QueryOpt>(Product, {
         variables: {
-            values: IDs,
+            values: IDs.filter((item) => item !== '2')
         },
     });
 
