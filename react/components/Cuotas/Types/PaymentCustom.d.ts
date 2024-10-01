@@ -94,7 +94,13 @@ export interface PaymentConfigRule<T = unknown> {
     value: T;
 }
 
-export type RuleType = "minimum_price" | "sku_category" | "sku_brand" | "sku_id" | "simanpro" | "sku_collection";
+export type RuleType =
+    | "minimum_price"
+    | "sku_category"
+    | "sku_brand"
+    | "sku_id"
+    | "simanpro"
+    | "sku_collection";
 
 export interface SellerInfo {
     SellerId: string;
