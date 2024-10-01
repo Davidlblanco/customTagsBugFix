@@ -1,2 +1,2 @@
 // TTL to Credisiman Cache : 15min
-export const minutesToExpiryCache = 15 
+export const minutesToExpiryCache = 5 
