@@ -3,13 +3,14 @@ import { FormattedCurrency } from "vtex.format-currency";
 import { useProduct } from "vtex.product-context";
 import { ConfigGroup, CredisimanType } from "./Types/credisimanTypes";
 import { GetCrediSimanProductData } from "./Logic/logic";
-// import CrediSimanImage from "../../utils/CredisimanImage/CredisimanImage";
+import getCredisimanImageSource from "../../utils/getCredisimanImageSource";
 import GetPageType from "../../utils/getPageType";
 import { useRenderSession } from "vtex.session-client";
 import styles from "./CrediSimanPrice.css";
 import { calculateDiscountPercentage } from "./utils/calculateDiscontPercentage";
 import { useRuntime } from "vtex.render-runtime";
 import generateBaseUrlToSv from "../../utils/generateBaseUrlToSv";
+
 
 interface CredisimanPriceProps {
   isShelf?: boolean;
@@ -109,7 +110,7 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
               src={
                 credisimanTagStyles?.image.src.length
                   ? credisimanTagStyles?.image.src
-                  : 'https://simanqa.vtexassets.com/assets/simanqa.file-manager/images/visa-tag___bbbaf9ca29725b058b26414be9398435.svg'
+                  : getCredisimanImageSource(account)
               }
               alt="Credisiman Tag"
               width={24}
