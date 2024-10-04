@@ -27,7 +27,7 @@ export default function InstallmentDetails({
       }}
     >
       {visibility === "pdp" && installment && (
-        <>Obtén hasta cuotas de</>
+        <>Obtén hasta {installment} {textCuota} de</>
       )}
       {visibility === "product-summary" && installment && (
         <>Hasta {installment} {textCuota}</>
