@@ -17,7 +17,7 @@ export default function InstallmentDetails({
   tag,
   visibility
 }: InstallmentDetailsProps) {
-  const verifyImages = tag?.quantityImgs > 0 && tag?.tagIsActive == true;
+  const textCuota = installment && installment > 1 ? 'cuotas' : 'cuota';
   return (
     <span
       className={`${visibility == "pdp" ? styles.tagPreviewInstallmentsPdp : styles.tagPreviewInstallmentsSummary}`}
@@ -26,11 +26,11 @@ export default function InstallmentDetails({
         ...tag.styles,
       }}
     >
-      {visibility === "pdp" && (
-        <>Obtén hasta {installment} cuotas de</>
+      {visibility === "pdp" && installment && (
+        <>Obtén hasta {installment} {textCuota} de</>
       )}
-      {visibility === "product-summary" && (
-        <>{installment} cuotas {verifyImages ? 'con' : ''} </>
+      {visibility === "product-summary" && installment && (
+        <>Hasta {installment} {textCuota}</>
       )}
     </span>
   );

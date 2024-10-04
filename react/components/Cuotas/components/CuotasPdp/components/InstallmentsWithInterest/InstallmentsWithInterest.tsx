@@ -22,6 +22,7 @@ const InstallmentsWithInterest = ({
 }: InstallmentsWithInterestProps) => {
     const maxInterestRate = getCredisimanFinancing(credisimanResults, updateCredisimanTagsPreview?.interestRate);
     const textInformation = updateCredisimanTagsPreview?.tagInformation?.value ?? "";
+    const textCuota = maxInterestRate?.numberOfInstallments && maxInterestRate?.numberOfInstallments > 1 ? 'cuotas' : 'cuota';
     return (
         <>
             {maxInterestRate && (
@@ -34,7 +35,7 @@ const InstallmentsWithInterest = ({
                     <div className={`${style.wrapCredisimanInstallmentsWithInterest}`}>
                         <div className={`${style.wrapCredisimanInstallments}`}>
                             <div className={`${style.informationNumberOfInstallments}`}>
-                                Hasta {maxInterestRate?.numberOfInstallments} cuotas con financiamiento*
+                                Hasta {maxInterestRate?.numberOfInstallments} {textCuota} con financiamiento*
                             </div>
 
                             <div className={`${style.priceOfInstallments}`}>
