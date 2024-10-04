@@ -24,6 +24,8 @@ const Cuotas = ({ visibility }: CuotasProps) => {
         paymentIds: [], // This filter is optional
     });
 
+    console.log('tagsPreview', tagsPreview);
+
     if (isLoading || tagIsLoading) {
         return (
             <div className={styles.SpinnerContainer}>

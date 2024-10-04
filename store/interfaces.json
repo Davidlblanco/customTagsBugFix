@@ -18,7 +18,7 @@
     "custom-credisiman-price": {
         "component": "CrediSimanPrice",
         "content": {
-           "$ref": "app:siman.m3-custom#/definitions/credisimanPrice"
+            "$ref": "app:siman.m3-custom#/definitions/credisimanPrice"
         }
     },
     "custom-product-gift": {
@@ -120,5 +120,8 @@
     },
     "installment-tags": {
         "component": "InstallmentTags"
+    },
+    "limited-promotions": {
+        "component": "LimitedPromotions"
     }
 }
