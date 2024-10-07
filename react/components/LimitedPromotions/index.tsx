@@ -25,8 +25,6 @@ const LimitedPromotions = () => {
   const [credisimanTagStyles, setCredisimanTagStyles] =
     useState<ConfigLimitedPromotions['configs']>()
 
-  console.log('credisimanTagStyles', credisimanTagStyles)
-
   const { session } = useRenderSession()
   const pageType = GetPageType()
 
