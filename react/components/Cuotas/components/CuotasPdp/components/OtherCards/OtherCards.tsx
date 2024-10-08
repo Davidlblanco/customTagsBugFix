@@ -38,6 +38,7 @@ const OtherCards = ({ values }: OtherCardsProps) => {
                             const verifyImg = groupedTags[installment].some((item) =>
                                 updateOthersTagsPreview?.tagsImgs?.some((tag) => item?.paymentId === tag.paymentId)
                             );
+                            const textCuota = installment && installment > 1 ? 'cuotas' : 'cuota';
                             return (
                                 <div
                                     key={installment}
@@ -64,7 +65,7 @@ const OtherCards = ({ values }: OtherCardsProps) => {
                                         <InstallmentDetailDrawer
                                             installment={installment}
                                             firstText="Hasta"
-                                            secundText="cuotas sin intereses"
+                                            secundText={`${textCuota} sin intereses`}
                                             className={`${style.otherTextInterestFreeInstallments}`}
                                         />
                                         {groupedTags[installment][0]?.bestInstallment!.installmentPrice && (

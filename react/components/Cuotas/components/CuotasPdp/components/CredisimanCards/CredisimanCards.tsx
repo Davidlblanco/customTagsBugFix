@@ -30,6 +30,7 @@ const CredisimanCards = ({ values }: CredisimanCardsProps) => {
         updateCredisimanTagsPreview?.tagIsActive &&
         updateCredisimanTagsPreview?.tagsImgs?.length > 0;
 
+    const textCuota = bestInstallment?.installment && bestInstallment?.installment > 1 ? 'cuotas' : 'cuota';
     return (
         <>
             {credisimanResults.length > 0 && (
@@ -59,7 +60,7 @@ const CredisimanCards = ({ values }: CredisimanCardsProps) => {
                                 <InstallmentDetailDrawer
                                     installment={bestInstallment?.installment}
                                     firstText="Hasta"
-                                    secundText="cuotas sin intereses"
+                                    secundText={`${textCuota} sin intereses`}
                                     className={`${style.credsimanTextInterestFreeInstallments}`}
                                 />
                                 {bestInstallment?.installmentPrice && (
