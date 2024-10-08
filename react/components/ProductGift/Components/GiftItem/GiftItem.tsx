@@ -12,7 +12,7 @@ const GiftItem = ({ gift }: { gift: Gift }) => {
                <span className={styles.regaliaText}>Regalia</span>
             </div>
             <div className={styles.leftBottomGift}>
-               <span className={styles.giftName}>{gift.skuName}</span>
+               <span className={styles.giftName}>{gift.productName}</span>
             </div>
          </div>
          <div className={styles.rightGift}>
