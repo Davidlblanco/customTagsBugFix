@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useProduct } from 'vtex.product-context'
 import { useRenderSession } from 'vtex.session-client'
-import { FormattedCurrency } from 'vtex.format-currency'
 import { useRuntime } from 'vtex.render-runtime'
 
 import { SkeletonLoading } from './SkeletonLoading'
@@ -95,25 +94,8 @@ const LimitedPromotions = () => {
           </p>
         )}
       </div>
-
-      <div className={styles['tag-preview__credisiman']}>
-        <span className={styles['tag-preview__credisiman_limited-price']}>
-          <FormattedCurrency value={productData?.totalWithDiscount} />
-        </span>
-
-        <span className={styles['tag-preview__credisiman_limited-porcentage']}>
-          -{productData.discountValue}%
-        </span>
-
-        <img
-          src="https://simanqa.vtexassets.com/assets/simanqa.file-manager/images/visa-tag___bbbaf9ca29725b058b26414be9398435.svg"
-          alt="Credisiman Tag"
-          width={24}
-          height={24}
-        />
-      </div>
     </div>
   )
 }
 
-export { LimitedPromotions };
+export default LimitedPromotions;

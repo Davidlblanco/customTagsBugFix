@@ -1,3 +1,3 @@
-import { LimitedPromotions } from './components/LimitedPromotions';
+import LimitedPromotions from './components/LimitedPromotions';
 
 export default LimitedPromotions;
