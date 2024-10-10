@@ -18,13 +18,10 @@ interface CuotasProps {
 }
 
 const Cuotas = ({ visibility }: CuotasProps) => {
-
     const { tagsPreview, isLoading: tagIsLoading } = useGenericTagStyles();
     const { isLoading, bestInstallment, results } = useProductPayments({
         paymentIds: [], // This filter is optional
     });
-
-    console.log('tagsPreview', tagsPreview);
 
     if (isLoading || tagIsLoading) {
         return (
