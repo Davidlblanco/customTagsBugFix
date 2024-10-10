@@ -8,18 +8,6 @@ export function SkeletonLoading() {
       <span
         className={`${styles['skeleton-text']} ${styles['skeleton-box']}`}
       />
-
-      <div className={styles['skeleton-price-container']}>
-        <span
-          className={`${styles['skeleton-price']} ${styles['skeleton-box']}`}
-        />
-        <span
-          className={`${styles['skeleton-price-percentage']} ${styles['skeleton-box']}`}
-        />
-        <span
-          className={`${styles['skeleton-price-img']} ${styles['skeleton-box']}`}
-        />
-      </div>
     </div>
   )
 }
