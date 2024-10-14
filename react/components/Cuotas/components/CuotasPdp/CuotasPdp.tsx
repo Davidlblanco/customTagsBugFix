@@ -77,26 +77,27 @@ const CuotasPdp = ({ tagsPreview, bestInstallment, results }: CuotasPdpProps) =>
 };
 
 const bestInstallmentValues = (
-    bestInstallment: BestInstallment,
+    bestInstallmentInfo: BestInstallment,
     credisimanResults: Results[],
     tagsPreview?: GenericTagsFront | null
 ): BestInstallmentValues => {
     const credisimanFinancing = getCredisimanFinancing(credisimanResults, tagsPreview?.interestRate);
-    let values: BestInstallmentValues = {};
 
-    if (credisimanFinancing) {
-        values = {
-            installment: credisimanFinancing?.numberOfInstallments,
-            installmentPrice: parseFloat((credisimanFinancing?.installmentValue ?? 0 / 100).toFixed(2)),
-        };
-    } else {
-        values = {
-            installment: bestInstallment?.installment,
-            installmentPrice: parseFloat(((bestInstallment?.installmentPrice ?? 0) / 100).toFixed(2)),
-        };
+    const credisimanInstallment = credisimanFinancing?.numberOfInstallments ?? 0;
+    const bestInstallment = bestInstallmentInfo?.installment ?? 0;
+    
+    let installmentPrice = parseFloat(((bestInstallmentInfo?.installmentPrice ?? 0) / 100).toFixed(2));
+    let installment = bestInstallment;
+
+    if (credisimanInstallment >= bestInstallment) {
+        installment = credisimanInstallment;
+        installmentPrice = parseFloat(((credisimanFinancing?.installmentValue ?? 0) / 100).toFixed(2));
     }
 
-    return values;
+    return {
+        installment,
+        installmentPrice,
+    };
 };
 
 type BestInstallmentValues = {

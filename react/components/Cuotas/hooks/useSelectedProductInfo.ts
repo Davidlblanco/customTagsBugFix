@@ -23,7 +23,6 @@ export default function useSelectedProductInfo(cachedCredisiman?: Record<number,
 
     if(cachedCredisiman?.[skuId]){
         productQuantityCredisimanPrice = cachedCredisiman[skuId].totalWithDiscount * 100;
-        console.log("Tem cache ", productQuantityPrice, " x ", productQuantityCredisimanPrice)
     }
 
     return {
