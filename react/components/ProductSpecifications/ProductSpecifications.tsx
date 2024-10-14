@@ -10,8 +10,9 @@ const ProductSpecifications = () => {
     const allSpecifications = productsSpecifications?.find(
         (specification) => specification.originalName === "allSpecifications"
     );
+    const categories = productContext?.product?.categories || [];
 
-    if (!allSpecifications) return <></>;
+    if (!allSpecifications || categories.includes('/Belleza e higiene/')) return (<></>);
 
     return (
         <div className={styles.componentContainer}>

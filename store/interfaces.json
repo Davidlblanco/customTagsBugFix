@@ -120,5 +120,8 @@
     },
     "installment-tags": {
         "component": "InstallmentTags"
+    },
+    "custom-product-ingredients": {
+        "component": "ProductIngredients"
     }
 }
