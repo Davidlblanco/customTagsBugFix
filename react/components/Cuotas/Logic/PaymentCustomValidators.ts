@@ -13,7 +13,7 @@ import { SelectedProductInfo } from "../hooks/useSelectedProductInfo";
 export function validateConfig(config: PaymentConfig, productInfo: SelectedProductInfo) {
     const configCheckCondition = removeOutOfDeadLineConditions(config);
     const sellerValid = validateSellerCondition(productInfo, config.sellerCondition);
-    const conditions = configCheckCondition?.map((condition) => validateCondition(condition, productInfo)) ?? [];
+    const conditions = configCheckCondition?.map((condition) => validateCondition(condition, productInfo, config.paymentId)) ?? [];
 
     return {
         paymentId: config.paymentId,
@@ -45,7 +45,7 @@ function removeOutOfDeadLineConditions(config: PaymentConfig) {
     return configCheckCondition;
 }
 
-function validateCondition(condition: PaymentConfigCondition, productInfo: SelectedProductInfo) {
+function validateCondition(condition: PaymentConfigCondition, productInfo: SelectedProductInfo, paymentId: string) {
     const operator = condition.rulesOperator || "all";
     const rulesResults = condition.rules.map((rule) => verifyRule(rule, productInfo));
 
@@ -53,6 +53,10 @@ function validateCondition(condition: PaymentConfigCondition, productInfo: Selec
         operator == "all"
             ? rulesResults.every((x) => x.valid) // Every rule must be valid
             : rulesResults.some((x) => x.valid); // At least one rule must be valid
+
+    if(paymentId === "406" || paymentId === "403" || paymentId === "402") {
+        //todo
+    }
 
     return {
         installment: condition.installment,

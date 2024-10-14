@@ -20,8 +20,16 @@ interface CuotasProps {
 const Cuotas = ({ visibility }: CuotasProps) => {
 
     const { tagsPreview, isLoading: tagIsLoading } = useGenericTagStyles();
+    let cachedCredisiman = {0: ""};
+    
+    const storage = window?.localStorage?.getItem("products") ?? "";
+    if(storage.length > 0){
+        cachedCredisiman = JSON.parse(storage).value;
+    }
+    
     const { isLoading, bestInstallment, results } = useProductPayments({
         paymentIds: [], // This filter is optional
+        cachedCredisiman
     });
 
     if (isLoading || tagIsLoading) {
