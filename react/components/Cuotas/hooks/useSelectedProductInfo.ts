@@ -19,7 +19,7 @@ export default function useSelectedProductInfo(cachedCredisiman?: Record<number,
         selectedItem?.sellers[0]?.commertialOffer?.Price ?? 0;
     const selectedQuantity = productContext?.selectedQuantity ?? 0;
     const productQuantityPrice = selectedItemPrice * selectedQuantity * 100;
-    let productQuantityCredisimanPrice = 100;
+    let productQuantityCredisimanPrice = 0;
 
     if(cachedCredisiman?.[skuId]){
         productQuantityCredisimanPrice = cachedCredisiman[skuId].totalWithDiscount * 100;

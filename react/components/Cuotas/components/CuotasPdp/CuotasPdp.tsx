@@ -91,7 +91,7 @@ const bestInstallmentValues = (
 
     if (credisimanInstallment >= bestInstallment) {
         installment = credisimanInstallment;
-        installmentPrice = parseFloat(((credisimanFinancing?.installmentValue ?? 0) / 100).toFixed(2));
+        installmentPrice = parseFloat(((credisimanFinancing?.installmentValue ?? 0)).toFixed(2));
     }
 
     return {
