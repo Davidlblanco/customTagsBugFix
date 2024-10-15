@@ -10,26 +10,18 @@ import {
 } from "../Types/PaymentCustom";
 import { SelectedProductInfo } from "../hooks/useSelectedProductInfo";
 
-export function validateConfig(
-    config: PaymentConfig,
-    productInfo: SelectedProductInfo
-) {
+export function validateConfig(config: PaymentConfig, productInfo: SelectedProductInfo) {
     const configCheckCondition = removeOutOfDeadLineConditions(config);
-    const sellerValid = validateSellerCondition(
-        productInfo,
-        config.sellerCondition
-    );
-    const conditions =
-        configCheckCondition?.map((condition) =>
-            validateCondition(condition, productInfo)
-        ) ?? [];
+    const sellerValid = validateSellerCondition(productInfo, config.sellerCondition);
+    const conditions = configCheckCondition?.map((condition) => validateCondition(condition, productInfo)) ?? [];
 
     return {
         paymentId: config.paymentId,
         isValid: sellerValid && conditions?.some((x) => x?.valid), // At least one condition must be valid
         installments: conditions,
         bestInstallment: getBestInstallment(conditions),
-        tagsCuotas: filterBestTags(config?.tagCuotas, conditions)
+        tagsCuotas: filterBestTags(config?.tagCuotas, conditions),
+        BankTypes: config.BankTypes,
     };
 }
 
@@ -53,14 +45,9 @@ function removeOutOfDeadLineConditions(config: PaymentConfig) {
     return configCheckCondition;
 }
 
-function validateCondition(
-    condition: PaymentConfigCondition,
-    productInfo: SelectedProductInfo
-) {
+function validateCondition(condition: PaymentConfigCondition, productInfo: SelectedProductInfo) {
     const operator = condition.rulesOperator || "all";
-    const rulesResults = condition.rules.map((rule) =>
-        verifyRule(rule, productInfo)
-    );
+    const rulesResults = condition.rules.map((rule) => verifyRule(rule, productInfo));
 
     const valid =
         operator == "all"
@@ -77,10 +64,7 @@ function validateCondition(
 
 // ------ Verify rules ------ //
 
-function verifyRule(
-    rule: PaymentConfigRule,
-    productInfo: SelectedProductInfo
-): RuleResult {
+function verifyRule(rule: PaymentConfigRule, productInfo: SelectedProductInfo): RuleResult {
     switch (rule.type) {
         case "minimum_price":
             return verifyMinimumPrice(rule, productInfo);
@@ -99,10 +83,7 @@ function verifyRule(
     }
 }
 
-function validateSellerCondition(
-    productInfo: SelectedProductInfo,
-    sellerCondition?: PaymentSellerCondition
-) {
+function validateSellerCondition(productInfo: SelectedProductInfo, sellerCondition?: PaymentSellerCondition) {
     if (!sellerCondition?.statements) return true;
 
     const operator = sellerCondition.operator ?? "all";
@@ -121,19 +102,13 @@ function validateSellerCondition(
     return true;
 }
 
-function validateSellerStatement(
-    statement: ConditionStatement,
-    productInfo: SelectedProductInfo
-) {
+function validateSellerStatement(statement: ConditionStatement, productInfo: SelectedProductInfo) {
     const verb = statement.verb ?? "=";
     const object = statement.object as string;
     return applyOperator(isStringEqual(object, productInfo.sellerId), verb);
 }
 
-function verifyMinimumPrice(
-    rule: PaymentConfigRule,
-    productInfo: SelectedProductInfo
-) {
+function verifyMinimumPrice(rule: PaymentConfigRule, productInfo: SelectedProductInfo) {
     const minimumPrice = Number(rule.value);
     const value = productInfo.totalPrice;
     const valid = applyOperator(value >= minimumPrice, rule.operator);
@@ -149,10 +124,7 @@ function verifyMinimumPrice(
     };
 }
 
-function verifySkuCategory(
-    rule: PaymentConfigRule,
-    productInfo: SelectedProductInfo
-) {
+function verifySkuCategory(rule: PaymentConfigRule, productInfo: SelectedProductInfo) {
     const categories = parseStringToArray(rule.value as string);
 
     const value = productInfo.categoriesIds;
@@ -162,9 +134,7 @@ function verifySkuCategory(
     const contains = categories.some((category) => {
         const hasCategory = value.some((pCategory) => {
             const matches = pCategory == category;
-            matches
-                ? positiveMatches.push(pCategory)
-                : negativeMatches.push(pCategory);
+            matches ? positiveMatches.push(pCategory) : negativeMatches.push(pCategory);
             return matches;
         });
         return hasCategory;
@@ -181,10 +151,7 @@ function verifySkuCategory(
     };
 }
 
-function verifySkuBrand(
-    rule: PaymentConfigRule,
-    productInfo: SelectedProductInfo
-) {
+function verifySkuBrand(rule: PaymentConfigRule, productInfo: SelectedProductInfo) {
     const brands = parseStringToArray(rule.value as string);
 
     const value = productInfo.brandId;
@@ -208,10 +175,7 @@ function verifySkuBrand(
     };
 }
 
-function verifySkuId(
-    rule: PaymentConfigRule,
-    productInfo: SelectedProductInfo
-) {
+function verifySkuId(rule: PaymentConfigRule, productInfo: SelectedProductInfo) {
     const ids = parseStringToArray(rule.value as string);
 
     const value = productInfo.skuId;
@@ -231,10 +195,7 @@ function verifySkuId(
     };
 }
 
-function verifySimanpro(
-    rule: PaymentConfigRule,
-    productInfo: SelectedProductInfo
-) {
+function verifySimanpro(rule: PaymentConfigRule, productInfo: SelectedProductInfo) {
     const value = productInfo.simanpro.isActive;
     const contains = (rule.value as boolean) === value;
     const isValid = applyOperator(contains, rule.operator);
@@ -250,10 +211,7 @@ function verifySimanpro(
     };
 }
 
-function verifySkuCollection(
-    rule: PaymentConfigRule,
-    productInfo: SelectedProductInfo
-) {
+function verifySkuCollection(rule: PaymentConfigRule, productInfo: SelectedProductInfo) {
     const collections = parseStringToArray(rule.value as string);
     const value = productInfo?.productClusters;
 
@@ -292,9 +250,7 @@ function parseStringToArray(str: string) {
         .filter((x) => x);
 }
 
-function getBestInstallment(
-    installments: InstallmentResult[]
-): InstallmentResult | null {
+function getBestInstallment(installments: InstallmentResult[]): InstallmentResult | null {
     return installments.reduce((prev: InstallmentResult | null, current) => {
         // If the current installment is not valid, we ignore it
         if (!current?.valid) return prev;
@@ -309,7 +265,6 @@ function getBestInstallment(
         return prev;
     }, null);
 }
-
 
 function filterBestTags(tags: TagCuotasValues[] | undefined, conditions: any[]): TagCuotasValues[] | null {
     if (!tags) return null;
@@ -328,10 +283,11 @@ function filterBestTags(tags: TagCuotasValues[] | undefined, conditions: any[]):
         if (active == true && now >= startDate && (noEndDate || (endDate && now <= endDate))) {
             if (bankId) {
                 if (!result[bankId] || result[bankId].months.value < monthsValue) {
+                    const shouldIncludeTag = conditions.some(
+                        (condition) => tag.months.value == condition.installment && condition.valid
+                    );
 
-                    const shouldIncludeTag = conditions.some((condition) => (tag.months.value == condition.installment) && condition.valid)
-                    
-                    if(shouldIncludeTag) result[bankId] = tag;
+                    if (shouldIncludeTag) result[bankId] = tag;
                 }
             } else {
                 if (!maxMonthsItemWithoutBank || maxMonthsItemWithoutBank.months.value < monthsValue) {

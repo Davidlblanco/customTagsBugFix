@@ -1,0 +1,108 @@
+.containerCredisimanInstallmentsWithInterest {
+    width: 100%;
+    border-bottom: 1px solid #D3D3D3;
+
+    & .wrapCredisimanInstallmentsWithInterest {
+        padding-left: 16px;
+        padding-right: 16px;
+
+        & .wrapCredisimanInstallments {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 10px;
+
+            & .informationNumberOfInstallments {
+                font-family: 'Roboto', sans-serif;
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 16.8px;
+                color: #000000;
+
+                max-width: 150px;
+            }
+
+            & .priceOfInstallments {
+                font-family: 'Roboto', sans-serif;
+                font-size: 21px;
+                font-weight: 700;
+                line-height: 29.4px;
+                color: #1F1F1F;
+            }
+        }
+
+        & .wrapCredisimanFinancingValues {
+            font-family: 'Roboto', sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 16.8px;
+
+            color: #5A5A5A;
+
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            flex-wrap: wrap;
+
+            & .wrapTotalInterest {
+                & .titleTotalInterest {
+                    white-space: nowrap;
+                    margin-right: 5px;
+                }
+
+                & .pricefullCredit {
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 16.8px;
+
+                    color: #5A5A5A;
+                }
+            }
+
+            & .wrapFullCredit {
+                & .titleFullCredit {
+                    white-space: nowrap;
+                    margin-right: 5px;
+                }
+
+                & .priceTotalInterest {
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 16.8px;
+
+                    color: #5A5A5A;
+                }
+            }
+        }
+    }
+
+    & .interestPercentageInformation {
+        font-family: 'Roboto', sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16.8px;
+
+        color: #5A5A5A;
+
+        padding: 16px;
+    }
+
+    & .interestInformationPaddingNone {
+        padding-bottom: 0 !important;
+    }
+}
+
+@media(max-width: 780px) {
+    .wrapCredisimanFinancingValues {
+        gap: 0 !important;
+        justify-content: space-between;
+    }
+}
+
+.containerInstallmentsBorderNone {
+    border: none !important;
+}

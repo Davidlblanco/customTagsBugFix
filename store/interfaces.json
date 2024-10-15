@@ -15,17 +15,17 @@
     "custom-product-specifications": {
         "component": "ProductSpecifications"
     },
-    "custom-credi-siman-price": {
-        "component": "CrediSimanPrice"
+    "custom-credisiman-price": {
+        "component": "CrediSimanPrice",
+        "content": {
+           "$ref": "app:siman.m3-custom#/definitions/credisimanPrice"
+        }
     },
     "custom-product-gift": {
         "component": "ProductGift"
     },
     "custom-cuotas": {
-        "component": "Cuotas",
-        "content": {
-            "$ref": "app:siman.m3-custom#/definitions/CuotasCustom"
-        }
+        "component": "Cuotas"
     },
     "custom-header": {
         "component": "Header",
@@ -120,5 +120,8 @@
     },
     "installment-tags": {
         "component": "InstallmentTags"
+    },
+    "custom-product-ingredients": {
+        "component": "ProductIngredients"
     }
 }

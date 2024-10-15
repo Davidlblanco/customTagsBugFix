@@ -4,6 +4,8 @@ import { RegaliaIcon } from "../../Assets/ant-design_gift-outlined";
 import styles from "./styles.css";
 
 const GiftItem = ({ gift }: { gift: Gift }) => {
+   const filteredName = gift.skuName.replace(/\/\/.*/, "").trim();
+
    return (
       <div className={styles.containerGiftItem}>
          <div className={styles.leftGift}>
@@ -12,7 +14,7 @@ const GiftItem = ({ gift }: { gift: Gift }) => {
                <span className={styles.regaliaText}>Regalia</span>
             </div>
             <div className={styles.leftBottomGift}>
-               <span className={styles.giftName}>{gift.skuName}</span>
+               <span className={styles.giftName}>{filteredName}</span>
             </div>
          </div>
          <div className={styles.rightGift}>

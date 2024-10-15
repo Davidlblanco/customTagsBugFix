@@ -1,0 +1,52 @@
+:global(.siman-m3-custom-1-x-drawer) {
+    max-height: 100vh;
+
+    :global(.siman-m3-custom-1-x-drawerContent) {
+        & :global(.siman-m3-custom-1-x-drawerHeader) {
+            justify-content: end;
+
+            & :global(.siman-m3-custom-1-x-closeIconButton) {
+                padding-bottom: 3px;
+
+                &::before {
+                    content: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L11 11M1 11L11 1' stroke='%231F1F1F' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+                }
+
+                & :global(.siman-m3-custom-1-x-closeIcon) {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+:global(.siman-m3-custom-1-x-openIconContainer) {
+    padding: 0 !important;
+}
+
+.iconInformation {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16.8px;
+    color: #1F1F1F;
+    text-decoration: underline;
+}
+
+.wrapDrawerContent {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+
+    & :global(.siman-m3-custom-1-x-tag-preview-flag-container) {
+        margin-left: 5px;
+    }
+}
+
+@media(max-width: 780px) {
+    .wrapDrawerContent {
+        margin-bottom: 30px;
+    }
+}

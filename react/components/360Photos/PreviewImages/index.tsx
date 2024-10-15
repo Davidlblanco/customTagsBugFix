@@ -29,7 +29,7 @@ export const PreviewImages360: React.FC<PreviewImages360Props> = ({ value, isVis
             <div className={style['modal-header']}>
                <h4 className={style['modal-title']}>
                   <Icon360 />
-                  <span className={style["modal-title-strong"]}>"Explora en 360°:</span> 
+                  <span className={style["modal-title-strong"]}>"Explora en 360°:</span>
                   <span className={style["modal-title-text"]}>Gira el producto con un simple gesto del mouse o el dedo"</span>
                </h4>
                <button
