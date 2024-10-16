@@ -1,9 +1,9 @@
-.specificationList {
+.specificationListIngredients {
     display: inline;
     margin-top: 0;
 }
 
-.title {
+.titleIngredients {
     font-family: Roboto, sans-serif;
     font-size: 16px;
     font-weight: 400;
@@ -13,7 +13,7 @@
     color: #1f1f1f;
 }
 
-.showMore {
+.showMoreIngredients {
     background-color: transparent;
     border: none;
     font-family: Roboto, sans-serif;
@@ -27,7 +27,7 @@
     cursor: pointer;
 }
 
-.specificationValue{
+.specificationValueIngredients {
     display: -webkit-box;
     line-clamp: 4;
     -webkit-line-clamp: 4;
@@ -41,7 +41,7 @@
     text-align: left;
 }
 
-.modal {
+.modalIngredients {
     position: fixed;
     z-index: 1000000000;
     padding-top: 100px;
@@ -54,7 +54,7 @@
     background-color: rgba(0,0,0,0.4);
 }
 
-.modalContent {
+.modalContentIngredients {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
@@ -75,7 +75,7 @@
 
 }
 
-.specificationValueFull {
+.specificationValueFullIngredients {
     text-transform: uppercase;
     font-family: Roboto, sans-serif;
     font-size: 14px;
@@ -87,7 +87,7 @@
     transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
-.close {
+.closeIngredients {
     color: #6D6E71;
     float: right;
     font-size: 28px;
@@ -97,7 +97,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.titleModal {
+.titleModalIngredients {
     font-family: Roboto, sans-serif;
     font-size: 16px;
     font-weight: 600;
