@@ -36,13 +36,35 @@ const Availability = () => {
                 console.log("Llamando a fetchData con accountName y referenceValue:", accountName, referenceValue);
                 const result = await fetchData(accountName, referenceValue);
 
-                const availabilityMap = Object.keys(referenceMap).map((loc) => {
-                    const stockItem = result.stock ? result.stock.find((item) => item.loc === loc) : null;
-                    return {
-                        ...referenceMap[loc],
-                        availableStock: stockItem ? stockItem.availableStock : 0,
-                    };
-                });
+                // Filtrar las tiendas del referenceMap según el accountName
+                let filterPrefix = "";
+                switch (accountName) {
+                    case "simanqa":
+                        filterPrefix = "1";
+                        break;
+                    case "simanqagt":
+                        filterPrefix = "2";
+                        break;
+                    case "simanqacr":
+                        filterPrefix = "5";
+                        break;
+                    case "simanqanicor":
+                        filterPrefix = "4";
+                        break;
+                    default:
+                        filterPrefix = "";
+                        break;
+                }
+
+                const availabilityMap = Object.keys(referenceMap)
+                    .filter((loc) => loc.startsWith(filterPrefix)) // Filtrar por el prefijo correspondiente
+                    .map((loc) => {
+                        const stockItem = result.stock ? result.stock.find((item) => item.loc === loc) : null;
+                        return {
+                            ...referenceMap[loc],
+                            availableStock: stockItem ? stockItem.availableStock : 0,
+                        };
+                    });
 
                 setData(availabilityMap);
             } catch (error) {

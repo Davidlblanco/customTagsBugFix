@@ -1,6 +1,5 @@
 export const referenceMap = {
-    /*
-  50103: {
+    50103: {
         name: "Siman CR City Mall Alajuela",
         location: "LOCATION_ID_1", // Reemplazar con el ID de ubicación real
     },
@@ -16,7 +15,7 @@ export const referenceMap = {
         name: "Siman Costa Rica Ecommerce",
         location: "LOCATION_ID_5", // Reemplazar con el ID de ubicación real
     },
-    
+
     40101: {
         name: "Siman Santo Domingo",
         location: "62bc793339b9d61698c303a7",
@@ -35,7 +34,7 @@ export const referenceMap = {
     },
 
     //guatemala
-    
+
     20101: { name: "Siman Próceres", location: "62bc79336c04856e235b8138" },
     20102: { name: "Siman Miraflores", location: "62bc793331effa8fb0aef72e" },
     20103: { name: "Siman Oakland", location: "62bc7933d882d299e2716a26" },
@@ -43,7 +42,7 @@ export const referenceMap = {
         name: "Siman Pradera Concepción",
         location: "62bc7933862a401dc787555a",
     },
-    */
+
     //el salvador
     10103: { name: "Siman Galerias", location: "62bc7933f55b8fef383362e4" },
     10106: { name: "Siman La Gran Via", location: "62bc793353758728bef44236" },

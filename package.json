@@ -29,6 +29,7 @@
     "@tanstack/react-query": "^5.27.5",
     "apollo-client": "^2.6.10",
     "compio": "^0.0.6",
+    "countdown": "file:",
     "react-icons": "^4.3.1",
     "react-input-mask": "^3.0.0-alpha.2",
     "react-query": "^3.39.3",
