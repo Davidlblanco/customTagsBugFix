@@ -1,29 +1,65 @@
 <script src="https://www.googleoptimize.com/optimize.js?id=OPT-P59C9JB"></script>
 <style>
-  .render-route-store-custom-lp-gaming2023 .flex-grow-1 {
-    background-color: #000;
-  }
+    .render-route-store-custom-lp-gaming2023 .flex-grow-1 {
+        background-color: #000;
+    }
 
-  .render-route-store-custom-lp-gaming2023 .vtex-store-footer-2-x-footerLayout {
-    margin-top: 0px;
-  }
+    .render-route-store-custom-lp-gaming2023 .vtex-store-footer-2-x-footerLayout {
+        margin-top: 0px;
+    }
 
-  .vtex-flex-layout-0-x-flexRow--carrusel-de-producto-cw23 .vtex-store-components-3-x-container,
-  .vtex-flex-layout-0-x-flexRow--carrusel-de-producto-3-cw23 .vtex-store-components-3-x-container,
-  .vtex-flex-layout-0-x-flexRow--carrusel-de-producto-2-cw23 .vtex-store-components-3-x-container {
-    background: #000 !important;
-  }
+    .vtex-flex-layout-0-x-flexRow--carrusel-de-producto-cw23 .vtex-store-components-3-x-container,
+    .vtex-flex-layout-0-x-flexRow--carrusel-de-producto-3-cw23 .vtex-store-components-3-x-container,
+    .vtex-flex-layout-0-x-flexRow--carrusel-de-producto-2-cw23 .vtex-store-components-3-x-container {
+        background: #000 !important;
+    }
 
-  /* 
+    /* 
     * Opción 1, Ocultando el producto en PLP 
     */
 
-  /* .vtex-search-result-3-x-galleryItem:has(.siman-m3-custom-0-x-hide_this_product){
-      display: none !important;
-    } */
+    .vtex-product-summary-2-x-element--product-summary:has(.hide-atc-btn) .b--action-primary,
+    .vtex-product-summary-2-x-element--listLayout:has(.hide-atc-btn) .b--action-primary {
+        display: none !important;
+    }
 
-  .vtex-product-summary-2-x-element--product-summary:has(.hide-atc-btn) .b--action-primary,
-  .vtex-product-summary-2-x-element--listLayout:has(.hide-atc-btn) .b--action-primary{
-    display: none !important;
-  }
+    .vtex-flex-layout-0-x-flexCol--main-product-right:has(.siman-m3-custom-1-x-hide_this_product) {
+        display: none !important;
+    }
+
+    .vtex-flex-layout-0-x-flexCol--product-main-mobile:has(.siman-m3-custom-1-x-hide_this_product)
+        .siman-add-to-cart-button-custom-2-x-addToCartButtons,
+    .vtex-flex-layout-0-x-flexCol--product-main-mobile:has(.siman-m3-custom-1-x-hide_this_product)
+        .siman-m3-custom-1-x-CuotasContainerNewpdp,
+    .vtex-flex-layout-0-x-flexCol--product-main-mobile:has(.siman-m3-custom-1-x-hide_this_product)
+        .vtex-flex-layout-0-x-flexRow--purchase-complement,
+    .vtex-flex-layout-0-x-flexCol--product-main-mobile:has(.siman-m3-custom-1-x-hide_this_product)
+        .vtex-product-price-1-x-sellingPrice,
+    .vtex-flex-layout-0-x-flexCol--product-main-mobile:has(.siman-m3-custom-1-x-hide_this_product)
+        .vtex-flex-layout-0-x-flexRow--product-credi-siman-price-mobile,
+    .vtex-flex-layout-0-x-flexCol--product-main-mobile:has(.siman-m3-custom-1-x-hide_this_product)
+        .vtex-flex-layout-0-x-flexRow--buttons-interactions-pdp,
+    .vtex-flex-layout-0-x-flexCol--product-main-mobile:has(.siman-m3-custom-1-x-hide_this_product)
+        .vtex-flex-layout-0-x-flexRow--purchase-complement,
+    .vtex-flex-layout-0-x-flexCol--product-main-mobile:has(.siman-m3-custom-1-x-hide_this_product)
+        .vtex-flex-layout-0-x-flexRow--purchase-complement {
+        display: none !important;
+    }
+
+    .vtex-product-summary-2-x-element:has(.siman-m3-custom-1-x-hide_this_product)
+        .siman-m3-custom-1-x-tag-preview__credisiman-container,
+    .vtex-product-summary-2-x-element:has(.siman-m3-custom-1-x-hide_this_product) .pricing,
+    .vtex-product-summary-2-x-element:has(.siman-m3-custom-1-x-hide_this_product)
+        .vtex-flex-layout-0-x-flexRow--addToCart-wrapper
+        .vtex-button,
+    .vtex-product-summary-2-x-element:has(.siman-m3-custom-1-x-hide_this_product)
+        .siman-m3-custom-1-x-CuotasContainerNewpdp {
+        display: none !important;
+    }
+
+    .vtex-product-summary-2-x-container:has(.siman-m3-custom-1-x-hide_this_product)
+        .vtex-product-summary-2-x-clearLink {
+        pointer-events: none;
+        cursor: default;
+    }
 </style>
