@@ -90,7 +90,7 @@ const LimitedPromotions = () => {
               ...credisimanTagStyles?.text.styles,
             }}
           >
-            {credisimanTagStyles?.text.phrase} {productData.available}x
+            {credisimanTagStyles?.text.phrase} {productData.available}/u
           </p>
         )}
       </div>
