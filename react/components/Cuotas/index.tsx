@@ -15,13 +15,14 @@ import styles from "./Cuotas.css";
 
 interface CuotasProps {
     visibility: VisibilityType;
+    algoliaProductContext?: AlgoliaProductContext | undefined
 }
 
-const Cuotas = ({ visibility }: CuotasProps) => {
-
+const Cuotas = ({ visibility, algoliaProductContext }: CuotasProps) => {
     const { tagsPreview, isLoading: tagIsLoading } = useGenericTagStyles();
     const { isLoading, bestInstallment, results } = useProductPayments({
         paymentIds: [], // This filter is optional
+        algoliaProductContext
     });
 
     if (isLoading || tagIsLoading) {

@@ -332,6 +332,22 @@
                   "title": "is shelf",
                   "type": "boolean",
                   "default": false
+              },
+              "algoliaProductContext": {
+                "title": "Custom Context",
+                "type": "object",
+                "properties": {
+                    "itemId": {
+                        "title": "Item ID",
+                        "type": "string",
+                        "default": ""
+                    },
+                    "productId": {
+                        "title": "Product ID",
+                        "type": "string",
+                        "default": ""
+                    }
+                }
               }
           }
         }

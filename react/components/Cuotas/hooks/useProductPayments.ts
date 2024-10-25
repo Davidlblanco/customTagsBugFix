@@ -4,7 +4,7 @@ import useSelectedProductInfo from "./useSelectedProductInfo";
 import { PaymentResult, validateConfig } from "../Logic/PaymentCustomValidators";
 
 export default function useProductPayments(props: Props) {
-    const selectedProductInfo = useSelectedProductInfo();
+    const selectedProductInfo = useSelectedProductInfo({ algoliaProductContext: props.algoliaProductContext });
     const paymentConfigs = usePaymentConfigs(props);
 
     const results = useMemo(() => {

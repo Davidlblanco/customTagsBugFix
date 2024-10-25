@@ -130,6 +130,18 @@ interface AlgoliaProductContext {
     listPrice: number;
     price: number;
   };
+  brandId: number
+  properties: {
+    name: string
+  }[]
+  categoryTree: {
+    name: string
+  }[]
+  categoryId: string[]
+  items: {
+    itemId: string
+    sellers: { sellerId: string }[]
+  }[]
   productInformation: ProductInformation[];
   productName: string;
   selectedItem: SelectedItem;
