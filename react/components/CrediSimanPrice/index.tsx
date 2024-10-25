@@ -14,14 +14,15 @@ import generateBaseUrlToSv from "../../utils/generateBaseUrlToSv";
 
 interface CredisimanPriceProps {
   isShelf?: boolean;
+  algoliaProductContext?: AlgoliaProductContext
 }
 
-const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ isShelf }) => {
+const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ isShelf, algoliaProductContext  }) => {
     const productContext = useProduct();
 
     const pageType = GetPageType();
-    const skuId = productContext?.selectedItem?.itemId;
-    const productId = productContext?.product?.productId;
+    const skuId = productContext?.selectedItem?.itemId ?? algoliaProductContext?.selectedItem?.SkuId?.toString();
+    const productId = productContext?.product?.productId ?? algoliaProductContext?.skuId?.toString();
 
     const [productData, setProductData] = useState<CredisimanType>();
     const [credisimanTagStyles, setCredisimanTagStyles] = useState<ConfigGroup['configs']>();
@@ -41,6 +42,7 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
                     skuId,
                     sallesChannelId,
                     productContext,
+                    algoliaProductContext,
                     baseUrl
                 );
 

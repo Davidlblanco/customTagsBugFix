@@ -86,3 +86,53 @@ interface Seller {
   SellerId?: string
   Name?: string
 }
+
+interface RulesResult {
+  matched: number[];
+  operator: string;
+  ruleValue: number[];
+  type: string;
+  unmatched: any[];
+  valid: boolean;
+  value: number;
+}
+
+interface ProductInformation {
+  key: string;
+  value: string;
+}
+
+interface SelectedItem {
+  SkuId: number;
+  SkuName: string;
+  SkuEan: string;
+  SKUReferenceCode: string;
+  ImageURL: string;
+}
+
+interface BestPayment {
+  installment: number;
+  installmentPrice: number;
+  rulesResults: RulesResult[];
+  valid: boolean;
+}
+
+interface AlgoliaProductContext {
+  brand: string;
+  captionLink: string;
+  image: string;
+  loading: boolean;
+  navigate: (options: any) => void;
+  onAddToCart: () => void;
+  onChangeSku: (e: any, sku: any) => void;
+  price: {
+    availability: string;
+    listPrice: number;
+    price: number;
+  };
+  productInformation: ProductInformation[];
+  productName: string;
+  selectedItem: SelectedItem;
+  skuId: number;
+  variations: any[];
+}
