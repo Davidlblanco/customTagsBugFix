@@ -27,4 +27,5 @@ export default function usePaymentConfigs(filters: PaymentConfigFilters) {
 
 export interface PaymentConfigFilters {
     paymentIds?: string[];
+    cachedCredisiman?: Record<number, string>;
 }
