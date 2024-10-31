@@ -6,13 +6,26 @@ const ProductSpecifications = () => {
     const productContext = useProduct();
     const [showAll, setShowAll] = useState(false);
 
-    const productsSpecifications = productContext?.product?.specificationGroups;
+    let productsSpecifications = productContext?.product?.specificationGroups || [];
+    const categories = productContext?.product?.categories || [];
+
+    if (categories.includes('/Belleza e higiene/')) {
+        // remove ingredientes from allSpecifications
+        productsSpecifications.map((specification) => {
+            if (specification.originalName === "allSpecifications") {
+                specification.specifications = specification.specifications.filter(
+                    (specification) => specification.name !== "Ingredientes"
+                );
+            }
+        });
+    }
+
     const allSpecifications = productsSpecifications?.find(
         (specification) => specification.originalName === "allSpecifications"
     );
-    const categories = productContext?.product?.categories || [];
 
-    if (!allSpecifications || categories.includes('/Belleza e higiene/')) return (<></>);
+
+    if (!allSpecifications) return (<></>);
 
     return (
         <div className={styles.componentContainer}>
@@ -21,9 +34,8 @@ const ProductSpecifications = () => {
                 {allSpecifications?.specifications.map(
                     (specification, index) => (
                         <li
-                            className={`${styles.specificationElement} ${
-                                index < 4 || showAll ? styles.show : ""
-                            }`}
+                            className={`${styles.specificationElement} ${index < 4 || showAll ? styles.show : ""
+                                }`}
                             key={specification.name}
                         >
                             {specification.name}:
