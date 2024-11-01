@@ -51,6 +51,18 @@ const Availability = () => {
                     case "simanqanicor":
                         filterPrefix = "4";
                         break;
+                    case "siman":
+                        filterPrefix = "1";
+                        break;
+                    case "simanguatemala":
+                        filterPrefix = "2";
+                        break;
+                    case "simancrc":
+                        filterPrefix = "5";
+                        break;
+                    case "simannicor":
+                        filterPrefix = "4";
+                        break;
                     default:
                         filterPrefix = "";
                         break;
@@ -125,9 +137,8 @@ const Availability = () => {
                             <div className="store-details">
                                 <p className="store-name">{item.name}</p>
                                 <p
-                                    className={`availability-status ${
-                                        item.availableStock >= 1 ? "available" : "unavailable"
-                                    }`}
+                                    className={`availability-status ${item.availableStock >= 1 ? "available" : "unavailable"
+                                        }`}
                                 >
                                     {item.availableStock >= 1 ? "Disponible" : "No disponible"}
                                 </p>
