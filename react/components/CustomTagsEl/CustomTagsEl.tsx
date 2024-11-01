@@ -1,0 +1,113 @@
+import React, { useCallback, useEffect, useRef } from "react";
+import ReactDOM from "react-dom";
+import RenderCustomTags from "./components/RenderCustomTags/RenderCustomTags";
+import RenderTagsInsignia from "./components/RenderTagsInsignia/RenderTagsInsignia";
+import useProductTags from "../../hooks/useProductTags";
+import { compareProductIdsInURL } from "./utils/compareProductIdsInURL";
+import { ConfigGroup } from "../../typings/config";
+import sleep from "../../helpers/sleep";
+
+interface CustomTagsElProps {
+  visibility: "pdp" | "productSummary";
+  container: string;
+  positionTop: PositionProps;
+  positionCenter: PositionProps;
+  positionBottom: PositionProps;
+  containerInsignia?: string;
+  positionInsignia: PositionProps;
+  algoliaProductContext?: AlgoliaProductContext | undefined
+}
+
+type PositionProps = {
+  insert: "before" | "after";
+  class: string;
+};
+
+const CustomTagsEl = ({
+  algoliaProductContext,
+  visibility,
+  container,
+  positionTop,
+  positionCenter,
+  positionBottom,
+  containerInsignia,
+  positionInsignia,
+}: CustomTagsElProps) => {
+  const { filteredTags, hrefProduct, skuId } = useProductTags(algoliaProductContext);
+  const originalContainer = useRef<HTMLDivElement>(null);
+  const insertTags = async (
+    tagArray: ConfigGroup[],
+    containerSelector: string,
+    positionClass: PositionProps,
+    renderedTags: string,
+    isCustomTag: boolean
+  ) => {
+    if (tagArray.length === 0) {
+      return;
+    }
+
+    const containers = document.querySelectorAll(containerSelector);
+
+    if (!containers) {
+      return;
+    }
+
+    containers.forEach((container: Element) => {
+      if (container instanceof HTMLAnchorElement && visibility === "productSummary") {
+        if (!compareProductIdsInURL(hrefProduct, container.href)) {
+          return;
+        }
+      }
+
+      if (container.querySelector(`.${renderedTags}`)) {
+        return;
+      }
+
+      const elementWithPositionClass = container.querySelector(positionClass.class);
+
+      if (elementWithPositionClass) {
+        const renderContainer = document.createElement("div");
+        renderContainer.classList.add(renderedTags);
+
+        if (positionClass.insert === "before") {
+          elementWithPositionClass?.parentNode?.insertBefore(renderContainer, elementWithPositionClass);
+        } else {
+          elementWithPositionClass?.parentNode?.insertBefore(renderContainer, elementWithPositionClass.nextSibling);
+        }
+
+        const tags = isCustomTag ? (
+          <RenderCustomTags tagArray={tagArray} visibility={visibility} />
+        ) : (
+          <RenderTagsInsignia tagArray={tagArray} visibility={visibility} />
+        );
+
+        ReactDOM.render(<>{tags}</>, renderContainer);
+      }
+    });
+  };
+
+  const addTags = useCallback(async () => {
+    if (!filteredTags) return;
+    const containerInsigniaValid = containerInsignia ?? container;
+
+    insertTags(filteredTags.top, container, positionTop, "rendered-tag-top", true);
+    insertTags(filteredTags.center, container, positionCenter, "rendered-tag-center", true);
+    insertTags(filteredTags.bottom, container, positionBottom, "rendered-tag-bottom", true);
+    insertTags(filteredTags.tagInsignia, containerInsigniaValid, positionInsignia, "rendered-tag-insignia", false);
+  }, [filteredTags, container, positionTop, positionCenter, positionBottom, containerInsignia, positionInsignia]);
+
+  useEffect(() => {
+    addTags();
+    sleep(500).then(addTags)
+  }, [addTags, skuId, originalContainer.current]);
+
+  useEffect(() => {
+    if (originalContainer.current?.parentElement) {
+      originalContainer.current.parentElement.style.height = "";
+    }
+  }, [originalContainer]);
+
+  return <div ref={originalContainer}></div>;
+};
+
+export default CustomTagsEl;

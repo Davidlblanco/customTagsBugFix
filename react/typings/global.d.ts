@@ -122,6 +122,7 @@ interface AlgoliaProductContext {
   captionLink: string;
   image: string;
   loading: boolean;
+  link: string
   navigate: (options: any) => void;
   onAddToCart: () => void;
   onChangeSku: (e: any, sku: any) => void;
@@ -135,6 +136,11 @@ interface AlgoliaProductContext {
     name: string
   }[]
   categoryTree: {
+    id: string
+    name: string
+  }[]
+  productClusters: {
+    id: string
     name: string
   }[]
   categoryId: string[]

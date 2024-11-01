@@ -1,7 +1,9 @@
 import React from "react";
 import { AvailablePaymentConfigsContextProvider } from "./contexts/AvailablePaymentConfigsContext";
 import { GenericTagsContextProvider } from "./contexts/GenericTagsContext";
-import { CustomTagConfigsContextProvider } from "siman.custom-tags";
+import { CustomTagConfigsContextProvider } from "./contexts/CustomTagsConfigsContext";
+
+
 
 export default function CustomContext({ children }) {
     return (

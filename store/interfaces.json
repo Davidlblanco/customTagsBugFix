@@ -123,5 +123,8 @@
     },
     "custom-product-ingredients": {
         "component": "ProductIngredients"
+    },
+    "custom-tags-el": {
+        "component": "CustomTagsEl"
     }
 }
