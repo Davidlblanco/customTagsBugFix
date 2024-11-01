@@ -9,14 +9,8 @@ const Availability = () => {
     const { session } = useRenderSession();
     const accountName = session?.namespaces?.account?.accountName?.value ?? null;
     const productContextValue = useProduct();
-
     const referenceValue = productContextValue?.selectedItem?.referenceId?.[0]?.Value ?? null;
-
     const nameSeller = productContextValue?.selectedItem?.sellers?.[0]?.sellerName ?? null;
-
-    console.log("nameSeller:", nameSeller);
-    console.log("productContextValue:", productContextValue);
-    console.log("accountName en Availability:", accountName);
 
     const [isOpen, setIsOpen] = useState(false);
     const [data, setData] = useState([]);
@@ -26,14 +20,12 @@ const Availability = () => {
     useEffect(() => {
         const getData = async () => {
             if (!accountName || !referenceValue) {
-                console.log("accountName o referenceValue es nulo o vacío en getData");
                 setData([]);
                 setLoading(false);
                 return;
             }
 
             try {
-                console.log("Llamando a fetchData con accountName y referenceValue:", accountName, referenceValue);
                 const result = await fetchData(accountName, referenceValue);
 
                 // Filtrar las tiendas del referenceMap según el accountName
