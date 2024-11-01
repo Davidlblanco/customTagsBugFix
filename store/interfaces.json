@@ -126,5 +126,8 @@
   },
   "Availability": {
     "component": "Availability"
+  },
+  "limited-promotions": {
+    "component": "LimitedPromotions"
   }
 }

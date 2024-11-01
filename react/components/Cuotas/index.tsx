@@ -18,7 +18,6 @@ interface CuotasProps {
 }
 
 const Cuotas = ({ visibility }: CuotasProps) => {
-
     const { tagsPreview, isLoading: tagIsLoading } = useGenericTagStyles();
     let cachedCredisiman = {0: ""};
     
