@@ -33,7 +33,6 @@
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    text-transform: uppercase;
     font-family: Roboto, sans-serif;
     font-size: 14px;
     font-weight: 400;
@@ -76,7 +75,6 @@
 }
 
 .specificationValueFullIngredients {
-    text-transform: uppercase;
     font-family: Roboto, sans-serif;
     font-size: 14px;
     font-weight: 400;

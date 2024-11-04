@@ -8,11 +8,11 @@ import { CustomTagConfigsContextProvider } from "./contexts/CustomTagsConfigsCon
 export default function CustomContext({ children }) {
     return (
         <CustomTagConfigsContextProvider>
-            <AvailablePaymentConfigsContextProvider>
-                <GenericTagsContextProvider>
-                    {children}
-                </GenericTagsContextProvider>
-            </AvailablePaymentConfigsContextProvider>
+        <AvailablePaymentConfigsContextProvider>
+            <GenericTagsContextProvider>
+                {children}
+            </GenericTagsContextProvider>
+        </AvailablePaymentConfigsContextProvider>
         </CustomTagConfigsContextProvider>
     );
 }

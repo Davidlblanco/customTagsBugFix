@@ -27,5 +27,6 @@ export default function usePaymentConfigs(filters: PaymentConfigFilters) {
 
 export interface PaymentConfigFilters {
     paymentIds?: string[];
-    algoliaProductContext?: AlgoliaProductContext | undefined
+    algoliaProductContext?: AlgoliaProductContext | undefined;
+    cachedCredisiman?: Record<number, string>;
 }

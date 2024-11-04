@@ -62,11 +62,9 @@ const ProductGift = () => {
         haveGifts && (
             <div className={styles.giftsContainer}>
                 <span className={styles.giftTitle}>
-                    Gratis al comprar este producto
+                    {gifts.length > 1 ? "Puedes elegir una regalía" : "Gratis al comprar este producto"}
                 </span>
-                {gifts?.map((gift: Gift) => (
-                    <GiftItem gift={gift} key={gift.linkText} />
-                ))}
+                <GiftItem gifts={gifts} key={productId} />
             </div>
         )
     );

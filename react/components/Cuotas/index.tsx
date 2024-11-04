@@ -20,9 +20,17 @@ interface CuotasProps {
 
 const Cuotas = ({ visibility, algoliaProductContext }: CuotasProps) => {
     const { tagsPreview, isLoading: tagIsLoading } = useGenericTagStyles();
+    let cachedCredisiman = {0: ""};
+    
+    const storage = window?.localStorage?.getItem("products") ?? "";
+    if(storage.length > 0){
+        cachedCredisiman = JSON.parse(storage).value;
+    }
+    
     const { isLoading, bestInstallment, results } = useProductPayments({
         paymentIds: [], // This filter is optional
-        algoliaProductContext
+        algoliaProductContext,
+        cachedCredisiman
     });
 
     if (isLoading || tagIsLoading) {

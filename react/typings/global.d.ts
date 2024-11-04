@@ -8,6 +8,9 @@ interface CheckoutSimulation {
 
 interface Window {
   SYNDI: any;
+  __RUNTIME__?: {
+    account?: string;
+  };
 }
 
 interface CheckoutSimulationItem {

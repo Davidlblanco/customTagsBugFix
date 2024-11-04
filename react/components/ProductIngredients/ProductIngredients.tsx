@@ -14,7 +14,7 @@ const ProductIngredients = () => {
     const ingredients = allSpecifications?.specifications.find(
         (specification) => specification.name === "Ingredientes"
     );
-    const ingredients_list = "• " + ingredients?.values[0]?.replace(/,/g, " • ").split(", ") || "";
+    const ingredients_list = ingredients?.values[0] || "";
 
     if (ingredients_list.length <= 0 || !categories.includes('/Belleza e higiene/')) return <></>;
 

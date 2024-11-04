@@ -6,13 +6,15 @@ const ProductSpecifications = () => {
     const productContext = useProduct();
     const [showAll, setShowAll] = useState(false);
 
-    const productsSpecifications = productContext?.product?.specificationGroups;
+    let productsSpecifications = productContext?.product?.specificationGroups || [];
+    const categories = productContext?.product?.categories || [];
+
     const allSpecifications = productsSpecifications?.find(
         (specification) => specification.originalName === "allSpecifications"
     );
-    const categories = productContext?.product?.categories || [];
 
-    if (!allSpecifications || categories.includes('/Belleza e higiene/')) return (<></>);
+
+    if (!allSpecifications) return (<></>);
 
     return (
         <div className={styles.componentContainer}>
@@ -20,17 +22,19 @@ const ProductSpecifications = () => {
             <ul className={styles.specificationList}>
                 {allSpecifications?.specifications.map(
                     (specification, index) => (
-                        <li
-                            className={`${styles.specificationElement} ${
-                                index < 4 || showAll ? styles.show : ""
-                            }`}
-                            key={specification.name}
-                        >
-                            {specification.name}:
-                            <span className={styles.specificationValue}>
-                                {specification.values[0]}
-                            </span>
-                        </li>
+                        // Hide ingredients if the category is 'Belleza e higiene'
+                        categories.includes('/Belleza e higiene/') &&
+                            specification.name === "Ingredientes" ? null :
+                            <li
+                                className={`${styles.specificationElement} ${index < 4 || showAll ? styles.show : ""
+                                    }`}
+                                key={specification.name}
+                            >
+                                {specification.name}:
+                                <span className={styles.specificationValue}>
+                                    {specification.values[0]}
+                                </span>
+                            </li>
                     )
                 )}
             </ul>
