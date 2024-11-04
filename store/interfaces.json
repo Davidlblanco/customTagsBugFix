@@ -1,127 +1,133 @@
 {
-    "sticky-shelf": {
-        "component": "StickyShelf",
-        "composition": "children"
-    },
-    "custom-product-information-wrapper": {
-        "component": "ProductInformationWrapper"
-    },
-    "custom-pagination": {
-        "component": "CustomPagination"
-    },
-    "custom-shipping-preview": {
-        "component": "ShippingPreview"
-    },
-    "custom-product-specifications": {
-        "component": "ProductSpecifications"
-    },
-    "custom-credisiman-price": {
-        "component": "CrediSimanPrice",
-        "content": {
-           "$ref": "app:siman.m3-custom#/definitions/credisimanPrice"
-        }
-    },
-    "custom-product-gift": {
-        "component": "ProductGift"
-    },
-    "custom-cuotas": {
-        "component": "Cuotas"
-    },
-    "custom-header": {
-        "component": "Header",
-        "content": {
-            "$ref": "app:siman.m3-custom#/definitions/CustomHeader"
-        }
-    },
-    "cadastra-sizes-table": {
-        "component": "SizesTable"
-    },
-    "custom-seller-name": {
-        "component": "SellerName"
-    },
-    "precio-live": {
-        "component": "PrecioLive"
-    },
-    "seller-name-pdp": {
-        "component": "SellerNamePDP"
-    },
-    "seller-name-shelf": {
-        "component": "SellerNameShelf"
-    },
-    "wrapper-add-to-cart-new": {
-        "component": "WrapperAddToCartNew"
-    },
-    "wrapper-add-to-cart": {
-        "component": "WrapperAddToCart"
-    },
-    "cookiesagreement": {
-        "component": "CookiesAgreement"
-    },
-    "rastreo": {
-        "component": "Rastreo"
-    },
-    "product-page-script": {
-        "component": "ProductPageScript"
-    },
-    "plpsattributes": {
-        "component": "PlpsAttributes"
-    },
-    "AttributesPDP": {
-        "component": "AttributesPDP"
-    },
-    "FiraSiman-Live": {
-        "component": "FiraSiman"
-    },
-    "full-logout": {
-        "component": "FullLogout"
-    },
-    "register-form": {
-        "component": "RegisterForm"
-    },
-    "power-syndigo": {
-        "component": "PowerSyndigo"
-    },
-    "HideProducts": {
-        "component": "HideProducts"
-    },
-    "skuNoDisponible": {
-        "component": "skuNoDisponible"
-    },
-    "360-photos": {
-        "component": "360Photos"
-    },
-    "description-section": {
-        "component": "DescriptionSection",
-        "content": {
-            "$ref": "app:siman.m3-custom#/definitions/DescriptionSection"
-        }
-    },
-    "product-tags": {
-        "component": "ProductTags"
-    },
-    "credisiman-cuotas": {
-        "component": "CredisimanCuotas"
-    },
-    "info-card-custom": {
-        "component": "InfoCardCustom",
-        "content": {
-            "$ref": "app:siman.m3-custom#/definitions/InfoCardCustom"
-        }
-    },
-    "custom-context": {
-        "component": "CustomContext",
-        "composition": "children"
-    },
-    "toggle-theme": {
-        "component": "ToggleTheme"
-    },
-    "tags-cuotas": {
-        "component": "TagsCuotas"
-    },
-    "installment-tags": {
-        "component": "InstallmentTags"
-    },
-    "custom-product-ingredients": {
-        "component": "ProductIngredients"
+  "sticky-shelf": {
+    "component": "StickyShelf",
+    "composition": "children"
+  },
+  "custom-product-information-wrapper": {
+    "component": "ProductInformationWrapper"
+  },
+  "custom-pagination": {
+    "component": "CustomPagination"
+  },
+  "custom-shipping-preview": {
+    "component": "ShippingPreview"
+  },
+  "custom-product-specifications": {
+    "component": "ProductSpecifications"
+  },
+  "custom-credisiman-price": {
+    "component": "CrediSimanPrice",
+    "content": {
+      "$ref": "app:siman.m3-custom#/definitions/credisimanPrice"
     }
+  },
+  "custom-product-gift": {
+    "component": "ProductGift"
+  },
+  "custom-cuotas": {
+    "component": "Cuotas"
+  },
+  "custom-header": {
+    "component": "Header",
+    "content": {
+      "$ref": "app:siman.m3-custom#/definitions/CustomHeader"
+    }
+  },
+  "cadastra-sizes-table": {
+    "component": "SizesTable"
+  },
+  "custom-seller-name": {
+    "component": "SellerName"
+  },
+  "precio-live": {
+    "component": "PrecioLive"
+  },
+  "seller-name-pdp": {
+    "component": "SellerNamePDP"
+  },
+  "seller-name-shelf": {
+    "component": "SellerNameShelf"
+  },
+  "wrapper-add-to-cart-new": {
+    "component": "WrapperAddToCartNew"
+  },
+  "wrapper-add-to-cart": {
+    "component": "WrapperAddToCart"
+  },
+  "cookiesagreement": {
+    "component": "CookiesAgreement"
+  },
+  "rastreo": {
+    "component": "Rastreo"
+  },
+  "product-page-script": {
+    "component": "ProductPageScript"
+  },
+  "plpsattributes": {
+    "component": "PlpsAttributes"
+  },
+  "AttributesPDP": {
+    "component": "AttributesPDP"
+  },
+  "FiraSiman-Live": {
+    "component": "FiraSiman"
+  },
+  "full-logout": {
+    "component": "FullLogout"
+  },
+  "register-form": {
+    "component": "RegisterForm"
+  },
+  "power-syndigo": {
+    "component": "PowerSyndigo"
+  },
+  "HideProducts": {
+    "component": "HideProducts"
+  },
+  "skuNoDisponible": {
+    "component": "skuNoDisponible"
+  },
+  "360-photos": {
+    "component": "360Photos"
+  },
+  "description-section": {
+    "component": "DescriptionSection",
+    "content": {
+      "$ref": "app:siman.m3-custom#/definitions/DescriptionSection"
+    }
+  },
+  "product-tags": {
+    "component": "ProductTags"
+  },
+  "credisiman-cuotas": {
+    "component": "CredisimanCuotas"
+  },
+  "info-card-custom": {
+    "component": "InfoCardCustom",
+    "content": {
+      "$ref": "app:siman.m3-custom#/definitions/InfoCardCustom"
+    }
+  },
+  "custom-context": {
+    "component": "CustomContext",
+    "composition": "children"
+  },
+  "toggle-theme": {
+    "component": "ToggleTheme"
+  },
+  "tags-cuotas": {
+    "component": "TagsCuotas"
+  },
+  "installment-tags": {
+    "component": "InstallmentTags"
+  },
+  "custom-product-ingredients": {
+    "component": "ProductIngredients"
+  },
+  "Availability": {
+    "component": "Availability"
+  },
+  "limited-promotions": {
+    "component": "LimitedPromotions"
+  }
 }
