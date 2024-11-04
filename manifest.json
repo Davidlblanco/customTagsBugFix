@@ -14,9 +14,6 @@
   "peerDependencies": {
     "siman.custom-tags": "0.x"
   },
-  "billingOptions": {
-    "type": "free"
-  },
   "dependencies": {
     "vtex.address-form": "4.x",
     "vtex.styleguide": "9.x",
