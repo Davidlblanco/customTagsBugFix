@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useProduct } from 'vtex.product-context'
 import { useRenderSession } from 'vtex.session-client'
 import { useRuntime } from 'vtex.render-runtime'
-
-import { SkeletonLoading } from './SkeletonLoading'
 import type { CredisimanType } from './Types/configCredisimanTypes'
 import { GetCrediSimanProductData } from './Logic/logic'
 
@@ -61,7 +59,7 @@ const LimitedPromotions = () => {
     }
   }, [productId, skuId, sallesChannelId])
 
-  if (loading) return <SkeletonLoading />
+  if (loading) return <></>
 
   if (!productData) return <></>
 
