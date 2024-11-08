@@ -9,76 +9,76 @@
 
 h2 {
   font-family: 'Roboto', sans-serif;
-  font-weight: 400; /* Normal */
+  font-weight: 400;
   font-size: 21px;
   line-height: 29.4px;
-  color: #333; /* Ajusta el color si es necesario */
-  text-align: center; /* Centrar el texto */
+  color: #333;
+  text-align: center;
 }
 
 .modal-content {
   padding: 10px;
-  padding-bottom: 50px; /* Añadir espacio debajo del contenido */
+  padding-bottom: 50px;
 }
 
 .store-item {
-  background-color: #f5f5f5; /* Fondo blanco o gris claro */
-  border-radius: 16px; /* Bordes redondeados */
-  padding: 10px; /* Reducir el padding para hacerlo más compacto */
+  background-color: #f5f5f5;
+  border-radius: 16px;
+  padding: 10px;
   margin-bottom: 16px;
   display: flex;
-  align-items: center; /* Alinear verticalmente el ícono y los detalles de la tienda en escritorio */
+  align-items: center;
 }
 
 .location-icon {
   margin-top: 3%;
-  width: 24px; /* Tamaño del ícono */
-  height: 24px; /* Tamaño del ícono */
-  margin-right: 8px; /* Espacio entre el ícono y los detalles de la tienda */
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
 }
 
 .store-details {
   display: flex;
-  flex-direction: column; /* Coloca el nombre y la disponibilidad en una columna */
+  flex-direction: column;
 }
 
 .store-name {
   font-family: 'Roboto', sans-serif;
-  font-weight: 700; /* Negrita */
+  font-weight: 700;
   font-size: 16px;
   line-height: 22.4px;
-  color: #333; /* Ajusta el color si es necesario */
-  margin: 0; /* Elimina cualquier margen extra */
+  color: #333;
+  margin: 0;
 }
 
 .availability-status {
   font-family: 'Roboto', sans-serif;
-  font-weight: 400; /* Normal */
-  font-size: 14px; /* Tamaño de la fuente ajustado */
-  line-height: 22.4px; /* Altura de línea */
-  color: #316C0C; /* Verde para "Disponible" */
-  margin: 0; /* Elimina cualquier margen extra */
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22.4px;
+  color: #316C0C;
+  margin: 0;
 }
 
 .availability-status.unavailable {
-  color: black; /* Color negro para "No disponible" */
+  color: black;
 }
 
 .modal-container {
   position: fixed;
   top: 0;
-  right: -100%; /* Inicialmente fuera de la pantalla */
+  right: -100%;
   height: 100%;
-  width: 400px; /* Puedes ajustar el ancho según tus necesidades */
+  width: 400px;
   background-color: white;
-  transition: right 0.3s ease; /* Añadir una transición para un efecto suave */
-  z-index: 1001; /* Asegúrate de que esté por encima de otros elementos */
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
-  overflow-y: auto; /* Permitir el scroll si el contenido es más grande que el modal */
+  transition: right 0.3s ease;
+  z-index: 1001;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
 }
 
 .modal-container.open {
-  right: 0; /* Desplazar hacia dentro de la pantalla */
+  right: 0;
 }
 
 .modal-backdrop {
@@ -87,16 +87,16 @@ h2 {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Oscurecimiento con transparencia */
-  z-index: 999; /* Debajo del modal pero encima del resto de contenido */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
   opacity: 0;
-  transition: opacity 0.3s ease; /* Transición suave */
-  pointer-events: none; /* Desactivar clics cuando el modal está cerrado */
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .modal-backdrop.open {
   opacity: 1;
-  pointer-events: auto; /* Permitir clics cuando el modal está abierto */
+  pointer-events: auto;
 }
 
 .close-button {
@@ -105,7 +105,7 @@ h2 {
   right: 10px;
   background: none;
   border: none;
-  font-size: 20px; /* Reducir el tamaño del botón de cierre */
+  font-size: 20px;
   cursor: pointer;
   color: #333;
 }
@@ -116,19 +116,19 @@ h2 {
 
 .note {
   display: flex;
-  align-items: flex-start; /* Alinea el ícono con la parte superior del texto */
-  font-size: 14px; /* Tamaño de la fuente */
-  color: #666; /* Color gris para la nota */
+  align-items: flex-start;
+  font-size: 14px;
+  color: #666;
   margin-top: 15px;
-  padding-bottom: 20px; /* Espacio extra debajo de la nota */
+  padding-bottom: 20px;
 }
 
 .note-icon {
-  width: 16px; /* Tamaño del ícono */
+  width: 16px;
   height: 16px;
-  margin-right: 8px; /* Espacio entre el ícono y el texto */
-  gap: 0px; /* Asegura que no haya espacio adicional entre ícono y texto */
-  opacity: 1; /* Asegura que el ícono sea completamente visible */
+  margin-right: 8px;
+  gap: 0px;
+  opacity: 1;
 }
 
 .store-availability-button {
@@ -146,64 +146,118 @@ h2 {
 }
 
 .store-icon {
-  width: 16px; /* Tamaño del ícono */
+  width: 16px;
   height: 16px;
-  margin-right: 8px; /* Espacio entre el ícono y el texto */
+  margin-right: 8px;
 }
 
 /* Media Queries para pantallas móviles */
 @media (max-width: 768px) {
   .store-item {
-    flex-direction: row; /* Asegura que el ícono y el texto estén en fila */
-    align-items: center; /* Alinear verticalmente el ícono con el texto */
+    flex-direction: row;
+    align-items: center;
     padding: 10px;
   }
 
   .location-icon {
-    width: 20px; /* Ajustar el tamaño del ícono en móvil */
+    width: 20px;
     height: 20px;
-    margin-right: 8px; /* Espacio entre el ícono y el texto */
+    margin-right: 8px;
   }
 
   .store-details {
     flex: 1;
     display: flex;
-    flex-direction: column; /* Coloca el nombre y la disponibilidad en una columna */
+    flex-direction: column;
   }
 
   .store-name {
-    font-size: 14px; /* Ajustar tamaño del texto en móvil */
+    font-size: 14px;
     line-height: 20px;
   }
 
   .availability-status {
-    font-size: 12px; /* Ajustar tamaño del texto en móvil */
+    font-size: 12px;
     line-height: 18px;
   }
 
   .store-availability-button {
-    font-size: 12px; /* Ajustar tamaño del botón en móvil */
-    padding: 8px 12px; /* Reducir padding en móvil */
+    font-size: 12px;
+    padding: 8px 12px;
   }
 
   .store-icon {
-    width: 14px; /* Reducir el tamaño del ícono en el botón en móvil */
+    width: 14px;
     height: 14px;
   }
 
   .close-button {
-    font-size: 18px; /* Reducir tamaño del botón de cierre en móvil */
+    font-size: 18px;
   }
 
   .note {
-    font-size: 12px; /* Reducir tamaño del texto de la nota en móvil */
+    font-size: 12px;
     margin-top: 10px;
     padding-bottom: 15px;
   }
 
   .note-icon {
-    width: 14px; /* Reducir tamaño del ícono de la nota en móvil */
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Ajustes específicos para pantallas pequeñas (320x568) */
+@media (max-width: 420px) {
+  .modal-container {
+    width: 100vw;
+    max-width: 320px;
+    height: 100vh;
+    padding: 20px;
+  }
+
+  .modal-content {
+    padding: 15px;
+  }
+
+  .close-button {
+    font-size: 18px;
+  }
+
+  h2 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .store-item {
+    padding: 8px;
+    margin-bottom: 12px;
+  }
+
+  .store-name {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .availability-status {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .store-availability-button {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .store-icon,
+  .location-icon,
+  .note-icon {
+    width: 14px;
     height: 14px;
   }
 
+  .note {
+    font-size: 12px;
+    padding-bottom: 10px;
+  }
 }
