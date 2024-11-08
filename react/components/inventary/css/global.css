@@ -208,7 +208,7 @@ h2 {
 }
 
 /* Ajustes específicos para pantallas pequeñas (320x568) */
-@media (max-width: 360px) {
+@media (max-width: 420px) {
   .modal-container {
     width: 100vw;
     max-width: 320px;
