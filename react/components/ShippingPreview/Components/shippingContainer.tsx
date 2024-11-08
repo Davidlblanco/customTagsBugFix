@@ -43,7 +43,7 @@ const GetMessageByType = (
                         {priceText}, entrega en hasta {estimateText}
                     </span>
                     <p>
-                        "Recuerda, tendrás <b>30 días</b> para recoger tu pedido; <b>caso contrario, se cancelará la compra y procederemos con el reembolso.</b>"
+                        Recuerda, tendrás <b>30 días</b> para recoger tu pedido; <b>caso contrario, se cancelará la compra y procederemos con el reembolso.</b>
                     </p>
                 </div>
             );
