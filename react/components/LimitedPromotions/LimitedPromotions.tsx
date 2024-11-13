@@ -8,8 +8,8 @@ import { GetCrediSimanProductData } from './Logic/logic'
 import styles from './styles.css'
 
 import { ConfigLimitedPromotions } from './Types/limitedPromotions'
-import generateBaseUrlToSv from './utils/generateBaseUrlToSv'
-import { GetPageType } from './utils/getPageType'
+import generateBaseUrlToSv from '../../utils/generateBaseUrlToSv'
+import GetPageType from '../../utils/getPageType'
 
 const LimitedPromotions = () => {
   const productContext = useProduct()
