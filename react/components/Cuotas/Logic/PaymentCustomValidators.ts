@@ -9,11 +9,14 @@ import {
     TagCuotasValues,
 } from "../Types/PaymentCustom";
 import { SelectedProductInfo } from "../hooks/useSelectedProductInfo";
+import isCredisimanPayment from "../../../utils/isCredisimanPayment";
+
+const account = window?.__RUNTIME__?.account ?? "siman";
 
 export function validateConfig(config: PaymentConfig, productInfo: SelectedProductInfo) {
     const configCheckCondition = removeOutOfDeadLineConditions(config);
     const sellerValid = validateSellerCondition(productInfo, config.sellerCondition);
-    const conditions = configCheckCondition?.map((condition) => validateCondition(condition, productInfo)) ?? [];
+    const conditions = configCheckCondition?.map((condition) => validateCondition(condition, productInfo, config.paymentId)) ?? [];
 
     return {
         paymentId: config.paymentId,
@@ -45,20 +48,27 @@ function removeOutOfDeadLineConditions(config: PaymentConfig) {
     return configCheckCondition;
 }
 
-function validateCondition(condition: PaymentConfigCondition, productInfo: SelectedProductInfo) {
+function validateCondition(condition: PaymentConfigCondition, productInfo: SelectedProductInfo, paymentId: string) {
     const operator = condition.rulesOperator || "all";
     const rulesResults = condition.rules.map((rule) => verifyRule(rule, productInfo));
+    let price = productInfo.totalPrice
 
     const valid =
         operator == "all"
             ? rulesResults.every((x) => x.valid) // Every rule must be valid
             : rulesResults.some((x) => x.valid); // At least one rule must be valid
 
+    const isCredisiman = isCredisimanPayment(paymentId, account);
+
+    if(productInfo.totalCredisimanPrice > 0  && isCredisiman) {
+        price = productInfo.totalCredisimanPrice;
+    }
+
     return {
         installment: condition.installment,
         valid,
         rulesResults,
-        installmentPrice: productInfo.totalPrice / condition.installment,
+        installmentPrice: price / condition.installment,
     };
 }
 

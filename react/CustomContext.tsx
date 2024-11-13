@@ -6,11 +6,11 @@ import { CustomTagConfigsContextProvider } from "siman.custom-tags";
 export default function CustomContext({ children }) {
     return (
         <CustomTagConfigsContextProvider>
-            <AvailablePaymentConfigsContextProvider>
-                <GenericTagsContextProvider>
-                    {children}
-                </GenericTagsContextProvider>
-            </AvailablePaymentConfigsContextProvider>
+        <AvailablePaymentConfigsContextProvider>
+            <GenericTagsContextProvider>
+                {children}
+            </GenericTagsContextProvider>
+        </AvailablePaymentConfigsContextProvider>
         </CustomTagConfigsContextProvider>
     );
 }

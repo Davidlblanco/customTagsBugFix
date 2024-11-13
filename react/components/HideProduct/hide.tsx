@@ -13,10 +13,11 @@ const HideProducts = () => {
     useEffect(() => {
       let highPrice = productContextValue?.product?.priceRange?.sellingPrice?.highPrice
       let lowPrice = productContextValue?.product?.priceRange?.sellingPrice?.lowPrice
+      let blockbuster = productContextValue?.product?.productId
       setItem(selectedItem!)
   
-        if(highPrice === 10000000 || lowPrice === 10000000){
-          setHideClass("hide_this_product")
+        if(highPrice === 10000000 || lowPrice === 10000000 || blockbuster === "8291140"){
+          setHideClass(`hide_this_product`)
         }
         else{
           setHideClass("show_this_product")
