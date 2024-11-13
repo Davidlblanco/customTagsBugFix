@@ -118,10 +118,19 @@
   "tags-cuotas": {
     "component": "TagsCuotas"
   },
-  "DownloadManual": {
-    "component": "DownloadManual"
-  },
   "installment-tags": {
     "component": "InstallmentTags"
+  },
+  "custom-product-ingredients": {
+    "component": "ProductIngredients"
+  },
+  "Availability": {
+    "component": "Availability"
+  },
+  "limited-promotions": {
+    "component": "LimitedPromotions"
+  },
+  "DownloadManual": {
+    "component": "DownloadManual"
   }
 }
