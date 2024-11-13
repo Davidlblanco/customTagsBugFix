@@ -129,5 +129,8 @@
   },
   "limited-promotions": {
     "component": "LimitedPromotions"
+  },
+  "DownloadManual": {
+    "component": "DownloadManual"
   }
 }
