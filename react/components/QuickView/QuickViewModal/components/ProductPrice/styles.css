@@ -1,0 +1,44 @@
+.quickview-product-price__selling-price {
+  margin: 0 0 16px;
+
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  font-size: 27px;
+  font-weight: 400;
+  line-height: 37.8px;
+
+  color: #1F1F1F;
+}
+
+.quickview-product-price__porcentage {
+  max-height: 22px;
+  padding: 4px 2px;
+
+  border-radius: 4px;
+  box-sizing: border-box;
+
+  display: inline-flex;
+  align-items: center;
+
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0.004em;
+
+  color: #FFFFFF;
+  background-color: #1F1F1F;
+}
+
+.quickview-product-price__list-price {
+  display: block;
+
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 29.4px;
+  text-align: left;
+  text-decoration: line-through;
+
+  color: #BEBEBE;
+}
