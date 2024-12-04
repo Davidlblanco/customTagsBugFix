@@ -7,7 +7,7 @@ interface HeaderMobileProps {
     mobileImage: string;
     logoUrl: string;
     mobileImageDark: string;
-    SearchBar: ComponentType;
+    SearchBar: ComponentType<{ isFocus?: boolean }>;
     Minicart: ComponentType;
     MegaMenuMobile: ComponentType;
 }
@@ -48,7 +48,7 @@ const HeaderMobile = ({
             >
                 <ArrowLeftIcon />
             </button>
-            <SearchBar />
+            <SearchBar isFocus={true} />
         </div>
     ) : (
         <div
