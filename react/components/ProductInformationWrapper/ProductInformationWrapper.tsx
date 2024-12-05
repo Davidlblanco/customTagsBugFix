@@ -55,7 +55,7 @@ const ProductInformationWrapper: FunctionComponent<
             ? productCategories.some((category) =>
                   categoriesWhereMiddleAppear.includes(category.toString())
               )
-            : allSpecifications && allSpecifications.specifications.length > 0;
+            : allSpecifications && allSpecifications.specifications.length > 1;
 
     if (!shouldShowMiddlePage && canUseDOM && productInfoLoaded) {
         const containerLeft = document.querySelector(
