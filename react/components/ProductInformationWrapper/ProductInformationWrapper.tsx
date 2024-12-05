@@ -50,12 +50,21 @@ const ProductInformationWrapper: FunctionComponent<
         productContext?.product?.categoryTree || []
     );
 
+    let hasSpecifications = false;
+
+    if(allSpecifications && allSpecifications.specifications.length > 0){
+        const singleSpecification = allSpecifications.specifications.length == 1;
+
+        if(singleSpecification) hasSpecifications = allSpecifications?.specifications?.[0]?.originalName != "sellerId";
+        else hasSpecifications = true;
+    }
+
     const shouldShowMiddlePage =
         categoriesWhereMiddleAppear && categoriesWhereMiddleAppear.length > 0
             ? productCategories.some((category) =>
                   categoriesWhereMiddleAppear.includes(category.toString())
               )
-            : allSpecifications && allSpecifications.specifications.length > 1;
+            : hasSpecifications;
 
     if (!shouldShowMiddlePage && canUseDOM && productInfoLoaded) {
         const containerLeft = document.querySelector(
