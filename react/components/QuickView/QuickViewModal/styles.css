@@ -4,6 +4,15 @@
   z-index: 999;
 
   background-color: #1f1f1f9d;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: all 150ms linear;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
 }
 
 .modal {
@@ -13,6 +22,7 @@
   padding: 16px;
 
   border-radius: 16px;
+  display: none;
 
   font-family: 'Roboto', sans-serif;
   background-color: #fff;
@@ -22,6 +32,14 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
+
+  transition: display 300ms allow-discrete, overlay 150ms allow-discrete;
+  animation: close 300ms forwards;
+}
+
+.modal.show {
+  display: block;
+  animation: show 300ms ease normal;
 }
 
 .modal__header {
@@ -194,4 +212,23 @@
   width: 24px;
   height: 24px;
   background-image: url("../assets/arrow-left.svg");
+}
+
+/* animations */
+@keyframes show {
+  from {
+    transform: translate(-50%, -100vh); /* Inicia acima da tela */
+  }
+  to {
+    transform: translate(-50%, -50%); /* Finaliza no centro */
+  }
+}
+
+@keyframes close {
+  from {
+    transform: translate(-50%, -50%); /* Inicia no centro */
+  }
+  to {
+    transform: translate(-50%, -100vh); /* Sai para cima */
+  }
 }

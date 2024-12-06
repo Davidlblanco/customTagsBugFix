@@ -1,42 +1,55 @@
-import React from "react";
-import { useProduct } from "vtex.product-context";
+import React, { MouseEvent } from "react";
+import { createPortal } from 'react-dom';
+import { Link } from "vtex.render-runtime";
 
 import { CrediSimanPrice } from "../../CrediSimanPrice";
 import { QuickViewProductPrice } from "./components/ProductPrice";
+import { Cuotas } from "../../Cuotas";
 
 import { SellerIcon } from "../assets/seller-icon";
 import { XIcon } from "../assets/x-icon";
-
-import styles from './styles.css'
-import { Cuotas } from "../../Cuotas";
-import { Link } from "vtex.render-runtime";
 import { MoreIcon } from "../assets/more-icon";
 
+import { ProductContextState } from "vtex.product-context/react/ProductTypes";
+import styles from './styles.css'
+
 interface QuickViewModalProps {
-  images: React.ReactNode
-  skuSelector: React.ReactNode
-  addToCart: React.ReactNode
+  components: {
+    images: React.ReactNode
+    skuSelector: React.ReactNode
+    addToCart: React.ReactNode
+  }
+  productContext: Partial<ProductContextState>
+  onOpenChange: (open: boolean) => void,
+  isOpen: boolean
 }
 
-// interface QuickViewModalProps {
-//   modal: {
-//     open: boolean
-//     onOpenChange: (open: boolean) => void;
-//   }
-// }
-
-export function QuickViewModal({ images, skuSelector, addToCart }: QuickViewModalProps) {
-  const productContext = useProduct()
-
-  if (!productContext) return <></>
+export function QuickViewModal({ components, productContext, onOpenChange, isOpen }: QuickViewModalProps) {
+  const { images, skuSelector, addToCart } = components;
 
   const product = productContext.product
 
-  return (
-    <>
-      <div className={styles['modal-overlay']} />
+  function handleOnCloseModal(e: MouseEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+    onOpenChange(false);
+  }
 
-      <div className={styles.modal}>
+  return createPortal(
+    <>
+      <div 
+        className={`${styles['modal-overlay']} ${isOpen ? styles.show : ''}`} 
+        onClick={handleOnCloseModal}
+        data-quickview-id={productContext.selectedItem?.itemId}
+      />
+
+      <div 
+        className={`${styles.modal} ${isOpen ? styles.show : ''}`}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+      >
         <div className={styles['modal__header']}>
           <span className={styles['modal__header-reference']}>
             <span className="ttu">{product?.brand}</span>{' '}
@@ -44,7 +57,7 @@ export function QuickViewModal({ images, skuSelector, addToCart }: QuickViewModa
           </span>
 
           <h2 className={styles['modal__header-product-name']}>
-            {productContext.product?.productName}
+            {product?.productName}
           </h2>
 
           <div className={styles['modal__header-sold-by']}>
@@ -58,7 +71,11 @@ export function QuickViewModal({ images, skuSelector, addToCart }: QuickViewModa
             </span>
           </div>
 
-          <button type="button" className={styles['modal__header-close-modal']}>
+          <button 
+            type="button" 
+            className={styles['modal__header-close-modal']}
+            onClick={handleOnCloseModal}
+          >
             <XIcon />
           </button>
         </div>
@@ -87,7 +104,7 @@ export function QuickViewModal({ images, skuSelector, addToCart }: QuickViewModa
                 Especificaciones
               </span>
 
-              <Link className={styles['modal__content-view-more']}>
+              <Link className={styles['modal__content-view-more']} to={`/${product?.linkText}/p`}>
                 <MoreIcon />
                 Ver más detalles
               </Link>
@@ -97,6 +114,7 @@ export function QuickViewModal({ images, skuSelector, addToCart }: QuickViewModa
           </div>
         </div>
       </div>
-    </>
+    </>,
+    document.body
   )
 }
