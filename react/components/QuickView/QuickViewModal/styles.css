@@ -214,6 +214,46 @@
   background-image: url("../assets/arrow-left.svg");
 }
 
+.modal :global(.vtex-store-components-3-x-swiper-pagination) {
+  display: none;
+}
+
+.modal :global(.siman-product-summary-2-x-skuSelectorInternalBox--selector-colores) {
+  height: 30px;
+  width: 30px;
+}
+
+.modal :global(.siman-product-summary-2-x-frameAround--selector-colores) {
+  height: 34px;
+  width: 34px;
+  left: -2px;
+  top: -1px;
+}
+
+/* Media */
+@media screen and (max-width: 1024px) {
+  .modal__content {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .modal{
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+  }
+
+  .modal :global(
+    .vtex-flex-layout-0-x-flexColChild--add-to-cart-button-custom-desktop 
+    .siman-add-to-cart-button-custom-2-x-addToCartButtonsWithouSimanPro
+  ) {
+    padding: 0;
+    position: inherit !important;
+    box-shadow: none;
+  }
+}
+
 /* animations */
 @keyframes show {
   from {
