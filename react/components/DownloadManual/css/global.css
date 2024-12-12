@@ -1,0 +1,107 @@
+/* Contenedor principal del botón de descarga y el menú */
+.download-container {
+  position: relative;
+  display: inline-block;
+  margin-top: 10px; /* Ajuste de margen para parecerse a Figma */
+}
+
+/* Estilo del botón de descarga */
+.download-button {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 20px; /* Aumentar el valor para bordes más redondeados */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px; /* Fuente más pequeña como en Figma */
+  color: #000; /* Cambiar el color del texto al estándar de Figma */
+  transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+  background-color: #f1f1f1;
+}
+
+/* Lista del menú desplegable */
+.manual-list {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 8px;
+  top: 125%;
+  left: 0;
+  z-index: 500; /* Asegura que el menú esté en la capa superior */
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  width: 162px; /* Ancho más pequeño para parecerse a Figma */
+  max-height: 200px; /* Agregar límite de altura */
+  overflow-y: auto; /* Habilitar scroll si excede el límite */
+  
+  display: flex; /* Añadir display flex */
+  flex-direction: column; /* Alinear los elementos en columna */
+  gap: 1px; /* Espacio uniforme de 1px entre elementos */
+}
+
+/* Mostrar el menú cuando está abierto */
+.manual-list.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Estilo de los enlaces dentro del menú desplegable */
+.manual-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0cap 0; /* Ajustar el padding */
+  text-decoration: none;
+  color: #000; /* Cambiar color del texto */
+  font-size: 12px; /* Fuente más pequeña */
+  background-color: white; /* Fondo blanco para cada elemento */
+}
+
+.manual-list a:hover {
+  background-color: #f8f9fa;
+}
+
+/* Icono de descarga al lado de cada archivo */
+.download-icon {
+  font-size: 12px; /* Icono más pequeño para alinearse a Figma */
+  color: #000;
+  margin-left: 10px; /* Espaciado fijo entre el texto y el icono */
+}
+
+.download-button-icon {
+  width: 12px; /* Reduce el ancho del icono */
+  height: 12px; /* Reduce la altura del icono */
+  margin-left: 8px; /* Espacio entre el texto y el icono */
+  vertical-align: middle; /* Alinea el icono verticalmente con el texto */
+}
+
+/* Mensajes de error o de carga */
+p {
+  margin: 10px 0;
+  font-size: 12px;
+  color: red;
+}
+
+/* Adaptación para dispositivos móviles */
+@media screen and (max-width: 600px) {
+  .download-button {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .manual-list {
+    width: 160px;
+  }
+
+  .manual-list a {
+    font-size: 10px;
+  }
+}

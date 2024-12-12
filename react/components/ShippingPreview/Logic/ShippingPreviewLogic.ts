@@ -70,17 +70,11 @@ export const DivideShippingEstimativeUserData = (
     let delivery: EstimativeData = {} as EstimativeData;
     let scheduledDelivery: EstimativeData = {} as EstimativeData;
     let expressDelivery: EstimativeData = {} as EstimativeData;
-
+    
     data?.forEach((item) => {
-        if (item.friendlyName === "Envío a domicilio") {
-            delivery = item;
-        } else if (
-            item.friendlyName === "Envío a domicilio entrega programada"
-        ) {
-            scheduledDelivery = item;
-        } else if (item.friendlyName === "Envío a domicilio entrega express") {
-            expressDelivery = item;
-        }
+        if (item.friendlyName.toLowerCase().includes("envío a domicilio entrega programada")) scheduledDelivery = item; 
+        else if (item.friendlyName.toLowerCase().includes("evío a domicilio entrega express")) expressDelivery = item;
+        else if (item.friendlyName.toLowerCase().includes("envío a domicilio")) delivery = item;
     });
 
     return { delivery, expressDelivery, scheduledDelivery };
