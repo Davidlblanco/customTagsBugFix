@@ -86,26 +86,26 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
             </span>
           )}
 
-          {credisimanTagStyles?.viewFields.porcentage && (
-            <span
-              className={styles['tag-preview__credisiman-porcentage']}
-              style={{
-                borderRadius: `${credisimanTagStyles?.tagStyles.borderRadius}px`,
-                borderColor: credisimanTagStyles?.tagStyles.borderColor,
-                color: credisimanTagStyles?.tagStyles.color,
-                backgroundColor: credisimanTagStyles?.tagStyles.backgroundColor,
-                order: credisimanTagStyles?.image.position === 'right' ? 3 : 4,
-                fontSize: `clamp(12px, 0.5em, 24px)`,
-              }}
-            >
-              {calculateDiscountPercentage({ 
-                type: credisimanTagStyles?.percentageBasis,
-                totalWithCredisiman: productData?.totalWithDiscount,
-                listPrice: productContext?.product?.items[0].sellers[0].commertialOffer.ListPrice,
-                discount: productData.discountValue
-              })}
-            </span>
-          )}
+        {credisimanTagStyles?.viewFields.porcentage && (
+          <span
+            className={styles['tag-preview__credisiman-porcentage']}
+            style={{
+              borderRadius: `${credisimanTagStyles?.tagStyles.borderRadius}px`,
+              borderColor: credisimanTagStyles?.tagStyles.borderColor,
+              color: credisimanTagStyles?.tagStyles.color,
+              backgroundColor: credisimanTagStyles?.tagStyles.backgroundColor,
+              order: credisimanTagStyles?.image.position === 'right' ? 3 : 4,
+              fontSize: `clamp(12px, 0.5em, 24px)`,
+            }}
+          >
+            {calculateDiscountPercentage({
+              type: credisimanTagStyles?.percentageBasis,
+              totalWithCredisiman: productData?.totalWithDiscount,
+              listPrice: productContext?.selectedItem?.sellers[0]?.commertialOffer.ListPrice,
+              discount: productData.discountValue
+            })}
+          </span>
+        )}
 
           {credisimanTagStyles?.viewFields.img && (
             <img

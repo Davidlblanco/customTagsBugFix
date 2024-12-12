@@ -125,12 +125,16 @@
       "component": "ProductIngredients"
   },
   "custom-tags-el": {
-      "component": "CustomTagsEl"
+    "component": "CustomTagsEl",
+    "composition": "children"
   },
   "Availability": {
     "component": "Availability"
   },
   "limited-promotions": {
     "component": "LimitedPromotions"
+  },
+  "DownloadManual": {
+    "component": "DownloadManual"
   }
 }

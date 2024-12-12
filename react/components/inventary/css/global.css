@@ -8,7 +8,7 @@
 }
 
 h2 {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400; /* Normal */
   font-size: 21px;
   line-height: 29.4px;
@@ -43,7 +43,7 @@ h2 {
 }
 
 .store-name {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 700; /* Negrita */
   font-size: 16px;
   line-height: 22.4px;
@@ -52,11 +52,11 @@ h2 {
 }
 
 .availability-status {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400; /* Normal */
   font-size: 14px; /* Tamaño de la fuente ajustado */
   line-height: 22.4px; /* Altura de línea */
-  color: #316C0C; /* Verde para "Disponible" */
+  color: #316c0c; /* Verde para "Disponible" */
   margin: 0; /* Elimina cualquier margen extra */
 }
 
@@ -140,7 +140,7 @@ h2 {
   border-radius: 20px;
   padding: 10px 15px;
   cursor: pointer;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 14px;
   line-height: 1.5;
 }
@@ -205,5 +205,4 @@ h2 {
     width: 14px; /* Reducir tamaño del ícono de la nota en móvil */
     height: 14px;
   }
-
 }

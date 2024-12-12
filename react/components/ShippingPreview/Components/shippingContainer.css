@@ -30,3 +30,8 @@
     text-align: left;
     color: #6d6e71;
 }
+
+.bottomShipping p {
+    margin: 0 !important;
+    padding-top: 8px;
+}
