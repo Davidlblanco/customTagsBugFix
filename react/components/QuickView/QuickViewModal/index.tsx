@@ -1,5 +1,5 @@
 import React, { MouseEvent } from "react";
-import { createPortal } from 'react-dom';
+import { createPortal } from "react-dom";
 import { Link } from "vtex.render-runtime";
 
 import { CrediSimanPrice } from "../../CrediSimanPrice";
@@ -11,110 +11,118 @@ import { XIcon } from "../assets/x-icon";
 import { MoreIcon } from "../assets/more-icon";
 
 import { ProductContextState } from "vtex.product-context/react/ProductTypes";
-import styles from './styles.css'
+import styles from "./styles.css";
+import LimitedPromotions from "../../LimitedPromotions/LimitedPromotions";
+import { canUseDOM } from "vtex.render-runtime";
 
 interface QuickViewModalProps {
-  components: {
-    images: React.ReactNode
-    skuSelector: React.ReactNode
-    addToCart: React.ReactNode
-  }
-  productContext: Partial<ProductContextState>
-  onOpenChange: (open: boolean) => void,
-  isOpen: boolean
+    components: {
+        images: React.ReactNode;
+        skuSelector: React.ReactNode;
+        addToCart: React.ReactNode;
+        tags: React.ReactNode;
+    };
+    productContext: Partial<ProductContextState>;
+    onOpenChange: (open: boolean) => void;
+    isOpen: boolean;
 }
 
 export function QuickViewModal({ components, productContext, onOpenChange, isOpen }: QuickViewModalProps) {
-  const { images, skuSelector, addToCart } = components;
+    const { images, skuSelector, addToCart, tags } = components;
 
-  const product = productContext.product
+    const product = productContext.product;
 
-  function handleOnCloseModal(e: MouseEvent) {
-    e.preventDefault();
-    e.stopPropagation();
-    onOpenChange(false);
-  }
+    function handleOnCloseModal(e: MouseEvent) {
+        e.preventDefault();
+        e.stopPropagation();
+        onOpenChange(false);
+    }
 
-  return createPortal(
-    <>
-      <div 
-        className={`${styles['modal-overlay']} ${isOpen ? styles.show : ''}`} 
-        onClick={handleOnCloseModal}
-        data-quickview-id={productContext.selectedItem?.itemId}
-      />
+    if (canUseDOM) {
+        window.addEventListener("message", listenEvent);
+    }
 
-      <div 
-        className={`${styles.modal} ${isOpen ? styles.show : ''}`}
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-        }}
-      >
-        <div className={styles['modal__header']}>
-          <span className={styles['modal__header-reference']}>
-            <span className="ttu">{product?.brand}</span>{' '}
-            Referencia: {product?.productReference}
-          </span>
+    function listenEvent(e: any) {
+        if (e) {
+            if (e?.data?.eventName === "vtex:cartChanged") {
+                setTimeout(() => {
+                    onOpenChange(false);
+                }, 1500);
+            }
+        }
+    }
 
-          <h2 className={styles['modal__header-product-name']}>
-            {product?.productName}
-          </h2>
-
-          <div className={styles['modal__header-sold-by']}>
-            <SellerIcon />
-
-            <span>
-              Vendido por{' '}
-              <span className={styles['modal__header-sold-by__name']}>
-                {productContext.selectedItem?.sellers[0].sellerName}
-              </span>
-            </span>
-          </div>
-
-          <button 
-            type="button" 
-            className={styles['modal__header-close-modal']}
-            onClick={handleOnCloseModal}
-          >
-            <XIcon />
-          </button>
-        </div>
-
-        <div className={styles['modal__content']}>
-          <div className={styles['modal__content-images']}>
-            {images}
-          </div>
-
-          <div className={styles['modal__content-info']}>
-            <CrediSimanPrice />
-
-            <QuickViewProductPrice 
-              sellingPrice={product?.priceRange.sellingPrice.highPrice ?? 0} 
-              listPrice={product?.priceRange.listPrice.highPrice ?? 0}
+    return createPortal(
+        <>
+            {tags}
+            <div
+                className={`${styles["modal-overlay"]} ${isOpen ? styles.show : ""}`}
+                onClick={handleOnCloseModal}
+                data-quickview-id={productContext.selectedItem?.itemId}
             />
 
-            <div className="mv5">
-              <Cuotas visibility="product-summary" />
+            <div
+                className={`${styles.modal} ${isOpen ? styles.show : ""}`}
+                onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }}
+            >
+                <div className={styles["modal__header"]}>
+                    <span className={styles["modal__header-reference"]}>
+                        <span className="ttu">{product?.brand}</span> Referencia: {product?.productReference}
+                    </span>
+
+                    <h2 className={styles["modal__header-product-name"]}>{product?.productName}</h2>
+
+                    <div className={styles["modal__header-sold-by"]}>
+                        <SellerIcon />
+
+                        <span>
+                            Vendido por{" "}
+                            <span className={styles["modal__header-sold-by__name"]}>
+                                {productContext.selectedItem?.sellers[0].sellerName}
+                            </span>
+                        </span>
+                    </div>
+
+                    <button type="button" className={styles["modal__header-close-modal"]} onClick={handleOnCloseModal}>
+                        <XIcon />
+                    </button>
+                </div>
+
+                <div className={styles["modal__content"]}>
+                    <div className={styles["modal__content-images"]}>{images}</div>
+
+                    <div className={styles["modal__content-info"]}>
+                        <LimitedPromotions />
+                        <CrediSimanPrice />
+
+                        <QuickViewProductPrice
+                            sellingPrice={product?.priceRange.sellingPrice.highPrice ?? 0}
+                            listPrice={product?.priceRange.listPrice.highPrice ?? 0}
+                        />
+
+                        <div className="mv5">
+                            <Cuotas visibility="product-summary" />
+                        </div>
+
+                        {skuSelector}
+
+                        <div className="mv5">
+                            <span className={styles["modal__content-view-more-title"]}>Especificaciones</span>
+
+                            <Link className={styles["modal__content-view-more"]} to={`/${product?.linkText}/p`}>
+                                <MoreIcon />
+                                Ver más detalles
+                            </Link>
+                        </div>
+
+                        {addToCart}
+                    </div>
+                </div>
             </div>
-            
-            {skuSelector}
-
-            <div className="mv5">
-              <span className={styles['modal__content-view-more-title']}>
-                Especificaciones
-              </span>
-
-              <Link className={styles['modal__content-view-more']} to={`/${product?.linkText}/p`}>
-                <MoreIcon />
-                Ver más detalles
-              </Link>
-            </div>
-
-            {addToCart}
-          </div>
-        </div>
-      </div>
-    </>,
-    document.body
-  )
+        </>,
+        document.body
+    );
 }

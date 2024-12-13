@@ -6,57 +6,50 @@ import { canUseDOM } from "vtex.render-runtime";
 import { useQuickView } from "../../contexts/QuickViewContext";
 import { QuickViewModal } from "./QuickViewModal";
 
-import styles from './styles.css'
+import styles from "./styles.css";
 
 interface QuickViewProps {
-  children: React.ReactNode[]
+    children: React.ReactNode[];
 }
 
 export function QuickView({ children }: QuickViewProps) {
-  const productContext = useProduct()
-  const { categoryHasQuickview } = useQuickView()
+    const productContext = useProduct();
+    const { categoryHasQuickview } = useQuickView();
 
-  const [shouldShowQuickView, setShouldShowQuickView] = useState(false)
+    const [shouldShowQuickView, setShouldShowQuickView] = useState(false);
 
-  if (!productContext || !canUseDOM) return <></>;
-  
-  if (!categoryHasQuickview(productContext)) {
+    if (!productContext || !canUseDOM) return <></>;
+
+    if (!categoryHasQuickview(productContext)) {
+        return <>{children[3]}</>;
+    }
+
+    function handleOpenQuickview(e: MouseEvent) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        setShouldShowQuickView(true);
+    }
+
     return (
-      <>
-        {children[3]}
-      </>
-    )
-  };
+        <>
+            <button type="button" className={styles["quickview-open-button"]} onClick={handleOpenQuickview}>
+                Agregar al carrito
+            </button>
 
-  function handleOpenQuickview(e: MouseEvent) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    setShouldShowQuickView(true)
-  }
-  
-  return (
-    <>
-      <button 
-        type="button" 
-        className={styles['quickview-open-button']}
-        onClick={handleOpenQuickview}  
-      >
-        Agregar al carrito
-      </button>
-
-      {shouldShowQuickView && (
-        <QuickViewModal
-          isOpen={shouldShowQuickView}
-          onOpenChange={(open) => setShouldShowQuickView(open)}
-          productContext={productContext}
-          components={{
-            images: children[0], 
-            skuSelector: children[1], 
-            addToCart: children[2],
-          }}
-        />
-      )}
-    </>
-  )
+            {shouldShowQuickView && (
+                <QuickViewModal
+                    isOpen={shouldShowQuickView}
+                    onOpenChange={(open) => setShouldShowQuickView(open)}
+                    productContext={productContext}
+                    components={{
+                        images: children[0],
+                        skuSelector: children[1],
+                        addToCart: children[2],
+                        tags: children[4],
+                    }}
+                />
+            )}
+        </>
+    );
 }
