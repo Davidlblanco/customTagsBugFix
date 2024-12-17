@@ -47,7 +47,7 @@ const CustomTagsEl = ({
             return;
         }
 
-        await waitForEl(`${containerSelector} .pricing`, 5000, false, 1000);
+        await waitForEl(`${containerSelector}`, 5000, false, 1000);
 
         const containers = document.querySelectorAll(containerSelector);
 
