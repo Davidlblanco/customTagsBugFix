@@ -112,6 +112,22 @@
 
 .modal__content-info {
   flex: 1;
+  max-height: 570px;
+  overflow-y: auto;
+}
+
+.modal__content-info::-webkit-scrollbar {
+  width: 6px;
+  height: 8px;
+}
+
+.modal__content-info::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  background-color: #e5e5e5;
+}
+
+.modal__content-info::-webkit-scrollbar-track {
+  background-color: transparent;
 }
 
 .modal__content-view-more-title {
@@ -230,6 +246,14 @@
   top: -1px;
 }
 
+.modal :global(.siman-add-to-cart-button-custom-2-x-BuyContainer) {
+  gap: 8px;
+}
+
+.modal :global(.vtex-product-quantity-1-x-quantitySelectorContainer) {
+  margin: 0;
+}
+
 /* Media */
 @media screen and (max-width: 1024px) {
   .modal__content {
@@ -257,18 +281,18 @@
 /* animations */
 @keyframes show {
   from {
-    transform: translate(-50%, -100vh); /* Inicia acima da tela */
+    transform: translate(-50%, -100vh);
   }
   to {
-    transform: translate(-50%, -50%); /* Finaliza no centro */
+    transform: translate(-50%, -50%);
   }
 }
 
 @keyframes close {
   from {
-    transform: translate(-50%, -50%); /* Inicia no centro */
+    transform: translate(-50%, -50%);
   }
   to {
-    transform: translate(-50%, -100vh); /* Sai para cima */
+    transform: translate(-50%, -100vh);
   }
 }

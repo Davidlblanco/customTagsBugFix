@@ -1,19 +1,19 @@
-import React, { MouseEvent } from "react";
+import React, { MouseEvent, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "vtex.render-runtime";
 
+import LimitedPromotions from "../../LimitedPromotions/LimitedPromotions";
 import { CrediSimanPrice } from "../../CrediSimanPrice";
 import { QuickViewProductPrice } from "./components/ProductPrice";
 import { Cuotas } from "../../Cuotas";
+
+import { ProductContextState } from "vtex.product-context/react/ProductTypes";
 
 import { SellerIcon } from "../assets/seller-icon";
 import { XIcon } from "../assets/x-icon";
 import { MoreIcon } from "../assets/more-icon";
 
-import { ProductContextState } from "vtex.product-context/react/ProductTypes";
 import styles from "./styles.css";
-import LimitedPromotions from "../../LimitedPromotions/LimitedPromotions";
-import { canUseDOM } from "vtex.render-runtime";
 
 interface QuickViewModalProps {
     components: {
@@ -38,19 +38,22 @@ export function QuickViewModal({ components, productContext, onOpenChange, isOpe
         onOpenChange(false);
     }
 
-    if (canUseDOM) {
-        window.addEventListener("message", listenEvent);
-    }
-
     function listenEvent(e: any) {
         if (e) {
-            if (e?.data?.eventName === "vtex:cartChanged") {
+            if (
+              e?.data?.eventName === "vtex:cartChanged" ||
+              e?.data?.eventName === "vtex:addToCart"
+            ) {
                 setTimeout(() => {
                     onOpenChange(false);
                 }, 1500);
             }
         }
     }
+
+    useEffect(() => {
+      window.addEventListener("message", listenEvent);
+    }, [])
 
     return createPortal(
         <>
