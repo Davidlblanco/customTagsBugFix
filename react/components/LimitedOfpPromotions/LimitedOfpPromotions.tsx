@@ -6,12 +6,13 @@ import { SkeletonLoading } from "./SkeletonLoading";
 import type { ConfigType } from "./Types/configType";
 import { GetProductData } from "./Logic/logic";
 
-import styles from "./styles.css";
-
+import generateBaseUrlToSv from "./utils/generateBaseUrlToSv";
 import { ConfigLimitedOfpPromotions } from "./Types/limitedOfpPromotions";
 import { GetPageType } from "./utils/getPageType";
-import generateBaseUrlToSv from "../../utils/generateBaseUrlToSv";
+
 import { useRuntime } from "vtex.render-runtime";
+
+import styles from "./styles.css";
 
 const LimitedOfpPromotions = () => {
     const productContext = useProduct();
