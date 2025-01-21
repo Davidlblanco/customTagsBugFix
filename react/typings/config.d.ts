@@ -11,6 +11,16 @@ export interface ConfigGroup {
     tagInsignia?: TagInsigniaValues;
 }
 
+export interface ConfigGroupPromotions {
+    id?: string;
+    name: string;
+    active: boolean;
+    activeTagVisibility: ActiveTagVisibility;
+    customTag?: CustomTagValues;
+    interestRate: number;
+}
+
+
 export interface ActiveTagVisibility {
     productSummaryVisibility: boolean;
     productVisibility: boolean;
