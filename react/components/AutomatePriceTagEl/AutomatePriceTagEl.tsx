@@ -10,6 +10,9 @@ import useProductPromotionsTags from "../../hooks/useProductPromotionsTags";
 import { useRenderSession } from "vtex.session-client";
 import { useRuntime } from 'vtex.render-runtime';
 
+import { useIntl } from "react-intl";
+import { formatCurrency } from "vtex.format-currency";
+
 interface CustomTagsElProps {
   visibility: "pdp" | "productSummary";
   container: string;
@@ -34,11 +37,25 @@ const CustomTagsEl = ({
 }: CustomTagsElProps) => {
 
   const { session } = useRenderSession();
-  const { account, workspace } = useRuntime();
+  const { account, workspace, culture } = useRuntime();
+  const intl = useIntl();
 
   const { filteredTags, hrefProduct, skuId } = useProductPromotionsTags(session, account, workspace, algoliaProductContext);
 
   const originalContainer = useRef<HTMLDivElement>(null);
+
+  const formatTotalCalculation = (configGroupPromotions: ConfigGroupPromotions[]) => {
+    const item = configGroupPromotions?.map((promotion) => {
+      const totalCalculationValue = (promotion?.totalCalculation / 100) || 0;
+      const formattedTotalCalculation = formatCurrency({ intl, culture, value: totalCalculationValue });
+
+      return {
+        ...promotion,
+        totalCalculation: formattedTotalCalculation
+      };
+    });
+    return item;
+  }
 
   const insertTags = async (
     tagArray: ConfigGroupPromotions[],
@@ -87,9 +104,9 @@ const CustomTagsEl = ({
   const addTags = useCallback(async () => {
     if (!filteredTags) return;
 
-    insertTags(filteredTags.top, container, positionTop, "tag-automate-price-top");
-    insertTags(filteredTags.center, container, positionCenter, "tag-automate-price-center");
-    insertTags(filteredTags.bottom, container, positionBottom, "tag-automate-price-bottom");
+    insertTags(formatTotalCalculation(filteredTags.top), container, positionTop, "tag-automate-price-top");
+    insertTags(formatTotalCalculation(filteredTags.center), container, positionCenter, "tag-automate-price-center");
+    insertTags(formatTotalCalculation(filteredTags.bottom), container, positionBottom, "tag-automate-price-bottom");
   }, [filteredTags, container, positionTop, positionCenter, positionBottom]);
 
   useEffect(() => {

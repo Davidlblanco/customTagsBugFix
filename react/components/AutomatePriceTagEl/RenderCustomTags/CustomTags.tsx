@@ -1,4 +1,5 @@
 import React from "react";
+
 import { ConfigGroupPromotions } from "../../../typings/config";
 
 interface RenderTagsProps {
@@ -6,6 +7,7 @@ interface RenderTagsProps {
 }
 
 const CustomTags = ({ tag }: RenderTagsProps) => {
+
     return (
         <>
             <div
@@ -27,17 +29,15 @@ const CustomTags = ({ tag }: RenderTagsProps) => {
                                 style={{ maxWidth: '25px', maxHeight: '25px' }}
                             />
                         )}
-                        {tag?.interestRate && (
-                            <span style={{
-                                ...tag?.customTag?.tagDesign,
-                                borderStyle: 'solid',
-                                borderWidth: '1px',
-                                lineHeight: 1,
-                                padding: '5px'
-                            }}>
-                                {tag?.interestRate} %
-                            </span>
-                        )}
+                        <span style={{
+                            ...tag?.customTag?.tagDesign,
+                            borderStyle: 'solid',
+                            borderWidth: '1px',
+                            lineHeight: 1,
+                            padding: '5px'
+                        }}>
+                            {tag?.totalCalculation}
+                        </span>
                     </div>
                 )}
             </div>

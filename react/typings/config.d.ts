@@ -18,6 +18,7 @@ export interface ConfigGroupPromotions {
     activeTagVisibility: ActiveTagVisibility;
     customTag?: CustomTagValues;
     interestRate: number;
+    totalCalculation: any;
 }
 
 
