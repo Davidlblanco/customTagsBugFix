@@ -40,10 +40,7 @@ export function QuickViewModal({ components, productContext, onOpenChange, isOpe
 
     function listenEvent(e: any) {
         if (e) {
-            if (
-              e?.data?.eventName === "vtex:cartChanged" ||
-              e?.data?.eventName === "vtex:addToCart"
-            ) {
+            if (e?.data?.eventName === "vtex:cartChanged" || e?.data?.eventName === "vtex:addToCart") {
                 setTimeout(() => {
                     onOpenChange(false);
                 }, 1500);
@@ -52,8 +49,8 @@ export function QuickViewModal({ components, productContext, onOpenChange, isOpe
     }
 
     useEffect(() => {
-      window.addEventListener("message", listenEvent);
-    }, [])
+        window.addEventListener("message", listenEvent);
+    }, []);
 
     return createPortal(
         <>
@@ -101,10 +98,7 @@ export function QuickViewModal({ components, productContext, onOpenChange, isOpe
                         <LimitedPromotions />
                         <CrediSimanPrice />
 
-                        <QuickViewProductPrice
-                            sellingPrice={product?.priceRange.sellingPrice.highPrice ?? 0}
-                            listPrice={product?.priceRange.listPrice.highPrice ?? 0}
-                        />
+                        <QuickViewProductPrice />
 
                         <div className="mv5">
                             <Cuotas visibility="product-summary" />
