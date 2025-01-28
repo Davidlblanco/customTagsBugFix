@@ -132,5 +132,9 @@
   },
   "DownloadManual": {
     "component": "DownloadManual"
+  },
+  "quick-view": {
+    "component": "QuickView",
+    "composition": "children"
   }
 }
