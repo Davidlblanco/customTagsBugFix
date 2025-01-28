@@ -45,7 +45,8 @@ const useSimulationAutomatePriceTag = (session: any, account: any, workspace: an
             const url = `${baseUrl}/_v/admin-automate-price-tags/${productValues?.skuId}/${salesChannelId}/${productValues?.sellerId}`;
             try {
                 const response = await axios.get<PromotionProps[]>(url);
-                setState({ data: response.data, isLoading: false, error: null });
+                setState({ data: response?.data, isLoading: false, error: null });
+                console.log('aqui', response?.data)
             } catch (error) {
                 console.error(error);
                 setState({

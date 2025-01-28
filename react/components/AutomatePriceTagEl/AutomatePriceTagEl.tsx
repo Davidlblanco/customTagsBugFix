@@ -13,7 +13,7 @@ import { useRuntime } from 'vtex.render-runtime';
 import { useIntl } from "react-intl";
 import { formatCurrency } from "vtex.format-currency";
 
-interface CustomTagsElProps {
+interface AutomatePriceTagElProps {
   visibility: "pdp" | "productSummary";
   container: string;
   positionTop: PositionProps;
@@ -27,14 +27,14 @@ type PositionProps = {
   class: string;
 };
 
-const CustomTagsEl = ({
+const AutomatePriceTagEl = ({
   visibility,
   container,
   positionTop,
   positionCenter,
   positionBottom,
   algoliaProductContext
-}: CustomTagsElProps) => {
+}: AutomatePriceTagElProps) => {
 
   const { session } = useRenderSession();
   const { account, workspace, culture } = useRuntime();
@@ -104,9 +104,9 @@ const CustomTagsEl = ({
   const addTags = useCallback(async () => {
     if (!filteredTags) return;
 
-    insertTags(formatTotalCalculation(filteredTags.top), container, positionTop, "tag-automate-price-top");
-    insertTags(formatTotalCalculation(filteredTags.center), container, positionCenter, "tag-automate-price-center");
-    insertTags(formatTotalCalculation(filteredTags.bottom), container, positionBottom, "tag-automate-price-bottom");
+    insertTags(formatTotalCalculation(filteredTags?.top), container, positionTop, "tag-automate-price-top");
+    insertTags(formatTotalCalculation(filteredTags?.center), container, positionCenter, "tag-automate-price-center");
+    insertTags(formatTotalCalculation(filteredTags?.bottom), container, positionBottom, "tag-automate-price-bottom");
   }, [filteredTags, container, positionTop, positionCenter, positionBottom]);
 
   useEffect(() => {
@@ -123,4 +123,4 @@ const CustomTagsEl = ({
   return <div ref={originalContainer}></div>;
 };
 
-export default CustomTagsEl;
+export default AutomatePriceTagEl;

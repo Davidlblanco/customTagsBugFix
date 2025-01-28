@@ -28,7 +28,7 @@ export default function useProductPromotionsTags(
       return;
     }
 
-    const configs = data?.map((item) => item.config);
+    const configs = data?.map((item) => item?.config) ?? [];
 
     const _set = async () => {
       const tags = filterTags(configs);
