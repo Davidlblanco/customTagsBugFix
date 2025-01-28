@@ -57,7 +57,7 @@ export function QuickViewModal({ components, productContext, onOpenChange, isOpe
             {tags}
             <div
                 className={`${styles["modal-overlay"]} ${isOpen ? styles.show : ""}`}
-                id="quickview-modal"
+                id="quickview"
                 onClick={handleOnCloseModal}
                 data-quickview-id={productContext.selectedItem?.itemId}
             />
