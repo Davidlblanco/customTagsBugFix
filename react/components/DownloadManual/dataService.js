@@ -1,6 +1,6 @@
 export const fetchData = async (accountName, referenceValue) => {
     try {
-        const BASE_PATH = `https://manual2025--${accountName}.myvtex.com/_v1/documents/files/`;
+        const BASE_PATH = `https://${accountName}.myvtex.com/_v1/documents/files/`;
 
         const url = `${BASE_PATH}${encodeURIComponent(referenceValue)}`;
 
