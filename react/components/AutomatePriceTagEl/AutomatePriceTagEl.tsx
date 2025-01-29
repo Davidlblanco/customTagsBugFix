@@ -61,12 +61,9 @@ const AutomatePriceTagEl = ({
     tagArray: ConfigGroupPromotions[],
     containerSelector: string,
     positionClass: PositionProps,
-    renderedTags: string
+    renderedTags: string,
+    tagsNotRendered: string
   ) => {
-    if (tagArray.length === 0) {
-      return;
-    }
-
     const containers = document.querySelectorAll(containerSelector);
 
     if (!containers) {
@@ -81,12 +78,36 @@ const AutomatePriceTagEl = ({
       }
 
       if (container.querySelector(`.${renderedTags}`)) {
+        const removeNotTag = container.querySelector(`.${tagsNotRendered}`);
+
+        if (removeNotTag) {
+          removeNotTag.remove();
+        }
+
         return;
       }
 
       const elementWithPositionClass = container.querySelector(positionClass.class);
 
       if (elementWithPositionClass) {
+        if (tagArray.length === 0 && visibility === "productSummary") {
+          if (container.querySelector(`.${tagsNotRendered}`)) {
+            return;
+          }
+          const renderContainer = document.createElement("div");
+          renderContainer.classList.add(tagsNotRendered);
+          if (positionClass.insert === "before") {
+            elementWithPositionClass?.parentNode?.insertBefore(renderContainer, elementWithPositionClass);
+          } else {
+            elementWithPositionClass?.parentNode?.insertBefore(renderContainer, elementWithPositionClass.nextSibling);
+          }
+          return;
+        }
+
+        if (tagArray.length === 0) {
+          return;
+        }
+
         const renderContainer = document.createElement("div");
         renderContainer.classList.add(renderedTags);
 
@@ -104,9 +125,9 @@ const AutomatePriceTagEl = ({
   const addTags = useCallback(async () => {
     if (!filteredTags) return;
 
-    insertTags(formatTotalCalculation(filteredTags?.top), container, positionTop, "tag-automate-price-top");
-    insertTags(formatTotalCalculation(filteredTags?.center), container, positionCenter, "tag-automate-price-center");
-    insertTags(formatTotalCalculation(filteredTags?.bottom), container, positionBottom, "tag-automate-price-bottom");
+    insertTags(formatTotalCalculation(filteredTags?.top), container, positionTop, "tag-automate-price-top", "tag-automate-price-top-not-rendered");
+    insertTags(formatTotalCalculation(filteredTags?.center), container, positionCenter, "tag-automate-price-center", "tag-automate-price-center-not-rendered");
+    insertTags(formatTotalCalculation(filteredTags?.bottom), container, positionBottom, "tag-automate-price-bottom", "tag-automate-price-top-bottom-rendered");
   }, [filteredTags, container, positionTop, positionCenter, positionBottom]);
 
   useEffect(() => {
