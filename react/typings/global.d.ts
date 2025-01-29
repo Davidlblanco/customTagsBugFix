@@ -89,3 +89,17 @@ interface Seller {
   SellerId?: string
   Name?: string
 }
+
+interface QuickViewApi {
+  id: string
+  isActive: boolean
+  createdAt: string
+  category: {
+    id: string
+    name: string
+    children?: {
+      id: string
+      name: string
+    }[]
+  }
+}
