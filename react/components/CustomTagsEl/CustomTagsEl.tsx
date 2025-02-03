@@ -41,11 +41,10 @@ const CustomTagsEl = ({
         containerSelector: string,
         positionClass: PositionProps,
         renderedTags: string,
+        tagsNotRendered: string,
         isCustomTag: boolean
     ) => {
-        if (tagArray.length === 0) {
-            return;
-        }
+
 
         await waitForEl(`${containerSelector}`, 5000, false, 1000);
 
@@ -63,12 +62,35 @@ const CustomTagsEl = ({
             }
 
             if (container.querySelector(`.${renderedTags}`)) {
+                const removeNotTag = container.querySelector(`.${tagsNotRendered}`);
+
+                if (removeNotTag) {
+                    removeNotTag.remove();
+                }
                 return;
             }
 
             const elementWithPositionClass = container.querySelector(positionClass.class);
 
             if (elementWithPositionClass) {
+                if (tagArray.length === 0 && visibility === "productSummary") {
+                    if (container.querySelector(`.${tagsNotRendered}`)) {
+                        return;
+                    }
+                    const renderContainer = document.createElement("div");
+                    renderContainer.classList.add(tagsNotRendered);
+                    if (positionClass.insert === "before") {
+                        elementWithPositionClass?.parentNode?.insertBefore(renderContainer, elementWithPositionClass);
+                    } else {
+                        elementWithPositionClass?.parentNode?.insertBefore(renderContainer, elementWithPositionClass.nextSibling);
+                    }
+                    return;
+                }
+
+                if (tagArray.length === 0) {
+                    return;
+                }
+
                 const renderContainer = document.createElement("div");
                 renderContainer.classList.add(renderedTags);
 
@@ -96,10 +118,10 @@ const CustomTagsEl = ({
         if (!filteredTags) return;
         const containerInsigniaValid = containerInsignia ?? container;
 
-        insertTags(filteredTags.top, container, positionTop, "rendered-tag-top", true);
-        insertTags(filteredTags.center, container, positionCenter, "rendered-tag-center", true);
-        insertTags(filteredTags.bottom, container, positionBottom, "rendered-tag-bottom", true);
-        insertTags(filteredTags.tagInsignia, containerInsigniaValid, positionInsignia, "rendered-tag-insignia", false);
+        insertTags(filteredTags.top, container, positionTop, "rendered-tag-top", "tag-top-not-rendered", true);
+        insertTags(filteredTags.center, container, positionCenter, "rendered-tag-center", "tag-center-not-rendered", true);
+        insertTags(filteredTags.bottom, container, positionBottom, "rendered-tag-bottom", "tag-bottom-not-rendered", true);
+        insertTags(filteredTags.tagInsignia, containerInsigniaValid, positionInsignia, "rendered-tag-insignia", "tag-insignia-not-rendered", false);
     }, [filteredTags, container, positionTop, positionCenter, positionBottom, containerInsignia, positionInsignia]);
 
     useEffect(() => {
