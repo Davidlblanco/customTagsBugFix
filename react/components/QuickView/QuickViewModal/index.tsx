@@ -73,6 +73,7 @@ export function QuickViewModal({ components, productContext, onOpenChange, isOpe
 
             <div
                 className={`${styles.modal} ${isOpen ? styles.show : ""}`}
+                id="quickview"
                 onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
