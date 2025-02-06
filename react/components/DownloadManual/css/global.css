@@ -24,6 +24,15 @@
   background-color: #f1f1f1;
 }
 
+/* Icono dentro del botón de descarga */
+.download-button-icon {
+  width: 12px; /* Reduce el ancho del ícono */
+  height: 12px; /* Reduce la altura del ícono */
+  margin-left: 8px; /* Espacio entre el texto y el ícono */
+  vertical-align: middle; /* Alinea el ícono verticalmente con el texto */
+  object-fit: contain; /* Mantener proporción de la imagen */
+}
+
 /* Lista del menú desplegable */
 .manual-list {
   opacity: 0;
@@ -58,7 +67,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0cap 0; /* Ajustar el padding */
+  padding: 8px 0; /* Ajustar el padding */
   text-decoration: none;
   color: #000; /* Cambiar color del texto */
   font-size: 12px; /* Fuente más pequeña */
@@ -76,18 +85,13 @@
   margin-left: 10px; /* Espaciado fijo entre el texto y el icono */
 }
 
-.download-button-icon {
-  width: 12px; /* Reduce el ancho del icono */
-  height: 12px; /* Reduce la altura del icono */
-  margin-left: 8px; /* Espacio entre el texto y el icono */
-  vertical-align: middle; /* Alinea el icono verticalmente con el texto */
-}
-
-/* Mensajes de error o de carga */
-p {
-  margin: 10px 0;
-  font-size: 12px;
-  color: red;
+/* Imagen del ícono de descarga */
+.download-icon-image {
+  width: 12px; /* Tamaño uniforme */
+  height: 12px; /* Tamaño uniforme */
+  margin-left: 10px; /* Espaciado fijo entre texto e ícono */
+  vertical-align: middle; /* Alineación vertical con el texto */
+  object-fit: contain; /* Mantener proporción de la imagen */
 }
 
 /* Adaptación para dispositivos móviles */
