@@ -11,13 +11,12 @@ import { calculateDiscountPercentage } from "./utils/calculateDiscontPercentage"
 import { useRuntime } from "vtex.render-runtime";
 import generateBaseUrlToSv from "../../utils/generateBaseUrlToSv";
 
-
 interface CredisimanPriceProps {
-  isShelf?: boolean;
-  algoliaProductContext?: AlgoliaProductContext
+    isShelf?: boolean;
+    algoliaProductContext?: AlgoliaProductContext;
 }
 
-const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ isShelf, algoliaProductContext  }) => {
+const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ isShelf, algoliaProductContext }) => {
     const productContext = useProduct();
 
     const pageType = GetPageType();
@@ -25,7 +24,7 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
     const productId = productContext?.product?.productId ?? algoliaProductContext?.skuId?.toString();
 
     const [productData, setProductData] = useState<CredisimanType>();
-    const [credisimanTagStyles, setCredisimanTagStyles] = useState<ConfigGroup['configs']>();
+    const [credisimanTagStyles, setCredisimanTagStyles] = useState<ConfigGroup["configs"]>();
 
     const { session } = useRenderSession();
 
@@ -54,89 +53,90 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
         };
 
         fetchData();
-
     }, [productId, skuId, sallesChannelId]);
-    
-    if (!productData) return <></>
+
+    if (!productData) return <></>;
 
     return (
-      <div
-        className={`
-          ${styles['tag-preview__credisiman-container']} 
-          ${isShelf ? styles.shelf : ''}
-          ${pageType === 'product' && !isShelf ? styles.pdp : ''}
-        `}
-      >
         <div
-          className={styles['tag-preview__credisiman']}
-          style={{
-            fontSize: `${credisimanTagStyles?.tagStyles.fontSize}`,
-          }}
+            className={`
+          ${styles["tag-preview__credisiman-container"]} 
+          ${isShelf ? styles.shelf : ""}
+          ${pageType === "product" && !isShelf ? styles.pdp : ""}
+        `}
         >
-          {credisimanTagStyles?.viewFields.price.active && (
-            <span
-              className={styles['tag-preview__credisiman-price']}
-              style={{
-                color: credisimanTagStyles?.viewFields.price.color,
-                fontSize: `1em`,
-                order: credisimanTagStyles?.image.position === 'right' ? 2 : 3,
-              }}
+            <div
+                className={styles["tag-preview__credisiman"]}
+                style={{
+                    fontSize: `${credisimanTagStyles?.tagStyles.fontSize}`,
+                }}
             >
-              <FormattedCurrency value={productData?.totalWithDiscount} />
-            </span>
-          )}
+                {credisimanTagStyles?.viewFields.price.active && (
+                    <span
+                        className={styles["tag-preview__credisiman-price"]}
+                        style={{
+                            color: credisimanTagStyles?.viewFields.price.color,
+                            fontSize: `1em`,
+                            order: credisimanTagStyles?.image.position === "right" ? 2 : 3,
+                        }}
+                    >
+                        <FormattedCurrency value={productData?.totalWithDiscount} />
+                    </span>
+                )}
 
-        {credisimanTagStyles?.viewFields.porcentage && (
-          <span
-            className={styles['tag-preview__credisiman-porcentage']}
-            style={{
-              borderRadius: `${credisimanTagStyles?.tagStyles.borderRadius}px`,
-              borderColor: credisimanTagStyles?.tagStyles.borderColor,
-              color: credisimanTagStyles?.tagStyles.color,
-              backgroundColor: credisimanTagStyles?.tagStyles.backgroundColor,
-              order: credisimanTagStyles?.image.position === 'right' ? 3 : 4,
-              fontSize: `clamp(12px, 0.5em, 24px)`,
-            }}
-          >
-            {calculateDiscountPercentage({
-              type: credisimanTagStyles?.percentageBasis,
-              totalWithCredisiman: productData?.totalWithDiscount,
-              listPrice: productContext?.selectedItem?.sellers[0]?.commertialOffer.ListPrice,
-              discount: productData.discountValue
-            })}
-          </span>
-        )}
+                {credisimanTagStyles?.viewFields.porcentage && (
+                    <span
+                        className={styles["tag-preview__credisiman-porcentage"]}
+                        style={{
+                            borderRadius: `${credisimanTagStyles?.tagStyles.borderRadius}px`,
+                            borderColor: credisimanTagStyles?.tagStyles.borderColor,
+                            color: credisimanTagStyles?.tagStyles.color,
+                            backgroundColor: credisimanTagStyles?.tagStyles.backgroundColor,
+                            order: credisimanTagStyles?.image.position === "right" ? 3 : 4,
+                            fontSize: `clamp(12px, 0.5em, 24px)`,
+                        }}
+                    >
+                        {calculateDiscountPercentage({
+                            type: credisimanTagStyles?.percentageBasis,
+                            totalWithCredisiman: productData?.totalWithDiscount,
+                            listPrice:
+                                productContext?.selectedItem?.sellers[0]?.commertialOffer.ListPrice ??
+                                algoliaProductContext?.price,
+                            discount: productData.discountValue,
+                        })}
+                    </span>
+                )}
 
-          {credisimanTagStyles?.viewFields.img && (
-            <img
-              src={
-                credisimanTagStyles?.image.src.length
-                  ? credisimanTagStyles?.image.src
-                  : getCredisimanImageSource(account)
-              }
-              alt="Credisiman Tag"
-              width={24}
-              height={24}
-              style={{
-                order: credisimanTagStyles?.image.position === 'right' ? 4 : 2,
-              }}
-            />
-          )}
+                {credisimanTagStyles?.viewFields.img && (
+                    <img
+                        src={
+                            credisimanTagStyles?.image.src.length
+                                ? credisimanTagStyles?.image.src
+                                : getCredisimanImageSource(account)
+                        }
+                        alt="Credisiman Tag"
+                        width={24}
+                        height={24}
+                        style={{
+                            order: credisimanTagStyles?.image.position === "right" ? 4 : 2,
+                        }}
+                    />
+                )}
 
-          {credisimanTagStyles?.viewFields.text.active && (
-            <p
-              className={styles['tag-preview__info-text']}
-              style={{
-                color: credisimanTagStyles?.viewFields.text.color,
-                order: credisimanTagStyles?.viewFields.text.position === 'right' ? 5 : 1,
-                fontSize: `${credisimanTagStyles?.tagStyles.fontSize}`,
-              }}
-            >
-              {credisimanTagStyles?.viewFields.text.phrase}
-            </p>
-          )}
+                {credisimanTagStyles?.viewFields.text.active && (
+                    <p
+                        className={styles["tag-preview__info-text"]}
+                        style={{
+                            color: credisimanTagStyles?.viewFields.text.color,
+                            order: credisimanTagStyles?.viewFields.text.position === "right" ? 5 : 1,
+                            fontSize: `${credisimanTagStyles?.tagStyles.fontSize}`,
+                        }}
+                    >
+                        {credisimanTagStyles?.viewFields.text.phrase}
+                    </p>
+                )}
+            </div>
         </div>
-      </div>
     );
 };
 
