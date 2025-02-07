@@ -4,11 +4,13 @@ import { useRenderSession } from "vtex.session-client";
 import { useProduct } from "vtex.product-context";
 import "./css/global.css";
 
+import downloadIcon from "./assets/images/download-icon.svg";
+import manualIcon from "./assets/images/manual-icon.svg";
+
 const DownloadManual = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [manuals, setManuals] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
     const menuRef = useRef(null);
 
     const { session } = useRenderSession();
@@ -27,9 +29,9 @@ const DownloadManual = () => {
             try {
                 const data = await fetchData(accountName, referenceValue);
                 setManuals(data.files);
-                setLoading(false);
             } catch (error) {
-                setError("Error al cargar los manuales");
+                console.error("Error al cargar los manuales:", error);
+            } finally {
                 setLoading(false);
             }
         };
@@ -53,45 +55,34 @@ const DownloadManual = () => {
         };
     }, []);
 
+    if (loading || manuals.length === 0) {
+        return null;
+    }
+
     return (
         <div className="download-container" ref={menuRef}>
             {isOpen && <div className="overlay" onClick={() => setIsOpen(false)}></div>}
-            {manuals.length > 0 && (
-                <>
-                    <button className="download-button" onClick={toggleMenu}>
-                        Descargar manual{" "}
-                        <img
-                            src="https://simanqa.myvtex.com/assets/vtex.file-manager-graphql/images/1d5a073a-cc10-44ae-99ee-66833aa040d9___031ba268e468309d3c48cf0ca5694c2d.svg"
-                            alt="Icono de descarga"
-                            className="download-button-icon"
-                        />
-                    </button>
+            <button className="download-button" onClick={toggleMenu}>
+                Descargar manual <img src={downloadIcon} alt="Icono de descarga" className="download-button-icon" />
+            </button>
 
-                    <div className={`manual-list ${isOpen && !loading ? "open" : ""}`}>
-                        {manuals.map((manual) => (
-                            <a
-                                key={manual.documentId}
-                                href={manual.downloadUrl}
-                                download
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={() => setIsOpen(false)}
-                            >
-                                {manual.displayName}{" "}
-                                <span className="download-icon">
-                                    <img
-                                        src="https://simanqa.myvtex.com/assets/vtex.file-manager-graphql/images/62cbe7e4-aa21-40c3-add5-d3b1a4a5acff___607329912bf2e117e811809b3aed02b3.svg"
-                                        alt="Icono de descarga"
-                                        className="download-icon-image"
-                                    />
-                                </span>
-                            </a>
-                        ))}
-                    </div>
-                </>
-            )}
-            {loading && <p>Cargando manuales...</p>}
-            {error && <p>{error}</p>}
+            <div className={`manual-list ${isOpen ? "open" : ""}`}>
+                {manuals.map((manual) => (
+                    <a
+                        key={manual.documentId}
+                        href={manual.downloadUrl}
+                        download
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => setIsOpen(false)}
+                    >
+                        {manual.displayName}{" "}
+                        <span className="download-icon">
+                            <img src={manualIcon} alt="Icono de descarga" className="download-icon-image" />
+                        </span>
+                    </a>
+                ))}
+            </div>
         </div>
     );
 };
