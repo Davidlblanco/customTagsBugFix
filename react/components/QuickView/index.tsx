@@ -1,0 +1,55 @@
+import React, { MouseEvent, useState } from "react";
+
+import { useProduct } from "vtex.product-context";
+import { canUseDOM } from "vtex.render-runtime";
+
+import { useQuickView } from "../../contexts/QuickViewContext";
+import { QuickViewModal } from "./QuickViewModal";
+
+import styles from "./styles.css";
+
+interface QuickViewProps {
+    children: React.ReactNode[];
+}
+
+export function QuickView({ children }: QuickViewProps) {
+    const productContext = useProduct();
+    const { categoryHasQuickview } = useQuickView();
+
+    const [shouldShowQuickView, setShouldShowQuickView] = useState(false);
+
+    if (!productContext || !canUseDOM) return <></>;
+
+    if (!categoryHasQuickview(productContext)) {
+        return <>{children[3]}</>;
+    }
+
+    function handleOpenQuickview(e: MouseEvent) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        setShouldShowQuickView(true);
+    }
+
+    return (
+        <>
+            <button type="button" className={styles["quickview-open-button"]} onClick={handleOpenQuickview}>
+                Agregar al carrito
+            </button>
+
+            {shouldShowQuickView && (
+                <QuickViewModal
+                    isOpen={shouldShowQuickView}
+                    onOpenChange={(open) => setShouldShowQuickView(open)}
+                    productContext={productContext}
+                    components={{
+                        images: children[0],
+                        skuSelector: children[1],
+                        addToCart: children[2],
+                        tags: children[4],
+                    }}
+                />
+            )}
+        </>
+    );
+}
