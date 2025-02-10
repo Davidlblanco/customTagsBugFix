@@ -1,13 +1,12 @@
-export const fetchData = async (accountName, referenceValue) => {
+export const fetchData = async (referenceValue) => {
     try {
-        const BASE_PATH = `https://${accountName}.myvtex.com/_v1/documents/files/`;
+        const BASE_PATH = `/_v1/documents/files/`;
 
         const url = `${BASE_PATH}${encodeURIComponent(referenceValue)}`;
 
         const response = await fetch(url);
 
         if (!response.ok) {
-            console.error("Error en la respuesta de la red:", response.status, response.statusText);
             return { files: [] };
         }
 
@@ -29,7 +28,6 @@ export const fetchData = async (accountName, referenceValue) => {
 
         return filteredResult;
     } catch (error) {
-        console.error("Error al consumir el servicio:", error);
         return { files: [] };
     }
 };
