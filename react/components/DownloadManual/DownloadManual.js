@@ -27,7 +27,7 @@ const DownloadManual = () => {
         const loadManuals = async () => {
             setLoading(true);
             try {
-                const data = await fetchData(accountName, referenceValue);
+                const data = await fetchData(referenceValue);
                 setManuals(data.files);
             } catch (error) {
                 console.error("Error al cargar los manuales:", error);
