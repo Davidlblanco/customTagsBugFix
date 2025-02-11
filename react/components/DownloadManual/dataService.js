@@ -1,27 +1,21 @@
-export const fetchData = async (accountName, referenceValue) => {
+export const fetchData = async (referenceValue) => {
     try {
-        console.log("accountName dentro de fetchData:", accountName);
-        console.log("referenceValue dentro de fetchData:", referenceValue);
+        const BASE_PATH = `/_v1/documents/files/`;
 
-        const url = `https://manual--simanqa.myvtex.com/_v1/documents/files/${encodeURIComponent(
-            referenceValue
-        )}`;
-        console.log("url enviado", url);
+        const url = `${BASE_PATH}${encodeURIComponent(referenceValue)}`;
 
         const response = await fetch(url);
 
         if (!response.ok) {
-            throw new Error("La respuesta de la red no fue correcta");
+            return { files: [] };
         }
 
         const result = await response.json();
 
-        console.log("JSON recibido:", result);
-
         const filteredFiles = result.files
             .filter((file) => file.displayName === referenceValue)
             .map((file, index) => {
-                const manualNumber = (index + 1).toString().padStart(2, "0"); // Asegurar que el número tenga 2 dígitos
+                const manualNumber = (index + 1).toString().padStart(2, "0");
                 return {
                     ...file,
                     displayName: `Manual ${manualNumber}`,
@@ -32,11 +26,8 @@ export const fetchData = async (accountName, referenceValue) => {
             files: filteredFiles,
         };
 
-        console.log("JSON filtrado:", filteredResult);
-
         return filteredResult;
     } catch (error) {
-        console.error("Error al consumir el servicio:", error);
-        throw error;
+        return { files: [] };
     }
 };
