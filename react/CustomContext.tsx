@@ -5,13 +5,15 @@ import { CustomTagConfigsContextProvider } from "./contexts/CustomTagsConfigsCon
 import { QuickViewContextProvider } from "./contexts/QuickViewContext";
 
 export default function CustomContext({ children }) {
-    return (
-        <CustomTagConfigsContextProvider>
-            <AvailablePaymentConfigsContextProvider>
-                <GenericTagsContextProvider>
-                    <QuickViewContextProvider>{children}</QuickViewContextProvider>
-                </GenericTagsContextProvider>
-            </AvailablePaymentConfigsContextProvider>
-        </CustomTagConfigsContextProvider>
-    );
+  return (
+    <CustomTagConfigsContextProvider>
+      <AvailablePaymentConfigsContextProvider>
+        <GenericTagsContextProvider>
+          <QuickViewContextProvider>
+            {children}
+          </QuickViewContextProvider>
+        </GenericTagsContextProvider>
+      </AvailablePaymentConfigsContextProvider>
+    </CustomTagConfigsContextProvider>
+  );
 }

@@ -46,7 +46,6 @@ const useSimulationAutomatePriceTag = (session: any, account: any, workspace: an
             try {
                 const response = await axios.get<PromotionProps[]>(url);
                 setState({ data: response?.data, isLoading: false, error: null });
-                console.log('aqui', response?.data)
             } catch (error) {
                 console.error(error);
                 setState({
