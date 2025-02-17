@@ -1,8 +1,5 @@
 import React, { ComponentType, useState } from "react";
-import {
-    MenuItem,
-    MenuItemsProps
-} from "../Common/Components/MenuItem/menuItem";
+import { MenuItem, MenuItemsProps } from "../Common/Components/MenuItem/menuItem";
 import { useHeaderContext } from "../Context/headerContext";
 import { ArrowLeftIcon } from "../assets/ArrowLeft";
 import styles from "./styles.css";
@@ -11,7 +8,7 @@ interface HeaderMobileProps {
     mobileImage: string;
     logoUrl: string;
     mobileImageDark: string;
-    SearchBar: ComponentType;
+    SearchBar: ComponentType<{ isFocus?: boolean }>;
     Minicart: ComponentType;
     MenuItems: MenuItemsProps[];
     MegaMenuMobile: ComponentType;
@@ -24,7 +21,7 @@ const HeaderMobile = ({
     SearchBar,
     Minicart,
     MegaMenuMobile,
-    MenuItems
+    MenuItems,
 }: HeaderMobileProps) => {
     const { isDarkMode } = useHeaderContext();
     const [isSearchBarFocused, setIsSearchBarFocused] = useState(false);
@@ -38,21 +35,13 @@ const HeaderMobile = ({
     };
 
     const getBackGroundStyle = () => {
-        return isDarkMode
-            ? { backgroundColor: "#1F1F1F" }
-            : { backgroundColor: "#a83338" };
+        return isDarkMode ? { backgroundColor: "#1F1F1F" } : { backgroundColor: "#a83338" };
     };
 
     return isSearchBarFocused ? (
         <div>
-            <div
-                className={styles.containerHeaderMobileFocus}
-                style={getBackGroundStyle()}
-            >
-                <button
-                    className={styles.headerMobileReturnArrow}
-                    onClick={() => handleSearchBarReturn()}
-                >
+            <div className={styles.containerHeaderMobileFocus} style={getBackGroundStyle()}>
+                <button className={styles.headerMobileReturnArrow} onClick={() => handleSearchBarReturn()}>
                     <ArrowLeftIcon />
                 </button>
                 <SearchBar />
@@ -69,13 +58,9 @@ const HeaderMobile = ({
                 ))}
             </div>
         </div>
-
     ) : (
         <div>
-            <div
-                className={styles.containerHeaderMobile}
-                style={getBackGroundStyle()}
-            >
+            <div className={styles.containerHeaderMobile} style={getBackGroundStyle()}>
                 <div className={styles.headerMobileLeft}>
                     <MegaMenuMobile />
                     <a className={styles.headerSimanLogo} href={logoUrl}>
@@ -87,10 +72,7 @@ const HeaderMobile = ({
                     </a>
                 </div>
                 <div className={styles.headerMobileMiddle}>
-                    <div
-                        className={styles.headerMobileMiddleSearch}
-                        onFocus={handleSearchBarFocus}
-                    >
+                    <div className={styles.headerMobileMiddleSearch} onFocus={handleSearchBarFocus}>
                         <SearchBar />
                     </div>
                 </div>
@@ -98,7 +80,6 @@ const HeaderMobile = ({
                 <div className={styles.headerMobileRight}>
                     <Minicart />
                 </div>
-
             </div>
             <div className={styles.headerBottomMenuItemsMobile}>
                 {MenuItems.map((item) => (
@@ -112,7 +93,6 @@ const HeaderMobile = ({
                 ))}
             </div>
         </div>
-
     );
 };
 

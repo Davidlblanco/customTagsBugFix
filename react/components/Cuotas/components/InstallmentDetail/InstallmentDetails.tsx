@@ -22,7 +22,7 @@ export default function InstallmentDetails({
     <span
       className={`${visibility == "pdp" ? styles.tagPreviewInstallmentsPdp : styles.tagPreviewInstallmentsSummary}`}
       style={{
-        zIndex: tag.quantityImgs ? tag.quantityImgs * 10 + 2 : 0,
+        zIndex: 1,
         ...tag.styles,
       }}
     >

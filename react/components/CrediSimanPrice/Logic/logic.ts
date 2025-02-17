@@ -11,6 +11,7 @@ export const GetCrediSimanProductData = async (
     skuId: string | undefined,
     channelId: string | undefined,
     productContext: Partial<ProductContextState> | undefined,
+    algoliaProductContext: Partial<AlgoliaProductContext> | undefined,
     baseUrl: string | undefined,
 ): Promise<CredisimanType | undefined> => {
     while (mutex) {
@@ -29,12 +30,12 @@ export const GetCrediSimanProductData = async (
             productId,
             skuId,
             channelId,
-            sellerId,
+            sellerId: sellerId ?? '1',
             baseUrl
         });
 
         if (newProductData) {
-            CalculateDiscount(newProductData, productContext);
+            CalculateDiscount(newProductData, productContext, algoliaProductContext);
             allProductsData[skuId ?? ""] = newProductData;
 
             const expiryTime =
@@ -56,11 +57,12 @@ export const GetCrediSimanProductData = async (
 
 const CalculateDiscount = (
     productData: CredisimanType,
-    productContext: Partial<ProductContextState> | undefined
+    productContext: Partial<ProductContextState> | undefined,
+    algoliaProductContext: Partial<AlgoliaProductContext> | undefined
 ) => {
     const { discountValue, method, totalWithDiscount } = productData;
     const productPrice =
-        productContext?.selectedItem?.sellers[0]?.commertialOffer.ListPrice;
+        productContext?.selectedItem?.sellers[0]?.commertialOffer.ListPrice ?? algoliaProductContext?.price?.listPrice;
 
     if (method === "nominal" && discountValue !== 0) {
         const totalValue = totalWithDiscount + discountValue;
