@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { ConfigGroupPromotions } from '../typings/config';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { ConfigGroupPromotions } from "../typings/config";
 
 export type PromotionProps = {
     id: string;
     promotionName: string;
     isActive: boolean;
-    amount: 'Maximum price per item' | 'Percentage';
+    amount: "Maximum price per item" | "Percentage";
     maxUsage: number;
     config: ConfigGroupPromotions;
 };
@@ -17,7 +17,12 @@ type PromotionListState = {
     error: string | null;
 };
 
-const useSimulationAutomatePriceTag = (session: any, account: any, workspace: any, productValues: { skuId?: string, sellerId?: string }) => {
+const useSimulationAutomatePriceTag = (
+    session: any,
+    account: any,
+    workspace: any,
+    productValues: { skuId?: string; sellerId?: string }
+) => {
     const [state, setState] = useState<PromotionListState>({
         data: null,
         isLoading: false,
@@ -25,16 +30,15 @@ const useSimulationAutomatePriceTag = (session: any, account: any, workspace: an
     });
 
     const generateBaseUrlToSV = (account: string, workspace: string) => {
-        let host = `${workspace ?? ''}--${account}`;
-        const isSVAccount = account === 'siman' || account === 'simanqa';
+        let host = `${workspace ?? ""}--${account}`;
+        const isSVAccount = account === "siman" || account === "simanqa";
 
         if (!isSVAccount) {
-            host = account.includes('qa') ? 'hu123--simanqa' : 'hu123--siman';
-        } // TODO: remover "hu123--"
+            host = account.includes("qa") ? "simanqa" : "siman";
+        }
 
         return `https://${host}.myvtex.com`;
     };
-
 
     const salesChannelId = session?.namespaces?.store?.channel?.value;
 
@@ -51,7 +55,7 @@ const useSimulationAutomatePriceTag = (session: any, account: any, workspace: an
                 setState({
                     data: null,
                     isLoading: false,
-                    error: 'Failed to fetch promotions.',
+                    error: "Failed to fetch promotions.",
                 });
             }
         };
