@@ -10,9 +10,7 @@ export default function usePaymentConfigs(filters: PaymentConfigFilters) {
         let result = availableConfigs;
         if (filters) {
             if (filters.paymentIds?.length) {
-                result = result.filter((config) =>
-                    filters.paymentIds?.includes(config.paymentId)
-                );
+                result = result.filter((config) => filters.paymentIds?.includes(config.paymentId));
             }
         }
 
@@ -27,5 +25,6 @@ export default function usePaymentConfigs(filters: PaymentConfigFilters) {
 
 export interface PaymentConfigFilters {
     paymentIds?: string[];
+    algoliaProductContext?: AlgoliaProductContext | undefined;
     cachedCredisiman?: Record<number, string>;
 }

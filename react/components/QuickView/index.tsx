@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState } from "react";
+import React, { MouseEvent, useEffect, useState } from "react";
 
 import { useProduct } from "vtex.product-context";
 import { canUseDOM } from "vtex.render-runtime";
@@ -17,6 +17,14 @@ export function QuickView({ children }: QuickViewProps) {
     const { categoryHasQuickview } = useQuickView();
 
     const [shouldShowQuickView, setShouldShowQuickView] = useState(false);
+
+    useEffect(() => {
+        if (shouldShowQuickView) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+    }, [shouldShowQuickView]);
 
     if (!productContext || !canUseDOM) return <></>;
 

@@ -124,6 +124,14 @@
   "custom-product-ingredients": {
     "component": "ProductIngredients"
   },
+  "custom-tags-el": {
+    "component": "CustomTagsEl",
+    "composition": "children"
+  },
+  "automate-price-tag-el": {
+    "component": "AutomatePriceTagEl",
+    "composition": "children"
+  },
   "Availability": {
     "component": "Availability"
   },

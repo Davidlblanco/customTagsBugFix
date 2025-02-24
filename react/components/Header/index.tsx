@@ -48,6 +48,7 @@ const Header = ({
                         mobileImageDark={mobileImageDark}
                         SearchBar={SearchBar}
                         Minicart={Minicart}
+                        MenuItems={menuItems}
                         MegaMenuMobile={MegaMenuMobile}
                     />
                 ) : (

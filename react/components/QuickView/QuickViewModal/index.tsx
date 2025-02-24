@@ -43,6 +43,16 @@ export function QuickViewModal({ components, productContext, onOpenChange, isOpe
             if (e?.data?.eventName === "vtex:cartChanged" || e?.data?.eventName === "vtex:addToCart") {
                 setTimeout(() => {
                     onOpenChange(false);
+                }, 2000);
+
+                setTimeout(() => {
+                    const elements = document.querySelectorAll<HTMLElement>(
+                        ".siman-product-summary-2-x-errorMessage--selector-tallas"
+                    );
+
+                    elements.forEach((element) => {
+                        element.style.display = "none";
+                    });
                 }, 1500);
             }
         }
