@@ -174,7 +174,10 @@
                     "properties": {
                         "selection": {
                             "type": "string",
-                            "enum": ["Default", "Color CTA Mobile"],
+                            "enum": [
+                                "Default",
+                                "Color CTA Mobile"
+                            ],
                             "title": "Custom CTA Style Mobile",
                             "default": "Default"
                         }
@@ -184,13 +187,19 @@
                             "oneOf": [
                                 {
                                     "properties": {
-                                        "selection": { "enum": ["Default"] }
+                                        "selection": {
+                                            "enum": [
+                                                "Default"
+                                            ]
+                                        }
                                     }
                                 },
                                 {
                                     "properties": {
                                         "selection": {
-                                            "enum": ["Color CTA Mobile"]
+                                            "enum": [
+                                                "Color CTA Mobile"
+                                            ]
                                         },
                                         "ctaColor": {
                                             "title": "Button - Color",
@@ -221,7 +230,15 @@
             "title": "Header",
             "properties": {
                 "desktopImage": {
-                    "title": "DesktopImage",
+                    "title": "Imagen Desktop Normal",
+                    "$ref": "app:vtex.native-types#/definitions/url",
+                    "default": "",
+                    "widget": {
+                        "ui:widget": "image-uploader"
+                    }
+                },
+                "desktopImageEvent": {
+                    "title": "Imagen Desktop Evento",
                     "$ref": "app:vtex.native-types#/definitions/url",
                     "default": "",
                     "widget": {
@@ -233,8 +250,71 @@
                     "type": "string",
                     "default": "/"
                 },
+                "filterDateConfiguration": {
+                    "type": "object",
+                    "title": "Configuración de fecha",
+                    "properties": {
+                        "selection": {
+                            "type": "string",
+                            "enum": [
+                                "Activo",
+                                "Programar fecha"
+                            ],
+                            "title": "Programación de logo",
+                            "default": "Activo"
+                        }
+                    },
+                    "dependencies": {
+                        "selection": {
+                            "oneOf": [
+                                {
+                                    "properties": {
+                                        "selection": {
+                                            "enum": [
+                                                "Activo"
+                                            ]
+                                        }
+                                    }
+                                },
+                                {
+                                    "properties": {
+                                        "selection": {
+                                            "enum": [
+                                                "Programar fecha"
+                                            ]
+                                        },
+                                        "startDate": {
+                                            "title": "Fecha de Inicio",
+                                            "format": "date-time",
+                                            "type": "string",
+                                            "widget": {
+                                                "ui:widget": "datetime"
+                                            }
+                                        },
+                                        "endDate": {
+                                            "title": "Fecha de Fin",
+                                            "format": "date-time",
+                                            "type": "string",
+                                            "widget": {
+                                                "ui:widget": "datetime"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
                 "mobileImage": {
-                    "title": "MobileImage",
+                    "title": "Imagen Mobile Normal",
+                    "$ref": "app:vtex.native-types#/definitions/url",
+                    "default": "",
+                    "widget": {
+                        "ui:widget": "image-uploader"
+                    }
+                },
+                "mobileImageEvent": {
+                    "title": "Image Mobile Evento",
                     "$ref": "app:vtex.native-types#/definitions/url",
                     "default": "",
                     "widget": {
@@ -326,30 +406,30 @@
             }
         },
         "credisimanPrice": {
-          "type": "object",
-          "properties": {
-              "isShelf": {
-                  "title": "is shelf",
-                  "type": "boolean",
-                  "default": false
-              },
-              "algoliaProductContext": {
-                "title": "Custom Context",
-                "type": "object",
-                "properties": {
-                    "itemId": {
-                        "title": "Item ID",
-                        "type": "string",
-                        "default": ""
-                    },
-                    "productId": {
-                        "title": "Product ID",
-                        "type": "string",
-                        "default": ""
+            "type": "object",
+            "properties": {
+                "isShelf": {
+                    "title": "is shelf",
+                    "type": "boolean",
+                    "default": false
+                },
+                "algoliaProductContext": {
+                    "title": "Custom Context",
+                    "type": "object",
+                    "properties": {
+                        "itemId": {
+                            "title": "Item ID",
+                            "type": "string",
+                            "default": ""
+                        },
+                        "productId": {
+                            "title": "Product ID",
+                            "type": "string",
+                            "default": ""
+                        }
                     }
                 }
-              }
-          }
+            }
         }
     }
 }

@@ -7,10 +7,17 @@ import { HeaderMobile } from "./Mobile";
 import { HeaderContextProvider } from "./Context/headerContext";
 import styles from "./styles.css";
 
+interface FilterDateConfiguration {
+    selection: "Activo" | "Programar fecha";
+    startDate?: string;
+    endDate?: string;
+}
 interface HeaderProps {
     desktopImage: string;
+    desktopImageEvent: string;
     logoUrl: string;
     mobileImage: string;
+    mobileImageEvent: string,
     mobileImageDark: string;
     SearchBar: ComponentType;
     WishList: ComponentType;
@@ -20,12 +27,15 @@ interface HeaderProps {
     MegaMenuMobile: ComponentType;
     menuItems: MenuItemsProps[];
     dropDownMenu: DropDownMenuProps;
+    filterDateConfiguration: FilterDateConfiguration
 }
 
 const Header = ({
     desktopImage,
+    desktopImageEvent,
     logoUrl,
     mobileImage,
+    mobileImageEvent,
     mobileImageDark,
     SearchBar,
     WishList,
@@ -35,6 +45,7 @@ const Header = ({
     menuItems,
     MegaMenuMobile,
     dropDownMenu,
+    filterDateConfiguration
 }: HeaderProps) => {
     const { isMobile } = useDevice();
 
@@ -50,10 +61,13 @@ const Header = ({
                         Minicart={Minicart}
                         MenuItems={menuItems}
                         MegaMenuMobile={MegaMenuMobile}
+                        mobileImageEvent={mobileImageEvent}
+                        filterDateConfiguration={filterDateConfiguration}
                     />
                 ) : (
                     <HeaderDesktop
                         desktopImage={desktopImage}
+                        desktopImageEvent={desktopImageEvent}
                         logoUrl={logoUrl}
                         SearchBar={SearchBar}
                         WishList={WishList}
@@ -62,6 +76,8 @@ const Header = ({
                         MegaMenu={MegaMenu}
                         MenuItems={menuItems}
                         DropDownMenuProps={dropDownMenu}
+                        filterDateConfiguration={filterDateConfiguration}
+
                     />
                 )}
             </header>

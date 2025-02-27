@@ -10,8 +10,16 @@ import {
 import { useHeaderContext } from "../Context/headerContext";
 import styles from "./styles.css";
 
+
+
+interface FilterDateConfiguration {
+    selection: "Activo" | "Programar fecha";
+    startDate?: string;
+    endDate?: string;
+}
 interface HeaderDesktopProps {
     desktopImage: string;
+    desktopImageEvent: string
     logoUrl: string;
     SearchBar: ComponentType;
     WishList: ComponentType;
@@ -20,10 +28,12 @@ interface HeaderDesktopProps {
     MegaMenu: ComponentType;
     MenuItems: MenuItemsProps[];
     DropDownMenuProps: DropDownMenuProps;
+    filterDateConfiguration: FilterDateConfiguration
 }
 
 const HeaderDesktop = ({
     desktopImage,
+    desktopImageEvent,
     logoUrl,
     SearchBar,
     WishList,
@@ -32,9 +42,24 @@ const HeaderDesktop = ({
     MegaMenu,
     MenuItems,
     DropDownMenuProps,
+    filterDateConfiguration
 }: HeaderDesktopProps) => {
     const { isDarkMode } = useHeaderContext();
-
+    let logoImg = desktopImageEvent;
+    const isWithinDateRange = (startDate, endDate) => {
+        const currentDate = new Date();
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        return currentDate >= start && currentDate <= end;
+    }
+    if (filterDateConfiguration?.selection === "Programar fecha") {
+        if (!isWithinDateRange(filterDateConfiguration.startDate, filterDateConfiguration.endDate)) {
+            logoImg = ''
+        } else {
+            logoImg = desktopImageEvent;
+        }
+    }
+    console.log(desktopImageEvent)
     return (
         <div className={styles.containerHeaderDesktop}>
             <div
@@ -49,7 +74,7 @@ const HeaderDesktop = ({
                     <a className={styles.headerSimanLogo} href={logoUrl}>
                         <img
                             className={styles.headerSimanLogoImg}
-                            src={desktopImage}
+                            src={logoImg && (filterDateConfiguration?.selection === "Programar fecha") ? logoImg : desktopImage}
                             alt="Siman logo"
                         />
                     </a>
