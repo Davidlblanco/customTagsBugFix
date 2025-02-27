@@ -18,7 +18,7 @@ export const RenderSpecifications = (items: Item[] | undefined) => {
         return items?.map(({ name, values }: Item) => (
             <li key={name} className={`${style.listItem}`}>
                 <span className={style.itemName}>{name}</span>
-                <span className={style.itemValue}>{values}</span>
+                <span className={style.itemValue}>{values.join(", ")}</span>
             </li>
         ));
     }
@@ -34,11 +34,7 @@ const Specification = ({ title, items, showViewMore }: SpecificationProps) => {
                         <h3 className={style.title}>{title}</h3>
                     </div>
 
-                    <ul
-                        className={`${style.wrapList} ${
-                            showViewMore ? style.wrapListMobile : ""
-                        } `}
-                    >
+                    <ul className={`${style.wrapList} ${showViewMore ? style.wrapListMobile : ""} `}>
                         {RenderSpecifications(items)}
                     </ul>
                 </div>
