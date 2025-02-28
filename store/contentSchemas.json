@@ -246,7 +246,12 @@
                     }
                 },
                 "logoUrl": {
-                    "title": "LogoUrl",
+                    "title": "URL del logo normal",
+                    "type": "string",
+                    "default": "/"
+                },
+                "logoUrlEvent": {
+                    "title": "URL del logo evento",
                     "type": "string",
                     "default": "/"
                 },

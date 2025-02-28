@@ -16,6 +16,7 @@ interface HeaderProps {
     desktopImage: string;
     desktopImageEvent: string;
     logoUrl: string;
+    logoUrlEvent: string;
     mobileImage: string;
     mobileImageEvent: string,
     mobileImageDark: string;
@@ -34,6 +35,7 @@ const Header = ({
     desktopImage,
     desktopImageEvent,
     logoUrl,
+    logoUrlEvent,
     mobileImage,
     mobileImageEvent,
     mobileImageDark,
@@ -63,6 +65,7 @@ const Header = ({
                         MegaMenuMobile={MegaMenuMobile}
                         mobileImageEvent={mobileImageEvent}
                         filterDateConfiguration={filterDateConfiguration}
+                        logoUrlEvent={logoUrlEvent}
                     />
                 ) : (
                     <HeaderDesktop
@@ -77,6 +80,7 @@ const Header = ({
                         MenuItems={menuItems}
                         DropDownMenuProps={dropDownMenu}
                         filterDateConfiguration={filterDateConfiguration}
+                        logoUrlEvent={logoUrlEvent}
 
                     />
                 )}

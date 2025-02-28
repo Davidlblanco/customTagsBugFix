@@ -1,7 +1,8 @@
-import React, { ComponentType, useState } from "react";
+import React, { ComponentType, useState, useEffect } from "react";
 import { MenuItem, MenuItemsProps } from "../Common/Components/MenuItem/menuItem";
 import { useHeaderContext } from "../Context/headerContext";
 import { ArrowLeftIcon } from "../assets/ArrowLeft";
+
 import styles from "./styles.css";
 
 interface FilterDateConfiguration {
@@ -13,6 +14,7 @@ interface HeaderMobileProps {
     mobileImage: string;
     mobileImageEvent: string;
     logoUrl: string;
+    logoUrlEvent: string;
     mobileImageDark: string;
     SearchBar: ComponentType<{ isFocus?: boolean }>;
     Minicart: ComponentType;
@@ -25,6 +27,7 @@ const HeaderMobile = ({
     mobileImage,
     mobileImageEvent,
     logoUrl,
+    logoUrlEvent,
     mobileImageDark,
     SearchBar,
     Minicart,
@@ -34,6 +37,7 @@ const HeaderMobile = ({
 }: HeaderMobileProps) => {
     const { isDarkMode } = useHeaderContext();
     const [isSearchBarFocused, setIsSearchBarFocused] = useState(false);
+    const [currentUrl, setCurrentUrl] = useState('');
 
     const handleSearchBarFocus = () => {
         setIsSearchBarFocused(true);
@@ -61,7 +65,14 @@ const HeaderMobile = ({
             logoImgMobile = mobileImageEvent;
         }
     }
-    console.log('este: ' + mobileImageEvent);
+
+    useEffect(() => {
+        const fullUrl = window.location.href;
+        const urlAfterCom = fullUrl.split('.com')[1] || '/'; // Si no hay nada después de .com, se usa "/"
+        setCurrentUrl(urlAfterCom);
+    }, []);
+    let link = logoUrlEvent && (filterDateConfiguration?.selection === "Programar fecha") && isWithinDateRange(filterDateConfiguration.startDate, filterDateConfiguration.endDate) ? logoUrlEvent : logoUrl;
+
 
 
     return isSearchBarFocused ? (
@@ -89,7 +100,7 @@ const HeaderMobile = ({
             <div className={styles.containerHeaderMobile} style={getBackGroundStyle()}>
                 <div className={styles.headerMobileLeft}>
                     <MegaMenuMobile />
-                    <a className={styles.headerSimanLogo} href={logoUrl}>
+                    <a className={styles.headerSimanLogo} href={link == currentUrl ? '/' : link}>
                         <img
                             className={styles.headerSimanLogoImgMobile}
                             src={isDarkMode ? mobileImageDark : (logoImgMobile && (filterDateConfiguration?.selection === "Programar fecha") ? logoImgMobile : mobileImage)}
