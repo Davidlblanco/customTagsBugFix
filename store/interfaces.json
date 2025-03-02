@@ -18,7 +18,7 @@
   "custom-credisiman-price": {
       "component": "CrediSimanPrice",
       "content": {
-         "$ref": "app:siman.m3-custom#/definitions/credisimanPrice"
+            "$ref": "app:siman.m3-custom#/definitions/credisimanPrice"
       }
   },
   "custom-product-gift": {
@@ -125,8 +125,15 @@
       "component": "ProductIngredients"
   },
   "custom-tags-el": {
-    "component": "CustomTagsEl",
-    "composition": "children"
+        "component": "CustomTagsEl",
+        "composition": "children"
+  },
+  "automate-price-tag-el": {
+      "component": "AutomatePriceTagEl",
+      "composition": "children"
+  },
+  "limited-ofp-promotions": {
+    "component": "LimitedOfpPromotions"
   },
   "Availability": {
     "component": "Availability"
@@ -136,5 +143,9 @@
   },
   "DownloadManual": {
     "component": "DownloadManual"
+  },
+  "quick-view": {
+    "component": "QuickView",
+    "composition": "children"
   }
 }
