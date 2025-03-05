@@ -24,9 +24,3 @@
 :global(.vtex-search-result-3-x-galleryItem:hover) .quickview-open-button {
   opacity: 1;
 }
-
-@media screen and (min-width: 1026px) {
-  .quickview-open-button {
-    opacity: 0;
-  }
-}
