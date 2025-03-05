@@ -1,22 +1,30 @@
 import { ConfigGroup } from "../Types/credisimanTypes";
 
-export function calculateDiscountPercentage({ 
+export function calculateDiscountPercentage({
   type,
-  totalWithCredisiman = 0, 
+  totalWithCredisiman = 0,
   listPrice = 0,
   discount,
-}: { 
+}: {
   type: ConfigGroup['configs']['percentageBasis'],
-  totalWithCredisiman?: number, 
+  totalWithCredisiman?: number,
   listPrice?: number,
   discount: number,
 }) {
+
   if (type === 'list-price') {
+    if (listPrice <= 0) {
+      return discount ? `-${discount}%` : "0%";
+    }
     const priceWithDiscount = listPrice - totalWithCredisiman;
-    const discountPercentage = (priceWithDiscount / listPrice) * 100
-    
+
+    if (priceWithDiscount <= 0) {
+      return "0%";
+    }
+
+    const discountPercentage = (priceWithDiscount / listPrice) * 100;
     return `-${Math.round(discountPercentage)}%`;
   }
 
-  return `-${discount}%`;
+  return discount ? `-${discount}%` : "0%";
 }

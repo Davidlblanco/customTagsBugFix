@@ -101,8 +101,8 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
             {calculateDiscountPercentage({
               type: credisimanTagStyles?.percentageBasis,
               totalWithCredisiman: productData?.totalWithDiscount,
-              listPrice: productContext?.selectedItem?.sellers[0]?.commertialOffer.ListPrice,
-              discount: productData.discountValue
+              listPrice: productContext?.selectedItem?.sellers[0]?.commertialOffer.ListPrice ?? 0,
+              discount: productData?.discountValue ?? 0,
             })}
           </span>
         )}
