@@ -125,32 +125,28 @@ interface AlgoliaProductContext {
     captionLink: string;
     image: string;
     loading: boolean;
-    link: string
+    link: string;
     navigate: (options: any) => void;
     onAddToCart: () => void;
     onChangeSku: (e: any, sku: any) => void;
-    price: {
-        availability: string;
-        listPrice: number;
-        price: number;
-    };
-    brandId: number
+    price: price;
+    brandId: number;
     properties: {
-        name: string
-    }[]
+        name: string;
+    }[];
     categoryTree: {
-        id: string
-        name: string
-    }[]
+        id: string;
+        name: string;
+    }[];
     productClusters: {
-        id: string
-        name: string
-    }[]
-    categoryId: string[]
+        id: string;
+        name: string;
+    }[];
+    categoryId: string[];
     items: {
-        itemId: string
-        sellers: { sellerId: string }[]
-    }[]
+        itemId: string;
+        sellers: { sellerId: string }[];
+    }[];
     productInformation: ProductInformation[];
     productName: string;
     selectedItem: SelectedItem;

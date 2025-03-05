@@ -14,7 +14,7 @@ import generateBaseUrlToSv from "../../utils/generateBaseUrlToSv";
 
 interface CredisimanPriceProps {
   isShelf?: boolean;
-  algoliaProductContext?: AlgoliaProductContext
+  algoliaProductContext?: AlgoliaProductContext;
 }
 
 const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ isShelf, algoliaProductContext }) => {
@@ -25,7 +25,7 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
   const productId = productContext?.product?.productId ?? algoliaProductContext?.skuId?.toString();
 
   const [productData, setProductData] = useState<CredisimanType>();
-  const [credisimanTagStyles, setCredisimanTagStyles] = useState<ConfigGroup['configs']>();
+  const [credisimanTagStyles, setCredisimanTagStyles] = useState<ConfigGroup["configs"]>();
 
   const { session } = useRenderSession();
 
@@ -57,29 +57,89 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
 
   }, [productId, skuId, sallesChannelId]);
 
-  if (!productData) return <></>
+  if (!productData) return <></>;
 
   return (
+
+
+
+
+
+
+
     <div
       className={`
-          ${styles['tag-preview__credisiman-container']} 
-          ${isShelf ? styles.shelf : ''}
-          ${pageType === 'product' && !isShelf ? styles.pdp : ''}
+          ${styles["tag-preview__credisiman-container"]} 
+          ${isShelf ? styles.shelf : ""}
+          ${pageType === "product" && !isShelf ? styles.pdp : ""}
         `}
     >
       <div
-        className={styles['tag-preview__credisiman']}
+        className={styles["tag-preview__credisiman"]}
         style={{
           fontSize: `${credisimanTagStyles?.tagStyles.fontSize}`,
         }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       >
         {credisimanTagStyles?.viewFields.price.active && (
           <span
-            className={styles['tag-preview__credisiman-price']}
+            className={styles["tag-preview__credisiman-price"]}
             style={{
               color: credisimanTagStyles?.viewFields.price.color,
               fontSize: `1em`,
-              order: credisimanTagStyles?.image.position === 'right' ? 2 : 3,
+              order: credisimanTagStyles?.image.position === "right" ? 2 : 3,
             }}
           >
             <FormattedCurrency value={productData?.totalWithDiscount} />
@@ -88,21 +148,23 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
 
         {credisimanTagStyles?.viewFields.porcentage && (
           <span
-            className={styles['tag-preview__credisiman-porcentage']}
+            className={styles["tag-preview__credisiman-porcentage"]}
             style={{
               borderRadius: `${credisimanTagStyles?.tagStyles.borderRadius}px`,
               borderColor: credisimanTagStyles?.tagStyles.borderColor,
               color: credisimanTagStyles?.tagStyles.color,
               backgroundColor: credisimanTagStyles?.tagStyles.backgroundColor,
-              order: credisimanTagStyles?.image.position === 'right' ? 3 : 4,
+              order: credisimanTagStyles?.image.position === "right" ? 3 : 4,
               fontSize: `clamp(12px, 0.5em, 24px)`,
             }}
           >
             {calculateDiscountPercentage({
               type: credisimanTagStyles?.percentageBasis,
               totalWithCredisiman: productData?.totalWithDiscount,
-              listPrice: productContext?.selectedItem?.sellers[0]?.commertialOffer.ListPrice ?? 0,
-              discount: productData?.discountValue ?? 0,
+              listPrice:
+                productContext?.selectedItem?.sellers[0]?.commertialOffer.ListPrice ??
+                algoliaProductContext?.price,
+              discount: productData.discountValue,
             })}
           </span>
         )}
@@ -118,17 +180,17 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
             width={24}
             height={24}
             style={{
-              order: credisimanTagStyles?.image.position === 'right' ? 4 : 2,
+              order: credisimanTagStyles?.image.position === "right" ? 4 : 2,
             }}
           />
         )}
 
         {credisimanTagStyles?.viewFields.text.active && (
           <p
-            className={styles['tag-preview__info-text']}
+            className={styles["tag-preview__info-text"]}
             style={{
               color: credisimanTagStyles?.viewFields.text.color,
-              order: credisimanTagStyles?.viewFields.text.position === 'right' ? 5 : 1,
+              order: credisimanTagStyles?.viewFields.text.position === "right" ? 5 : 1,
               fontSize: `${credisimanTagStyles?.tagStyles.fontSize}`,
             }}
           >
@@ -137,6 +199,7 @@ const CrediSimanPrice: StorefrontFunctionComponent<CredisimanPriceProps> = ({ is
         )}
       </div>
     </div>
+
   );
 };
 
