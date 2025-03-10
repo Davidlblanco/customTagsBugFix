@@ -19,10 +19,11 @@ export const SlasTranslator = (text: string | undefined) => {
         const unitDescription = unitMap[unit];
 
         if (unitDescription) {
-            const plural = quantity !== "1" ? "s" : "";
-            const businessDay = unit === "bd" ? "hábile" : "";
-            return `${quantity} ${unitDescription}${plural} ${businessDay}${
-                businessDay !== "" ? plural : ""
+            const pluralDia = quantity !== "1" ? "s" : "";
+            const pluralPalabra = quantity !== "1" ? "es" : "";
+            const businessDay = unit === "bd" ? "hábil" : "";
+            return `${quantity} ${unitDescription}${pluralDia} ${businessDay}${
+                businessDay !== "" ? pluralPalabra : ""
             }`;
         }
     }
