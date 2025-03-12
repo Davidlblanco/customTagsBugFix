@@ -129,11 +129,7 @@ interface AlgoliaProductContext {
     navigate: (options: any) => void;
     onAddToCart: () => void;
     onChangeSku: (e: any, sku: any) => void;
-    price: {
-        availability: string;
-        listPrice: number;
-        price: number;
-    };
+    price: price;
     brandId: number;
     properties: {
         name: string;
@@ -158,15 +154,15 @@ interface AlgoliaProductContext {
     variations: any[];
 }
 interface QuickViewApi {
-    id: string;
-    isActive: boolean;
-    createdAt: string;
+    id: string
+    isActive: boolean
+    createdAt: string
     category: {
-        id: string;
-        name: string;
+        id: string
+        name: string
         children?: {
-            id: string;
-            name: string;
-        }[];
-    };
+            id: string
+            name: string
+        }[]
+    }
 }

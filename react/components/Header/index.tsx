@@ -20,7 +20,7 @@ interface HeaderProps {
     mobileImage: string;
     mobileImageEvent: string,
     mobileImageDark: string;
-    SearchBar: ComponentType;
+    SearchBarAlgolia: ComponentType;
     WishList: ComponentType;
     Login: ComponentType;
     Minicart: ComponentType;
@@ -39,7 +39,7 @@ const Header = ({
     mobileImage,
     mobileImageEvent,
     mobileImageDark,
-    SearchBar,
+    SearchBarAlgolia,
     WishList,
     Login,
     Minicart,
@@ -59,7 +59,7 @@ const Header = ({
                         mobileImage={mobileImage}
                         logoUrl={logoUrl}
                         mobileImageDark={mobileImageDark}
-                        SearchBar={SearchBar}
+                        SearchBar={SearchBarAlgolia}
                         Minicart={Minicart}
                         MenuItems={menuItems}
                         MegaMenuMobile={MegaMenuMobile}
@@ -72,7 +72,7 @@ const Header = ({
                         desktopImage={desktopImage}
                         desktopImageEvent={desktopImageEvent}
                         logoUrl={logoUrl}
-                        SearchBar={SearchBar}
+                        SearchBar={SearchBarAlgolia}
                         WishList={WishList}
                         Login={Login}
                         Minicart={Minicart}

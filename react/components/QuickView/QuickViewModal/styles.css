@@ -1,3 +1,7 @@
+body:has(:global(.siman-m3-custom-1-x-modal)) {
+  overflow: hidden;
+}
+
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -256,18 +260,27 @@
 
 /* Media */
 @media screen and (max-width: 1024px) {
+  .modal{
+    height: 90%;
+    width: 90%;
+
+    top: 50%;
+    transform: translate(-50%, -50%);
+    
+    z-index: 9999;
+    overflow-y: scroll;
+  }
   .modal__content {
     flex-direction: column;
+  }
+  
+  .modal__content-info{
+    max-height: 100%;
+    overflow-y: visible;
   }
 }
 
 @media screen and (max-width: 640px) {
-  .modal{
-    width: 100%;
-    height: 100vh;
-    overflow: auto;
-  }
-
   .modal :global(
     .vtex-flex-layout-0-x-flexColChild--add-to-cart-button-custom-desktop 
     .siman-add-to-cart-button-custom-2-x-addToCartButtonsWithouSimanPro

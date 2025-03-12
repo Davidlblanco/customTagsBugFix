@@ -43,7 +43,9 @@
 .headerMobileLeft {
   display: flex;
   align-items: center;
-  gap: 16px;
+  /* gap: 16px; */
+  width: 23%;
+  justify-content: space-around;
 }
 
 .headerSimanLogo {
