@@ -10,8 +10,6 @@ import {
 import { useHeaderContext } from "../Context/headerContext";
 import styles from "./styles.css";
 
-
-
 interface FilterDateConfiguration {
     selection: "Activo" | "Programar fecha";
     startDate?: string;
@@ -64,17 +62,14 @@ const HeaderDesktop = ({
             logoImg = desktopImageEvent;
         }
     }
+
     useEffect(() => {
         const fullUrl = window.location.href;
         const urlAfterCom = fullUrl.split('.com')[1] || '/'; // Si no hay nada después de .com, se usa "/"
         setCurrentUrl(urlAfterCom);
     }, []);
 
-
     let link = logoUrlEvent && (filterDateConfiguration?.selection === "Programar fecha") && isWithinDateRange(filterDateConfiguration.startDate, filterDateConfiguration.endDate) ? logoUrlEvent : logoUrl;
-
-
-
 
     return (
         <div className={styles.containerHeaderDesktop}>
