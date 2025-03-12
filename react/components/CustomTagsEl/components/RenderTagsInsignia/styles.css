@@ -1,0 +1,15 @@
+.tagsInsignia{
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin: 5px;
+}
+
+@media(max-width: 640px){
+    .tagsInsignia{
+        width: 30px !important;
+        height: 30px !important;
+
+        margin: 10px;
+    }
+}

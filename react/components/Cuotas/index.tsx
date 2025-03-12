@@ -15,20 +15,22 @@ import styles from "./Cuotas.css";
 
 interface CuotasProps {
     visibility: VisibilityType;
+    algoliaProductContext?: AlgoliaProductContext | undefined;
 }
 
-const Cuotas = ({ visibility }: CuotasProps) => {
+const Cuotas = ({ visibility, algoliaProductContext }: CuotasProps) => {
     const { tagsPreview, isLoading: tagIsLoading } = useGenericTagStyles();
-    let cachedCredisiman = {0: ""};
-    
+    let cachedCredisiman = { 0: "" };
+
     const storage = window?.localStorage?.getItem("products") ?? "";
-    if(storage.length > 0){
+    if (storage.length > 0) {
         cachedCredisiman = JSON.parse(storage).value;
     }
-    
+
     const { isLoading, bestInstallment, results } = useProductPayments({
         paymentIds: [], // This filter is optional
-        cachedCredisiman
+        algoliaProductContext,
+        cachedCredisiman,
     });
 
     if (isLoading || tagIsLoading) {
@@ -39,8 +41,7 @@ const Cuotas = ({ visibility }: CuotasProps) => {
         );
     }
 
-    const canRender = bestInstallment?.installment &&
-        bestInstallment.installment > 1;
+    const canRender = bestInstallment?.installment && bestInstallment.installment > 1;
 
     if (!canRender || !tagsPreview?.tagIsActive) {
         return <></>;
@@ -50,21 +51,17 @@ const Cuotas = ({ visibility }: CuotasProps) => {
 
     return (
         <div className={`${styles.CuotasContainerNewpdp}`}>
-            <ComponentCuotas
-                tagsPreview={tagsPreview}
-                results={results}
-                bestInstallment={bestInstallment}
-            />
+            <ComponentCuotas tagsPreview={tagsPreview} results={results} bestInstallment={bestInstallment} />
         </div>
     );
 };
 
 const componentConfig: Record<VisibilityType, ComponentConfig> = {
-    'pdp': { el: CuotasPdp },
-    'product-summary': { el: CuotasProductSummary }
+    pdp: { el: CuotasPdp },
+    "product-summary": { el: CuotasProductSummary },
 };
 
-type VisibilityType = 'pdp' | 'product-summary';
+type VisibilityType = "pdp" | "product-summary";
 
 interface ComponentProps {
     tagsPreview?: GenericTagsFront | null;

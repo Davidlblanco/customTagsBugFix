@@ -7,12 +7,20 @@ import { HeaderMobile } from "./Mobile";
 import { HeaderContextProvider } from "./Context/headerContext";
 import styles from "./styles.css";
 
+interface FilterDateConfiguration {
+    selection: "Activo" | "Programar fecha";
+    startDate?: string;
+    endDate?: string;
+}
 interface HeaderProps {
     desktopImage: string;
+    desktopImageEvent: string;
     logoUrl: string;
+    logoUrlEvent: string;
     mobileImage: string;
+    mobileImageEvent: string,
     mobileImageDark: string;
-    SearchBar: ComponentType;
+    SearchBarAlgolia: ComponentType;
     WishList: ComponentType;
     Login: ComponentType;
     Minicart: ComponentType;
@@ -20,14 +28,18 @@ interface HeaderProps {
     MegaMenuMobile: ComponentType;
     menuItems: MenuItemsProps[];
     dropDownMenu: DropDownMenuProps;
+    filterDateConfiguration: FilterDateConfiguration
 }
 
 const Header = ({
     desktopImage,
+    desktopImageEvent,
     logoUrl,
+    logoUrlEvent,
     mobileImage,
+    mobileImageEvent,
     mobileImageDark,
-    SearchBar,
+    SearchBarAlgolia,
     WishList,
     Login,
     Minicart,
@@ -35,6 +47,7 @@ const Header = ({
     menuItems,
     MegaMenuMobile,
     dropDownMenu,
+    filterDateConfiguration
 }: HeaderProps) => {
     const { isMobile } = useDevice();
 
@@ -46,22 +59,29 @@ const Header = ({
                         mobileImage={mobileImage}
                         logoUrl={logoUrl}
                         mobileImageDark={mobileImageDark}
-                        SearchBar={SearchBar}
+                        SearchBar={SearchBarAlgolia}
                         Minicart={Minicart}
                         MenuItems={menuItems}
                         MegaMenuMobile={MegaMenuMobile}
+                        mobileImageEvent={mobileImageEvent}
+                        filterDateConfiguration={filterDateConfiguration}
+                        logoUrlEvent={logoUrlEvent}
                     />
                 ) : (
                     <HeaderDesktop
                         desktopImage={desktopImage}
+                        desktopImageEvent={desktopImageEvent}
                         logoUrl={logoUrl}
-                        SearchBar={SearchBar}
+                        SearchBar={SearchBarAlgolia}
                         WishList={WishList}
                         Login={Login}
                         Minicart={Minicart}
                         MegaMenu={MegaMenu}
                         MenuItems={menuItems}
                         DropDownMenuProps={dropDownMenu}
+                        filterDateConfiguration={filterDateConfiguration}
+                        logoUrlEvent={logoUrlEvent}
+
                     />
                 )}
             </header>
