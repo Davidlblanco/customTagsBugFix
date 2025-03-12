@@ -1,136 +1,139 @@
 {
   "sticky-shelf": {
-    "component": "StickyShelf",
-    "composition": "children"
+      "component": "StickyShelf",
+      "composition": "children"
   },
   "custom-product-information-wrapper": {
-    "component": "ProductInformationWrapper"
+      "component": "ProductInformationWrapper"
   },
   "custom-pagination": {
-    "component": "CustomPagination"
+      "component": "CustomPagination"
   },
   "custom-shipping-preview": {
-    "component": "ShippingPreview"
+      "component": "ShippingPreview"
   },
   "custom-product-specifications": {
-    "component": "ProductSpecifications"
+      "component": "ProductSpecifications"
   },
   "custom-credisiman-price": {
-    "component": "CrediSimanPrice",
-    "content": {
-      "$ref": "app:siman.m3-custom#/definitions/credisimanPrice"
-    }
+      "component": "CrediSimanPrice",
+      "content": {
+            "$ref": "app:siman.m3-custom#/definitions/credisimanPrice"
+      }
   },
   "custom-product-gift": {
-    "component": "ProductGift"
+      "component": "ProductGift"
   },
   "custom-cuotas": {
-    "component": "Cuotas"
+      "component": "Cuotas"
   },
   "custom-header": {
-    "component": "Header",
-    "content": {
-      "$ref": "app:siman.m3-custom#/definitions/CustomHeader"
-    }
+      "component": "Header",
+      "content": {
+          "$ref": "app:siman.m3-custom#/definitions/CustomHeader"
+      }
   },
   "cadastra-sizes-table": {
-    "component": "SizesTable"
+      "component": "SizesTable"
   },
   "custom-seller-name": {
-    "component": "SellerName"
+      "component": "SellerName"
   },
   "precio-live": {
-    "component": "PrecioLive"
+      "component": "PrecioLive"
   },
   "seller-name-pdp": {
-    "component": "SellerNamePDP"
+      "component": "SellerNamePDP"
   },
   "seller-name-shelf": {
-    "component": "SellerNameShelf"
+      "component": "SellerNameShelf"
   },
   "wrapper-add-to-cart-new": {
-    "component": "WrapperAddToCartNew"
+      "component": "WrapperAddToCartNew"
   },
   "wrapper-add-to-cart": {
-    "component": "WrapperAddToCart"
+      "component": "WrapperAddToCart"
   },
   "cookiesagreement": {
-    "component": "CookiesAgreement"
+      "component": "CookiesAgreement"
   },
   "rastreo": {
-    "component": "Rastreo"
+      "component": "Rastreo"
   },
   "product-page-script": {
-    "component": "ProductPageScript"
+      "component": "ProductPageScript"
   },
   "plpsattributes": {
-    "component": "PlpsAttributes"
+      "component": "PlpsAttributes"
   },
   "AttributesPDP": {
-    "component": "AttributesPDP"
+      "component": "AttributesPDP"
   },
   "FiraSiman-Live": {
-    "component": "FiraSiman"
+      "component": "FiraSiman"
   },
   "full-logout": {
-    "component": "FullLogout"
+      "component": "FullLogout"
   },
   "register-form": {
-    "component": "RegisterForm"
+      "component": "RegisterForm"
   },
   "power-syndigo": {
-    "component": "PowerSyndigo"
+      "component": "PowerSyndigo"
   },
   "HideProducts": {
-    "component": "HideProducts"
+      "component": "HideProducts"
   },
   "skuNoDisponible": {
-    "component": "skuNoDisponible"
+      "component": "skuNoDisponible"
   },
   "360-photos": {
-    "component": "360Photos"
+      "component": "360Photos"
   },
   "description-section": {
-    "component": "DescriptionSection",
-    "content": {
-      "$ref": "app:siman.m3-custom#/definitions/DescriptionSection"
-    }
+      "component": "DescriptionSection",
+      "content": {
+          "$ref": "app:siman.m3-custom#/definitions/DescriptionSection"
+      }
   },
   "product-tags": {
-    "component": "ProductTags"
+      "component": "ProductTags"
   },
   "credisiman-cuotas": {
-    "component": "CredisimanCuotas"
+      "component": "CredisimanCuotas"
   },
   "info-card-custom": {
-    "component": "InfoCardCustom",
-    "content": {
-      "$ref": "app:siman.m3-custom#/definitions/InfoCardCustom"
-    }
+      "component": "InfoCardCustom",
+      "content": {
+          "$ref": "app:siman.m3-custom#/definitions/InfoCardCustom"
+      }
   },
   "custom-context": {
-    "component": "CustomContext",
-    "composition": "children"
+      "component": "CustomContext",
+      "composition": "children"
   },
   "toggle-theme": {
-    "component": "ToggleTheme"
+      "component": "ToggleTheme"
   },
   "tags-cuotas": {
-    "component": "TagsCuotas"
+      "component": "TagsCuotas"
   },
   "installment-tags": {
-    "component": "InstallmentTags"
+      "component": "InstallmentTags"
   },
   "custom-product-ingredients": {
-    "component": "ProductIngredients"
+      "component": "ProductIngredients"
   },
   "custom-tags-el": {
-    "component": "CustomTagsEl",
-    "composition": "children"
+        "component": "CustomTagsEl",
+        "composition": "children"
   },
   "automate-price-tag-el": {
-    "component": "AutomatePriceTagEl",
-    "composition": "children"
+      "component": "AutomatePriceTagEl",
+      "composition": "children"
+  },
+  "limited-ofp-promotions": {
+    "component": "LimitedOfpPromotions"
   },
   "Availability": {
     "component": "Availability"
