@@ -2,14 +2,30 @@ import React from "react";
 import styles from "./styles.css";
 import { FormattedCurrency } from "vtex.format-currency";
 import { useProduct } from "vtex.product-context";
+import type { ProductTypes } from "vtex.product-context";
 
 export function QuickViewProductPrice() {
     const product = useProduct();
-    const offer = product?.selectedItem?.sellers?.[0]?.commertialOffer;
+    const seller = getDefaultSeller(product?.selectedItem?.sellers);
+    const offer = seller?.commertialOffer;
     const listPrice = offer?.ListPrice ?? 0;
     const sellingPrice = offer?.Price ?? 0;
 
     const porcentage = ((listPrice - sellingPrice) / listPrice) * 100;
+
+    function getDefaultSeller(sellers?: ProductTypes.Seller[]) {
+        if (!sellers) {
+            return undefined;
+        }
+
+        const defaultSeller = sellers.find((seller) => seller.sellerDefault);
+
+        if (defaultSeller) {
+            return defaultSeller;
+        }
+
+        return sellers[0];
+    }
 
     return (
         <div className={styles["quickview-product-price"]}>
