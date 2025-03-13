@@ -44,6 +44,7 @@ const LimitedPromotions: StorefrontFunctionComponent<LimitedPromotionsProps> = (
                     skuId,
                     sallesChannelId,
                     productContext,
+                    algoliaProductContext,
                     baseUrl
                 );
 

@@ -10,49 +10,43 @@ import { simulation } from '../Api/simulation'
 
 const CalculateDiscount = (
   productData: CredisimanType,
-  productContext: Partial<ProductContextState> | undefined
+  productContext: Partial<ProductContextState> | undefined,
+  algoliaProductContext: Partial<AlgoliaProductContext> | undefined
 ) => {
-  const { discountValue, method, totalWithDiscount } = productData
+  const { discountValue, method, totalWithDiscount } = productData;
   const productPrice =
-    productContext?.selectedItem?.sellers[0]?.commertialOffer.ListPrice
+    productContext?.selectedItem?.sellers[0]?.commertialOffer.ListPrice ?? algoliaProductContext?.price?.listPrice;
 
-  if (method === 'nominal' && discountValue !== 0) {
-    const totalValue = totalWithDiscount + discountValue
-    const value = 1 - totalWithDiscount / totalValue
-
-    productData.discountValue = Math.abs(Math.round(value * 100))
+  if (method === "nominal" && discountValue !== 0) {
+    const totalValue = totalWithDiscount + discountValue;
+    const value = 1 - totalWithDiscount / totalValue;
+    productData.discountValue = Math.abs(Math.round(value * 100));
   } else if (discountValue === 0) {
     if (productPrice) {
-      const percent = totalWithDiscount / productPrice
-
-      productData.discountValue = Math.abs(Math.round((1 - percent) * 100))
+      const percent = totalWithDiscount / productPrice;
+      productData.discountValue = Math.abs(
+        Math.round((1 - percent) * 100)
+      );
     }
   }
-}
+};
 
 const fetchProductData = async ({
   productId,
   skuId,
   channelId,
   sellerId,
-  baseUrl,
+  baseUrl
 }: {
-  productId: string | undefined
-  skuId: string | undefined
-  channelId: string | undefined
-  sellerId: string | undefined
-  baseUrl: string | undefined
+  productId: string | undefined;
+  skuId: string | undefined;
+  channelId: string | undefined;
+  sellerId: string | undefined;
+  baseUrl: string | undefined;
 }) => {
-  const data = await simulation({
-    productId,
-    skuId,
-    channelId,
-    sellerId,
-    baseUrl,
-  })
+  return await simulation({ productId, skuId, channelId, sellerId, baseUrl });
+};
 
-  return data
-}
 
 let mutex = false
 
@@ -61,6 +55,7 @@ export const GetCrediSimanProductData = async (
   skuId: string | undefined,
   channelId: string | undefined,
   productContext: Partial<ProductContextState> | undefined,
+  algoliaProductContext: Partial<AlgoliaProductContext> | undefined,
   baseUrl: string | undefined
   // eslint-disable-next-line max-params
 ): Promise<CredisimanType | undefined> => {
@@ -83,12 +78,12 @@ export const GetCrediSimanProductData = async (
       productId,
       skuId,
       channelId,
-      sellerId,
-      baseUrl,
-    })
+      sellerId: sellerId ?? '1',
+      baseUrl
+    });
 
     if (newProductData) {
-      CalculateDiscount(newProductData, productContext)
+      CalculateDiscount(newProductData, productContext, algoliaProductContext);
       allProductsData[skuId ?? ''] = newProductData
 
       const expiryTime =
