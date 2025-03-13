@@ -13,11 +13,15 @@ import { ConfigLimitedPromotions } from "./Types/limitedPromotions";
 import generateBaseUrlToSv from "./utils/generateBaseUrlToSv";
 import { GetPageType } from "./utils/getPageType";
 
-const LimitedPromotions = () => {
+interface LimitedPromotionsProps {
+    algoliaProductContext?: AlgoliaProductContext;
+}
+
+const LimitedPromotions: StorefrontFunctionComponent<LimitedPromotionsProps> = ({ algoliaProductContext }) => {
     const productContext = useProduct();
 
-    const skuId = productContext?.selectedItem?.itemId;
-    const productId = productContext?.product?.productId;
+    const skuId = productContext?.selectedItem?.itemId ?? algoliaProductContext?.selectedItem?.SkuId?.toString();
+    const productId = productContext?.product?.productId ?? algoliaProductContext?.skuId?.toString();
 
     const [loading, setLoading] = useState(true);
     const [productData, setProductData] = useState<CredisimanType>();
@@ -40,6 +44,7 @@ const LimitedPromotions = () => {
                     skuId,
                     sallesChannelId,
                     productContext,
+                    algoliaProductContext,
                     baseUrl
                 );
 
