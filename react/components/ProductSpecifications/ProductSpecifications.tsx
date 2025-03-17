@@ -26,7 +26,7 @@ const ProductSpecifications = () => {
                             className={`${styles.specificationElement} ${index < 4 || showAll ? styles.show : ""}`}
                             key={specification.name}
                         >
-                            {specification.name}: {specification.values[0]}
+                            {specification.name}: {specification.values.join(", ")}
                         </li>
                     )
                 )}

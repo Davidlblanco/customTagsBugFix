@@ -41,9 +41,15 @@ export function QuickView({ children }: QuickViewProps) {
 
     return (
         <>
-            <button type="button" className={styles["quickview-open-button"]} onClick={handleOpenQuickview}>
-                Agregar al carrito
-            </button>
+            {
+                productContext != null && productContext.product != null && productContext?.product.priceRange?.listPrice.highPrice !== 0 ? (
+                    <button type="button" className={styles["quickview-open-button"]} onClick={handleOpenQuickview}>
+                        Agregar al carrito
+                    </button>)
+                    : (<button type="button" className={styles["quickview-open-button"]} disabled={true}>
+                        No Disponible
+                    </button>)
+            }
 
             {shouldShowQuickView && (
                 <QuickViewModal
