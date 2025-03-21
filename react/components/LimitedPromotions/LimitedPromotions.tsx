@@ -52,6 +52,8 @@ const LimitedPromotions: StorefrontFunctionComponent<LimitedPromotionsProps> = (
 
                 if (styleSettings) setCredisimanTagStyles(styleSettings);
 
+                //console.log({ result });
+
                 setProductData(result);
                 setLoading(false);
             }

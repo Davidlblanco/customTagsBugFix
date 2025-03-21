@@ -10,11 +10,12 @@ import { simulation } from '../Api/simulation'
 
 const CalculateDiscount = (
   productData: ConfigType,
-  productContext: Partial<ProductContextState> | undefined
+  productContext: Partial<ProductContextState> | undefined,
+  algoliaProductContext: Partial<AlgoliaProductContext> | undefined
 ) => {
   const { discountValue, method, totalWithDiscount } = productData
   const productPrice =
-    productContext?.selectedItem?.sellers[0]?.commertialOffer.ListPrice
+    productContext?.selectedItem?.sellers[0]?.commertialOffer.ListPrice ?? algoliaProductContext?.price?.listPrice;
 
   if (method === 'nominal' && discountValue !== 0) {
     const totalValue = totalWithDiscount + discountValue
@@ -61,6 +62,7 @@ export const GetProductData = async (
   skuId: string | undefined,
   channelId: string | undefined,
   productContext: Partial<ProductContextState> | undefined,
+  algoliaProductContext: Partial<AlgoliaProductContext> | undefined,
   baseUrl: string
   // eslint-disable-next-line max-params
 ): Promise<ConfigType | undefined> => {
@@ -88,7 +90,7 @@ export const GetProductData = async (
     })
 
     if (newProductData) {
-      CalculateDiscount(newProductData, productContext)
+      CalculateDiscount(newProductData, productContext, algoliaProductContext)
       allProductsData[skuId ?? ''] = newProductData
 
       const expiryTime =
