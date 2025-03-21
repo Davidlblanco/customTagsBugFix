@@ -1,4 +1,4 @@
-import React, { ComponentType } from "react";
+import React, { ComponentType, useEffect, useState } from "react";
 import {
     MenuItem,
     MenuItemsProps,
@@ -10,9 +10,16 @@ import {
 import { useHeaderContext } from "../Context/headerContext";
 import styles from "./styles.css";
 
+interface FilterDateConfiguration {
+    selection: "Activo" | "Programar fecha";
+    startDate?: string;
+    endDate?: string;
+}
 interface HeaderDesktopProps {
     desktopImage: string;
+    desktopImageEvent: string
     logoUrl: string;
+    logoUrlEvent: string;
     SearchBar: ComponentType;
     WishList: ComponentType;
     Login: ComponentType;
@@ -20,11 +27,14 @@ interface HeaderDesktopProps {
     MegaMenu: ComponentType;
     MenuItems: MenuItemsProps[];
     DropDownMenuProps: DropDownMenuProps;
+    filterDateConfiguration: FilterDateConfiguration
 }
 
 const HeaderDesktop = ({
     desktopImage,
+    desktopImageEvent,
     logoUrl,
+    logoUrlEvent,
     SearchBar,
     WishList,
     Login,
@@ -32,8 +42,34 @@ const HeaderDesktop = ({
     MegaMenu,
     MenuItems,
     DropDownMenuProps,
+    filterDateConfiguration
 }: HeaderDesktopProps) => {
     const { isDarkMode } = useHeaderContext();
+    let logoImg = desktopImageEvent;
+
+    const [currentUrl, setCurrentUrl] = useState('');
+
+    const isWithinDateRange = (startDate, endDate) => {
+        const currentDate = new Date();
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        return currentDate >= start && currentDate <= end;
+    }
+    if (filterDateConfiguration?.selection === "Programar fecha") {
+        if (!isWithinDateRange(filterDateConfiguration.startDate, filterDateConfiguration.endDate)) {
+            logoImg = ''
+        } else {
+            logoImg = desktopImageEvent;
+        }
+    }
+
+    useEffect(() => {
+        const fullUrl = window.location.href;
+        const urlAfterCom = fullUrl.split('.com')[1] || '/'; // Si no hay nada después de .com, se usa "/"
+        setCurrentUrl(urlAfterCom);
+    }, []);
+
+    let link = logoUrlEvent && (filterDateConfiguration?.selection === "Programar fecha") && isWithinDateRange(filterDateConfiguration.startDate, filterDateConfiguration.endDate) ? logoUrlEvent : logoUrl;
 
     return (
         <div className={styles.containerHeaderDesktop}>
@@ -46,10 +82,10 @@ const HeaderDesktop = ({
                 }
             >
                 <div className={styles.headerTopLeft}>
-                    <a className={styles.headerSimanLogo} href={logoUrl}>
+                    <a className={styles.headerSimanLogo} href={link == currentUrl ? '/' : link}>
                         <img
                             className={styles.headerSimanLogoImg}
-                            src={desktopImage}
+                            src={logoImg && (filterDateConfiguration?.selection === "Programar fecha") ? logoImg : desktopImage}
                             alt="Siman logo"
                         />
                     </a>
