@@ -71,7 +71,7 @@ const LimitedPromotions: StorefrontFunctionComponent<LimitedPromotionsProps> = (
 
     if (!productData) return <></>;
 
-    if (Number(productData.available) <= 0) return <></>;
+    if (!productData.available || Number(productData.available) <= 0) return <></>;
 
     return (
         <div
