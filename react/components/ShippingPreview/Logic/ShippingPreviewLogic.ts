@@ -27,19 +27,19 @@ export const GetDefaultSeller = () => {
     return getDefaultSeller(GetProductContext()?.selectedItem?.sellers);
 };
 
-export const validatePostalCode = (postalCode : string) => {
-    if(postalCode.length < 1) return false
+export const validatePostalCode = (postalCode: string) => {
+    if (postalCode.length < 1) return false;
 
     return !postalCode.includes("*");
 };
 
 export const GetUserPostalCode = (): string | undefined => {
-    const { orderForm } = useOrderForm();
+    const { initialFetchComplete, orderForm } = useOrderForm();
+
+    if (!initialFetchComplete) return;
 
     const selectedAddress =
-        orderForm?.shipping?.selectedAddress?.addressType !== "search"
-            ? orderForm?.shipping?.selectedAddress
-            : null;
+        orderForm?.shipping?.selectedAddress?.addressType !== "search" ? orderForm?.shipping?.selectedAddress : null;
 
     const postalCodeIsValid = validatePostalCode(selectedAddress?.postalCode ?? "");
 
@@ -50,9 +50,7 @@ export const GetUserPostalCode = (): string | undefined => {
     return initialPostalCode;
 };
 
-export const FilterShippingEstimativeUserData = (
-    data: ShippingQuery | undefined
-): EstimativeData[] | undefined => {
+export const FilterShippingEstimativeUserData = (data: ShippingQuery | undefined): EstimativeData[] | undefined => {
     if (!data) return undefined;
 
     const filteredData = data?.shipping?.logisticsInfo[0]?.slas.map((item) => {
@@ -64,15 +62,13 @@ export const FilterShippingEstimativeUserData = (
     return filteredData;
 };
 
-export const DivideShippingEstimativeUserData = (
-    data: EstimativeData[] | undefined
-) => {
+export const DivideShippingEstimativeUserData = (data: EstimativeData[] | undefined) => {
     let delivery: EstimativeData = {} as EstimativeData;
     let scheduledDelivery: EstimativeData = {} as EstimativeData;
     let expressDelivery: EstimativeData = {} as EstimativeData;
-    
+
     data?.forEach((item) => {
-        if (item.friendlyName.toLowerCase().includes("envío a domicilio entrega programada")) scheduledDelivery = item; 
+        if (item.friendlyName.toLowerCase().includes("envío a domicilio entrega programada")) scheduledDelivery = item;
         else if (item.friendlyName.toLowerCase().includes("evío a domicilio entrega express")) expressDelivery = item;
         else if (item.friendlyName.toLowerCase().includes("envío a domicilio")) delivery = item;
     });
@@ -102,31 +98,20 @@ export const GetBestPickupPoint = async (
 };
 
 const FilterPickUpPointsEstimativesByCost = (pointsEstimatives: Sla[]) => {
-    const minCost = Math.min(
-        ...pointsEstimatives.map((estimative) => estimative.price ?? Infinity)
-    );
-    return pointsEstimatives.filter(
-        (estimative) => estimative.price === minCost
-    );
+    const minCost = Math.min(...pointsEstimatives.map((estimative) => estimative.price ?? Infinity));
+    return pointsEstimatives.filter((estimative) => estimative.price === minCost);
 };
 
 const convertEstimativeToMinutes = (estimative: string | undefined) => {
     const value = parseInt(estimative ?? "0");
-    return estimative?.includes("d") || estimative?.includes("bd")
-        ? value * 24 * 60
-        : value;
+    return estimative?.includes("d") || estimative?.includes("bd") ? value * 24 * 60 : value;
 };
 
 const FilterPickupPointEstimativesByEstimative = (pointsEstimatives: Sla[]) => {
     const minEstimative = Math.min(
-        ...pointsEstimatives.map((point) =>
-            convertEstimativeToMinutes(point.shippingEstimate)
-        )
+        ...pointsEstimatives.map((point) => convertEstimativeToMinutes(point.shippingEstimate))
     );
-    return pointsEstimatives.find(
-        (point) =>
-            convertEstimativeToMinutes(point.shippingEstimate) === minEstimative
-    );
+    return pointsEstimatives.find((point) => convertEstimativeToMinutes(point.shippingEstimate) === minEstimative);
 };
 
 const GetShippingEstimativesByCoordinates = async (
@@ -149,9 +134,7 @@ const GetShippingEstimativesByCoordinates = async (
 const RemoveNotPickupPoints = (results: ShippingItem[]) => {
     const estimatives: Sla[][] = results?.map((result) =>
         result?.slas?.filter(
-            (sla: Sla) =>
-                sla.deliveryChannel === "pickup-in-point" &&
-                sla.pickupStoreInfo.isPickupStore === true
+            (sla: Sla) => sla.deliveryChannel === "pickup-in-point" && sla.pickupStoreInfo.isPickupStore === true
         )
     );
     const flatArray: Sla[] = estimatives.flat();
