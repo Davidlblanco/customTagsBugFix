@@ -71,7 +71,7 @@ export const GetCrediSimanProductData = async (
 
   const allProductsData = credisimanStorage?.value ?? {}
   const productDataInCache = allProductsData[skuId ?? '']
-  const sellerId = productContext?.selectedItem?.sellers[0]?.sellerId
+  const sellerId = productContext?.selectedItem?.sellers[0]?.sellerId || algoliaProductContext?.items?.[0]?.sellers?.[0]?.sellerId
 
   if (!productDataInCache) {
     const newProductData = await fetchProductData({

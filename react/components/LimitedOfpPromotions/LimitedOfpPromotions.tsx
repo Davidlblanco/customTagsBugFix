@@ -14,11 +14,15 @@ import { useRuntime } from "vtex.render-runtime";
 
 import styles from "./styles.css";
 
-const LimitedOfpPromotions = () => {
+interface LimitedPromotionsProps {
+    algoliaProductContext?: AlgoliaProductContext;
+}
+
+const LimitedOfpPromotions: StorefrontFunctionComponent<LimitedPromotionsProps> = ({ algoliaProductContext }) => {
     const productContext = useProduct();
 
-    const skuId = productContext?.selectedItem?.itemId;
-    const productId = productContext?.product?.productId;
+    const skuId = productContext?.selectedItem?.itemId ?? algoliaProductContext?.selectedItem?.SkuId?.toString();
+    const productId = productContext?.product?.productId ?? algoliaProductContext?.skuId?.toString();
 
     const [loading, setLoading] = useState(true);
     const [productData, setProductData] = useState<ConfigType>();
@@ -27,9 +31,9 @@ const LimitedOfpPromotions = () => {
     const { session } = useRenderSession();
     const pageType = GetPageType();
 
-    const { account, workspace } = useRuntime()
+    const { account, workspace } = useRuntime();
     const sallesChannelId = session?.namespaces?.store?.channel?.value;
-    const baseUrl = generateBaseUrlToSv(account, workspace)
+    const baseUrl = generateBaseUrlToSv(account, workspace);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -40,6 +44,7 @@ const LimitedOfpPromotions = () => {
                     skuId,
                     sallesChannelId,
                     productContext,
+                    algoliaProductContext,
                     baseUrl
                 );
 
@@ -64,7 +69,7 @@ const LimitedOfpPromotions = () => {
 
     if (!productData) return <></>;
 
-    if (Number(productData.available) <= 0) return <></>;
+    if (!productData.available || Number(productData.available) <= 0) return <></>;
 
     return (
         <div
