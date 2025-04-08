@@ -14,18 +14,26 @@ const requestToAPI = async (categoryId: any, brandId: any) => {
     switch (account) {
         case 'siman':
         case 'simaninstoresv':
+        case 'simanqa':
+        case 'simanqainstoresv':
             applyTo = 'SV'
             break;
         case 'simanguatemala':
         case 'simaninstoregt':
+        case 'simanqagt':
+        case 'simanqainstoregt':
             applyTo = 'GT'
             break;
         case 'simannicor':
         case 'simaninstorenicor':
+        case 'simanqanicor':
+        case 'simanqainstoreni':
             applyTo = 'NI'
             break;
         case 'simancrc':
         case 'simaninstorecr':
+        case 'simanqacr':
+        case 'simanqainstorecr':
             applyTo = 'CR'
             break;
         default:
