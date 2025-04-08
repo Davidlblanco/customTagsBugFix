@@ -1,22 +1,62 @@
 import React, { useState, useEffect } from "react";
 import { Modal } from "vtex.styleguide";
 import { TableIcon } from "./Assets/Ruler";
-
-//Context
 import { useProduct } from "vtex.product-context";
-
 import Introduction from "./sizeIntroduction";
 import Table from "./table";
-
 import styles from "./styles.css";
+import axios from "axios";
+import { useRuntime } from "vtex.render-runtime";
 
 const requestToAPI = async (categoryId: any, brandId: any) => {
-    const response = await fetch(
-        `https://strapi-master-prd-eqjekncm6q-ue.a.run.app/api/sizes?populate[category][populate][vtex_categories][fields][0]=vtexId&populate[gender_info][fields][0]=name&populate[brand][fields][0]=vtexId&filters[category][vtex_categories][vtexId][$eq]=${categoryId}&filters[brand][vtexId][$eq]=${brandId}`
+    const { account } = useRuntime();
+    let applyTo = 'ALL'
+    switch (account) {
+        case 'siman':
+        case 'simaninstoresv':
+            applyTo = 'SV'
+            break;
+        case 'simanguatemala':
+        case 'simaninstoregt':
+            applyTo = 'GT'
+            break;
+        case 'simannicor':
+        case 'simaninstorenicor':
+            applyTo = 'NI'
+            break;
+        case 'simancrc':
+        case 'simaninstorecr':
+            applyTo = 'CR'
+            break;
+        default:
+            applyTo = 'ALL'
+            break;
+    }
+    const response = await axios.post(`/_v/sizes-table/table/params`,
+        [
+            {
+                "param": "category",
+                "value": categoryId as string
+            },
+            {
+                "param": "brand",
+                "value": brandId + ""
+            },
+            {
+                "param": "applyTo",
+                "value": applyTo
+
+            }
+        ]
     );
-    const data = await response.json();
-    //If its empty, return an empty array
-    return data.data || [];
+    if (!response) {
+        throw new Error('Error fetching data from API')
+    }
+    if (response.status !== 200) {
+        throw new Error('Error fetching data from API')
+    }
+    const data = await response.data;
+    return data || []
 };
 
 const SizesTable = () => {
@@ -24,10 +64,9 @@ const SizesTable = () => {
     const productBrandId = productContextValue?.product?.brandId;
     const productCategoryId = productContextValue?.product?.categoryId;
 
-    const [sizes, setSizes] = useState<any>([]);
+    const [sizes, setSizes] = useState<any>({});
     const [loading, setLoading] = useState<boolean>(true);
     const [showModal, setShowModal] = useState(false);
-    const [gender, setGender] = useState<string>("");
 
     const handleShowModal = () => {
         setShowModal(!showModal);
@@ -37,7 +76,6 @@ const SizesTable = () => {
         const fetchSizes = async () => {
             const sizes = await requestToAPI(productCategoryId, productBrandId);
             setSizes(sizes);
-            setGender(sizes[0].attributes.gender_info.data.attributes.name);
             setLoading(false);
         };
         fetchSizes();
@@ -66,8 +104,7 @@ const SizesTable = () => {
                         <h1 className="size-guide-title__mb">Guía de tallas</h1>
                         <section className={styles.sizeGuide}>
                             <Table sizes={sizes} />
-
-                            <Introduction gender={gender} />
+                            <Introduction additionalInfo={sizes} />
                         </section>
                     </div>
                 </Modal>
