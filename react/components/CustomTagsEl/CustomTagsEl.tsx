@@ -38,6 +38,8 @@ const CustomTagsEl = ({
     const originalContainer = useRef<HTMLDivElement>(null);
 
     async function removeTags(containerSelector: string, renderedTags: string) {
+        const tags = ["rendered-tag-insignia", "tag-right-top", "tag-right-center", "tag-right-bottom"];
+
         await waitForEl(`${containerSelector}`, 100, false, 1000);
 
         const containers = document.querySelectorAll(containerSelector);
@@ -50,6 +52,14 @@ const CustomTagsEl = ({
             const removeTag = container.querySelector(`.${renderedTags}`);
             removeTag?.remove();
         });
+
+        if (tags.some((tag) => tag === renderedTags)) {
+            const containersTags = document.querySelectorAll(`.${renderedTags}`);
+
+            containersTags.forEach((containersTags: Element) => {
+                containersTags?.remove();
+            });
+        }
     }
 
     const insertTags = async (
@@ -70,7 +80,6 @@ const CustomTagsEl = ({
                     return;
                 }
             }
-
             if (container.querySelector(`.${renderedTags}`)) {
                 const removeNotTag = container.querySelector(`.${tagsNotRendered}`);
 
@@ -81,7 +90,6 @@ const CustomTagsEl = ({
             }
 
             const elementWithPositionClass = container.querySelector(positionClass.class);
-
             if (elementWithPositionClass) {
                 if (tagArray.length === 0 && visibility === "productSummary") {
                     if (container.querySelector(`.${tagsNotRendered}`)) {
@@ -130,7 +138,6 @@ const CustomTagsEl = ({
     const addTags = useCallback(async () => {
         if (!filteredTags) return;
         const containerInsigniaValid = containerInsignia ?? container;
-
         insertTags(filteredTags.top, container, positionTop, "rendered-tag-top", "tag-top-not-rendered", true);
         insertTags(
             filteredTags.center,
@@ -167,7 +174,11 @@ const CustomTagsEl = ({
         removeTags(container, "rendered-tag-top");
         removeTags(container, "rendered-tag-center");
         removeTags(container, "rendered-tag-bottom");
+
         removeTags(container, "rendered-tag-insignia");
+        removeTags(container, "tag-right-top");
+        removeTags(container, "tag-right-center");
+        removeTags(container, "tag-right-bottom");
     }, [skuId]);
 
     useEffect(() => {
