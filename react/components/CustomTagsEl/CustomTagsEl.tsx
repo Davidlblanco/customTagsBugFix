@@ -7,6 +7,7 @@ import { compareProductIdsInURL } from "./utils/compareProductIdsInURL";
 import { ConfigGroup } from "../../typings/config";
 import sleep from "../../helpers/sleep";
 import { waitForEl } from "./utils/waitForEl";
+import { useRuntime } from "vtex.render-runtime";
 
 interface CustomTagsElProps {
     visibility: "pdp" | "productSummary";
@@ -34,6 +35,7 @@ const CustomTagsEl = ({
     containerInsignia,
     positionInsignia,
 }: CustomTagsElProps) => {
+    const { page } = useRuntime();
     const { filteredTags, hrefProduct, skuId } = useProductTags(algoliaProductContext);
     const originalContainer = useRef<HTMLDivElement>(null);
 
@@ -171,14 +173,16 @@ const CustomTagsEl = ({
     }, [filteredTags]);
 
     useEffect(() => {
-        removeTags(container, "rendered-tag-top");
-        removeTags(container, "rendered-tag-center");
-        removeTags(container, "rendered-tag-bottom");
+        if (!page.includes("store.search")) {
+            removeTags(container, "rendered-tag-top");
+            removeTags(container, "rendered-tag-center");
+            removeTags(container, "rendered-tag-bottom");
 
-        removeTags(container, "rendered-tag-insignia");
-        removeTags(container, "tag-right-top");
-        removeTags(container, "tag-right-center");
-        removeTags(container, "tag-right-bottom");
+            removeTags(container, "rendered-tag-insignia");
+            removeTags(container, "tag-right-top");
+            removeTags(container, "tag-right-center");
+            removeTags(container, "tag-right-bottom");
+        }
     }, [skuId]);
 
     useEffect(() => {
