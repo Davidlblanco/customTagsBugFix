@@ -25,7 +25,7 @@
 }
 
 .specificationElement.show {
-    max-height: fix-content;
+    max-height: fit-content;
     opacity: 1;
 }
 
