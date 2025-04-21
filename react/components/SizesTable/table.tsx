@@ -1,62 +1,47 @@
 import React from "react";
-
-export default function Table<T extends { [key: string]: any }>(props: {
+import styles from "./styles.css";
+export default function Table<T extends { any }>(props: {
     sizes: T[];
 }) {
     const { sizes } = props;
 
     return (
         <div className="size-guide-div">
-            <p className="unidades-de-medida">Medidas en CM</p>
             <div className="size-guide__tables">
                 {sizes.map((size: any) => {
                     return (
                         <section className="table-section" key={size.id}>
-                            <h3 className="tipo-talla">
-                                {size.attributes.name}
+                            <h3 className={styles.tipoTalla}>
+                                {size.title}
                             </h3>
+                            <p className="description">
+                                {size.description}
+                            </p>
                             <div className="size-table__responsive">
                                 <table className="size-guide__table">
                                     <thead>
                                         <tr>
-                                            {
-                                                //Getting headers
-                                                Object.keys(
-                                                    size.attributes.table[0]
-                                                ).map((key: string) => {
-                                                    return (
-                                                        <th
-                                                            key={`th-${size.id}-${key}`}
-                                                        >
-                                                            {key}
-                                                        </th>
-                                                    );
-                                                })
+                                            {Object.keys(size.table[0]).map((cell) => {
+                                                return (
+                                                    <th key={`th-${cell}`}>
+                                                        {size.table[0][cell].name}
+                                                    </th>
+                                                );
+                                            })
                                             }
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {
-                                            //Getting rows
-                                            size.attributes.table.map(
-                                                (size: any) => {
+                                            size.table?.map(
+                                                (sz: any) => {
                                                     return (
-                                                        <tr key={size.id}>
-                                                            {Object.keys(
-                                                                size
-                                                            ).map(
-                                                                (
-                                                                    key: string
-                                                                ) => {
+                                                        <tr>
+                                                            {sz.map(
+                                                                (szelement: any) => {
                                                                     return (
-                                                                        <td
-                                                                            key={`tb-${size.id}-${size[key]}`}
-                                                                        >
-                                                                            {
-                                                                                size[
-                                                                                    key
-                                                                                ]
-                                                                            }
+                                                                        <td key={`tb-${szelement.key}-${szelement.value}`}>
+                                                                            {szelement.value}
                                                                         </td>
                                                                     );
                                                                 }
