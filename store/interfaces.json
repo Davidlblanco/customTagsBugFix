@@ -24,6 +24,9 @@
   "custom-product-gift": {
       "component": "ProductGift"
   },
+  "custom-product-gift-dior": {
+      "component": "ProductGiftDior"
+  },
   "custom-cuotas": {
       "component": "Cuotas"
   },
