@@ -36,6 +36,22 @@ const CustomTagsEl = ({
 }: CustomTagsElProps) => {
     const { filteredTags, hrefProduct, skuId } = useProductTags(algoliaProductContext);
     const originalContainer = useRef<HTMLDivElement>(null);
+
+    async function removeTags(containerSelector: string, renderedTags: string) {
+        await waitForEl(`${containerSelector}`, 100, false, 1000);
+
+        const containers = document.querySelectorAll(containerSelector);
+
+        if (!containers) {
+            return;
+        }
+
+        containers.forEach((container: Element) => {
+            const removeTag = container.querySelector(`.${renderedTags}`);
+            removeTag?.remove();
+        });
+    }
+
     const insertTags = async (
         tagArray: ConfigGroup[],
         containerSelector: string,
@@ -44,15 +60,9 @@ const CustomTagsEl = ({
         tagsNotRendered: string,
         isCustomTag: boolean
     ) => {
-
-
         await waitForEl(`${containerSelector}`, 5000, false, 1000);
 
         const containers = document.querySelectorAll(containerSelector);
-
-        if (!containers) {
-            return;
-        }
 
         containers.forEach((container: Element) => {
             if (container instanceof HTMLAnchorElement && visibility === "productSummary") {
@@ -82,7 +92,10 @@ const CustomTagsEl = ({
                     if (positionClass.insert === "before") {
                         elementWithPositionClass?.parentNode?.insertBefore(renderContainer, elementWithPositionClass);
                     } else {
-                        elementWithPositionClass?.parentNode?.insertBefore(renderContainer, elementWithPositionClass.nextSibling);
+                        elementWithPositionClass?.parentNode?.insertBefore(
+                            renderContainer,
+                            elementWithPositionClass.nextSibling
+                        );
                     }
                     return;
                 }
@@ -119,15 +132,43 @@ const CustomTagsEl = ({
         const containerInsigniaValid = containerInsignia ?? container;
 
         insertTags(filteredTags.top, container, positionTop, "rendered-tag-top", "tag-top-not-rendered", true);
-        insertTags(filteredTags.center, container, positionCenter, "rendered-tag-center", "tag-center-not-rendered", true);
-        insertTags(filteredTags.bottom, container, positionBottom, "rendered-tag-bottom", "tag-bottom-not-rendered", true);
-        insertTags(filteredTags.tagInsignia, containerInsigniaValid, positionInsignia, "rendered-tag-insignia", "tag-insignia-not-rendered", false);
+        insertTags(
+            filteredTags.center,
+            container,
+            positionCenter,
+            "rendered-tag-center",
+            "tag-center-not-rendered",
+            true
+        );
+        insertTags(
+            filteredTags.bottom,
+            container,
+            positionBottom,
+            "rendered-tag-bottom",
+            "tag-bottom-not-rendered",
+            true
+        );
+        insertTags(
+            filteredTags.tagInsignia,
+            containerInsigniaValid,
+            positionInsignia,
+            "rendered-tag-insignia",
+            "tag-insignia-not-rendered",
+            false
+        );
     }, [filteredTags, container, positionTop, positionCenter, positionBottom, containerInsignia, positionInsignia]);
 
     useEffect(() => {
         addTags();
         sleep(2000).then(addTags);
-    }, [addTags, skuId, originalContainer.current]);
+    }, [filteredTags]);
+
+    useEffect(() => {
+        removeTags(container, "rendered-tag-top");
+        removeTags(container, "rendered-tag-center");
+        removeTags(container, "rendered-tag-bottom");
+        removeTags(container, "rendered-tag-insignia");
+    }, [skuId]);
 
     useEffect(() => {
         const time = setTimeout(() => {
