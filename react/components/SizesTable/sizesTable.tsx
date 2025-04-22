@@ -8,66 +8,63 @@ import styles from "./styles.css";
 import axios from "axios";
 import { useRuntime } from "vtex.render-runtime";
 
-const requestToAPI = async (categoryId: any, brandId: any) => {
-    const { account } = useRuntime();
-    let applyTo = 'ALL'
+const requestToAPI = async (categoryId: any, brandId: any, account: string) => {
+    let applyTo = 'ALL';
     switch (account) {
         case 'siman':
         case 'simaninstoresv':
         case 'simanqa':
         case 'simanqainstoresv':
-            applyTo = 'SV'
+            applyTo = 'SV';
             break;
         case 'simanguatemala':
         case 'simaninstoregt':
         case 'simanqagt':
         case 'simanqainstoregt':
-            applyTo = 'GT'
+            applyTo = 'GT';
             break;
         case 'simannicor':
         case 'simaninstorenicor':
         case 'simanqanicor':
         case 'simanqainstoreni':
-            applyTo = 'NI'
+            applyTo = 'NI';
             break;
         case 'simancrc':
         case 'simaninstorecr':
         case 'simanqacr':
         case 'simanqainstorecr':
-            applyTo = 'CR'
+            applyTo = 'CR';
             break;
         default:
-            applyTo = 'ALL'
+            applyTo = 'ALL';
             break;
     }
-    const response = await axios.post(`/_v/sizes-table/table/params`,
-        [
-            {
-                "param": "category",
-                "value": categoryId as string
-            },
-            {
-                "param": "brand",
-                "value": brandId + ""
-            },
-            {
-                "param": "applyTo",
-                "value": applyTo
-
-            }
-        ]
-    );
+    const response = await axios.post(`/_v/sizes-table/table/params`, [
+        {
+            param: "category",
+            value: categoryId as string,
+        },
+        {
+            param: "brand",
+            value: brandId + "",
+        },
+        {
+            param: "applyTo",
+            value: applyTo,
+        },
+    ]);
     if (!response) {
-        throw new Error('Error fetching data from API')
+        throw new Error("Error fetching data from API");
     }
     if (response.status !== 200) {
-        throw new Error('Error fetching data from API')
+        throw new Error("Error fetching data from API");
     }
     const data = await response.data;
-    return data || []
+    return data || [];
 };
 
 const SizesTable = () => {
+    const { account } = useRuntime();
     const productContextValue = useProduct();
     const productBrandId = productContextValue?.product?.brandId;
     const productCategoryId = productContextValue?.product?.categoryId;
@@ -82,12 +79,12 @@ const SizesTable = () => {
 
     useEffect(() => {
         const fetchSizes = async () => {
-            const sizes = await requestToAPI(productCategoryId, productBrandId);
+            const sizes = await requestToAPI(productCategoryId, productBrandId, account);
             setSizes(sizes);
             setLoading(false);
         };
         fetchSizes();
-    }, [productCategoryId]);
+    }, [productCategoryId, productBrandId, account]);
 
     if (loading) {
         return null;
