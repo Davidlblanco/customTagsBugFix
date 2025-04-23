@@ -9,34 +9,34 @@ import axios from "axios";
 import { useRuntime } from "vtex.render-runtime";
 
 const requestToAPI = async (categoryId: any, brandId: any, account: string) => {
-    let applyTo = 'ALL';
+    let applyTo = "ALL";
     switch (account) {
-        case 'siman':
-        case 'simaninstoresv':
-        case 'simanqa':
-        case 'simanqainstoresv':
-            applyTo = 'SV';
+        case "siman":
+        case "simaninstoresv":
+        case "simanqa":
+        case "simanqainstoresv":
+            applyTo = "SV";
             break;
-        case 'simanguatemala':
-        case 'simaninstoregt':
-        case 'simanqagt':
-        case 'simanqainstoregt':
-            applyTo = 'GT';
+        case "simanguatemala":
+        case "simaninstoregt":
+        case "simanqagt":
+        case "simanqainstoregt":
+            applyTo = "GT";
             break;
-        case 'simannicor':
-        case 'simaninstorenicor':
-        case 'simanqanicor':
-        case 'simanqainstoreni':
-            applyTo = 'NI';
+        case "simannicor":
+        case "simaninstorenicor":
+        case "simanqanicor":
+        case "simanqainstoreni":
+            applyTo = "NI";
             break;
-        case 'simancrc':
-        case 'simaninstorecr':
-        case 'simanqacr':
-        case 'simanqainstorecr':
-            applyTo = 'CR';
+        case "simancrc":
+        case "simaninstorecr":
+        case "simanqacr":
+        case "simanqainstorecr":
+            applyTo = "CR";
             break;
         default:
-            applyTo = 'ALL';
+            applyTo = "ALL";
             break;
     }
     const response = await axios.post(`/_v/sizes-table/table/params`, [

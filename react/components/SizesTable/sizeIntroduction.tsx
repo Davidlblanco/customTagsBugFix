@@ -9,8 +9,8 @@ export default function Introduction({ additionalInfo }: Props) {
             {additionalInfo.map((item: any) => {
                 return (
                     <div key={item.id} className={styles.introduction}>
-                        {item.image && <img src={item.image} alt={item.name} className={styles.introductionImage} />}
                         {item.additionalInfo && <p>{item.additionalInfo}</p>}
+                        {item.image && <img src={item.image} alt={item.name} className={styles.introductionImage} />}
                     </div>
                 );
             })}

@@ -13,14 +13,14 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     width: calc(100% - 5%);
 }
 .guiaTablas table,
 th,
 td {
     border-collapse: collapse;
-    padding: 5px 7px;
+    padding: 14px 20px;
     margin: 0 auto;
     text-align: center;
 }
@@ -29,16 +29,16 @@ td {
     width: 800px;
 }
 .guiaTablas th {
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 20px;
-    text-align: center;
-    letter-spacing: 0.1px;
-    text-transform: uppercase;
-    color: #545454;
-    background-color: #fff;
+  color: #FFF;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; 
+  background: #646464;
+  width: 92px;
+  height: 54px;
 }
 
 .guiaTablas td {
@@ -266,4 +266,50 @@ td {
 }
 .styles_modal__gNwvD span::after {
     display: none;
+}
+
+.sizeTableWrapper{
+  overflow: auto;
+  border: 1px solid #BEBEBE;
+  border-radius: 8px;
+
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: unset;
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #e3e4e6;
+    border-radius: 8px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: #d0d0d0;
+  }
+}
+
+.sizeTableContainer{
+  position: relative;
+}
+
+.sizeTableContainer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12px;
+  border-radius: 8px;
+  height: 100%;
+  background: linear-gradient(to left, rgba(115, 115, 115, 0.4), rgba(217, 217, 217, 0));
+  pointer-events: none;
+}
+
+.sizeGuideTable{
+  overflow: auto;
 }
