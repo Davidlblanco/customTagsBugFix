@@ -5,8 +5,6 @@ export default function Table<T extends { any }>(props: { sizes: T[] }) {
     const { sizes } = props;
     const [hoveredColumnIndex, setHoveredColumnIndex] = useState<number | null>(null);
 
-    console.log(sizes);
-
     return (
         <div className="size-guide-div">
             <div className="size-guide__tables">
@@ -19,14 +17,7 @@ export default function Table<T extends { any }>(props: { sizes: T[] }) {
                             <h3 className={styles.tipoTalla}>{size.title}</h3>
                             <p className="description">{size.description}</p>
                             <div className={styles.sizeTableContainer}>
-                                <div
-                                    className={styles.sizeTableWrapper}
-                                    /* style={{
-                                          overflow: "auto",
-                                          border: "1px solid #BEBEBE",
-                                          borderRadius: 8,
-                                      }} */
-                                >
+                                <div className={styles.sizeTableWrapper}>
                                     <table className={styles.sizeGuideTable}>
                                         <tbody>
                                             {headers.map((header, index) => (
