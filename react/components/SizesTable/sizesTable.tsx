@@ -6,39 +6,8 @@ import Introduction from "./sizeIntroduction";
 import Table from "./table";
 import styles from "./styles.css";
 import axios from "axios";
-import { useRuntime } from "vtex.render-runtime";
 
-const requestToAPI = async (categoryId: any, brandId: any, account: string) => {
-    let applyTo = "ALL";
-    switch (account) {
-        case "siman":
-        case "simaninstoresv":
-        case "simanqa":
-        case "simanqainstoresv":
-            applyTo = "SV";
-            break;
-        case "simanguatemala":
-        case "simaninstoregt":
-        case "simanqagt":
-        case "simanqainstoregt":
-            applyTo = "GT";
-            break;
-        case "simannicor":
-        case "simaninstorenicor":
-        case "simanqanicor":
-        case "simanqainstoreni":
-            applyTo = "NI";
-            break;
-        case "simancrc":
-        case "simaninstorecr":
-        case "simanqacr":
-        case "simanqainstorecr":
-            applyTo = "CR";
-            break;
-        default:
-            applyTo = "ALL";
-            break;
-    }
+const requestToAPI = async (categoryId: any, brandId: any) => {
     const response = await axios.post(`/_v/sizes-table/table/params`, [
         {
             param: "category",
@@ -47,10 +16,6 @@ const requestToAPI = async (categoryId: any, brandId: any, account: string) => {
         {
             param: "brand",
             value: brandId + "",
-        },
-        {
-            param: "applyTo",
-            value: applyTo,
         },
     ]);
     if (!response) {
@@ -64,7 +29,6 @@ const requestToAPI = async (categoryId: any, brandId: any, account: string) => {
 };
 
 const SizesTable = () => {
-    const { account } = useRuntime();
     const productContextValue = useProduct();
     const productBrandId = productContextValue?.product?.brandId;
     const productCategoryId = productContextValue?.product?.categoryId;
@@ -79,12 +43,12 @@ const SizesTable = () => {
 
     useEffect(() => {
         const fetchSizes = async () => {
-            const sizes = await requestToAPI(productCategoryId, productBrandId, account);
+            const sizes = await requestToAPI(productCategoryId, productBrandId);
             setSizes(sizes);
             setLoading(false);
         };
         fetchSizes();
-    }, [productCategoryId, productBrandId, account]);
+    }, [productCategoryId, productBrandId]);
 
     if (loading) {
         return null;
