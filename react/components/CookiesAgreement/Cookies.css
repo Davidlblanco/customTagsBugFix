@@ -40,3 +40,7 @@
 .cookies_modal>button:hover {
     cursor: pointer;
 }
+
+#cookiesAgreement a{
+  color: white;
+}
