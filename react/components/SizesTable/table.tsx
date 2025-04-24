@@ -10,7 +10,12 @@ export default function Table<T extends { any }>(props: { sizes: T[] }) {
             <div className="size-guide__tables">
                 {sizes.map((size: any) => {
                     const headers = Object.keys(size.table[0]);
-                    const values = size.table.map((row: any) => headers.map((header) => row[header].value));
+                    const headerNames = headers.map((header) => size.table[0][header].name);
+                    const values = size.table.map((row: any) =>
+                        headerNames.map((header) => {
+                            return row.find((item: any) => item.name === header)?.value ?? "-";
+                        })
+                    );
 
                     return (
                         <section className="table-section" key={size.id}>
