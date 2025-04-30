@@ -27,6 +27,8 @@ export function QuickViewProductPrice() {
         return sellers[0];
     }
 
+    if (seller?.commertialOffer.AvailableQuantity === 0) return <></>;
+
     return (
         <div className={styles["quickview-product-price"]}>
             <span className={styles["quickview-product-price__selling-price"]}>
