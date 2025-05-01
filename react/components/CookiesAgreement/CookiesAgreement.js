@@ -1,28 +1,42 @@
-import React from 'react';
-import "./Cookies.css";
-
+import React, { useEffect, useState } from "react";
+import styles from "./index.css";
 
 function CookiesAgreement() {
-  const myClass = 'vtex-flex-layout-0-x-flexRow--cookies_modal';
+    const [showComponent, setShowComponent] = useState(false);
 
-  function savePreference() {
-    localStorage.setItem('cookies', 'true');
-    document.getElementsByClassName(myClass)[0].style.display = 'none';
-  }
+    useEffect(() => {
+        const cookiesAccepted = localStorage.getItem("cookies") === "true";
+        setShowComponent(!cookiesAccepted);
+    }, []);
 
-  if (localStorage.getItem('cookies') === 'true') {
-    return null;
-  } else {
+    function savePreference() {
+        localStorage.setItem("cookies", "true");
+        setShowComponent(false);
+    }
+
+    if (!showComponent) {
+        return null;
+    }
+
     return (
-      <div className={myClass} id="cookiesAgreement">
-        <div>
-          <h2>Este sitio web utiliza cookies</h2>
-          <p>Esta web utiliza cookies propias y de terceros para ofrecerle una mejor experiencia y servicio. Al navegar o utilizar nuestros servicios acepta el uso que hacemos de las cookies.</p>
-          <button className='vtex-flex-layout-0-x-flexRow--cookies_button' onClick={savePreference}>Aceptar</button>
+        <div className={styles.cookiesModal} id="cookiesAgreement">
+            <div>
+                <h2>Este sitio web utiliza cookies</h2>
+                <p>
+                    En siman.com utilizamos cookies y recopilamos ciertos datos personales para mejorar tu experiencia
+                    de navegación, personalizar contenidos y analizar el uso del sitio. Al continuar navegando, aceptas
+                    nuestra{" "}
+                    <a id={styles.cookiesAgreementLink} href="/privacidad">
+                        Política de Privacidad
+                    </a>{" "}
+                    y el uso de cookies.
+                </p>
+                <button className={styles.cookiesButton} onClick={savePreference}>
+                    Aceptar
+                </button>
+            </div>
         </div>
-      </div>
     );
-  }
 }
 
-export default CookiesAgreement
+export default CookiesAgreement;

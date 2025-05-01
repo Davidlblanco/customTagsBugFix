@@ -1,7 +1,6 @@
-.cookies_modal {
+.cookiesModal {
     position: fixed;
     width: 402px;
-    height: 258px;
     background-color: #051c2c;
     border-radius: 16px;
     color: #ffffff;
@@ -16,18 +15,18 @@
     z-index: 4;
 }
 
-.cookies_modal>h2 {
+.cookiesModal>h2 {
     font-size: 29px;
     margin: 0;
 
 }
 
-.cookies_modal>p {
+.cookiesModal>p {
     font-size: 16px;
     margin: 0;
 }
 
-.cookies_modal>button {
+.cookiesButton {
     width: 100%;
     padding: 8px;
     color: #051C2C;
@@ -37,6 +36,11 @@
 
 }
 
-.cookies_modal>button:hover {
+.cookiesButton {
     cursor: pointer;
+}
+
+#cookiesAgreementLink, #cookiesAgreementLink:visited, #cookiesAgreementLink:hover, #cookiesAgreementLink:active {
+  color: white;
+  text-decoration: underline;
 }

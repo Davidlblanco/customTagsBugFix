@@ -1,0 +1,81 @@
+.containerGiftItemDior {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0px;
+    margin-top: 8px;
+    background: #f8f8f8;
+    overflow: hidden;
+}
+
+.regaliaTextDior {
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: 0.0025em;
+    text-align: left;
+    color: #1f1f1f;
+}
+
+.giftNameDior {
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.004em;
+    text-align: left;
+    color: #1f1f1f;
+}
+
+.giftNameListDior {
+    font-family: Roboto, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.004em;
+    text-align: left;
+    color: #1f1f1f;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-clamp: 1;
+}
+
+.activeDior {
+    font-weight: 700;
+    color: #f1f1f1;
+}
+
+.regaliaIconDior {
+    position: absolute;
+    top: 33%;
+    left: 30%;
+}
+
+
+.rightGiftDior {
+    border-radius: 0px;
+    width: 20%;
+    display: flex;
+    justify-content: end;
+    padding: 8px;
+}
+
+.imgGiftDior {
+    border-radius: 0px;
+    width: 100px;
+    max-width: unset;
+}
+
+.centerGiftDior {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 60%;
+    height: 100%;
+    padding: 0px 8px;
+}
