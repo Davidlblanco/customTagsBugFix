@@ -8,6 +8,7 @@ import { ConfigGroup } from "../../typings/config";
 import sleep from "../../helpers/sleep";
 import { waitForEl } from "./utils/waitForEl";
 import { useRuntime } from "vtex.render-runtime";
+import UseDebounce from "../../utils/useDebounce";
 
 interface CustomTagsElProps {
     visibility: "pdp" | "productSummary";
@@ -72,7 +73,7 @@ const CustomTagsEl = ({
         tagsNotRendered: string,
         isCustomTag: boolean
     ) => {
-        await waitForEl(`${containerSelector}`, 5000, false, 1000);
+        await waitForEl(`${containerSelector}`, 100, false, 1000);
 
         const containers = document.querySelectorAll(containerSelector);
 
@@ -167,9 +168,10 @@ const CustomTagsEl = ({
         );
     }, [filteredTags, container, positionTop, positionCenter, positionBottom, containerInsignia, positionInsignia]);
 
+    const debouncedAddTags = UseDebounce(() => addTags(), 1000);
     useEffect(() => {
-        addTags();
-        sleep(2000).then(addTags);
+        debouncedAddTags();
+        // sleep(2000).then(addTags);
     }, [filteredTags]);
 
     useEffect(() => {

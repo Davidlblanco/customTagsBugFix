@@ -8,33 +8,29 @@ interface RenderTagsProps {
 const CustomTags = ({ tag }: RenderTagsProps) => {
     return (
         <>
-            <div
-                className={`flex items-center tag-${tag?.customTag?.tagPosition}`}
-                style={{ gap: '6px' }}
-            >
+            <div className={`flex items-center tag-${tag?.customTag?.tagPosition}`} style={{ gap: "6px" }}>
                 {tag?.customTag?.tagImage?.active && tag?.customTag?.tagImage?.url ? (
-                    <img
-                        src={tag?.customTag?.tagImage?.url}
-                        style={{ maxWidth: '20px', maxHeight: '20px' }}
-                    />
+                    <img src={tag?.customTag?.tagImage?.url} style={{ maxWidth: "20px", maxHeight: "20px" }} />
                 ) : (
-                    <div className={`flex items-center ${tag?.customTag?.tagImage?.position == 'right' ? 'flex-row-reverse' : ''}`}
-                        style={{ gap: '6px' }}
+                    <div
+                        className={`flex items-center ${
+                            tag?.customTag?.tagImage?.position == "right" ? "flex-row-reverse" : ""
+                        }`}
+                        style={{ gap: "6px" }}
                     >
-                        {tag?.customTag?.tagImage?.url && tag?.customTag?.tagImage?.url !== '' && (
-                            <img
-                                src={tag?.customTag?.tagImage?.url}
-                                style={{ maxWidth: '20px', maxHeight: '20px' }}
-                            />
+                        {tag?.customTag?.tagImage?.url && tag?.customTag?.tagImage?.url !== "" && (
+                            <img src={tag?.customTag?.tagImage?.url} style={{ maxWidth: "20px", maxHeight: "20px" }} />
                         )}
-                        {tag?.name && tag?.name !== '' && (
-                            <span style={{
-                                ...tag?.customTag?.tagDesign,
-                                borderStyle: 'solid',
-                                borderWidth: '1px',
-                                lineHeight: 0,
-                                padding: '10px'
-                            }}>
+                        {tag?.name && tag?.name !== "" && (
+                            <span
+                                style={{
+                                    ...tag?.customTag?.tagDesign,
+                                    borderStyle: "solid",
+                                    borderWidth: "1px",
+                                    lineHeight: 0,
+                                    padding: "10px",
+                                }}
+                            >
                                 {tag?.name}
                             </span>
                         )}
@@ -42,7 +38,7 @@ const CustomTags = ({ tag }: RenderTagsProps) => {
                 )}
             </div>
         </>
-    )
+    );
 };
 
 export default CustomTags;
