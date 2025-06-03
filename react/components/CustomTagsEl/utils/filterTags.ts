@@ -3,20 +3,18 @@ import { MaybeProduct } from "vtex.product-context/react/ProductTypes";
 
 export const filterTags = (configs: ConfigGroup[], product: MaybeProduct, selectedItemId?: string): ConfigGroup[] => {
     const configsActives = configs?.filter((config) => config?.active === true);
-    const includedTags = filterIncludedTags(configsActives, product, selectedItemId);
+    let includedTags = filterIncludedTags(configsActives, product, selectedItemId);
     const excludedTags = filterExcludedTags(configsActives, product);
 
-    // console.log("filterTags", configsActives, product);
-    const skuMustBeExcluded = includedTags.filter(
-        (tag) => selectedItemId && tag.tagNotIncluded.sku.values.includes(selectedItemId)
-    );
+    const skuMustBeExcluded = includedTags
+        .filter((tag) => selectedItemId && tag.tagNotIncluded?.sku.values.includes(selectedItemId) && tag.id)
+        .map((tag) => tag.id);
 
-    if (skuMustBeExcluded.length > 0) return [];
-    // console.log("filterTags", includedTags, excludedTags);
+    includedTags = includedTags.filter((tag) => !skuMustBeExcluded.includes(tag.id));
+
     const filteredTags = includedTags?.filter(
         (includedTag) => !excludedTags?.some((excludedItem) => includedTag?.id === excludedItem?.id)
     );
-
     return filterTagsByDeadLine(filteredTags) ?? [];
 };
 
@@ -39,13 +37,6 @@ const filterIncludedTags = (configs: ConfigGroup[], product: MaybeProduct, selec
             ) {
                 return true;
             }
-            // console.log(
-            //     "included",
-            //     tagIncluded?.brand?.active,
-            //     brand,
-            //     brand && tagIncluded?.brand?.values?.includes(brand),
-            //     tagIncluded?.brand?.values
-            // );
 
             if (tagIncluded?.brand?.active && brand && tagIncluded?.brand?.values?.includes(brand)) {
                 return true;

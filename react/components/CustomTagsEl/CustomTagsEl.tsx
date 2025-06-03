@@ -7,7 +7,6 @@ import { compareProductIdsInURL } from "./utils/compareProductIdsInURL";
 import { ConfigGroup } from "../../typings/config";
 import sleep from "../../helpers/sleep";
 import { waitForEl } from "./utils/waitForEl";
-import { useRuntime } from "vtex.render-runtime";
 import UseDebounce from "../../utils/useDebounce";
 
 interface CustomTagsElProps {
@@ -36,12 +35,30 @@ const CustomTagsEl = ({
     containerInsignia,
     positionInsignia,
 }: CustomTagsElProps) => {
-    const { page } = useRuntime();
     const { filteredTags, hrefProduct, skuId } = useProductTags(algoliaProductContext);
     const originalContainer = useRef<HTMLDivElement>(null);
-
+    let href: string | string[];
+    if (hrefProduct) {
+        href = hrefProduct.split("/");
+        href = href[href.length - 2];
+    }
     async function removeTags(containerSelector: string, renderedTags: string) {
+        if (!href) return;
+        const containerElByHref = document.querySelector(`[href="/${href}/p"]`);
         const tags = ["rendered-tag-insignia", "tag-right-top", "tag-right-center", "tag-right-bottom"];
+
+        if (containerElByHref) {
+            //this if is plp only
+            //tags
+            const removeTag = containerElByHref.querySelector(`.${renderedTags}`);
+            removeTag?.remove();
+            //insigneas
+            const containersTags = containerElByHref.querySelector(`.${renderedTags}`);
+            if (containersTags) {
+                containersTags.remove();
+            }
+            return;
+        }
 
         await waitForEl(`${containerSelector}`, 100, false, 1000);
 
@@ -171,20 +188,17 @@ const CustomTagsEl = ({
     const debouncedAddTags = UseDebounce(() => addTags(), 1000);
     useEffect(() => {
         debouncedAddTags();
-        // sleep(2000).then(addTags);
     }, [filteredTags]);
 
     useEffect(() => {
-        if (!page.includes("store.search")) {
-            removeTags(container, "rendered-tag-top");
-            removeTags(container, "rendered-tag-center");
-            removeTags(container, "rendered-tag-bottom");
+        removeTags(container, "rendered-tag-top");
+        removeTags(container, "rendered-tag-center");
+        removeTags(container, "rendered-tag-bottom");
 
-            removeTags(container, "rendered-tag-insignia");
-            removeTags(container, "tag-right-top");
-            removeTags(container, "tag-right-center");
-            removeTags(container, "tag-right-bottom");
-        }
+        removeTags(container, "rendered-tag-insignia");
+        removeTags(container, "tag-right-top");
+        removeTags(container, "tag-right-center");
+        removeTags(container, "tag-right-bottom");
     }, [skuId]);
 
     useEffect(() => {
